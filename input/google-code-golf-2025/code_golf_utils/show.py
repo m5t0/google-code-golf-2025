@@ -2,9 +2,9 @@ import code_golf_utils
 import matplotlib.pyplot as plt
 import sys
 
-task_num = 5
+task_num = 2
 task_name = "arc-gen"  # train, test, arc-gen
-s = 60
+s = 0
 num = 5
 
 if len(sys.argv) > 1:

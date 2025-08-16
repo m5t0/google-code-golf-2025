@@ -1,0 +1,1 @@
+ return[[2if all(g[i][j+k*5]==5for i in R(4)for j in R(4))else(3if any(g[i][k*5]==0for i in R(4))else(4if any(g[3][j+k*5]==0for j in R(4))else 8))]*3for k in R(3)]
