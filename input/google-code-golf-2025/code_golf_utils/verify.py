@@ -1,7 +1,7 @@
 import code_golf_utils
 import sys
 
-task_num = 5
+task_num = 2
 
 if len(sys.argv) > 1:
     task_num = int(sys.argv[1])
