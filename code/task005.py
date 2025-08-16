@@ -1,0 +1,1 @@
+def p(g):r,f=range,lambda x:min((i for i in r(19)if all(x[i:i+3])));s,t=f([*map(any,g)]),f([*map(any,zip(*g))]);h=lambda o,x,y:min(20,max(0,o+4*((x>0)-(x<0))+y));return[[max([g[h(s,x,k//3)][h(t,y,k%3)]for k in r(9)])*(g[s+(i-s)%4][t+(j-t)%4]>0)if abs(x:=(i-s)//4)==abs(y:=(j-t)//4)or x*y==0 else 0 for j in r(21)]for i in r(21)]
