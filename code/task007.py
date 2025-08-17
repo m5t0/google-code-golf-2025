@@ -1,0 +1,1 @@
+r=range;p=lambda g:[[max([g[k//7][k%7]*((k//7+k%7-i-j)%3<1)for k in r(49)])for j in r(7)]for i in r(7)]
