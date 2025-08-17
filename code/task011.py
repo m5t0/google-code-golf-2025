@@ -1,0 +1,1 @@
+r=range;p=lambda g:[[5*((i%4>2)|(j%4>2))or[v for k in r(9)if max(map(max,v:=[*zip(*[*zip(*g[k//3*4:k//3*4+3])][k%3*4:k%3*4+3])]))<8][0][i//4][j//4]for j in r(11)]for i in r(11)]
