@@ -1,0 +1,1 @@
+def p(g):r,h=range(len(g)),lambda x,i,j:{*x[j][i::-3]}&{*x[j][i::3]};return[[(v:=h([*zip(*g)],i,j)|h(g,j,i))and max(v)*((i%3<2)&(j%3<2))or g[i][j]for j in r]for i in r]
