@@ -1,1 +1,1 @@
-p=lambda g:[[2*v[j]*v[j+4]for j in range(3)]for v in g]
+p=lambda g:[[2*v[j]*v[j+4]for j in[0,1,2]]for v in g]
