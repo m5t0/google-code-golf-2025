@@ -1,0 +1,1 @@
+def p(g):r=range;g=[g,[*zip(*g)]][f:=(m:=len(g))<(n:=len(g[0]))];a,b=[i for i in r(len(g))if sum(g[i])>0];c=2*abs(a-b);return[[((k:=[i,j][f])>=min(a,b))*((k%c==a%c)*sum(g[a])+(k%c==b%c)*sum(g[b]))for j in r(n)]for i in r(m)]
