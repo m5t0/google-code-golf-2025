@@ -1,1 +1,5 @@
-def p(g):r=range;f=lambda x,y:0<=x<12>y>=0and g[x][y];return[[g[i][j]or((a:=(h:=lambda t,u,v,d=1,i=i,j=j:max(f(i+k,j+k*t)|f(i+k*u,j+k*v)for k in r(-d,d+1)))(0,0,1))>0)*(b:=h(1,1,-1,2))or a*(b<1)or b*(a+h(1,1,-1)<1)*any(f(i+2*k,j+k)&f(i+k,j+2*k)|f(i+2*k,j-k)&f(i+k,j-2*k)for k in[-1,0,1])for j in r(12)]for i in r(12)]
+﻿def p(g,r=range):
+ for c in r(10):
+  for i,j in(3>len(l:=[(i,j)for i in r(12)for j in r(12)if g[i][j]==c]))*l:
+   for a in r(-2,3):g[i-a][j]=g[i][j-a]=g[i+1][j];g[i+a][j+a]=g[i+a][j-a]=c
+ return g
