@@ -1,0 +1,1 @@
+def p(g):e,m=enumerate,max;f=lambda l:[i for i,x in e(l)if m(x)<1];w=f(zip(*g));p=sum([[[a[:min(w)]for a in s],[a[m(w)+1:]for a in s]]for s in[g[:min(f(g))],g[m(f(g))+1:]]],[]);q=[m(map(m,x))for x in p];return p[[i for i,x in e(q)if q.count(x)<2][0]]
