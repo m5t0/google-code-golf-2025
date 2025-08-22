@@ -1,11 +1,5 @@
 def p(g,r=range):
- h=[[1<<v for v in l]for l in g]
- for I in r(90):
-  if g[i:=I//9][j:=I%9]*g[i][j+1]>0:h[i][j]=h[i][j+1]=h[i][j]|h[i][j+1]
- for j in r(10):
-  for i in r(9):
-   h[i+1][j]|=(x:=h[i][j])
-   if g[i][j]>0>=g[i+1][j]:
-    for k in r((x-(i>1)).bit_count()):g[i+k+1][j]=3
-    break
+ for I in r(80,-1,-1):
+  if (x:=g[i:=I//9][j:=I%9])*(y:=g[i+1][j])*(z:=g[i][j+1])>0:
+   for k in r(len({x,y,z,g[i+1][j+1]})):g[i+2+k][j]=g[i+2+k][j+1]=3
  return g
