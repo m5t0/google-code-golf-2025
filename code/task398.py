@@ -1,0 +1,1 @@
+def p(g):r=range(s:=5*sum(x>0for x in g[0]));return[[([0]*s+g[0]+s*[0])[i+j+1]for j in r]for i in r]
