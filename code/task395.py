@@ -1,0 +1,1 @@
+def p(g,r=[0,1,2]):return[[[2,0][g[i][j]|g[i+3][j]>0]for j in r]for i in r]
