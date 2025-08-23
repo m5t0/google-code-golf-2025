@@ -1,0 +1,1 @@
+r=range;p=lambda g:[[(f:=lambda x,l=g[i]:x*any(s==x for s in l))(1)+f(3)or f(2,[*zip(*g)][j])for j in r(len(g[i]))]for i in r(len(g))]
