@@ -8,7 +8,7 @@
     e(s+"5")
    for x,y in(0,1),(1,0):
     if[i,j][y]<[n,m][y]-2and g[t:=i+x][u:=j+y]==g[t+x][u+y]==5:
-     s=f"g[i][j]=g[t][u]=g[t+x][u+y]=";e(s+"2")
+     s="g[i][j]=g[t][u]=g[t+x][u+y]=";e(s+"2")
      if p(g):return g
      e(s+"5")
    return 0
