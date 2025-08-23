@@ -1,4 +1,4 @@
-﻿def p(g,e=exec):
+def p(g,e=exec):
  n=len(g);m=len(g[0]);s="g[i][j]=g[v][w]=g[v"
  for I in range(n*m):
   if g[i:=I//m][j:=I%m]&5:
