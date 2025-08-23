@@ -1,15 +1,17 @@
-def p(g,e=exec):
- n=len(g);m=len(g[0]);s="g[i][j]=g[v][w]=g[v"
- for I in range(n*m):
-  if g[i:=I//m][j:=I%m]&5:
-   if i<n-1and j<m-1and g[v:=i+1][j]==g[i][w:=j+1]==g[v][w]==5:
-    t=s+"][j]=g[i][w]=";e(t+"8")
-    if p(g):return g
-    e(t+"5")
-   for x,y in(0,1),(1,0):
-    if[i,j][y]<[n,m][y]-2and g[v:=i+x][w:=j+y]==g[v+x][w+y]==5:
-     t=s+"+x][w+y]=";e(t+"2")
-     if p(g):return g
-     e(t+"5")
-   return 0
- return 1
+def p(g):
+ for i,r in enumerate(g):
+  if 5in r:j=r.index(5);break
+ else:return 1
+ if 5in r[j+1:j+2]and(h:=g[i+1])[j:j+2]==[5,5]:
+  r[j:j+2]=h[j:j+2]=8,8
+  if p(g):return g
+  r[j:j+2]=h[j:j+2]=5,5
+ if r[j+1:j+3]==[5,5]:
+  r[j:j+3]=[2]*3
+  if p(g):return g
+  r[j:j+3]=[5]*3
+ if [r[j]for r in g[i+1:i+3]]==[5,5]:
+  r[j]=g[i+1][j]=g[i+2][j]=2
+  if p(g):return g
+  r[j]=g[i+1][j]=g[i+2][j]=5
+ return 0
