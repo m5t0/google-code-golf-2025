@@ -1,4 +1,6 @@
+import bz2
 import base64
+import gzip
 import os
 import sys
 import zlib
@@ -24,27 +26,41 @@ for i in range(start, end + 1):
     print(" " * 10 + "\033[4m" + task + "\033[0m")
 
     if our_code:
-        compressed_len = len(base64.b64encode(zlib.compress(our_code.encode())).decode())
-        actual_compressed_len = compressed_len + 62
+        zlib_len = len(base64.b64encode(zlib.compress(our_code.encode(), level=9)).decode())
+        gzip_len = len(base64.b64encode(gzip.compress(our_code.encode(), compresslevel=9)).decode())
+        bz2_len = len(base64.b64encode(bz2.compress(our_code.encode(), compresslevel=9)).decode())
+        actual_zlib_len = zlib_len + 62
+        actual_gzip_len = gzip_len + 62
+        actual_bz2_len = bz2_len + 60
 
-        print(f"\033[92mour            : {len(our_code)}\033[0m")
-        print(f"\033[92mour compressed : {actual_compressed_len}\033[0m",end=" ")
+        print(f"\033[92mour                   : {len(our_code)}\033[0m", end=" ")
 
-        if actual_compressed_len < len(our_code):
+        if actual_zlib_len < len(our_code) or actual_gzip_len < len(our_code):
             print("\033[93mDo compress!!\033[0m")
         else:
             print()
+
+        print(f"\033[92mour compressed (zlib) : {actual_zlib_len}\033[0m")
+        print(f"\033[92mour compressed (gzip) : {actual_gzip_len}\033[0m")
+        print(f"\033[92mour compressed (bz2)  : {actual_bz2_len}\033[0m")
 
     if pub_code:
-        compressed_len = len(base64.b64encode(zlib.compress(pub_code.encode())).decode())
-        actual_compressed_len = compressed_len + 62
+        zlib_len = len(base64.b64encode(zlib.compress(pub_code.encode(), level=9)).decode())
+        gzip_len = len(base64.b64encode(gzip.compress(pub_code.encode(), compresslevel=9)).decode())
+        bz2_len = len(base64.b64encode(bz2.compress(pub_code.encode(), compresslevel=9)).decode())
+        actual_zlib_len = zlib_len + 62
+        actual_gzip_len = gzip_len + 62
+        actual_bz2_len = bz2_len + 60
 
-        print(f"\033[94mpub            : {len(pub_code)}\033[0m")
-        print(f"\033[94mpub compressed : {actual_compressed_len}\033[0m", end=" ")
+        print(f"\033[94mpub                   : {len(pub_code)}\033[0m", end=" ")
 
-        if actual_compressed_len < len(pub_code):
+        if actual_zlib_len < len(pub_code) or actual_gzip_len < len(pub_code) or actual_bz2_len < len(pub_code):
             print("\033[93mDo compress!!\033[0m")
         else:
             print()
+
+        print(f"\033[94mpub compressed (zlib) : {actual_zlib_len}\033[0m")
+        print(f"\033[94mpub compressed (gzip) : {actual_gzip_len}\033[0m")
+        print(f"\033[94mpub compressed (bz2)  : {actual_bz2_len}\033[0m")
 
     print("-"*35)
