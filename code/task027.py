@@ -1,0 +1,1 @@
+def p(g,r=range(10)):f=lambda h,x=[*zip(*g)]:h(i for i in r if max(x[i]));a,d=f(n:=min,g),f(max);c=n(d-f(max,g)+a,f(n));return[[g[i][j]or(0<=a+j-c<10>a+d-i>=0)*1and(g[a+j-c][a+d-i]>0)*2for j in r]for i in r]
