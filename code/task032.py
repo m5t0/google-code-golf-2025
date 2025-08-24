@@ -1,0 +1,1 @@
+r=range;p=lambda g:[[(c:=max(v:=[*zip(*g)][j]))and c*(i>=len(g)-sum(v)//c)for j in r(len(g[0]))]for i in r(len(g))]
