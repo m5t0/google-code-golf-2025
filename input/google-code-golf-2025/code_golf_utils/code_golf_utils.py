@@ -219,8 +219,11 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
           wrong += 1
           # debug用
           # from pprint import pprint
+          # print("Input")
           # pprint(copy.deepcopy(example)["input"])
+          # print("Correct Output")
           # pprint(example_copy["output"])
+          # print("Your Output")
           # pprint(program(copy.deepcopy(example)["input"]))
       except:
         error = traceback.format_exc()
