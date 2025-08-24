@@ -1,1 +1,1 @@
-def p(g,r=range):m=len(g);t=[min(min(i+99*(v[i]!=x)for i in r(m))for v in zip(*g))for x in r(10)];return[[(g*3)[m+i+t[max(g[k][j]for k in r(m))]-t[1]][j]for j in r(len(g[0]))]for i in r(m)]
+def p(g,r=range):m=len(g);t=[max(max(i*(v[i]==x)for i in r(m))for v in zip(*g))for x in r(10)];return[[(g*3)[m+i+t[max([*zip(*g)][j])]-t[1]][j]for j in r(len(g[0]))]for i in r(m)]
