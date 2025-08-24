@@ -1,0 +1,1 @@
+def p(g):q=[[r[i:i+2]for r in g[j:j+2]]for i in(0,3)for j in(0,3)];return[r for r in q if q.count(r)<2][0]
