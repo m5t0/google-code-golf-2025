@@ -1,5 +1,1 @@
-def p(g,e=enumerate):
- for x in range(10):
-  if s:=[*zip(*[(i,j)for i,v in e(g)for j,w in e(v)if w==x])]:
-   a,b,c,d=min(s[0]),max(s[0]),min(s[1]),max(s[1])
-   if len({*((g[a]+g[b])[c:d+1]+(h:=[*map(list,zip(*g[a:b+1]))])[c]+h[d])})<2:return[*map(list,zip(*h[c+1:d]))][1:-1]
+p=lambda g,e=enumerate:[[r[c+1:d]for r in g[a+1:b]]for x in range(10)if(s:=[*zip(*[(i,j)for i,r in e(g)for j,v in e(r)if v==x])])and len({*(g[a:=min(s[0])]+g[b:=max(s[0])])[(c:=min(s[1])):(d:=max(s[1]))+1]+[r[i]for r in g[a:b+1]for i in[c,d]]})<2][0]
