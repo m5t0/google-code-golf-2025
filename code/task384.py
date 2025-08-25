@@ -1,0 +1,1 @@
+p=lambda g:[[x for j in range(8)if 4in[*zip(*g)][j]for x in[v[j]]*2]for v in g for _ in(0,1)if 4in v]
