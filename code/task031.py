@@ -1,1 +1,1 @@
-p=lambda g:[[v[j]for j in range(11)if any([*zip(*g)][j])]for v in g if any(v)]
+p=lambda g:[[v[j]for j in range(12)if any([*zip(*g)][j])]for v in g if any(v)]
