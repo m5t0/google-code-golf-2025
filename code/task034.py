@@ -1,1 +1,1 @@
-def p(g,r=range):s=r(9);f=lambda x:min(i for i in s if any(x[i]));x,y=f(g),f([*zip(*g)]);return[[max((v:=g[x+k//2][y+k%2])*(v!=2)for k in r(4))*max((g[t:=x+k//2][u:=y+k%2]==2)*(abs((w:=(i-t)//(k//2*2-1))-(j-u)//(k%2*2-1))<2and-1<w)for k in r(4))or g[i][j]for j in s]for i in s]
+def p(g,r=range):s=r(9);f=lambda x:min(i for i in s if any(x[i]));x,y=f(g),f([*zip(*g)]);return[[max((v:=g[x+k//2][y+k%2])*(v!=2)for k in r(4))*max((g[t:=x+k//2][u:=y+k%2]==2)*(2>((w:=(i-t)//(k//2*2-1))-(j-u)//(k%2*2-1))>=-1<w)for k in r(4))or g[i][j]for j in s]for i in s]
