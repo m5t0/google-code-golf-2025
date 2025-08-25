@@ -207,6 +207,19 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
     print("Error: Function p() in task.py is not callable.")
     return
   print()
+
+  def colorize_print(arr):
+    print(str(arr)
+          .replace(" 1 "," \033[104m1\033[0m ").replace("[1 ", "[\033[104m1\033[0m ").replace(" 1]", " \033[104m1\033[0m]")
+          .replace(" 2 "," \033[41m2\033[0m ").replace("[2 ", "[\033[41m2\033[0m ").replace(" 2]", " \033[41m2\033[0m]")
+          .replace(" 3 "," \033[102m3\033[0m ").replace("[3 ", "[\033[102m3\033[0m ").replace(" 3]", " \033[102m3\033[0m]")
+          .replace(" 4 "," \033[103m4\033[0m ").replace("[4 ", "[\033[103m4\033[0m ").replace(" 4]", " \033[103m4\033[0m]")
+          .replace(" 5 "," \033[100m5\033[0m ").replace("[5 ", "[\033[100m5\033[0m ").replace(" 5]", " \033[100m5\033[0m]")
+          .replace(" 6 "," \033[105m6\033[0m ").replace("[6 ", "[\033[105m6\033[0m ").replace(" 6]", " \033[105m6\033[0m]")
+          .replace(" 7 "," \033[48;5;214m7\033[0m ").replace("[7 ", "[\033[48;5;214m7\033[0m ").replace(" 7]", " \033[48;5;214m7\033[0m]")
+          .replace(" 8 "," \033[106m8\033[0m ").replace("[8 ", "[\033[106m8\033[0m ").replace(" 8]", " \033[106m8\033[0m]")
+          .replace(" 9 "," \033[48;5;130m9\033[0m ").replace("[9 ", "[\033[48;5;130m9\033[0m ").replace(" 9]", " \033[48;5;130m9\033[0m]"))
+
   def verify(example_subset):
     right, wrong, expected, error = 0, 0, None, ""
     for example in example_subset:
@@ -220,11 +233,11 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
           # debug用
           # import numpy as np
           # print("Input")
-          # print(np.array(copy.deepcopy(example)["input"]))
+          # colorize_print(np.array(copy.deepcopy(example)["input"]))
           # print("Correct Output")
-          # print(np.array(example_copy["output"]))
+          # colorize_print(np.array(example_copy["output"]))
           # print("Your Output")
-          # print(np.array(program(copy.deepcopy(example)["input"])))
+          # colorize_print(np.array(program(copy.deepcopy(example)["input"])))
       except:
         error = traceback.format_exc()
         wrong += 1
