@@ -192,6 +192,8 @@ def show_examples(examples, bgcolor=(255, 255, 255)):
 
 
 def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
+  import numpy as np
+
   task_name = "task_with_imports"
   spec = importlib.util.spec_from_file_location(task_name, task_path)
   if spec is None:
@@ -209,16 +211,20 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
   print()
 
   def colorize_print(arr):
-    print(str(arr)
-          .replace(" 1 "," \033[104m1\033[0m ").replace("[1 ", "[\033[104m1\033[0m ").replace(" 1]", " \033[104m1\033[0m]")
-          .replace(" 2 "," \033[41m2\033[0m ").replace("[2 ", "[\033[41m2\033[0m ").replace(" 2]", " \033[41m2\033[0m]")
-          .replace(" 3 "," \033[102m3\033[0m ").replace("[3 ", "[\033[102m3\033[0m ").replace(" 3]", " \033[102m3\033[0m]")
-          .replace(" 4 "," \033[103m4\033[0m ").replace("[4 ", "[\033[103m4\033[0m ").replace(" 4]", " \033[103m4\033[0m]")
-          .replace(" 5 "," \033[100m5\033[0m ").replace("[5 ", "[\033[100m5\033[0m ").replace(" 5]", " \033[100m5\033[0m]")
-          .replace(" 6 "," \033[105m6\033[0m ").replace("[6 ", "[\033[105m6\033[0m ").replace(" 6]", " \033[105m6\033[0m]")
-          .replace(" 7 "," \033[48;5;214m7\033[0m ").replace("[7 ", "[\033[48;5;214m7\033[0m ").replace(" 7]", " \033[48;5;214m7\033[0m]")
-          .replace(" 8 "," \033[106m8\033[0m ").replace("[8 ", "[\033[106m8\033[0m ").replace(" 8]", " \033[106m8\033[0m]")
-          .replace(" 9 "," \033[48;5;130m9\033[0m ").replace("[9 ", "[\033[48;5;130m9\033[0m ").replace(" 9]", " \033[48;5;130m9\033[0m]"))
+    s = str(arr)
+
+    while " 1 " in s or " 2 " in s or " 3 " in s or " 4 " in s or " 5 " in s or " 6 " in s or " 7 " in s or " 8 " in s or " 9 " in s:
+      s = s.replace(" 1 "," \033[104m1\033[0m ").replace("[1 ", "[\033[104m1\033[0m ").replace(" 1]", " \033[104m1\033[0m]")
+      s = s.replace(" 2 "," \033[41m2\033[0m ").replace("[2 ", "[\033[41m2\033[0m ").replace(" 2]", " \033[41m2\033[0m]")
+      s = s.replace(" 3 "," \033[102m3\033[0m ").replace("[3 ", "[\033[102m3\033[0m ").replace(" 3]", " \033[102m3\033[0m]")
+      s = s.replace(" 4 "," \033[103m4\033[0m ").replace("[4 ", "[\033[103m4\033[0m ").replace(" 4]", " \033[103m4\033[0m]")
+      s = s.replace(" 5 "," \033[100m5\033[0m ").replace("[5 ", "[\033[100m5\033[0m ").replace(" 5]", " \033[100m5\033[0m]")
+      s = s.replace(" 6 "," \033[105m6\033[0m ").replace("[6 ", "[\033[105m6\033[0m ").replace(" 6]", " \033[105m6\033[0m]")
+      s = s.replace(" 7 "," \033[48;5;214m7\033[0m ").replace("[7 ", "[\033[48;5;214m7\033[0m ").replace(" 7]", " \033[48;5;214m7\033[0m]")
+      s = s.replace(" 8 "," \033[106m8\033[0m ").replace("[8 ", "[\033[106m8\033[0m ").replace(" 8]", " \033[106m8\033[0m]")
+      s = s.replace(" 9 "," \033[48;5;130m9\033[0m ").replace("[9 ", "[\033[48;5;130m9\033[0m ").replace(" 9]", " \033[48;5;130m9\033[0m]")
+
+    print(s)
 
   def verify(example_subset):
     right, wrong, expected, error = 0, 0, None, ""
@@ -231,7 +237,6 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
           expected = copy.deepcopy(example)
           wrong += 1
           # debug用
-          # import numpy as np
           # print("Input")
           # colorize_print(np.array(copy.deepcopy(example)["input"]))
           # print("Correct Output")
