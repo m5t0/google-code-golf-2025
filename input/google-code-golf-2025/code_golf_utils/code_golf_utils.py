@@ -218,13 +218,13 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
           expected = copy.deepcopy(example)
           wrong += 1
           # debug用
-          # from pprint import pprint
+          # import numpy as np
           # print("Input")
-          # pprint(copy.deepcopy(example)["input"])
+          # print(np.array(copy.deepcopy(example)["input"]))
           # print("Correct Output")
-          # pprint(example_copy["output"])
+          # print(np.array(example_copy["output"]))
           # print("Your Output")
-          # pprint(program(copy.deepcopy(example)["input"]))
+          # print(np.array(program(copy.deepcopy(example)["input"])))
       except:
         error = traceback.format_exc()
         wrong += 1
