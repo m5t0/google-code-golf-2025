@@ -27,6 +27,7 @@ for i in range(start, end + 1):
 
     if our_code:
         zlib_len = len(base64.b64encode(zlib.compress(our_code.encode(), level=9)).decode())
+        # print(base64.b64encode(zlib.compress(our_code.encode(), level=9)).decode())
         gzip_len = len(base64.b64encode(gzip.compress(our_code.encode(), compresslevel=9)).decode())
         bz2_len = len(base64.b64encode(bz2.compress(our_code.encode(), compresslevel=9)).decode())
         actual_zlib_len = zlib_len + 62

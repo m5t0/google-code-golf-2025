@@ -1,22 +1,19 @@
-import base64,zlib;exec(zlib.decompress(base64.b64decode('eJyVkM0KgzAQhO8+xR6VUqgBobR67RP0FnIQjCGi2xLr+zc/axPQg73NDjPLt9vJHt65Km4ZYDNKtPI+BcEvosigfxnQoBFMi0rm6JLeHKI5eRN0D4prwQfRNJV3nKVrPJfQYgdDPZGysVMZgqFhJy+96wda8NsYK7GRFq4hrukcIz+LQVD/LalWaIfKVtSEz0m2TxfXUYgdJNoUq/R1bOdhNpQ+ef88Ch2l2BQDBeUf7TjLbJ2eZpFfTZCl0A==')))
+import base64,zlib;exec(zlib.decompress(base64.b64decode('eNp9jt0KwjAMhe/3FLncWBG2URnVPknpxWTZaNUqcQMf3+wPJzoJgXBy+M6psYF73CYqguZG4ARvAAz9FanqcPqAa0CyTMpr2rlQ4zOWyeFEWJ0jwMsDFWHXU4AsYq+RVmsyPs2UT3NbhRpa49LMGj8KWhsppB3AtEifhlKUU+pYbWa3237GDcGwhBbfGSzlgucftxhJM8sd9+vmTBzOfDrlDH4Xsav3dshvv3wBaLZxwA==')))
 
 # decompress
 def p(g):
- n=len(g);m=len(g[0])
- for i in range(n):
-  for j in range(m):
-   if g[i][j]==5:
-    if i<n-1 and j<m-1 and g[i+1][j]==g[i][j+1]==g[i+1][j+1]==5:
-     g[i][j]=g[i+1][j]=g[i][j+1]=g[i+1][j+1]=8
-     if p(g):return g
-     g[i][j]=g[i+1][j]=g[i][j+1]=g[i+1][j+1]=5
-    if j<m-2 and g[i][j+1]==g[i][j+2]==5:
-     g[i][j]=g[i][j+1]=g[i][j+2]=2
-     if p(g):return g
-     g[i][j]=g[i][j+1]=g[i][j+2]=5
-    if i<n-2 and g[i+1][j]==g[i+2][j]==5:
-     g[i][j]=g[i+1][j]=g[i+2][j]=2
-     if p(g):return g
-     g[i][j]=g[i+1][j]=g[i+2][j]=5
-    return False
- return True
+ for i,r in enumerate(g):
+  if 5in r:j=r.index(5);break
+ else:return 1
+ if[5]==r[j+1:j+2]and g[i+1][j:j+2]==[5,5]:
+  r[j:j+2]=g[i+1][j:j+2]=8,8
+  if p(g):return g
+  r[j:j+2]=g[i+1][j:j+2]=5,5
+ if r[j+1:j+3]==[5,5]:
+  r[j:j+3]=2,2,2
+  if p(g):return g
+  r[j:j+3]=5,5,5
+ if i<6and g[i+1][j]==g[i+2][j]==5:
+  r[j]=g[i+1][j]=g[i+2][j]=2
+  if p(g):return g
+  r[j]=g[i+1][j]=g[i+2][j]=5
