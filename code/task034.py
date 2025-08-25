@@ -1,0 +1,1 @@
+def p(g,r=range):l=[*zip(*[(i,j)for i in r(len(g))for j in r(len(g[0]))if g[i][j]>0])];x,y=min(l[0]),min(l[1]);return[[max((v:=g[x+k//2][y+k%2])*(v!=2)for k in r(4))*max((g[x+k//2][y+k%2]==2)*(abs((w:=((i-x-k//2)//(k//2*2-1)))-((j-y-k%2)//(k%2*2-1)))<2and w>=0)for k in r(4))or g[i][j]for j in r(len(g[0]))]for i in r(len(g))]
