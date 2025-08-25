@@ -1,0 +1,1 @@
+p=lambda g,r=range(17):[[g[i][j]or any(any(v[j%6::6])for v in g[i%6::6])*g[5][0]for j in r]for i in r]
