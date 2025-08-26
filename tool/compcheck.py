@@ -1,6 +1,6 @@
 import os
 import sys
-from zlib import compress
+import zlib
 
 start = 1
 end = 400
@@ -13,10 +13,13 @@ if len(sys.argv) > 2:
     end = int(sys.argv[2])
 
 def zip_src(src):
- compression_level = 9 # Max Compression
+ def compress_custom(data, level, wbits):
+     comp = zlib.compressobj(level=level, wbits=wbits)
+     compressed = comp.compress(data) + comp.flush()
+     return compressed
 
  # We prefer that compressed source not end in a quotation mark
- while (compressed := compress(src.encode(), compression_level))[-1] == ord('"'): src += b"#"
+ while (compressed := compress_custom(src.encode(), level=9, wbits=-zlib.MAX_WBITS))[-1] == ord('"'): src += b"#"
 
  def sanitize(b_in):
   """Clean up problematic bytes in compressed b-string"""
@@ -34,7 +37,7 @@ def zip_src(src):
 
  return b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + \
   delim + compressed + delim + \
-  b',"L1")))'
+  b',"L1"),-15))'
 
 def process_code(author, code, color, out=None, write=False):
     clear = "\033[0m"
