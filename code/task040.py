@@ -1,0 +1,1 @@
+p=lambda g,r=range(10):[[(g[i][j]>0)*[g[0][9*(j>4)],g[9*(i>4)][0]][min(g[0])>0]for j in r]for i in r]
