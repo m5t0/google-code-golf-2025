@@ -1,0 +1,1 @@
+p=lambda g:[[[0,7,8,2][(((s:=sum(v))==7)|((t:=sum(c))==7))+2*(s==8or t==8)]for c in zip(*g)]for v in g]
