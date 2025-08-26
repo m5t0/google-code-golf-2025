@@ -13,38 +13,38 @@ if len(sys.argv) > 2:
     end = int(sys.argv[2])
 
 def zip_src(src):
- def compress_custom(data, level, wbits):
-     comp = zlib.compressobj(level=level, wbits=wbits)
-     compressed = comp.compress(data) + comp.flush()
-     return compressed
+    def compress_custom(data, level, wbits):
+        comp = zlib.compressobj(level=level, wbits=wbits)
+        compressed = comp.compress(data) + comp.flush()
+        return compressed
 
- # We prefer that compressed source not end in a quotation mark
- while (compressed := compress_custom(src.encode(), level=9, wbits=-zlib.MAX_WBITS))[-1] == ord('"'): src += b"#"
+    # We prefer that compressed source not end in a quotation mark
+    while (compressed := compress_custom(src.encode(), level=9, wbits=-zlib.MAX_WBITS))[-1] == ord('"'): src += b"#"
 
- def try_exec_compressed(compressed, delim):
-     src = b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + delim + compressed + delim + b',"L1"),-15))'
-     try:
-         exec(src.decode("L1"))
-         return False
-     except Exception:
-         return True
+    def try_exec_compressed(compressed, delim):
+        src = b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + delim + compressed + delim + b',"L1"),-15))'
+        try:
+            exec(src.decode("L1"))
+            return False
+        except Exception:
+            return True
 
- def sanitize(b_in):
-  """Clean up problematic bytes in compressed b-string"""
-  b_out = bytearray()
-  for b in b_in:
-   if   b==0:         b_out += b"\\x00"
-   elif b==ord("\r"): b_out += b"\\r"
-   elif b==ord("\\"): b_out += b"\\\\"
-   else: b_out.append(b)
-  return b"" + b_out
+    def sanitize(b_in):
+        """Clean up problematic bytes in compressed b-string"""
+        b_out = bytearray()
+        for b in b_in:
+            if   b==0:         b_out += b"\\x00"
+            elif b==ord("\r"): b_out += b"\\r"
+            elif b==ord("\\"): b_out += b"\\\\"
+            else: b_out.append(b)
+        return b"" + b_out
 
- delim = b'"""' if ord("\n") in compressed or ord('"') in compressed else b'"'
+    delim = b'"""' if ord("\n") in compressed or ord('"') in compressed else b'"'
 
- if try_exec_compressed(compressed, delim):
-  compressed = sanitize(compressed)
+    if try_exec_compressed(compressed, delim):
+        compressed = sanitize(compressed)
 
- return b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + delim + compressed + delim + b',"L1"),-15))'
+    return b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + delim + compressed + delim + b',"L1"),-15))'
 
 def process_code(author, code, color, out=None, write=False):
     clear = "\033[0m"
