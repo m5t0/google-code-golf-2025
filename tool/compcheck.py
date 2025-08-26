@@ -6,7 +6,7 @@ import sys
 import zlib
 
 start = 1
-end = 100
+end = 400
 
 if len(sys.argv) == 2:
     end = int(sys.argv[1])

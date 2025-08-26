@@ -1,6 +1,6 @@
 import base64,zlib;exec(zlib.decompress(base64.b64decode("eNp9jt0KwjAMhe/3FLncWBG2URnVPknpxWTZaNUqcQMf3+wPJzoJgXBy+M6psYF73CYqguZG4ARvAAz9FanqcPqAa0CyTMpr2rlQ4zOWyeFEWJ0jwMsDFWHXU4AsYq+RVmsyPs2UT3NbhRpa49LMGj8KWhsppB3AtEifhlKUU+pYbWa3237GDcGwhBbfGSzlgucftxhJM8sd9+vmTBzOfDrlDH4Xsav3dshvv3wBaLZxwA==")))
 
-# decompress
+# decompressed
 def p(g):
  for i,r in enumerate(g):
   if 5in r:j=r.index(5);break
