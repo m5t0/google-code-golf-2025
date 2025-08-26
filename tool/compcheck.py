@@ -27,7 +27,6 @@ for i in range(start, end + 1):
 
     if our_code:
         zlib_len = len(base64.b64encode(zlib.compress(our_code.encode(), level=9)).decode())
-        # print(base64.b64encode(zlib.compress(our_code.encode(), level=9)).decode())
         gzip_len = len(base64.b64encode(gzip.compress(our_code.encode(), compresslevel=9)).decode())
         bz2_len = len(base64.b64encode(bz2.compress(our_code.encode(), compresslevel=9)).decode())
         actual_zlib_len = zlib_len + 62
@@ -44,6 +43,8 @@ for i in range(start, end + 1):
         print(f"\033[92mour compressed (zlib) : {actual_zlib_len}\033[0m")
         print(f"\033[92mour compressed (gzip) : {actual_gzip_len}\033[0m")
         print(f"\033[92mour compressed (bz2)  : {actual_bz2_len}\033[0m")
+
+        # print(f'import base64,zlib;exec(zlib.decompress(base64.b64decode("{base64.b64encode(zlib.compress(our_code.encode(), level=9)).decode()}")))')
 
     if pub_code:
         zlib_len = len(base64.b64encode(zlib.compress(pub_code.encode(), level=9)).decode())
