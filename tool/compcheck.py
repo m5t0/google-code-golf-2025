@@ -21,6 +21,14 @@ def zip_src(src):
  # We prefer that compressed source not end in a quotation mark
  while (compressed := compress_custom(src.encode(), level=9, wbits=-zlib.MAX_WBITS))[-1] == ord('"'): src += b"#"
 
+ def try_exec_compressed(compressed, delim):
+     src = b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + delim + compressed + delim + b',"L1"),-15))'
+     try:
+         exec(src.decode("L1"))
+         return False
+     except Exception:
+         return True
+
  def sanitize(b_in):
   """Clean up problematic bytes in compressed b-string"""
   b_out = bytearray()
@@ -31,13 +39,12 @@ def zip_src(src):
    else: b_out.append(b)
   return b"" + b_out
 
- compressed = sanitize(compressed)
-
  delim = b'"""' if ord("\n") in compressed or ord('"') in compressed else b'"'
 
- return b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + \
-  delim + compressed + delim + \
-  b',"L1"),-15))'
+ if try_exec_compressed(compressed, delim):
+  compressed = sanitize(compressed)
+
+ return b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + delim + compressed + delim + b',"L1"),-15))'
 
 def process_code(author, code, color, out=None, write=False):
     clear = "\033[0m"
