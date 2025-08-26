@@ -1,0 +1,1 @@
+def p(g):r=range((s:=len(g))*2);return[[[t:=g[i%s][j%s],t or 8][any({*[*zip(*g)][j%s]}-{0})]for j in r]for i in r]
