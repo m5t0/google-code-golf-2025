@@ -1,0 +1,1 @@
+p=lambda g:[[v[j]or v[0]*(v[0]==v[9])for j in range(10)]for v in g]
