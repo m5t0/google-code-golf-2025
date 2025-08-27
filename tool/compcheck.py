@@ -18,7 +18,7 @@ def zip_src(src):
         compressed = comp.compress(data) + comp.flush()
         return compressed
 
-    get_src = lambda c, ds, de: b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + ds + c + de + b',"L1"),-15))'
+    get_src = lambda c, ds, de: b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + ds + c + de + b',"L1"),-9))'
 
     def sanitize(b_in):
         """Clean up problematic bytes in compressed b-string"""
@@ -47,7 +47,7 @@ def zip_src(src):
 
     for i in range(1, 10):
         # We prefer that compressed source not end in a quotation mark
-        while (compressed := compress_custom(src.encode(), level=i, wbits=-zlib.MAX_WBITS))[-1] == ord('"'): src += b"#"
+        while (compressed := compress_custom(src.encode(), level=i, wbits=-9))[-1] == ord('"'): src += b"#"
 
         for delim_start, delim_end in [(b'"', b'"'), (b"'", b"'"), (b'r"', b'"'), (b"r'", b"'"), (b'"""', b'"""')]:
             if not try_exec_compressed(compressed, delim_start, delim_end):
