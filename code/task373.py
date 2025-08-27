@@ -1,0 +1,1 @@
+p=lambda g,r=range:[[g[(i+j)%2][j]for j in r(6)]for i in r(2)]
