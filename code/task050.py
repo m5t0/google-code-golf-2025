@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[v[j]or 3*(sum(v[:j])*sum(v[j:])|sum(w[:i])*sum(w[i:]))//64for j,w in e(zip(*g))]for i,v in e(g)]
