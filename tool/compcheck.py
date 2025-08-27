@@ -34,7 +34,7 @@ def zip_src(src):
                 b_out.append(b)
         return b"" + b_out
 
-    def try_exec_compressed(compressed, deilim_start, delim_end):
+    def try_exec_compressed(compressed, delim_start, delim_end):
         src = get_src(compressed, delim_start, delim_end)
 
         try:
