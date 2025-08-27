@@ -1,1 +1,1 @@
-p=lambda g,r=range:(y:=2*len(g)-2,[[g[min(i%y,y-i%y)][j]for j in r(len(g[0]))]for i in r(2*y+1)])[1]
+p=lambda g,r=range:(y:=2*len(g)-2)and[[g[min(i%y,y-i%y)][j]for j in r(len(g[0]))]for i in r(2*y+1)]
