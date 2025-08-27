@@ -1,0 +1,1 @@
+def p(g,r=range):s=r(len(g));t=r(len(g[0]));a,b=zip(*[(i,j)for i in s for j in t if g[i][j]>0]);u=[[a[0],(b[0]+b[1])//2],[(a[0]+a[1])//2,b[0]]][len(set(b))<2];return[[[g[i][j],3][abs(i-u[0])+abs(j-u[1])<2]for j in t]for i in s]
