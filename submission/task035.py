@@ -1,1 +1,0 @@
-p=lambda g,r=range(10):[[((a:=g[i])[j]==8)*sum([w for v in[a[:j],a[j+1:],[*zip(*g)][j][:i],[*zip(*g)][j][i+1:]]for w in v if(8in v)<1])or a[j]for j in r]for i in r]

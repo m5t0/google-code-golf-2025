@@ -1,1 +1,0 @@
-p=lambda g,r=range(10):[[(i%7in(0,2)or j%9<1)*max(max([g[5:],g[:5]][i<5]))for j in r]for i in r]

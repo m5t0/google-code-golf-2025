@@ -1,1 +1,0 @@
-p=lambda g,e=enumerate:[[r[c+1:d]for r in g[a+1:max(s[0])]]for x in range(10)if(s:=[*zip(*[(i,j)for i,r in e(g)for j,v in e(r)if v==x])])and len({*g[a:=s[0][0]][(c:=min(s[1])):(d:=max(s[1]))]})<2][0]

@@ -1,1 +1,0 @@
-p=lambda g:(f:=(g:=[r[::-1]+r for r in g])[2::-1])+g+f

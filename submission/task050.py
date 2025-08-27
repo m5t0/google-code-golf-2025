@@ -1,1 +1,0 @@
-p=lambda g,e=enumerate,s=sum:[[v[j]or(s(v[:j])*s(v[j:])|s(w[:i])*s(w[i:]))*3>>6for j,w in e(zip(*g))]for i,v in e(g)]

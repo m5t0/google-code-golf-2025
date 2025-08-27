@@ -1,1 +1,0 @@
-p=lambda g:[[v[j]or(sum(v)*sum(c)==25)*2for j,c in enumerate(zip(*g))]for v in g]

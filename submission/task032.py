@@ -1,1 +1,0 @@
-def p(g):l=len(g);r=range(l);return[[(c:=max(v:=[*zip(*g)][j]))*(i>=l-v.count(c))for j in r]for i in r]

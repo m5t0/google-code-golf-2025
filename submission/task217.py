@@ -1,1 +1,0 @@
-p=lambda g,r=range(9):[[[b[k//3][l//3]&b[k%3][l%3]for l in r]for k in r]for i in r if any(map(any,b:=[k[i%3*3:i%3*3+3]for k in g[i//3*3:i//3*3+3]]))][0]

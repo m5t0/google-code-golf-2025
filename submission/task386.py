@@ -1,1 +1,0 @@
-p=lambda g:[[3*(g[i][j]|g[i][j+4]<1)for j in[0,1,2]]for i in range(4)]

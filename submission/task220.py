@@ -1,1 +1,0 @@
-def p(g):s=len(g);[exec("g[i+b//3-1][j+b%3-1]=(c//2,c*2)[c&1]")for a in range(s*s)if(c:=g[i:=a//s][j:=a%s])in(2,3,8)for b in(0,1,2,3,5,6,7,8)];return g

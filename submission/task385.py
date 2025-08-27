@@ -1,1 +1,0 @@
-p=lambda g,r=range:[[g[max(i,9-i)][j]for j in r(4)]for i in r(10)]

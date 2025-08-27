@@ -1,1 +1,0 @@
-p=lambda g:[[g[0][0]]*(sum(len({*r})<2for r in zip(*g))+1)]*(sum(len({*r})<2for r in g)+1)
