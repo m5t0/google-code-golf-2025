@@ -1,0 +1,1 @@
+p=lambda g,r=range:(l:=len(g))and[[[g[i][j],0][min((i+j+1)%l,(i-j)%l)<1]for j in r(l)]for i in r(l)]
