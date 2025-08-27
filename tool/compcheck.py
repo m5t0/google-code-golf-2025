@@ -34,14 +34,14 @@ def zip_src(src):
                 b_out.append(b)
         return b"" + b_out
 
-    def try_exec_compressed(compressed, delim_start, delim_end):
+    def is_valid(compressed, delim_start, delim_end):
         src = get_src(compressed, delim_start, delim_end)
 
         try:
             exec(src.decode("L1"))
-            return False
-        except Exception:
             return True
+        except Exception:
+            return False
 
     best = None
 
@@ -50,10 +50,10 @@ def zip_src(src):
         while (compressed := compress_custom(src.encode(), level=i, wbits=-9))[-1] == ord('"'): src += b"#"
 
         for delim_start, delim_end in [(b'"', b'"'), (b"'", b"'"), (b'r"', b'"'), (b"r'", b"'"), (b'"""', b'"""')]:
-            if not try_exec_compressed(compressed, delim_start, delim_end):
+            if is_valid(compressed, delim_start, delim_end):
                 break
 
-        if try_exec_compressed(compressed, delim_start, delim_end):
+        if not is_valid(compressed, delim_start, delim_end):
             compressed = sanitize(compressed)
 
         s = get_src(compressed, delim_start, delim_end)
