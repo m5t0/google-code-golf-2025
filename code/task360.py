@@ -1,0 +1,1 @@
+p=lambda g,r=range:[[g[i][j]|g[i][8-j]for j in r(4)]for i in r(10)]
