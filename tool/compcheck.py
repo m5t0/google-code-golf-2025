@@ -26,19 +26,7 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
             return deflate.deflate_compress(data, compresslevel=level)
         elif compressor == ZOPFLI:
             import zopfli.zopfli
-
-            best = None
-
-            for i in range(8):
-                for j in range(8):
-                    compressed = zopfli.zopfli.compress(data, numiterations=1<<i, blocksplittingmax=1<<i)[2:-4]
-
-                    if best is None or len(compressed) < len(best):
-                        best = compressed
-
-                    if len(best) > baseline + margin:
-                        return best
-            return best
+            return zopfli.zopfli.compress(data, numiterations=128, blocksplitting=False)[2:-4]
         elif compressor == ZLIB:
             import zlib
             comp = zlib.compressobj(level=level, memLevel=9, wbits=-9)
