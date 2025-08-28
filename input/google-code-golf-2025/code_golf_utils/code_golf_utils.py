@@ -221,7 +221,7 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
     for i in range(1, 10):
       bg = rgb_bg(*((180, 180, 210) if i == 5 else colors[i]))
 
-      while f" {i} " in s:
+      while f" {i} " in s or f"[{i} " in s or f" {i}]" in s:
         s = s.replace(f" {i} ", f" {bg}{i}{clear} ").replace(f"[{i} ", f"[{bg}{i}{clear} ").replace(f" {i}]", f" {bg}{i}{clear}]")
 
     print(s)
