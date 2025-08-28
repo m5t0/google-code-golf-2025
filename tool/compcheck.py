@@ -1,3 +1,5 @@
+import copy
+import importlib.util
 import os
 import sys
 import zlib
@@ -12,7 +14,7 @@ if len(sys.argv) > 2:
     start = int(sys.argv[1])
     end = int(sys.argv[2])
 
-def zip_src(src):
+def zip_src(task_num, src):
     def compress_custom(data, level, wbits):
         comp = zlib.compressobj(level=level, memLevel=9, wbits=wbits)
         compressed = comp.compress(data) + comp.flush()
@@ -34,10 +36,36 @@ def zip_src(src):
                 b_out.append(b)
         return b"" + b_out
 
-    def is_valid(compressed, delim_start, delim_end):
+    def is_valid(compressed, delim_start, delim_end, check_result=False):
+        def check(solution):
+            spec = importlib.util.spec_from_file_location("code_golf_utils", "./input/google-code-golf-2025/code_golf_utils/code_golf_utils.py")
+            code_golf_utils = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(code_golf_utils)
+            task_data = code_golf_utils.load_examples(task_num)
+
+            try:
+                namespace = {}
+                exec(solution, namespace)
+                if 'p' not in namespace: return False
+                all_examples = task_data['train'] + task_data['test'] + task_data['arc-gen']
+                for example in all_examples:
+                    input_grid = copy.deepcopy(example['input'])
+                    expected = example['output']
+                    try:
+                        actual = namespace['p'](input_grid)
+                        if actual != expected:
+                            return False
+                    except:
+                        return False
+                return True
+            except Exception as e:
+                return False
+
         src = get_src(compressed, delim_start, delim_end)
 
         try:
+            if check_result:
+                return check(src.decode("L1"))
             exec(src.decode("L1"))
             return True
         except Exception:
@@ -56,6 +84,20 @@ def zip_src(src):
         if not is_valid(compressed, delim_start, delim_end):
             compressed = sanitize(compressed)
 
+        while True:
+            current_len = len(compressed)
+
+            for i in range(len(compressed)):
+                if compressed[i] == 120:
+                    trimmed = compressed[:i] + compressed[i+1:]
+
+                    if is_valid(trimmed, delim_start, delim_end, check_result=True):
+                        compressed = trimmed
+                        break
+
+            if len(compressed) == current_len:
+                break
+
         s = get_src(compressed, delim_start, delim_end)
 
         if best is None or len(s) < len(best):
@@ -63,9 +105,9 @@ def zip_src(src):
 
     return best
 
-def process_code(author, code, color, out=None, write=False):
+def process_code(task_num, author, code, color, out=None, write=False):
     clear = "\033[0m"
-    compressed_code = zip_src(code)
+    compressed_code = zip_src(task_num, code)
     improvement = len(code) - len(compressed_code)
 
     print(f"{color}{author}            : {len(code)}{clear}")
@@ -94,7 +136,7 @@ for i in range(start, end + 1):
     print(" " * 10 + "\033[4m" + task + "\033[0m")
 
     if our_code := open(our, mode='r').read() if os.path.isfile(our) else "":
-        total_saved += process_code("our", our_code, "\033[92m", out, True)
+        total_saved += process_code(i, "our", our_code, "\033[92m", out, True)
     # if pub_code := open(pub, mode='r').read() if os.path.isfile(pub) else "":
     #     process_code("pub", pub_code, "\033[94m")
 
