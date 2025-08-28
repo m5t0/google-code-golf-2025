@@ -2,7 +2,6 @@ import copy
 import importlib.util
 import os
 import sys
-import zlib
 
 start = 1
 end = 400
@@ -14,11 +13,36 @@ if len(sys.argv) > 2:
     start = int(sys.argv[1])
     end = int(sys.argv[2])
 
-def zip_src(task_num, src):
-    def compress_custom(data, level, wbits):
-        comp = zlib.compressobj(level=level, memLevel=9, wbits=wbits)
-        compressed = comp.compress(data) + comp.flush()
-        return compressed
+def zip_src(task_num, src, baseline):
+    margin = 10
+
+    def compress_custom(data, level):
+        # zlib
+        # import zlib
+        # comp = zlib.compressobj(level=level, memLevel=9, wbits=-9)
+        # compressed = comp.compress(data) + comp.flush()
+        # return compressed
+
+        # deflate
+        import deflate
+        return deflate.deflate_compress(data, compresslevel=level)
+
+        # zopfli
+        # import zopfli.zopfli
+        #
+        # best = None
+        #
+        # for i in range(8):
+        #     for j in range(8):
+        #         compressed = zopfli.zopfli.compress(data, numiterations=1<<i, blocksplittingmax=1<<i)[2:-4]
+        #
+        #         if best is None or len(compressed) < len(best):
+        #             best = compressed
+        #
+        #         if len(best) > baseline + margin:
+        #             return best
+
+        return best
 
     get_src = lambda c, ds, de: b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + ds + c + de + b',"L1"),-9))'
 
@@ -73,9 +97,9 @@ def zip_src(task_num, src):
 
     best = None
 
-    for i in range(1, 10):
+    for level in range(1, 10):
         # We prefer that compressed source not end in a quotation mark
-        while (compressed := compress_custom(src.encode(), level=i, wbits=-9))[-1] == ord('"'): src += b"#"
+        while (compressed := compress_custom(src.encode(), level=level))[-1] == ord('"'): src += "#"
 
         for delim_start, delim_end in [(b'"', b'"'), (b"'", b"'"), (b'r"', b'"'), (b"r'", b"'"), (b'"""', b'"""')]:
             if is_valid(compressed, delim_start, delim_end):
@@ -103,11 +127,14 @@ def zip_src(task_num, src):
         if best is None or len(s) < len(best):
             best = s
 
+        if len(best) > baseline + margin:
+            break
+
     return best
 
 def process_code(task_num, author, code, color, out=None, write=False):
     clear = "\033[0m"
-    compressed_code = zip_src(task_num, code)
+    compressed_code = zip_src(task_num, code, len(code))
     improvement = len(code) - len(compressed_code)
 
     print(f"{color}{author}            : {len(code)}{clear}")
