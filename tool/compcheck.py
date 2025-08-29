@@ -124,12 +124,26 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
 
     return best
 
+deflate_cnt = 0
+zopfli_cnt = 0
+zlib_cnt = 0
+
 def process_code(task_num, author, code, color, out=None, write=False):
     clear = "\033[0m"
     deflate = zip_src(task_num, code, len(code), compressor=DEFLATE)
     zopfli = zip_src(task_num, code, len(code), compressor=ZOPFLI)
     zlib = zip_src(task_num, code, len(code), compressor=ZLIB)
     compressed_code = min(deflate, zopfli, zlib, key=len)
+
+    if deflate == compressed_code:
+        global deflate_cnt
+        deflate_cnt += 1
+    if zopfli == compressed_code:
+        global zopfli_cnt
+        zopfli_cnt += 1
+    if zlib == compressed_code:
+        global zlib_cnt
+        zlib_cnt += 1
 
     improvement = len(code) - len(compressed_code)
 
@@ -166,3 +180,6 @@ for i in range(start, end + 1):
     print("-"*35)
 
 print(f"Total saved: {total_saved} bytes")
+print(f"Deflate: {deflate_cnt} times")
+print(f"Zopfli: {zopfli_cnt} times")
+print(f"Zlib: {zlib_cnt} times")
