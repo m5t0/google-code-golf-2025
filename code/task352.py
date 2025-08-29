@@ -1,0 +1,1 @@
+def p(g,r=range):n,m=len(g),len(g[0]);return[[[g[i][j],1][min(max(abs(i-I),abs(j-J))for I,J in [(k,l)for k in r(n)for l in r(m)if g[k][l]==2])==1]for j in r(m)]for i in r(n)]
