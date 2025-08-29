@@ -1,0 +1,1 @@
+def p(g,r=range):n,m=len(g),len(g[0]);a=[[(i,j)for i in r(n)for j in r(m)if g[i][j]==k]for k in r(9)];a[3][0]=tuple(x+(y>x)-(y<x)for x,y in zip(a[3][0],a[4][0]));return[[4 if (i,j)in a[4]else 3 if (i,j)in a[3]else 0 for j in r(m)]for i in r(n)]
