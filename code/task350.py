@@ -1,0 +1,1 @@
+def p(g,r=range):n,m=len(g),len(g[0]);return[[[g[i][j],8][(len(a:=[k for k in r(m)if g[i][k]])and a[0]<j<a[-1]and j not in a)|(len(b:=[k for k in r(n)if g[k][j]>0])and b[0]<i<b[-1]and i not in b)]for j in r(m)]for i in r(n)]
