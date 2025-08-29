@@ -20,8 +20,6 @@ for i in range(1, len(sys.argv))[::-1]:
         for j in range(int(start), int(end) + 1):
             sys.argv.append(str(j))
 
-print(sys.argv)
-
 for i in range(1, len(sys.argv)):
     task_num = int(sys.argv[i])
     task_path = f"{task_dir}/task{str(task_num).zfill(3)}.py"
