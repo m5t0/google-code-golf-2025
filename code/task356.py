@@ -1,1 +1,1 @@
-def p(g,r=range):return[[[0,8][(len(a:=[k for k in r(10)if g[i][k]>0])and a[0]<=j<=a[-1])|(len(b:=[k for k in r(10)if g[k][j]>0])and b[0]<=i<=b[-1])]for j in r(10)]for i in r(10)]
+def p(g,r=range(10)):return[[[0,8][(len(a:=[k for k in r if g[i][k]>0])and a[0]<=j<=a[-1])|(len(b:=[k for k in r if g[k][j]>0])and b[0]<=i<=b[-1])]for j in r]for i in r]
