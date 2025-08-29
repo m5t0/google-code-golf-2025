@@ -1,0 +1,1 @@
+def p(g,e=enumerate):d=0,1,0,-1;f=lambda f,g,n,s:[(s.add((I,J)),f(f,g,(I,J),s))for i in range(4)if 0<=(I:=n[0]+d[i])<10>(J:=n[1]+d[(i+1)%4])>=0!=(g[I][J]==0and(I,J)not in s)];return[[w or (lambda s:(f(f,g,(i,j),s),4-len(s))[1])({(i,j)})for j,w in e(v)]for i,v in e(g)]
