@@ -1,0 +1,1 @@
+p=lambda g:sorted([x for c in range(1,10)if(x:=[[v[j]for j in range(len(v))if c in[*zip(*g)][j]]for v in g if c in v])],key=lambda x:len(x)*len(x[0]))[0]
