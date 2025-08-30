@@ -1,0 +1,1 @@
+def p(g,e=enumerate):f=lambda n:[(i,j)for i,v in e(g)for j,w in e(v)if w==n][0];a,b=f(3);c,d=f(4);g[a][b]=0;g[a+(a<c)-(a>c)][b+(b<d)-(b>d)]=3;return g
