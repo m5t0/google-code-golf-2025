@@ -74,7 +74,7 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
                     except:
                         return False
                 return True
-            except Exception as e:
+            except:
                 return False
 
         src = get_src(compressed, delim_start, delim_end)
@@ -84,7 +84,7 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
                 return check(src.decode("L1"))
             exec(src.decode("L1"))
             return True
-        except Exception:
+        except:
             return False
 
     best = None
