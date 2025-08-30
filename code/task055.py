@@ -1,0 +1,1 @@
+def p(g,e=enumerate):f=lambda l:[i for i,v in e(l)if len({*v})<2];x=f(g);y=f(zip(*g));return[[w or[[0,2,0],[4,6,3],[0,1,0]][(i>x[0])+(i>x[1])][(j>y[0])+(j>y[1])]for j,w in e(v)]for i,v in e(g)]
