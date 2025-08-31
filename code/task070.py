@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[[v[j],3][v[j]==1and min(x:=[k for k,a in e(zip(*g))if 8 in a])<=j<=max(x)and 8 in v]for j,w in e(zip(*g))]for v in g]
