@@ -1,0 +1,1 @@
+def p(g,r=range):n=len(g);m=len(g[0]);x=[[i//m,i%m]for i in r(n*m)if g[i//m][i%m]][-1];return[[[0,[7,8][(y:=abs(j-x[1]))%2]][y+i<=x[0]]for j in r(m)]for i in r(n)]
