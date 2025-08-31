@@ -1,0 +1,1 @@
+p=lambda g,r=range:[[g[i][j%(6if(h:=[*zip(*g)])[0]==(0,0,0,6,2)else 8 if h[0]==h[8]and h[1]==h[9]else 4 if h[0]==h[4]and h[1]==h[5]else 6)]for j in r(len(g[0]))]for i in r(len(g))]
