@@ -1,0 +1,1 @@
+p=lambda g:[[[0,6][(c|v[i+3])>0]for i,c in enumerate(v[:3])]for v in g]
