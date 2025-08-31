@@ -1,0 +1,1 @@
+p=lambda g,d=(0,1,0,-1,0),r=range:[[[[f,0][f==2and any(0<=i+d[k]<len(g)and 0<=j+d[k+1]<len(g[0])and g[i+d[k]][j+d[k+1]]==3for k in r(4))],8][f==3and any(0<=i+d[k]<len(g)and 0<=j+d[k+1]<len(g[0])and g[i+d[k]][j+d[k+1]]==2for k in r(4))]for j,f in enumerate(g[i])]for i in r(len(g))]
