@@ -1,0 +1,1 @@
+p=lambda g:min([x for c in range(10)if(x:=[[v[j]for j,w in enumerate((zip(*g)))if c in w]for v in g if c in v])],key=lambda x:len(x)*len(x[0]))
