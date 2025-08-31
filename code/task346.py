@@ -1,0 +1,1 @@
+p=lambda g,r=range:[[g[h][a]for h in r(1,len(g)-1)for a in r(1,len(g[0])-1)if all((g[h+H][a+A]and g[h+H][a+A]!=g[h][a])for H in(-1,0,1)for A in(-1,0,1)if (H,A)!=(0,0))]]
