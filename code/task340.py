@@ -1,9 +1,1 @@
-def p(g,r=range):
- n,m=len(g),len(g[0]);h=list(zip(*g));K=[(0,1),(-1,-2)]
- for i in r(1,n-1):
-  for j,k in K:
-   if g[i].count(g[i][j])>1:g[i][k]=g[i][j]
- for j in r(1,m-1):
-  for p,q in K:
-   if h[j].count(g[p][j])>1:g[q][j]=g[p][j]
- return[[[0,g[i][j]][min(i,n-1-i,j,m-1-j)<2]for j in r(m)]for i in r(n)]
+def p(g,e=enumerate):n,m=len(g),len(g[0]);return[[[v[0]*(j==1)*(v[0]in v[1:])+v[-1]*(j==m-2)*(v[-1]in v[:-1])+w[0]*(i==1)*(w[0]in w[1:])+w[-1]*(i==n-2)*(w[-1]in w[:-1]),g[i][j]][min(i,n-1-i,j,m-1-j)<1]for j,w in e(zip(*g))]for i,v in e(g)]
