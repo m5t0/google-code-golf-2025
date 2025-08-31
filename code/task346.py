@@ -1,0 +1,1 @@
+p=lambda g,r=range:[[g[h][a]for h in r(len(g)-1)for a in r(len(g[0])-1)if all((g[s:=h+I//3-1][t:=a+I%3-1]*(g[s][t]-g[h][a]))for I in r(9)if I-4)]]
