@@ -1,12 +1,6 @@
 def p(g,r=range):
- for j in r(10):
-  if t:=g[0][j]:
-   a=[i for i in r(10)if g[i][j]==5]
-   def f(k):
-    for i in r(a[0],a[-1]+1):g[i][k]=t
-   f(j)
-   for l in [-1,1]:
-    for k in r(1,10):
-     if 0<=(s:=j+k*l)<10and g[a[0]][s]==5:f(s)
-     else:break
+ d=0,1,0,-1,0
+ def D(i,j,c):
+  if (0<=i<10)&(0<=j<10)and g[i][j]==5:g[i][j]=c;[D(i+d[I],j+d[I+1],c)for I in r(4)]
+ [[D(i,j,g[0][j])for i in r(1,10)if g[i][j]==5]for j in r(10)if g[0][j]]
  return g
