@@ -1,1 +1,1 @@
-p=lambda g,r=range:[[(t:=g[(i-(s:=str(g).count('5')))%10][(j+s)%10])*(t!=5)for j in r(10)]for i in r(10)]
+p=lambda g,r=range(10):[[(t:=g[i-(s:=str(g).count('5'))][j+s-10])*(t!=5)for j in r]for i in r]
