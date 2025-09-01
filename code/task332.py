@@ -1,0 +1,1 @@
+p=lambda g:[[[5,3][(len(v)-j)%2]*(x>0)for j,x in enumerate(v)]for v in g]
