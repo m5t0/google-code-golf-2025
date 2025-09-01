@@ -1,1 +1,1 @@
-p=lambda g:[[y:=max(sum(g,[]))]*str(g).count(str(y))]
+p=lambda g:[[c for r in g for c in r if c]]
