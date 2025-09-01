@@ -1,0 +1,1 @@
+p=lambda g,r=range:[[g[i][j]or+any(sum(0<i+k//2<7>j+k%2>0and g[i+k//2+l//2-1][j+k%2+l%2-1]for l in r(4))>20for k in r(4))for j in r(7)]for i in r(7)]
