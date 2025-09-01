@@ -1,1 +1,1 @@
-p=lambda g:[[c for r in g for c in r if c]]
+p=lambda g:[[c for c in sum(g,[])if c]]
