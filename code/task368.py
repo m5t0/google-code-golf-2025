@@ -1,8 +1,1 @@
-def p(g,r=range):
- t=len(g);a=[[g[i][j]for j in r(t)if 0<g[i][j]!=5]for i in r(t)if any(0<g[i][j]!=5for j in r(t))]
- for i in r(t):
-  for j in r(t):
-   if g[i][j]==5:
-    for k in r(len(a)):
-     for l in r(len(a[0])):g[i+k][j+l]=a[k][l]
- return g
+def p(g,r=range):a=[[w for w in v if 0<w!=5]for v in g if any(0<x!=5for x in v)];[exec("g[i+k][j:j+len(a[k])]=a[k]")for I in r(100)if g[i:=I//10][j:=I%10]==5for k in r(len(a))];return g
