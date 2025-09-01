@@ -1,0 +1,1 @@
+p=lambda g,r=(0,1,2):[[5*((i==r[2-(x:=max(sum(g,[])))])|(j==(x+1)//2))for j in r]for i in r]
