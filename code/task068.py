@@ -1,1 +1,1 @@
-def p(g,r=range(10)):i,j=min([(str(g).count(str(g[i][j])),i,j)for i in r for j in r])[1:];return[[(i-2<x<i+2)*(j-2<y<j+2)*[2,g[i][j]][(x,y)==(i,j)]for y in r]for x in r]
+def p(g,r=range(10)):_,i,j=min([(str(g).count(str(g[i][j])),i,j)for i in r for j in r]);return[[(i-2<x<i+2)*(j-2<y<j+2)*[2,g[i][j]][(x,y)==(i,j)]for y in r]for x in r]
