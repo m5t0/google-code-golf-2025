@@ -1,0 +1,1 @@
+p=lambda g,r=range(9):[exec("g[i-1+k//3][j+3+k%3]=g[k//3][k%3]")for i in r for j in r for k in[*r]*(g[i][j+4]==1)]and g
