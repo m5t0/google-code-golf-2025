@@ -1,1 +1,1 @@
-def p(g,e=enumerate):d=[((i,j),w)for i,v in e(g)for j,w in e(v)if 0<w!=8];d[:2],d[2:]=[sorted(x,key=lambda y:y[0][1])for x in (d[:2],d[2:])];y=(v for k,v in d);return[[x==8and next(y)for x in r]for r in g]
+def p(g,e=enumerate):d=[((i,j),w)for i,v in e(g)for j,w in e(v)if 0<w!=8];d[:2],d[2:]=[sorted(x,key=lambda y:y[0][1])for x in(d[:2],d[2:])];y=(v for k,v in d);return[[x==8and next(y)for x in r]for r in g]
