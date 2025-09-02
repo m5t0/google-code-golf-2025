@@ -1,1 +1,1 @@
-def p(g,r=range):n,m=len(g),len(g[0]);return[[[g[i][j],8][((a:=[k for k in r(m)if g[i][k]])and a[0]<j<a[-1]and j not in a)or(len(b:=[k for k in r(n)if g[k][j]])and b[0]<i<b[-1]and i not in b)]for j in r(m)]for i in r(n)]
+p=lambda g,e=enumerate:[[8if((a:=[k for k,x in e(v)if x])and a[0]<j<a[-1]!=v[j]<1)or((b:=[k for k,x in e(w)if x])and b[0]<i<b[-1]!=w[i]<1)else v[j]for j,w in e(zip(*g))]for i,v in e(g)]
