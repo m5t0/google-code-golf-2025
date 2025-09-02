@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[((b:=min(a:=[x for r in g for x in r if x],key=a.count))in r or b in[*zip(*g)][j])and[t for k,s in e(g)for l,t in e(s)if(k-i)%(m:=len({*a}))+(l-j)%m<1<=t][0]or x for j,x in e(r)]for i,r in e(g)]
+def p(g,e=enumerate):f=lambda v,I:[x for k,x in e(v)if(k-I)%(len({*str(g)})-5)==0<x][0];return[[f(v,j)if len({*v})>2else f(w,i)if len({*w})>2else 0for j,w in e(zip(*g))]for i,v in e(g)]
