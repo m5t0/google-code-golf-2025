@@ -1,8 +1,5 @@
 def p(g,r=range):
- h,w=len(g),len(g[0]);d=0,1,0,-1,0
- for i in r(h):
-  for j in r(w):
-   if g[i][j]==3:
-    for I in r(4):
-     if 0<=i+(a:=d[I])<h and 0<=j+(b:=d[I+1])<w and g[i+a][j+b]==2:g[i][j]=8;g[i+a][j+b]=0
+ h,w=len(g),len(g[0]);d=0,1,0,-1
+ for K in r(h*w*4):
+  if h>(a:=(i:=(I:=K//4)//w)+d[J:=K%4])>-1<(b:=(j:=I%w)+d[J-1])<w and g[a][b]==g[i][j]-1:g[i][j]=8;g[a][b]=0
  return g
