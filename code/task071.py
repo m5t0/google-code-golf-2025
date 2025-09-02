@@ -1,0 +1,1 @@
+p=lambda g,r=range(16):[[[v[(j,2*k-j+b)[v[j]==c]]for j in r]for v in g]for c in r if len({v[j]for v in g for j in r if c in v if c in[*zip(*g)][j]})<2for b in(0,1)for k in r if all((v[j]==c)+(v[t]==c)+(v[j]==v[t])if(t:=2*k-j+b)in r else v[j]in(0,c)for v in g for j in r)][0]
