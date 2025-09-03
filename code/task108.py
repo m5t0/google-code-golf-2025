@@ -1,0 +1,1 @@
+p=lambda g:[[[v[1::2]for v in g[1::2]][i//4][j//4]for j in range(20)]for i in range(20)]
