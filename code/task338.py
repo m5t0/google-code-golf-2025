@@ -1,1 +1,1 @@
-def p(g):r=range(1,len(g));[exec("g[i][j]=3")for i in r for j in r if g[i][j]<min(g[i-1][j],g[i][j-1])];return[[x*(x-2)for x in v]for v in g]
+def p(g):r=range(1,len(g));[exec("g[i][j]=3")for i in r for j in r if g[i][j]<g[i-1][j]&g[i][j-1]];return[[x*(x-2)for x in v]for v in g]
