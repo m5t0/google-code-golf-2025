@@ -1,1 +1,1 @@
-p=lambda g,r=range(9):[[g[i][j]or any(i+k//3in r and g[i+k//3-1][j+k%3-1:j+k%3]==[5]for k in r)for j in r]for i in r]
+p=lambda g:[exec("g[k//9+l//3-1][k%9+l%3-1]=1")for k in range(81)for l in[0,1,2,3,5,6,7,8]*(g[k//9][k%9]==5)]and g
