@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[w*(min(min(a[j and j-1:j+2])for a in g[i and i-1:i+2])<1)for j,w in e(v)]for i,v in e(g)]
