@@ -1,1 +1,6 @@
-def p(g,r=range):d=[((i,j),g[i][j])for i in r(len(g))for j in r(len(g[0]))if 0<g[i][j]!=8];d[:2],d[2:]=[sorted(x,key=lambda y:y[0][1])for x in (d[:2],d[2:])];y=iter(v for k,v in d);return[[next(y)if x==8 else 0 for x in r]for r in g]
+def p(g,r=range(10)):
+ x,y=[(i,j)for i in r for j in r if g[i][j]==8][0]
+ for i in r:
+  for j in r:
+   if s:=g[i][j]:g[i][j],g[x+(i>x)][y+(j>y)]=0,s
+ return g
