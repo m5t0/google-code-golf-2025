@@ -1,0 +1,1 @@
+p=lambda g:[[v[i]+v[i+5]and 3for v in zip(*g)]for i in[0,1,2,3]]
