@@ -1,2 +1,2 @@
-def p(g,e=enumerate):[exec("""while(3in v)*(v[j]-3):g[i][j]=w[i];j+=(3in v[j:])-(3in v[:j])
-while(3in w)*(w[i]-3):g[i][j]=v[j];i+=(3in w[i:])-(3in w[:i])""")for j,w in e(zip(*g))for i,v in e(g)if v[j]];return g
+p=lambda g,e=enumerate:[exec("""while(3in v)*(v[j]-3):g[i][j]=w[i];j+=(3in v[j:])-(3in v[:j])
+while(3in w)*(w[i]-3):g[i][j]=v[j];i+=(3in w[i:])-(3in w[:i])""")for j,w in e(zip(*g))for i,v in e(g)if v[j]]and g
