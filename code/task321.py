@@ -1,1 +1,1 @@
-p=lambda g:[[[v[j+10],x:=v[j+5]][x>0]*(v[j]<1)+v[j]for j in[0,1,2,3]]for v in g]
+p=lambda g:[[v[j]or v[j+5] or v[j+10]for j in range(4)]for v in g]
