@@ -1,1 +1,1 @@
-e=enumerate;m=min;p=lambda g:[[max(m(v[j%3::6]),m(w[i%3::6]),v[j])for j,w in e(zip(*g))]for i,v in e(g)]
+e=enumerate;p=lambda g:[[max(min(v[j%3::6]),min(w[i%3::6]),v[j])for j,w in e(zip(*g))]for i,v in e(g)]
