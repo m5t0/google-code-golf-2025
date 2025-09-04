@@ -1,0 +1,1 @@
+f=lambda s:[k for i,k in enumerate(s)if k!=s[i-1]];p=lambda g:max([f(g[0])],[[v]for v in f([*zip(*g)][0])])
