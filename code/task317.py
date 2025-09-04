@@ -1,1 +1,1 @@
-p=lambda g,r=range:[exec("for k in r(9):g[I+1-k//3][i%9+1-k%3]=1"*(g[I:=i//9][i%9]>1))for i in r(81)]and g
+p=lambda g,r=range(9):[[g[i//3*3+1][j//3*3+1]>0for j in r]for i in r]
