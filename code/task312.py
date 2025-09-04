@@ -1,0 +1,1 @@
+p=lambda g:[[v[0]]+[x*v[0]/5for x in v[1:]]for v in g]
