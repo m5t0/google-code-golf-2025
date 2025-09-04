@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[[8,w][min([0]*(3-len(y:=g[i and i-1:i+2]))+[min((x:=a[j and j-1:j+2])+[0]*(3-len(x)))for a in y])<1]for j,w in e(v)]for i,v in e(g)]
