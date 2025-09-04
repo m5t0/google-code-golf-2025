@@ -1,0 +1,1 @@
+r=range;p=lambda g:[exec("for k in r(9):g[I+1-k//3][i%9+1-k%3]=1"*(g[I:=i//9][i%9]>1))for i in r(81)]and g
