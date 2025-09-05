@@ -1,0 +1,1 @@
+def p(g,r=range(13)):v=min((sum(g[i][j]in g[k]for k in r),[a[j-1:j+2]for a in g[i-1:i+2]])for i in r for j in r)[1];v[1][1]=0;v[1][1]=max(map(max,v));return v
