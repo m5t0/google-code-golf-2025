@@ -1,0 +1,1 @@
+def p(g,e=enumerate):[exec("g[i+k//3-1][j+k%3-1]=4")for i,v in e(g)for j,w in e(zip(*g))if min(v)*min(w)for k in range(9)if k!=4];return g
