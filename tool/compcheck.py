@@ -3,19 +3,17 @@ import importlib.util
 import os
 import sys
 
-start = 1
-end = 400
-
 DEFLATE = 0
 ZOPFLI = 1
 ZLIB = 2
 
-if len(sys.argv) == 2:
-    end = int(sys.argv[1])
+for i in range(1, len(sys.argv))[::-1]:
+    if ".." in sys.argv[i]:
+        start, end = sys.argv[i].split("..")
+        sys.argv.pop(i)
 
-if len(sys.argv) > 2:
-    start = int(sys.argv[1])
-    end = int(sys.argv[2])
+        for j in range(int(start), int(end) + 1):
+            sys.argv.append(str(j))
 
 def zip_src(task_num, src, baseline, compressor=DEFLATE):
     margin = 10
@@ -164,8 +162,9 @@ def process_code(task_num, author, code, color, out=None, write=False):
 
 total_saved = 0
 
-for i in range(start, end + 1):
-    task = f"task{str(i).zfill(3)}.py"
+for arg in sys.argv[1:]:
+    task_num = int(arg)
+    task = f"task{str(task_num).zfill(3)}.py"
     our = f"./code/{task}"
     pub = f"./input/solution2/{task}"
     out = f"./submission/{task}"

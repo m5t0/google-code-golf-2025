@@ -20,8 +20,8 @@ for i in range(1, len(sys.argv))[::-1]:
         for j in range(int(start), int(end) + 1):
             sys.argv.append(str(j))
 
-for i in range(1, len(sys.argv)):
-    task_num = int(sys.argv[i])
+for arg in sys.argv[1:]:
+    task_num = int(arg)
     task_path = f"{task_dir}/task{str(task_num).zfill(3)}.py"
 
     if os.path.isfile(task_path):
