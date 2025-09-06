@@ -1,0 +1,1 @@
+p=lambda g:(n:=len(v:=g[0]))and[([v[0]]*i+v)[:n]for i in range(n//2)]
