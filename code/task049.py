@@ -1,1 +1,1 @@
-p=lambda g:min([(len(x)*len(x[0]),x)for c in range(10)if(x:=[[v[j]for j,w in enumerate((zip(*g)))if c in w]for v in g if c in v])])[1]
+p=lambda g:min((len(x)*len(x[0]),x)for c in range(10)if(x:=[[v[j]for j,w in enumerate((zip(*g)))if c in w]for v in g if c in v]))[1]
