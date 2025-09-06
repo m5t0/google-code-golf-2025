@@ -1,0 +1,1 @@
+p=lambda g:g[0:2]+[[g[0][i%(n:=len(g[0]))]]*n for i in range(len(g))][:-2]
