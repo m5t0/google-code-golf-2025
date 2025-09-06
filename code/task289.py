@@ -1,1 +1,1 @@
-p=lambda g,r=range:(n:=len({*str(g)})-5)and[[g[i//n][j//n]for j in r(3*n)]for i in r(3*n)]
+def p(g):n=len({*str(g)})-5;r=range(3*n);return[[g[i//n][j//n]for j in r]for i in r]
