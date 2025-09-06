@@ -1,0 +1,1 @@
+p=lambda g:[[w[g.index(v)]for w in zip(*g)if x in w]for v in g if(x:=max((sum(g,[]).count(k),k)for k in range(1,10))[1])in v]
