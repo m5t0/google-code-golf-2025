@@ -1,0 +1,1 @@
+p=lambda g:[[v[:(n:=len(g[0]))//2]for v in g],g[:(m:=len(g))//2]][m>=n and g[0]==g[m//2]]
