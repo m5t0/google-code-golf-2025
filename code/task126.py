@@ -1,3 +1,1 @@
-def p(g):
- for j,w in enumerate(zip(*g)):g[-1][j]=4*(sum(map(bool,w))&1)
- return g
+def p(g):g[-1]=[4*(sum(map(bool,w))&1)for w in zip(*g)];return g
