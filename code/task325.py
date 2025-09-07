@@ -1,0 +1,2 @@
+d=0,1,0,-1
+def p(g,r=range):D=lambda i,j:m>j>-1<i<n and g[i][j]==8and(g[i].__setitem__(j,9)or([D(i+d[k],j+d[~k])for k in r(4)]and 1));n=len(g);m=len(g[0]);s=sum(D(i%n,i//n)for i in r(n*m));return[[(i==j)*8for i in r(s)]for j in r(s)]
