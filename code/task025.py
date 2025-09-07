@@ -4,4 +4,4 @@ def p(g):
   if(c:=(b:=g[i:=s//n])[j:=s%n])*(l({*[*zip(*g)][j]})<2):
    a=o[i];a[j]=c;a[j-1]=c*(c in b[:j])
    if j<n-1:a[j+1]=c*(c in b[j+1:])
- return([*map(list,zip(*o))],o)[v]
+ return([*zip(*o)],o)[v]
