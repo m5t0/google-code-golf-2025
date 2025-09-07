@@ -211,18 +211,18 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
   print()
 
   def colorize_print(arr):
+    def rgb_bg(r, g, b):
+      return f"\033[48;2;{r};{g};{b}m"
+
+    clear = "\033[0m"
+
     s = str(arr)
 
-    while " 1 " in s or " 2 " in s or " 3 " in s or " 4 " in s or " 5 " in s or " 6 " in s or " 7 " in s or " 8 " in s or " 9 " in s:
-      s = s.replace(" 1 "," \033[104m1\033[0m ").replace("[1 ", "[\033[104m1\033[0m ").replace(" 1]", " \033[104m1\033[0m]")
-      s = s.replace(" 2 "," \033[41m2\033[0m ").replace("[2 ", "[\033[41m2\033[0m ").replace(" 2]", " \033[41m2\033[0m]")
-      s = s.replace(" 3 "," \033[102m3\033[0m ").replace("[3 ", "[\033[102m3\033[0m ").replace(" 3]", " \033[102m3\033[0m]")
-      s = s.replace(" 4 "," \033[103m4\033[0m ").replace("[4 ", "[\033[103m4\033[0m ").replace(" 4]", " \033[103m4\033[0m]")
-      s = s.replace(" 5 "," \033[100m5\033[0m ").replace("[5 ", "[\033[100m5\033[0m ").replace(" 5]", " \033[100m5\033[0m]")
-      s = s.replace(" 6 "," \033[105m6\033[0m ").replace("[6 ", "[\033[105m6\033[0m ").replace(" 6]", " \033[105m6\033[0m]")
-      s = s.replace(" 7 "," \033[48;5;214m7\033[0m ").replace("[7 ", "[\033[48;5;214m7\033[0m ").replace(" 7]", " \033[48;5;214m7\033[0m]")
-      s = s.replace(" 8 "," \033[106m8\033[0m ").replace("[8 ", "[\033[106m8\033[0m ").replace(" 8]", " \033[106m8\033[0m]")
-      s = s.replace(" 9 "," \033[48;5;130m9\033[0m ").replace("[9 ", "[\033[48;5;130m9\033[0m ").replace(" 9]", " \033[48;5;130m9\033[0m]")
+    for i in range(1, 10):
+      bg = rgb_bg(*((180, 180, 210) if i == 5 else colors[i]))
+
+      while f" {i} " in s or f"[{i} " in s or f" {i}]" in s:
+        s = s.replace(f" {i} ", f" {bg}{i}{clear} ").replace(f"[{i} ", f"[{bg}{i}{clear} ").replace(f" {i}]", f" {bg}{i}{clear}]")
 
     print(s)
 
@@ -231,7 +231,7 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
     for example in example_subset:
       example_copy = copy.deepcopy(example)
       try:
-        if program(example_copy["input"]) == example_copy["output"]:
+        if json.dumps(program(example_copy["input"])) == json.dumps(example_copy["output"]):
           right += 1
         else:
           expected = copy.deepcopy(example)
