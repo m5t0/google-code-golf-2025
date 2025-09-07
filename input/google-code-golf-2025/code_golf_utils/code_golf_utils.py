@@ -17,7 +17,9 @@
 import copy
 import importlib.util
 import json
+import numpy
 import os
+import re
 import sys
 import traceback
 
@@ -192,8 +194,6 @@ def show_examples(examples, bgcolor=(255, 255, 255)):
 
 
 def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
-  import numpy as np
-
   task_name = "task_with_imports"
   spec = importlib.util.spec_from_file_location(task_name, task_path)
   if spec is None:
@@ -231,7 +231,16 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
     for example in example_subset:
       example_copy = copy.deepcopy(example)
       try:
-        if json.dumps(program(example_copy["input"])) == json.dumps(example_copy["output"]):
+        result = program(example_copy["input"])
+        result = json.dumps(result)
+        result = result.replace("true", "1").replace("false", "0")
+        unsafe_chars = re.compile(r"[^0-9,\[\]\s\.]")
+        if unsafe_chars.search(result):
+          raise ValueError(f"Invalid output from user code: {result[:500]}")
+        result = json.loads(result)
+        user_output = np.array(result)
+        label_output = np.array(example_copy["output"])
+        if numpy.array_equal(user_output, label_output):
           right += 1
         else:
           expected = copy.deepcopy(example)
