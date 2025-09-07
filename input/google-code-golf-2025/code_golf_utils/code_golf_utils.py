@@ -238,7 +238,12 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
         if unsafe_chars.search(result):
           raise ValueError(f"Invalid output from user code: {result[:500]}")
         result = json.loads(result)
-        user_output = np.array(result)
+        try:
+            user_output = np.array(result)
+        except:
+            from pprint import pprint
+            user_output = np.array(result, dtype=object)
+            pprint(result)
         label_output = np.array(example_copy["output"])
         if numpy.array_equal(user_output, label_output):
           right += 1
