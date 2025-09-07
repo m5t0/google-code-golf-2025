@@ -1,0 +1,7 @@
+def p(g):
+ m,n=len(g),len(g[0]);g=[[b or 2for b in a]for a in g]
+ def f(i,j):
+  if-1<i<m and n>j>=0and g[i][j]==2:g[i][j]=3;f(i+1,j);f(i-1,j);f(i,j+1);f(i,j-1)
+ for i in range(m):f(i,0);f(i,n-1)
+ for j in range(n):f(0,j);f(m-1,j)
+ return g
