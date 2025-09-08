@@ -1,2 +1,1 @@
-d=0,1,0,-1
-p=lambda g,r=range:[[g[i][j]-3*min([0<=i+d[k]<10>(J:=j+d[k-1])>=0and g[i+d[k]][J]>0for k in r(4)])for j in r(10)]for i in r(10)]
+p=lambda g,e=enumerate:[[v[j]-3*(0<i<9>j>0and{*w[i-1:i+2],*v[j-1:j+2]}=={5})for j,w in e(zip(*g))]for i,v in e(g)]
