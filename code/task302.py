@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[w[i]or 5in{*v[:j]}&{*v[j:]}&{*w[:i]}&{*w[i:]}and v[j-1::-1].index(5)+v.index(5,j)-j+5for j,w in e(zip(*g))]for i,v in e(g)]
