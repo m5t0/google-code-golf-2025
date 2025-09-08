@@ -211,7 +211,7 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
         return
     print()
 
-    def colorize_print(arr):
+    def colorize(arr):
         def rgb_bg(r, g, b):
             return f"\033[48;2;{r};{g};{b}m"
 
@@ -225,8 +225,7 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
             while f" {i} " in s or f"[{i} " in s or f" {i}]" in s:
                 s = s.replace(f" {i} ", f" {bg}{i}{clear} ").replace(f"[{i} ", f"[{bg}{i}{clear} ").replace(f" {i}]",
                                                                                                             f" {bg}{i}{clear}]")
-
-        print(s)
+        return s
 
     def verify(example_subset):
         right, wrong, expected, error = 0, 0, None, ""
@@ -251,18 +250,37 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
                         expected = copy.deepcopy(example)
                         wrong += 1
                         # debug用
+                        colorized_input, colorized_label, colorized_output = colorize(
+                            np.array(example_copy["input"])), colorize(label_output), colorize(user_output)
+
+                        # print("Input".center(len(str(np.array(example_copy["input"])).split('\n')[0])))
                         print("Input")
-                        colorize_print(np.array(example_copy["input"]))
-                        print("Correct Output")
-                        colorize_print(label_output)
-                        print("Your Output")
-                        colorize_print(user_output)
+                        print(colorized_input)
 
                         if captured := buf.getvalue().strip():
-                            print("Your Debug Output")
+                            print("Your Debug Output".center(len(str(captured).split('\n')[0])))
                             print(captured)
 
-                        print('-' * 25)
+                        raw_label_lines = str(label_output).split('\n')
+                        raw_user_lines = str(user_output).split('\n')
+
+                        label_lines = colorized_label.split('\n')
+                        user_lines = colorized_output.split('\n')
+
+                        max_lines = max(len(raw_label_lines), len(raw_user_lines))
+                        label_lines += [''] * (max_lines - len(raw_label_lines))
+                        user_lines += [''] * (max_lines - len(raw_user_lines))
+
+                        margin = 4
+
+                        header1 = "Correct Output".center(len(raw_label_lines[0]))
+                        header2 = "Your Output".center(len(raw_user_lines[0]) + len(header1) - len(header1.rstrip()) + margin + 1)
+                        print(header1 + header2)
+
+                        for (l, u) in zip(label_lines, user_lines):
+                            print(l.ljust(len(l) + margin - (l == label_lines[-1])) + u)
+
+                        print('-' * 45)
                 except:
                     from pprint import pprint
                     pprint(result)
