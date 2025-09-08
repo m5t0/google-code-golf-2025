@@ -229,6 +229,52 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
 
     def verify(example_subset):
         right, wrong, expected, error = 0, 0, None, ""
+
+        def debug_output(result):
+            nonlocal right, wrong, expected, error
+
+            try:
+                user_output = np.array(result)
+                label_output = np.array(example_copy["output"])
+                if result is not None and numpy.array_equal(user_output, label_output):
+                    right += 1
+                else:
+                    expected = copy.deepcopy(example)
+                    wrong += 1
+                    # debug用
+                    colorized_input, colorized_label, colorized_output = colorize(
+                        np.array(example_copy["input"])), colorize(label_output), colorize(user_output)
+
+                    print("Input".center(len(str(np.array(example_copy["input"])).split('\n')[0])))
+                    print(colorized_input)
+
+                    if captured := buf.getvalue().strip():
+                        print("Your Debug Output".center(len(str(captured).split('\n')[0])))
+                        print(captured)
+
+                    raw_label_lines = str(label_output).split('\n')
+                    raw_user_lines = str(user_output).split('\n')
+
+                    label_lines = colorized_label.split('\n')
+                    user_lines = colorized_output.split('\n')
+
+                    max_lines = max(len(raw_label_lines), len(raw_user_lines))
+                    label_lines += [''] * (max_lines - len(raw_label_lines))
+                    user_lines += [''] * (max_lines - len(raw_user_lines))
+
+                    margin = 4 + 4 * (result is None)
+
+                    header1 = "Correct Output".center(len(raw_label_lines[0]))
+                    header2 = "Your Output".center(
+                        len(raw_user_lines[0]) + len(header1) - len(header1.rstrip()) + margin + 4 * (result is None) + 1)
+                    print(header1 + header2)
+
+                    for (l, u) in zip(label_lines, user_lines):
+                        print(l.ljust(len(l) + margin - (l == label_lines[-1])) + u)
+            except:
+                from pprint import pprint
+                pprint(result)
+
         for example in example_subset:
             example_copy = copy.deepcopy(example)
             try:
@@ -241,53 +287,15 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
                 if unsafe_chars.search(result):
                     raise ValueError(f"Invalid output from user code: {result[:500]}")
                 result = json.loads(result)
-                try:
-                    user_output = np.array(result)
-                    label_output = np.array(example_copy["output"])
-                    if numpy.array_equal(user_output, label_output):
-                        right += 1
-                    else:
-                        expected = copy.deepcopy(example)
-                        wrong += 1
-                        # debug用
-                        colorized_input, colorized_label, colorized_output = colorize(
-                            np.array(example_copy["input"])), colorize(label_output), colorize(user_output)
-
-                        # print("Input".center(len(str(np.array(example_copy["input"])).split('\n')[0])))
-                        print("Input")
-                        print(colorized_input)
-
-                        if captured := buf.getvalue().strip():
-                            print("Your Debug Output".center(len(str(captured).split('\n')[0])))
-                            print(captured)
-
-                        raw_label_lines = str(label_output).split('\n')
-                        raw_user_lines = str(user_output).split('\n')
-
-                        label_lines = colorized_label.split('\n')
-                        user_lines = colorized_output.split('\n')
-
-                        max_lines = max(len(raw_label_lines), len(raw_user_lines))
-                        label_lines += [''] * (max_lines - len(raw_label_lines))
-                        user_lines += [''] * (max_lines - len(raw_user_lines))
-
-                        margin = 4
-
-                        header1 = "Correct Output".center(len(raw_label_lines[0]))
-                        header2 = "Your Output".center(len(raw_user_lines[0]) + len(header1) - len(header1.rstrip()) + margin + 1)
-                        print(header1 + header2)
-
-                        for (l, u) in zip(label_lines, user_lines):
-                            print(l.ljust(len(l) + margin - (l == label_lines[-1])) + u)
-
-                        print('-' * 45)
-                except:
-                    from pprint import pprint
-                    pprint(result)
+                debug_output(result)
             except:
                 error = traceback.format_exc()
                 wrong += 1
-        if error: print(f"Error: {error}")
+                debug_output(None)
+
+            if error: print(f"\nError: {error.strip()}")
+            print('-' * 45)
+
         return right, wrong, expected
 
     arc_agi_right, arc_agi_wrong, arc_agi_expected = verify(examples["train"] + examples["test"])
