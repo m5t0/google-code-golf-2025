@@ -1,1 +1,1 @@
-def p(g,e=enumerate):x,y=zip(*[(i,j)for i,v in e(g)for j,w in e(v)if w]);return[[w or(min(x)<=i<=max(x))*(min(y)<=j<=max(y))*2for j,w in e(v)]for i,v in e(g)]
+p=lambda g:[[w[g.index(v)]or(8in{*v}&{*w})*2for w in zip(*g)]for v in g]
