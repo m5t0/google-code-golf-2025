@@ -15,7 +15,9 @@
 """Module containing utilities for the 2025 Google Code Golf Championship."""
 
 import copy
+import contextlib
 import importlib.util
+import io
 import json
 import numpy
 import os
@@ -25,7 +27,6 @@ import traceback
 
 import matplotlib.pyplot as plt
 import numpy as np
-
 
 code_golf_dir = "./input/google-code-golf-2025/"
 libraries = ["collections", "itertools", "math", "operator", "re", "string",
@@ -125,162 +126,172 @@ task_zero = {
 
 
 def load_examples(task_num):
-  """Loads relevant data from ARC-AGI and ARC-GEN."""
-  if not task_num:
-    return task_zero
-  with open(code_golf_dir + f"task{task_num:03d}.json") as f:
-    examples = json.load(f)
-  return examples
+    """Loads relevant data from ARC-AGI and ARC-GEN."""
+    if not task_num:
+        return task_zero
+    with open(code_golf_dir + f"task{task_num:03d}.json") as f:
+        examples = json.load(f)
+    return examples
 
 
 def show_legend():
-  image = [[(255, 255, 255) for _ in range(21)] for _ in range(3)]
-  for idx, color in enumerate(colors):
-    image[1][2 * idx + 1] = color
-  fig = plt.figure(figsize=(10, 5))
-  ax = fig.add_axes([0, 0, 1, 1])
-  ax.imshow(np.array(image))
-  for idx, _ in enumerate(colors):
-    color = "white" if idx in [0, 9] else "black"
-    ax.text(2 * idx + 0.9, 1.1, str(idx), color=color)
-  ax.set_xticks([])
-  ax.set_yticks([])
+    image = [[(255, 255, 255) for _ in range(21)] for _ in range(3)]
+    for idx, color in enumerate(colors):
+        image[1][2 * idx + 1] = color
+    fig = plt.figure(figsize=(10, 5))
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.imshow(np.array(image))
+    for idx, _ in enumerate(colors):
+        color = "white" if idx in [0, 9] else "black"
+        ax.text(2 * idx + 0.9, 1.1, str(idx), color=color)
+    ax.set_xticks([])
+    ax.set_yticks([])
 
 
 def show_examples(examples, bgcolor=(255, 255, 255)):
-  # Determine the dimensions of the image to be rendered.
-  width, height, offset = 0, 0, 1
-  for example in examples:
-    grid, output = example["input"], example["output"]
-    width += len(grid[0]) + 1 + len(output[0]) + 4
-    height = max(height, max(len(grid), len(output)) + 4)
-  # Determine the contents of the image.
-  image = [[bgcolor for _ in range(width)] for _ in range(height)]
-  for example in examples:
-    grid, output = example["input"], example["output"]
-    grid_width, output_width = len(grid[0]), len(output[0])
-    for r, row in enumerate(grid):
-      for c, cell in enumerate(row):
-        image[r + 2][offset + c + 1] = colors[cell]
-    offset += grid_width + 1
-    for r, row in enumerate(output):
-      for c, cell in enumerate(row):
-        image[r + 2][offset + c + 1] = colors[cell]
-    offset += output_width + 4
-  # Draw the image.
-  fig = plt.figure(figsize=(10, 5))
-  ax = fig.add_axes([0, 0, 1, 1])
-  ax.imshow(np.array(image))
-  # Draw the horizontal and vertical lines.
-  offset = 1
-  for example in examples:
-    grid, output = example["input"], example["output"]
-    grid_width, grid_height = len(grid[0]), len(grid)
-    output_width, output_height = len(output[0]), len(output)
-    ax.hlines([r + 1.5 for r in range(grid_height+1)],
-              xmin=offset+0.5, xmax=offset+grid_width+0.5, color="black")
-    ax.vlines([offset + c + 0.5 for c in range(grid_width+1)],
-              ymin=1.5, ymax=grid_height+1.5, color="black")
-    offset += grid_width + 1
-    ax.hlines([r + 1.5 for r in range(output_height+1)],
-              xmin=offset+0.5, xmax=offset+output_width+0.5, color="black")
-    ax.vlines([offset + c + 0.5 for c in range(output_width+1)],
-              ymin=1.5, ymax=output_height+1.5, color="black")
-    offset += output_width + 2
-    ax.vlines([offset+0.5], ymin=-0.5, ymax=height-0.5, color="black")
-    offset += 2
-  ax.set_xticks([])
-  ax.set_yticks([])
+    # Determine the dimensions of the image to be rendered.
+    width, height, offset = 0, 0, 1
+    for example in examples:
+        grid, output = example["input"], example["output"]
+        width += len(grid[0]) + 1 + len(output[0]) + 4
+        height = max(height, max(len(grid), len(output)) + 4)
+    # Determine the contents of the image.
+    image = [[bgcolor for _ in range(width)] for _ in range(height)]
+    for example in examples:
+        grid, output = example["input"], example["output"]
+        grid_width, output_width = len(grid[0]), len(output[0])
+        for r, row in enumerate(grid):
+            for c, cell in enumerate(row):
+                image[r + 2][offset + c + 1] = colors[cell]
+        offset += grid_width + 1
+        for r, row in enumerate(output):
+            for c, cell in enumerate(row):
+                image[r + 2][offset + c + 1] = colors[cell]
+        offset += output_width + 4
+    # Draw the image.
+    fig = plt.figure(figsize=(10, 5))
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.imshow(np.array(image))
+    # Draw the horizontal and vertical lines.
+    offset = 1
+    for example in examples:
+        grid, output = example["input"], example["output"]
+        grid_width, grid_height = len(grid[0]), len(grid)
+        output_width, output_height = len(output[0]), len(output)
+        ax.hlines([r + 1.5 for r in range(grid_height + 1)],
+                  xmin=offset + 0.5, xmax=offset + grid_width + 0.5, color="black")
+        ax.vlines([offset + c + 0.5 for c in range(grid_width + 1)],
+                  ymin=1.5, ymax=grid_height + 1.5, color="black")
+        offset += grid_width + 1
+        ax.hlines([r + 1.5 for r in range(output_height + 1)],
+                  xmin=offset + 0.5, xmax=offset + output_width + 0.5, color="black")
+        ax.vlines([offset + c + 0.5 for c in range(output_width + 1)],
+                  ymin=1.5, ymax=output_height + 1.5, color="black")
+        offset += output_width + 2
+        ax.vlines([offset + 0.5], ymin=-0.5, ymax=height - 0.5, color="black")
+        offset += 2
+    ax.set_xticks([])
+    ax.set_yticks([])
 
 
 def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
-  task_name = "task_with_imports"
-  spec = importlib.util.spec_from_file_location(task_name, task_path)
-  if spec is None:
-    print("Error: Unable to import task.py.")
-    return
-  module = sys.modules[task_name] = importlib.util.module_from_spec(spec)
-  spec.loader.exec_module(module)
-  if not hasattr(module, "p"):
-    print("Error: Unable to locate function p() in task.py.")
-    return
-  program = getattr(module, "p")
-  if not callable(program):
-    print("Error: Function p() in task.py is not callable.")
-    return
-  print()
+    task_name = "task_with_imports"
+    spec = importlib.util.spec_from_file_location(task_name, task_path)
+    if spec is None:
+        print("Error: Unable to import task.py.")
+        return
+    module = sys.modules[task_name] = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    if not hasattr(module, "p"):
+        print("Error: Unable to locate function p() in task.py.")
+        return
+    program = getattr(module, "p")
+    if not callable(program):
+        print("Error: Function p() in task.py is not callable.")
+        return
+    print()
 
-  def colorize_print(arr):
-    def rgb_bg(r, g, b):
-      return f"\033[48;2;{r};{g};{b}m"
+    def colorize_print(arr):
+        def rgb_bg(r, g, b):
+            return f"\033[48;2;{r};{g};{b}m"
 
-    clear = "\033[0m"
+        clear = "\033[0m"
 
-    s = str(arr)
+        s = str(arr)
 
-    for i in range(1, 10):
-      bg = rgb_bg(*((180, 180, 210) if i == 5 else colors[i]))
+        for i in range(1, 10):
+            bg = rgb_bg(*((180, 180, 210) if i == 5 else colors[i]))
 
-      while f" {i} " in s or f"[{i} " in s or f" {i}]" in s:
-        s = s.replace(f" {i} ", f" {bg}{i}{clear} ").replace(f"[{i} ", f"[{bg}{i}{clear} ").replace(f" {i}]", f" {bg}{i}{clear}]")
+            while f" {i} " in s or f"[{i} " in s or f" {i}]" in s:
+                s = s.replace(f" {i} ", f" {bg}{i}{clear} ").replace(f"[{i} ", f"[{bg}{i}{clear} ").replace(f" {i}]",
+                                                                                                            f" {bg}{i}{clear}]")
 
-    print(s)
+        print(s)
 
-  def verify(example_subset):
-    right, wrong, expected, error = 0, 0, None, ""
-    for example in example_subset:
-      example_copy = copy.deepcopy(example)
-      try:
-        result = program(example_copy["input"])
-        result = json.dumps(result)
-        result = result.replace("true", "1").replace("false", "0")
-        unsafe_chars = re.compile(r"[^0-9,\[\]\s\.]")
-        if unsafe_chars.search(result):
-          raise ValueError(f"Invalid output from user code: {result[:500]}")
-        result = json.loads(result)
-        try:
-            user_output = np.array(result)
-            label_output = np.array(example_copy["output"])
-            if numpy.array_equal(user_output, label_output):
-                right += 1
-            else:
-                expected = copy.deepcopy(example)
+    def verify(example_subset):
+        right, wrong, expected, error = 0, 0, None, ""
+        for example in example_subset:
+            example_copy = copy.deepcopy(example)
+            try:
+                buf = io.StringIO()
+                with contextlib.redirect_stdout(buf):
+                    result = program(example_copy["input"])
+                result = json.dumps(result)
+                result = result.replace("true", "1").replace("false", "0")
+                unsafe_chars = re.compile(r"[^0-9,\[\]\s\.]")
+                if unsafe_chars.search(result):
+                    raise ValueError(f"Invalid output from user code: {result[:500]}")
+                result = json.loads(result)
+                try:
+                    user_output = np.array(result)
+                    label_output = np.array(example_copy["output"])
+                    if numpy.array_equal(user_output, label_output):
+                        right += 1
+                    else:
+                        expected = copy.deepcopy(example)
+                        wrong += 1
+                        # debug用
+                        print("Input")
+                        colorize_print(np.array(example_copy["input"]))
+                        print("Correct Output")
+                        colorize_print(label_output)
+                        print("Your Output")
+                        colorize_print(user_output)
+
+                        if captured := buf.getvalue().strip():
+                            print("Your Debug Output")
+                            print(captured)
+
+                        print('-' * 25)
+                except:
+                    from pprint import pprint
+                    pprint(result)
+            except:
+                error = traceback.format_exc()
                 wrong += 1
-                # debug用
-                print("Input")
-                colorize_print(np.array(example_copy["input"]))
-                print("Correct Output")
-                colorize_print(label_output)
-                print("Your Output")
-                colorize_print(user_output)
-        except:
-            from pprint import pprint
-            pprint(result)
-      except:
-        error = traceback.format_exc()
-        wrong += 1
-    if error: print(f"Error: {error}")
-    return right, wrong, expected
-  arc_agi_right, arc_agi_wrong, arc_agi_expected = verify(examples["train"] + examples["test"])
-  arc_gen_right, arc_gen_wrong, arc_gen_expected = verify(examples["arc-gen"])
-  print(f"Results on ARC-AGI examples: {arc_agi_right} pass, {arc_agi_wrong} fail")
-  print(f"Results on ARC-GEN examples: {arc_gen_right} pass, {arc_gen_wrong} fail")
-  print()
-  if arc_agi_wrong + arc_gen_wrong == 0:
-    task_length = os.path.getsize(task_path)
-    print("Your code IS READY for submission!")
-    print("Its length appears to be " + str(task_length) + " bytes.")
-    print("Next steps:")
-    print(" * Copy it into a file named task{:03d}.py on your local machine.".format(task_num))
-    print(" * Create a zip file containing that program along with all others.")
-    print(" * Submit that zip file to the Kaggle competition so that it can be officially scored.")
-  else:
-    print("Your code IS NOT ready for submission.")
-    # expected = arc_agi_expected if arc_agi_expected else arc_gen_expected
-    # if not expected: return
-    # actual = {}
-    # actual["input"] = expected["input"]
-    # actual["output"] = program(copy.deepcopy(expected["input"]))
-    # print("The expected result is shown in green; your actual result is shown in red.")
-    # show_examples([expected], bgcolor=(200, 255, 200))
-    # show_examples([actual], bgcolor=(255, 200, 200))
+        if error: print(f"Error: {error}")
+        return right, wrong, expected
+
+    arc_agi_right, arc_agi_wrong, arc_agi_expected = verify(examples["train"] + examples["test"])
+    arc_gen_right, arc_gen_wrong, arc_gen_expected = verify(examples["arc-gen"])
+    print(f"Results on ARC-AGI examples: {arc_agi_right} pass, {arc_agi_wrong} fail")
+    print(f"Results on ARC-GEN examples: {arc_gen_right} pass, {arc_gen_wrong} fail")
+    print()
+    if arc_agi_wrong + arc_gen_wrong == 0:
+        task_length = os.path.getsize(task_path)
+        print("Your code IS READY for submission!")
+        print("Its length appears to be " + str(task_length) + " bytes.")
+        print("Next steps:")
+        print(" * Copy it into a file named task{:03d}.py on your local machine.".format(task_num))
+        print(" * Create a zip file containing that program along with all others.")
+        print(" * Submit that zip file to the Kaggle competition so that it can be officially scored.")
+    else:
+        print("Your code IS NOT ready for submission.")
+        # expected = arc_agi_expected if arc_agi_expected else arc_gen_expected
+        # if not expected: return
+        # actual = {}
+        # actual["input"] = expected["input"]
+        # actual["output"] = program(copy.deepcopy(expected["input"]))
+        # print("The expected result is shown in green; your actual result is shown in red.")
+        # show_examples([expected], bgcolor=(200, 255, 200))
+        # show_examples([actual], bgcolor=(255, 200, 200))
