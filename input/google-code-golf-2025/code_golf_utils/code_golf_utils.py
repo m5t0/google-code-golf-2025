@@ -283,7 +283,7 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
             try:
                 buf = io.StringIO()
                 with contextlib.redirect_stdout(buf):
-                    result = program(example_copy["input"])
+                    result = program(copy.deepcopy(example_copy["input"]))
                 result = json.dumps(result)
                 result = result.replace("true", "1").replace("false", "0")
                 unsafe_chars = re.compile(r"[^0-9,\[\]\s\.]")
