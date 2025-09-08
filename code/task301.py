@@ -1,0 +1,1 @@
+p=lambda g:[sorted(v)for v in sorted(g,key=lambda v:-v.count(0))]
