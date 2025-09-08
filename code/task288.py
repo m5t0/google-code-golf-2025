@@ -1,0 +1,1 @@
+def p(g,r=range):b=min(v:=sum(g,[]),key=v.count);n=len(g);return[[g[i][j]or(i+abs(j-n//2)+1+(v.count(b)<3)==n)*b for j in r(n)]for i in r(n)]
