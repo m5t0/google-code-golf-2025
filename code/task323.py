@@ -1,0 +1,1 @@
+def p(g,r=range(13)):_,a,b=max((g[i][j],i,j)for i in r for j in r);return[[g[i][j]or(abs(i-a+j-b-(i-a>0)+(i-a<0))<1+~(j-b)%2)*5for j in r]for i in r]
