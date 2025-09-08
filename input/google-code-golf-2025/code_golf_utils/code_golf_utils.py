@@ -240,23 +240,22 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
         result = json.loads(result)
         try:
             user_output = np.array(result)
+            label_output = np.array(example_copy["output"])
+            if numpy.array_equal(user_output, label_output):
+                right += 1
+            else:
+                expected = copy.deepcopy(example)
+                wrong += 1
+                # debug用
+                print("Input")
+                colorize_print(np.array(example_copy["input"]))
+                print("Correct Output")
+                colorize_print(label_output)
+                print("Your Output")
+                colorize_print(user_output)
         except:
             from pprint import pprint
-            user_output = np.array(result, dtype=object)
             pprint(result)
-        label_output = np.array(example_copy["output"])
-        if numpy.array_equal(user_output, label_output):
-          right += 1
-        else:
-          expected = copy.deepcopy(example)
-          wrong += 1
-          # debug用
-          print("Input")
-          colorize_print(np.array(copy.deepcopy(example)["input"]))
-          print("Correct Output")
-          colorize_print(np.array(example_copy["output"]))
-          print("Your Output")
-          colorize_print(np.array(program(copy.deepcopy(example)["input"])))
       except:
         error = traceback.format_exc()
         wrong += 1
@@ -277,11 +276,11 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
     print(" * Submit that zip file to the Kaggle competition so that it can be officially scored.")
   else:
     print("Your code IS NOT ready for submission.")
-    expected = arc_agi_expected if arc_agi_expected else arc_gen_expected
-    if not expected: return
-    actual = {}
-    actual["input"] = expected["input"]
-    actual["output"] = program(copy.deepcopy(expected["input"]))
-    print("The expected result is shown in green; your actual result is shown in red.")
-    show_examples([expected], bgcolor=(200, 255, 200))
-    show_examples([actual], bgcolor=(255, 200, 200))
+    # expected = arc_agi_expected if arc_agi_expected else arc_gen_expected
+    # if not expected: return
+    # actual = {}
+    # actual["input"] = expected["input"]
+    # actual["output"] = program(copy.deepcopy(expected["input"]))
+    # print("The expected result is shown in green; your actual result is shown in red.")
+    # show_examples([expected], bgcolor=(200, 255, 200))
+    # show_examples([actual], bgcolor=(255, 200, 200))
