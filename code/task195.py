@@ -1,0 +1,1 @@
+def p(g,e=enumerate,r=range(9)):a=[[v[j]for j,w in e(zip(*g))if any(w)]for i,v in e(g)if any(v)];return[[a[i//3*3][j//3*3]&a[i%3*3][j%3*3]for j in r]for i in r]
