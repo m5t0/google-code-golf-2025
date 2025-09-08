@@ -248,10 +248,6 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
                     print("Input".center(len(str(np.array(example_copy["input"])).split('\n')[0])))
                     print(colorized_input)
 
-                    if captured := buf.getvalue().strip():
-                        print("Your Debug Output".center(len(str(captured).split('\n')[0])))
-                        print(captured)
-
                     raw_label_lines = str(label_output).split('\n')
                     raw_user_lines = str(user_output).split('\n')
 
@@ -272,6 +268,10 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
                     for (l, u) in zip(label_lines, user_lines):
                         print(l.ljust(len(l) + margin - (l == label_lines[-1])) + u)
 
+                    if captured := buf.getvalue().strip():
+                        print("Your Debug Output".center(len(str(captured).split('\n')[0])))
+                        print(captured)
+
                     if error: print(f"\nError: {error.strip()}")
                     print('-' * 45)
             except:
@@ -283,7 +283,7 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
             try:
                 buf = io.StringIO()
                 with contextlib.redirect_stdout(buf):
-                    result = program(example_copy["input"])
+                    result = program(copy.deepcopy(example_copy["input"]))
                 result = json.dumps(result)
                 result = result.replace("true", "1").replace("false", "0")
                 unsafe_chars = re.compile(r"[^0-9,\[\]\s\.]")
