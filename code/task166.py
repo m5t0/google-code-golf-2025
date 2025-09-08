@@ -1,0 +1,1 @@
+p=lambda g:[[w[g.index(v)]or(any(v)&any(w))*2for w in zip(*g)]for v in g]
