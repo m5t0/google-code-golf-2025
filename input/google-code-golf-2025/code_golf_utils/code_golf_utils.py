@@ -231,20 +231,28 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
         right, wrong, expected, error = 0, 0, None, ""
 
         def debug_output(result):
-            nonlocal right, wrong, expected, error
+            nonlocal buf, right, wrong, expected, error
+
+            converted = True
 
             try:
                 user_output = np.array(result)
-                label_output = np.array(example_copy["output"])
-                if result is not None and numpy.array_equal(user_output, label_output):
-                    right += 1
-                else:
-                    expected = copy.deepcopy(example)
-                    wrong += 1
-                    # debug用
-                    colorized_input, colorized_label, colorized_output = colorize(
-                        np.array(example_copy["input"])), colorize(label_output), colorize(user_output)
+            except:
+                converted = False
 
+            label_output = np.array(example_copy["output"])
+            if result is not None and converted and numpy.array_equal(user_output, label_output):
+                right += 1
+            else:
+                expected = copy.deepcopy(example)
+                wrong += 1
+
+                user_output = user_output if converted else None
+
+                colorized_input, colorized_label, colorized_output = colorize(
+                    np.array(example_copy["input"])), colorize(label_output), colorize(user_output)
+
+                if converted:
                     print("Input".center(len(str(np.array(example_copy["input"])).split('\n')[0])))
                     print(colorized_input)
 
@@ -267,16 +275,22 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
 
                     for (l, u) in zip(label_lines, user_lines):
                         print(l.ljust(len(l) + margin - (l == label_lines[-1])) + u)
+                else:
+                    from pprint import pprint
 
-                    if captured := buf.getvalue().strip():
-                        print("Your Debug Output".center(len(str(captured).split('\n')[0])))
-                        print(captured)
+                    print("Input")
+                    print(colorized_input)
+                    print("Correct Output")
+                    print(colorized_label)
+                    print("Your Output")
+                    pprint(result)
 
-                    if error: print(f"\nError: {error.strip()}")
-                    print('-' * 45)
-            except:
-                from pprint import pprint
-                pprint(result)
+                if captured := buf.getvalue().strip():
+                    print("Your Debug Output".center(len(str(captured).split('\n')[0])))
+                    print(captured)
+
+                if error: print(f"\nError: {error.strip()}")
+                print('-' * 45)
 
         for example in example_subset:
             example_copy = copy.deepcopy(example)
