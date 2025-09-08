@@ -1,0 +1,1 @@
+p=lambda g,r=range(9):[[(a:=[[v[j]for j in range(len(g))if any(c[j]for c in g)]for v in g if 5in v])[i//3*3][j//3*3]&a[i%3*3][j%3*3]for j in r]for i in r]
