@@ -271,6 +271,9 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
 
                     for (l, u) in zip(label_lines, user_lines):
                         print(l.ljust(len(l) + margin - (l == label_lines[-1])) + u)
+
+                    if error: print(f"\nError: {error.strip()}")
+                    print('-' * 45)
             except:
                 from pprint import pprint
                 pprint(result)
@@ -292,9 +295,6 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
                 error = traceback.format_exc()
                 wrong += 1
                 debug_output(None)
-
-            if error: print(f"\nError: {error.strip()}")
-            print('-' * 45)
 
         return right, wrong, expected
 
