@@ -1,1 +1,1 @@
-def p(g,r=range(13)):a,b=[(i,j)for i in r for j in r if g[i][j]][0];return[[g[i][j]or(abs(i-a+j-b-(i-a>0)+(i-a<0))<1+~(j-b)%2)*5for j in r]for i in r]
+def p(g,r=range(13)):a,b=divmod(sum(g,[]).index(8),13);return[[g[i][j]or(abs(i-a+j-b+(i<a)-(i>a))<2-(j-b&1))*5for j in r]for i in r]
