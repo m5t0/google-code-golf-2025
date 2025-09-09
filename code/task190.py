@@ -1,1 +1,1 @@
-p=lambda g,r=range:[exec("a=i+l//2*3-1;b=j+l%2*3-1\nwhile g[a][b]and-1<(a:=a+l//2*2-1)<10>(b:=b+l%2*2-1)>-1:g[a][b]=g[i][j]")for k in r(81)if min(g[i:=k//9][(j:=k%9):j+2])for l in r(4)]and g
+p=lambda g,r=range:[exec("a=i+l//2*3-1;b=j+l%2*3-1\nwhile g[a][b]and-1<(a:=a+l//2*2-1)<10>(b:=b+l%2*2-1)>-1:g[a][b]=g[i][j]"*all(g[i:=k//9][(j:=k%9):j+2]))for k in r(81)for l in r(4)]and g
