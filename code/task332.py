@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[[0,[3,5][~(len(v)-j)%2]][x>0]for j,x in e(v)]for i,v in e(g)]
+p=lambda g:[[x and 5-(len(v)-j)%2*2for j,x in enumerate(v)]for v in g]
