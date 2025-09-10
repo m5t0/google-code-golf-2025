@@ -5,8 +5,7 @@ def p(g,e=enumerate):
   if(v:=g[i][j]):return(v==2)+(v!=3)
   g[i][j]=3;b=f(i+x,j+y,x,y,c)
   if b>1:return 2
-  c+=1
-  if b and(f(i-y,j-x,-y,-x,c)>1or f(i+y,j+x,y,x,c)>1):return 2
+  if b and(f(i-y,j-x,-y,-x,c+1)>1or f(i+y,j+x,y,x,c+1)>1):return 2
   g[i][j]=0;return 0
  for k in 0,1:
   a,b=h[k],h[k-1];x=a[0]-b[0];y=a[1]-b[1]
