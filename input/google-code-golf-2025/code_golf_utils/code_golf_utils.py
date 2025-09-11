@@ -31,6 +31,7 @@ import numpy as np
 code_golf_dir = "./input/google-code-golf-2025/"
 libraries = ["collections", "itertools", "math", "operator", "re", "string",
              "struct"]
+modes = [NORMAL := "normal", DEBUG := "debug"]
 colors = [
     (0, 0, 0),
     (30, 147, 255),
@@ -194,7 +195,7 @@ def show_examples(examples, bgcolor=(255, 255, 255)):
     ax.set_yticks([])
 
 
-def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
+def verify_program(task_num, examples, task_path="/kaggle/working/task.py", mode=NORMAL):
     task_name = "task_with_imports"
     spec = importlib.util.spec_from_file_location(task_name, task_path)
     if spec is None:
@@ -222,30 +223,45 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
         for i in range(1, 10):
             bg = rgb_bg(*((180, 180, 210) if i == 5 else colors[i]))
 
-            while f" {i} " in s or f"[{i} " in s or f" {i}]" in s:
+            while f" {i} " in s or f"[{i} " in s or f" {i}]" in s or f"[{i}]" in s:
                 s = s.replace(f" {i} ", f" {bg}{i}{clear} ").replace(f"[{i} ", f"[{bg}{i}{clear} ").replace(f" {i}]",
-                                                                                                            f" {bg}{i}{clear}]")
+                                                                                                            f" {bg}{i}{clear}]").replace(
+                    f"[{i}]",
+                    f"[{bg}{i}{clear}]")
         return s
 
     def verify(example_subset):
-        right, wrong, expected, error = 0, 0, None, ""
+        right, wrong, error = 0, 0, ''
 
-        def debug_output(result):
-            nonlocal right, wrong, expected, error
+        def debug_output(res):
+            nonlocal buf, right, wrong, error
+
+            user_output = None
+            converted = True
 
             try:
-                user_output = np.array(result)
-                label_output = np.array(example_copy["output"])
-                if result is not None and numpy.array_equal(user_output, label_output):
-                    right += 1
-                else:
-                    expected = copy.deepcopy(example)
-                    wrong += 1
-                    # debug用
-                    colorized_input, colorized_label, colorized_output = colorize(
-                        np.array(example_copy["input"])), colorize(label_output), colorize(user_output)
+                user_output = np.array(res)
+            except:
+                converted = False
 
-                    print("Input".center(len(str(np.array(example_copy["input"])).split('\n')[0])))
+            example_input = np.array(example_copy["input"])
+            label_output = np.array(example_copy["output"])
+
+            is_right = res is not None and converted and numpy.array_equal(user_output, label_output)
+
+            if is_right:
+                right += 1
+            else:
+                if res is not None:
+                    wrong += 1
+
+                colorized_input, colorized_label, colorized_output = colorize(
+                    example_input), colorize(label_output), colorize(user_output)
+
+                if converted:
+                    margin = 4
+
+                    print("Input".center(len(str(example_input).split('\n')[0])))
                     print(colorized_input)
 
                     raw_label_lines = str(label_output).split('\n')
@@ -255,28 +271,38 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
                     user_lines = colorized_output.split('\n')
 
                     max_lines = max(len(raw_label_lines), len(raw_user_lines))
-                    label_lines += [''] * (max_lines - len(raw_label_lines))
-                    user_lines += [''] * (max_lines - len(raw_user_lines))
 
-                    margin = 4 + 4 * (result is None)
+                    raw_label_lines += [''] * (max_lines - len(raw_label_lines))
+                    raw_user_lines += [''] * (max_lines - len(raw_user_lines))
+
+                    label_lines += [''] * (max_lines - len(label_lines))
+                    user_lines += [''] * (max_lines - len(user_lines))
 
                     header1 = "Correct Output".center(len(raw_label_lines[0]))
-                    header2 = "Your Output".center(
-                        len(raw_user_lines[0]) + len(header1) - len(header1.rstrip()) + margin + 4 * (result is None) + 1)
+                    header2 = ' ' * (len(raw_label_lines[-1]) + margin - len(header1)) + "Your Output".center(
+                        len(raw_user_lines[0]))
                     print(header1 + header2)
 
-                    for (l, u) in zip(label_lines, user_lines):
-                        print(l.ljust(len(l) + margin - (l == label_lines[-1])) + u)
+                    for (rl, l, ru, u) in zip(raw_label_lines, label_lines, raw_user_lines, user_lines):
+                        print(l + ' ' * (len(raw_label_lines[-1]) + margin - len(rl)) + u)
+                else:
+                    from pprint import pprint
 
-                    if captured := buf.getvalue().strip():
-                        print("Your Debug Output".center(len(str(captured).split('\n')[0])))
-                        print(captured)
+                    print("Input")
+                    print(colorized_input)
+                    print("Correct Output")
+                    print(colorized_label)
+                    print("Your Output")
+                    pprint(res)
 
-                    if error: print(f"\nError: {error.strip()}")
-                    print('-' * 45)
-            except:
-                from pprint import pprint
-                pprint(result)
+            if (not is_right or mode == DEBUG) and (captured := buf.getvalue().strip()):
+                print("Your Debug Output")
+                print(captured)
+
+            if error: print(f"\nError: {error.strip()}")
+
+            if not is_right or (mode == DEBUG and captured):
+                print('-' * 45)
 
         for example in example_subset:
             example_copy = copy.deepcopy(example)
@@ -296,10 +322,10 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
                 wrong += 1
                 debug_output(None)
 
-        return right, wrong, expected
+        return right, wrong
 
-    arc_agi_right, arc_agi_wrong, arc_agi_expected = verify(examples["train"] + examples["test"])
-    arc_gen_right, arc_gen_wrong, arc_gen_expected = verify(examples["arc-gen"])
+    arc_agi_right, arc_agi_wrong = verify(examples["train"] + examples["test"])
+    arc_gen_right, arc_gen_wrong = verify(examples["arc-gen"])
     print(f"Results on ARC-AGI examples: {arc_agi_right} pass, {arc_agi_wrong} fail")
     print(f"Results on ARC-GEN examples: {arc_gen_right} pass, {arc_gen_wrong} fail")
     print()
@@ -313,11 +339,3 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
         print(" * Submit that zip file to the Kaggle competition so that it can be officially scored.")
     else:
         print("Your code IS NOT ready for submission.")
-        # expected = arc_agi_expected if arc_agi_expected else arc_gen_expected
-        # if not expected: return
-        # actual = {}
-        # actual["input"] = expected["input"]
-        # actual["output"] = program(copy.deepcopy(expected["input"]))
-        # print("The expected result is shown in green; your actual result is shown in red.")
-        # show_examples([expected], bgcolor=(200, 255, 200))
-        # show_examples([actual], bgcolor=(255, 200, 200))

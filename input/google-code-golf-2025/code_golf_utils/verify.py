@@ -1,13 +1,36 @@
 import code_golf_utils
+import os
 import sys
 
 task_num = 2
+task_dir = "./code/"
+mode = code_golf_utils.NORMAL
 
-if len(sys.argv) > 1:
-    task_num = int(sys.argv[1])
+if len(sys.argv) == 1:
+    sys.argv.append(str(task_num))
 
-task_path = f"./code/task{str(task_num).zfill(3)}.py"
-examples = code_golf_utils.load_examples(task_num=task_num)
-code_golf_utils.verify_program(
-    task_num=task_num, examples=examples, task_path=task_path
-)
+if not ".." in sys.argv[-1] and not sys.argv[-1] in ["-d", "--debug", "-debug"] and not sys.argv[-1].isdigit():
+    task_dir = sys.argv[-1]
+    sys.argv.pop()
+
+for i in range(1, len(sys.argv))[::-1]:
+    if ".." in sys.argv[i]:
+        start, end = sys.argv[i].split("..")
+        sys.argv.pop(i)
+
+        for j in range(int(start), int(end) + 1):
+            sys.argv.append(str(j))
+
+    if sys.argv[i] in ["-d", "--debug", "-debug"]:
+        mode = code_golf_utils.DEBUG
+        sys.argv.pop(i)
+
+for arg in sys.argv[1:]:
+    task_num = int(arg)
+    task_path = f"{task_dir}/task{str(task_num).zfill(3)}.py"
+
+    if os.path.isfile(task_path):
+        examples = code_golf_utils.load_examples(task_num=task_num)
+        code_golf_utils.verify_program(
+            task_num=task_num, examples=examples, task_path=task_path, mode=mode
+        )
