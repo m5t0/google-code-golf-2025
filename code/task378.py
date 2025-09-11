@@ -1,13 +1,9 @@
 def p(g,r=range):
- d=0,1,0,-1;c=[*map(list,g)]
- for i in r(b:=len(g)):
-  for j in r(b):
-   if g[i][j]!=0:
-    for k in r(4):
-     e=v=1
-     if b>i+d[k]>-1<i+d[(k+1)%4]<b>j+d[(k+1)%4]>-1<j+d[(k+2)%4]<b and g[i+d[k]][j+d[(k+1)%4]]<1>g[i+d[(k+1)%4]][j+d[(k+2)%4]]:
-      while(s:=j+e*(d[(k+1)%4]+d[(k+2)%4]))>-1<(t:=i+e*(d[k]+d[(k+1)%4]))<b>s:
-       if v>=2:c[t][s]=c[i][j]
-       if g[t][s]:v+=1
-       e+=1
+ d=0,1,0,-1;c=eval(str(g))
+ for I in r((b:=len(g))*b*4):
+  if g[i:=I//4//b][j:=I//4%b]*(b>i+d[k:=I%4]>-1<i+d[a:=-~k&3]<b>j+d[a]>-1<j+d[u:=-~a&3]<b and g[i+d[k]][j+d[a]]<1>g[i+d[a]][j+d[u]]):
+   e=v=1
+   while(s:=j+e*(d[a]+d[u]))>-1<(t:=i+e*(d[k]+d[a]))<b>s:
+    if v>1:c[t][s]=c[i][j]
+    v+=g[t][s];e+=1
  return c
