@@ -1,0 +1,1 @@
+p=lambda g:[[(abs(i+j)<[*map(sum,g)].count(10))*8for j in[0,1,2]]for i in[0,-5,6]]
