@@ -9,6 +9,10 @@ mode = code_golf_utils.NORMAL
 if len(sys.argv) == 1:
     sys.argv.append(str(task_num))
 
+if not ".." in sys.argv[-1] and not sys.argv[-1] in ["-d", "--debug", "-debug"] and not sys.argv[-1].isdigit():
+    task_dir = sys.argv[-1]
+    sys.argv.pop()
+
 for i in range(1, len(sys.argv))[::-1]:
     if ".." in sys.argv[i]:
         start, end = sys.argv[i].split("..")
@@ -20,10 +24,6 @@ for i in range(1, len(sys.argv))[::-1]:
     if sys.argv[i] in ["-d", "--debug", "-debug"]:
         mode = code_golf_utils.DEBUG
         sys.argv.pop(i)
-
-if not sys.argv[-1].isdigit():
-    task_dir = sys.argv[-1]
-    sys.argv.pop()
 
 for arg in sys.argv[1:]:
     task_num = int(arg)
