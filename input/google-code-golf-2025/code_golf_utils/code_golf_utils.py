@@ -31,6 +31,7 @@ import numpy as np
 code_golf_dir = "./input/google-code-golf-2025/"
 libraries = ["collections", "itertools", "math", "operator", "re", "string",
              "struct"]
+modes = [NORMAL := "normal", DEBUG := "debug"]
 colors = [
     (0, 0, 0),
     (30, 147, 255),
@@ -194,7 +195,7 @@ def show_examples(examples, bgcolor=(255, 255, 255)):
     ax.set_yticks([])
 
 
-def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
+def verify_program(task_num, examples, task_path="/kaggle/working/task.py", mode=NORMAL):
     task_name = "task_with_imports"
     spec = importlib.util.spec_from_file_location(task_name, task_path)
     if spec is None:
@@ -245,7 +246,10 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
 
             example_input = np.array(example_copy["input"])
             label_output = np.array(example_copy["output"])
-            if res is not None and converted and numpy.array_equal(user_output, label_output):
+
+            is_right = res is not None and converted and numpy.array_equal(user_output, label_output)
+
+            if is_right:
                 right += 1
             else:
                 if res is not None:
@@ -291,11 +295,13 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py"):
                     print("Your Output")
                     pprint(res)
 
-                if captured := buf.getvalue().strip():
-                    print("Your Debug Output".center(len(str(captured).split('\n')[0])))
-                    print(captured)
+            if (not is_right or mode == DEBUG) and (captured := buf.getvalue().strip()):
+                print("Your Debug Output")
+                print(captured)
 
-                if error: print(f"\nError: {error.strip()}")
+            if error: print(f"\nError: {error.strip()}")
+
+            if not is_right or (mode == DEBUG and captured):
                 print('-' * 45)
 
         for example in example_subset:
