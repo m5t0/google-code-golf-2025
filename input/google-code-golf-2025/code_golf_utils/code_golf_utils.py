@@ -284,7 +284,7 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py", mode
                     print(header1 + header2)
 
                     for (rl, l, ru, u) in zip(raw_label_lines, label_lines, raw_user_lines, user_lines):
-                        print(l + ' ' * (len(raw_label_lines[-1]) + margin - len(rl)) + u.center(len("Your Output")))
+                        print(l + ' ' * (len(raw_label_lines[-1]) + margin - len(rl)) + u)
                 else:
                     from pprint import pprint
 
