@@ -271,6 +271,7 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py", mode
                     user_lines = colorized_output.split('\n')
 
                     max_lines = max(len(raw_label_lines), len(raw_user_lines))
+                    max_width = max(max(len(rl) for rl in raw_label_lines), len("Correct Output"))
 
                     raw_label_lines += [''] * (max_lines - len(raw_label_lines))
                     raw_user_lines += [''] * (max_lines - len(raw_user_lines))
@@ -279,12 +280,12 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py", mode
                     user_lines += [''] * (max_lines - len(user_lines))
 
                     header1 = "Correct Output".center(len(raw_label_lines[0]))
-                    header2 = ' ' * (len(raw_label_lines[-1]) + margin - len(header1)) + "Your Output".center(
+                    header2 = ' ' * (max_width + margin - len(header1)) + "Your Output".center(
                         len(raw_user_lines[0]))
                     print(header1 + header2)
 
                     for (rl, l, ru, u) in zip(raw_label_lines, label_lines, raw_user_lines, user_lines):
-                        print(l + ' ' * (len(raw_label_lines[-1]) + margin - len(rl)) + u)
+                        print(l + ' ' * (max_width + margin - len(rl)) + u)
                 else:
                     from pprint import pprint
 
