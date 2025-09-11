@@ -1,0 +1,1 @@
+def p(g,e=enumerate):f=lambda h=min,l=[*zip(*g)]:h(i for i,v in e(l)if any(v));h=lambda y,v:sum(w or j in y for j,w in e(v))>3;a,b=(f(l=g),f(max,g)),(f(),f(max));return[[v[j]or(a[0]<=i<=a[1]and b[0]<=j<=b[1]and(h(b,v)|h(a,w)|(i in a)|(j in b)))*2for j,w in e([*zip(*g)])]for i,v in e(g)]
