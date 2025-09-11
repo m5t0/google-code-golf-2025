@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[[w,1][1 in(max(abs(i-I),abs(j-J))for I,V in e(g)for J,W in e(V)if W==2)]for j,w in e(v)]for i,v in e(g)]
+p=lambda g,e=enumerate:[[w or 1in(max(abs(i-I),abs(j-J))for I,V in e(g)for J,W in e(V)if W==2)for j,w in e(v)]for i,v in e(g)]
