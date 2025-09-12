@@ -1,13 +1,1 @@
-def p(g,r=range):
- d=[0,1,0,-1];h=[[*v]for v in g]
- for i in r(R:=len(g)):
-  for j in r(R):
-   if g[i][j]<1:continue
-   for k in r(4):
-    x=(a:=d[k])+(b:=d[(k+1)%4]);y=b+(c:=d[(k+2)%4]);e=v=1
-    if R>i+a>-1<i+b<R>j+b>-1<j+c<R and g[i+a][j+b]<1>g[i+b][j+c]:
-     while i+e*x<R>j+e*y and i+e*x>-1<j+e*y:
-      if v>1:h[i+e*x][j+e*y]=h[i][j]
-      if g[i+e*x][j+e*y]>0:v+=1
-      e+=1
- return h
+def p(g):v=sum(g,[]);r=range(n:=len(g));return[[v[I:=i*n+j]or max(0<i+(a:=n-(k&2)*n)/n*-~l<n-1>j+(b:=(-1)**k)*-~l>0and(v[x:=I+(a+b)*-~l]<v[x-a]==v[x-b])*v[x+a+b]for k in[0,1,2,3]for l in r)for j in r]for i in r]
