@@ -1,0 +1,1 @@
+def p(g,e=enumerate):x,y=[(i,j)for i,v in e(g)for j,w in e(v)if w>2][0];[g==exec("g[k][l]=2")for i,v in e(g)for j,w in e(v)for k,l in[(i,2*y-j+1),(2*x-i+1,j)]if w==2];return g
