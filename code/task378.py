@@ -1,9 +1,1 @@
-def p(g):
- d=0,1,0,-1;c=eval(str(g))
- for I in range((b:=len(g))*b*4):
-  if g[i:=I//4//b][j:=I//4%b]*(b>i+(z:=d[k:=I%4])>-1<i+(x:=d[a:=-~k&3])<b>j+x>-1<j+(y:=d[-~a&3])<b and g[i+z][j+x]<1>g[i+x][j+y]):
-   e=v=1
-   while(s:=j+e*(x+y))>-1<(t:=i+e*(z+x))<b>s:
-    if v>1:c[t][s]=c[i][j]
-    v+=g[t][s];e+=1
- return c
+def p(g):v=sum(g,[]);r=range(n:=len(g));return[[v[I:=i*n+j]or max(0<i+(a:=n-(k&2)*n)/n*-~l<n-1>j+(b:=(-1)**k)*-~l>0and(v[x:=I+(a+b)*-~l]<v[x-a]==v[x-b])*v[x+a+b]for k in[0,1,2,3]for l in r)for j in r]for i in r]
