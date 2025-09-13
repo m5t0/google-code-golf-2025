@@ -1,0 +1,1 @@
+def p(g,r=range):[exec("g[x][y]=(g[x:=i+l//3][y:=j+l%3]>0)*5")for k in r(1,64)if((s:=g[i:=k//8][j:=k%8])<1or(g[i-1][j]!=s)*(g[i][j-1]!=s))*all((g[i+m//3][j+m%3]>0)==(g[m//3][m%3]>0)for m in r(9))for l in r(9)];return g
