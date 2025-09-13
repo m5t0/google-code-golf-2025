@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[w for j,w in e(v)if'5'in str([*zip(*g)][j and j-1:j+2])]for i,v in e(g)if'5'in str(g[max(i-3,0):i])]
