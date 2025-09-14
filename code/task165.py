@@ -1,0 +1,1 @@
+p=lambda g,r=range(20):[[w[i]or(c:=[x for k in r for j in r if(x:=(a:=g[k])[j])and x==a[j-1]==a[j-2]==g[k+1][j]][0])in w and(i>(h:=19-w[::-1].index(c)))*max(w[h+1:])for w in zip(*g)]for i in r]
