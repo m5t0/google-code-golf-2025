@@ -1,1 +1,1 @@
-p=lambda g,r=range(5):next([[g[23-x-a][23-y-b]for b in r]for a in r]for i in range(576)if g[(x:=i//24)][(y:=i%24)]==1)
+p=lambda g:[[g[~g.index(v)][~j]for j in range(24)if v[j]==1]for v in g if 1in v]
