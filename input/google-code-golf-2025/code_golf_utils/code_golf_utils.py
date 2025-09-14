@@ -251,8 +251,8 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py", mode
 
             if is_right:
                 right += 1
-            else:
-                if res is not None:
+            if not is_right or mode == DEBUG:
+                if res is not None and mode != DEBUG:
                     wrong += 1
 
                 colorized_input, colorized_label, colorized_output = colorize(
@@ -300,10 +300,8 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py", mode
                 print("Your Debug Output")
                 print(captured)
 
-            if error: print(f"\nError: {error.strip()}")
-
-            if not is_right or (mode == DEBUG and captured):
-                print('-' * 45)
+            if error:                         print(f"\nError: {error.strip()}")
+            if not is_right or mode == DEBUG: print('-' * 45)
 
         for example in example_subset:
             example_copy = copy.deepcopy(example)
