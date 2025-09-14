@@ -1,1 +1,1 @@
-p=lambda g,r=range:[exec("l=k%4;i=k//36+l//2;j=k//4%9+l%2;c=max(g[i])\nwhile-1<(i:=i+(l&2)-1)<10>(j:=j+l%2*2-1)>-1:g[i][j]=c"*all((g[k//36+m//2][k//4%9+m%2]>0)==(k%4!=m)for m in r(4)))for k in r(324)]and g
+p=lambda g,r=range:[exec("i,j=k//36+l//2,k//4%9+l%2;c=max(g[i])\nwhile-1<(i:=i+(l&2)-1)<10>(j:=j+l%2*2-1)>-1:g[i][j]=c"*all((g[k//36+m//2][k//4%9+m%2]>0)^((l:=k&3)==m)for m in r(4)))for k in r(324)]and g
