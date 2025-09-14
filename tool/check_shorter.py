@@ -17,8 +17,8 @@ def check(master_files, dev_branch_files, dev_branch_name):
             dblen = len(fb.read())
         if mlen > dblen:
             print(f"❌ {name}: master={mlen} bytes, {dev_branch_name}={dblen} bytes (master not shorter)")
-        else:
-            pass # print(f"✅ {name}: master shorter ({mlen} < {dblen})")
+        # else:
+        #     print(f"✅ {name}: master shorter ({mlen} < {dblen})")
 
 def main():
     master_branch = "master"
