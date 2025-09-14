@@ -1,0 +1,1 @@
+p=lambda g:[[[w,2][0<j<len(g)-1>v[j-1]==v[j+1]==1]for j,w in enumerate(v)]for v in g]
