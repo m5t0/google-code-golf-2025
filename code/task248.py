@@ -1,0 +1,1 @@
+def p(g):m=len(g[0]);t=2*m-2;r=range;return[[j in[s:=(9-i)%t,-s%t]for j in r(m)]for i in r(10)]
