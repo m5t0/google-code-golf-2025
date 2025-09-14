@@ -1,5 +1,1 @@
-def p(g):
- d={}
- for r in g:
-  for x in r:d[x]=d.get(x,0)+1
- return [[x]for x in sorted(d,key=d.get,reverse=1)[1:4]]
+def p(g):v=sum(g,[]);return[[x]for x in sorted({*v},key=v.count)[2::-1]]
