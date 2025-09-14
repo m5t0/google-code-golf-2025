@@ -1,1 +1,1 @@
-p=lambda g,r=range:(l:=len(g))and[[[g[i][j],0][min((i+j+1)%l,(i-j)%l)<1]for j in r(l)]for i in r(l)]
+def p(g):r=range(l:=len(g));return[[g[i][j]*((i+j+1)%l>0<(i-j)%l)for j in r]for i in r]
