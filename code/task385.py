@@ -1,1 +1,1 @@
-p=lambda g,r=range:[[g[max(i,9-i)][j]for j in r(4)]for i in r(10)]
+p=lambda g:[*zip(*[w[9:4:-1]+w[5:]for w in zip(*g)])]
