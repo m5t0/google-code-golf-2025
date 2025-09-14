@@ -1,0 +1,1 @@
+p=lambda g,r=range(7):[[(x:=g[i][j])and[0,y:=g[6][0]][x!=y]for j in r]for i in r]
