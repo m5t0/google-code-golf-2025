@@ -1,1 +1,1 @@
-p=lambda g,r=range(3):[[~(k:=3*i+j)%2&(sum(x!=0 for a in g for x in a)//2>k)for j in r]for i in r]
+p=lambda g:[[((sum(sum(g,[])))/4>i+j)&~(i+j&1)for j in[0,1,2]]for i in[0,3,6]]
