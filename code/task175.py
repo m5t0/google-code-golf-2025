@@ -1,0 +1,1 @@
+p=lambda g,r=range(21):[[g[i][j]or g[j][i]or[x for x in sum(g,[])[21*i+j::-22]if x][0]for j in r]for i in r]
