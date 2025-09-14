@@ -1,0 +1,1 @@
+p=lambda g:[[(3>w[i]+w[i+5]>0)*3for w in zip(*g)]for i in[0,1,2,3]]
