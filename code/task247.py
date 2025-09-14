@@ -1,0 +1,1 @@
+def p(g):v=[*sum(zip(*g),())];C=v.count;return[*zip(*[[x]*C(m)for x in{}.fromkeys(v)if C(x)==C(m:=max({*v}-{0},key=C))])]
