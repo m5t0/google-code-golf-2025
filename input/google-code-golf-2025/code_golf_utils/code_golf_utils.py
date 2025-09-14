@@ -252,7 +252,7 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py", mode
             if is_right:
                 right += 1
             if not is_right or mode == DEBUG:
-                if res is not None and mode != DEBUG:
+                if res is not None and not (is_right and mode == DEBUG):
                     wrong += 1
 
                 colorized_input, colorized_label, colorized_output = colorize(
