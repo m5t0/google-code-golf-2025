@@ -1,0 +1,1 @@
+def p(g,r=range):n,m=len(g),len(g[0]);return[[g[i][j]or((i,j)in{(i-1+k//3,j-1+k%3)for k in r(9)for i in r(n)for j in r(m)if g[i][j]&sum((n>i+t>=0and g[i+t][j])+(m>j+t>=0and g[i][j+t])for t in(-1,1))})*3for j in r(m)]for i in r(n)]
