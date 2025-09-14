@@ -12,13 +12,16 @@ def check(master_files, dev_branch_files, dev_branch_name):
         print(f"❌ {dev_branch_name}: {', '.join(sorted(extra))}")
 
     for name in set(mnames) & set(dbnames):
-        with open(mnames[name]) as fm, open(dbnames[name]) as fb:
-            mlen = len(fm.read())
-            dblen = len(fb.read())
-        if mlen > dblen:
-            print(f"❌ {name}: master={mlen} bytes, {dev_branch_name}={dblen} bytes (master not shorter)")
-        # else:
-        #     print(f"✅ {name}: master shorter ({mlen} < {dblen})")
+        try:
+            with open(mnames[name]) as fm, open(dbnames[name]) as fb:
+                mlen = len(fm.read())
+                dblen = len(fb.read())
+            if mlen > dblen:
+                print(f"❌ {name}: master={mlen} bytes, {dev_branch_name}={dblen} bytes (master not shorter)")
+            # else:
+            #     print(f"✅ {name}: master shorter ({mlen} < {dblen})")
+        except UnicodeError:
+            print(f"{name}: File may contain BOM")
 
 def main():
     master_branch = "master"
