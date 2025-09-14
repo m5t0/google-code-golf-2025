@@ -304,6 +304,7 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py", mode
             if not is_right or mode == DEBUG: print('-' * 45)
 
         for example in example_subset:
+            error = ""
             example_copy = copy.deepcopy(example)
             try:
                 buf = io.StringIO()
