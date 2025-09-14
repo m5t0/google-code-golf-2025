@@ -1,1 +1,1 @@
-p=lambda g:[[v[j]or max(v[j+5],0)or v[j+10]for j in range(4)]for v in g]
+p=lambda g:[[v[j]or v[j+5]or v[j+10]for j in range(4)]for v in g]
