@@ -1,1 +1,1 @@
-def p(g):r=range(10);s,n=[(i,v)for i in r if(v:=g[9][i])][0];return[[[n*(~(d:=j-s&3)%2),5][i<d==1or i>8>d>2]*(j>=s)for j in r]for i in r]
+p=lambda g,r=range(10):[[[x:=max(v:=g[9]),5*(i+(a:=j-v.index(x))%4*9%27==9)][a&1]*(a>=0)for j in r]for i in r]
