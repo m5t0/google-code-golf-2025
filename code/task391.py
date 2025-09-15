@@ -1,2 +1,1 @@
-from collections import*
-p=lambda g:[[x]for x,_ in Counter(sum(g,[])).most_common()[2:]]
+def p(g):v=sum(g,[]);return[[x]for x in sorted({*v},key=v.count)[2::-1]]
