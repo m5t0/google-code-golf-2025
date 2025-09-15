@@ -1,1 +1,1 @@
-def p(g,r=[0,1,2]):return[[[2,0][g[i][j]|g[i+3][j]>0]for j in r]for i in r]
+p=lambda g:[[2*(w[i]|w[i+3]<1)for w in zip(*g)]for i in[0,1,2]]
