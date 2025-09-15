@@ -1,1 +1,1 @@
-p=lambda g:[[3*(g[i][j]|g[i][j+4]<1)for j in[0,1,2]]for i in range(4)]
+p=lambda g:[[3*(v[j]|v[j+4]<1)for j in[0,1,2]]for v in g]
