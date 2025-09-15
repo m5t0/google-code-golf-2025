@@ -1,0 +1,1 @@
+p=lambda g:[[w[i]or sum(({1,5}<{*(s:=w[i::k])}and(s.index(5)>s.index(1)))+(2in s and 5in w[i::-k])*2for k in[-1,1])for w in zip(*g)]for i in range(len(g))]
