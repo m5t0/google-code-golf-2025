@@ -1,0 +1,1 @@
+p=lambda g:[[sum(w[i%3::3])for w in zip(*g)]for i in range(len(g))]
