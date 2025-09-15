@@ -1,0 +1,1 @@
+def p(g,e=enumerate):c=min(filter(f:=sum(g,[]).count,range(10)),key=f);[exec("v[j]=len((a:={*v[j-(j>0):j+2]}-{c})and{*w[i-(i>0):i+2]}-{0,c})*sum(a)")for i,v in e(g)for j,w in e(zip(*g))if v[j]==c];return g
