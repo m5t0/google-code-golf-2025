@@ -1,1 +1,1 @@
-p=lambda g,r=range:[[[g[23-i//24-a][23-i%24-b]for b in r(5)]for a in r(5)]for i in r(576)if g[i//24][i%24]==1][0]
+p=lambda g:[[g[~g.index(v)][~j]for j in range(24)if v[j]==1]for v in g if 1in v]
