@@ -1,1 +1,1 @@
-def p(g):l=len(g);r=range(l);return[[(c:=max(v:=[*zip(*g)][j]))*(i>=l-v.count(c))for j in r]for i in r]
+p=lambda g,e=enumerate:[[(i>=len(g)-w.count(c:=max(w)))*c for j,w in e(zip(*g))]for i,_ in e(g)]
