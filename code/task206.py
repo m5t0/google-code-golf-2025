@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[(w%5and w)or sum((I:=i-k//3+1)<len(g)and(g[I][j-k%3+1:j-k%3+2]==[5])*[[w[i]for w in zip(*g)if{*w}-{0,5}]for i,v in e(g)if{*v}-{0,5}][k//3][k%3]for k in range(9))for j,w in e(v)]for i,v in e(g)]
