@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[w[i]or((x:=sum(w[i:]))%(b:=sum(w)/2)<(x*sum(v)/2==sum(v[j:])*b))*(3-x/b)for j,w in e(zip(*g))]for i,v in e(g)]
