@@ -1,0 +1,2 @@
+f=lambda v,j:(s:=str(v)[1::3]).find("2",j)%-~len(v)+~s.rfind("2",0,j)
+p=lambda g,e=enumerate:[[w[i]or((a:=sorted({f(v,j)*f(w,i)for j,w in e(zip(*g))for i,v in e(g)}))[-1]==(x:=f(v,j)*f(w,i)))+(a[1]==x)*8for j,w in e(zip(*g))]for i,v in e(g)]
