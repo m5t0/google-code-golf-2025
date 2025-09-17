@@ -1,1 +1,1 @@
-p=lambda g:[exec("if(v:=g[y:=j][x:=i])<1:\n while g[x][y]<1:v=g[x:=x-1][y:=y-1]\ng[i][j]=v")for I in range(441)if g[i:=I//21][j:=I%21]<1]and g
+p=lambda g,r=range(21):[[g[i][j]or g[j][i]or[x for x in sum(g,[])[21*i+j::-22]if x][0]for j in r]for i in r]
