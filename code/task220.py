@@ -1,1 +1,1 @@
-def p(g):s=len(g);[exec("g[i+b//3-1][j+b%3-1]=(c//2,c*2)[c&1]")for a in range(s*s)if(c:=g[i:=a//s][j:=a%s])in(2,3,8)for b in{*range(9)}-{4}];return g
+def p(g,r=range):n=len(g);s=0,1,n-1;return[[g[i][j]or max((x:=g[i-s[k//3]][j-s[k%3]])*(1+x%2*3)/2for k in r(9))for j in r(n)]for i in r(n)]
