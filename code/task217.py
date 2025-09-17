@@ -1,1 +1,1 @@
-p=lambda g,r=range(9):[[[b[k//3][l//3]&b[k%3][l%3]for l in r]for k in r]for i in r if any(map(any,b:=[k[i%3*3:i%3*3+3]for k in g[i//3*3:i//3*3+3]]))][0]
+p=lambda g,r=range(9):[[(h:=[[w[i]for w in zip(*g)if any(w)]for i in r if any(g[i])])[i//3][j//3]and h[i%3][j%3]for j in r]for i in r]
