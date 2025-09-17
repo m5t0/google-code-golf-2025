@@ -338,4 +338,4 @@ def verify_program(task_num, examples, task_path="/kaggle/working/task.py", mode
         print(" * Create a zip file containing that program along with all others.")
         print(" * Submit that zip file to the Kaggle competition so that it can be officially scored.")
     else:
-        print("Your code IS NOT ready for submission.")
+        print("Your code (task{:03d}.py) IS NOT ready for submission.".format(task_num))
