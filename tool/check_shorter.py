@@ -11,7 +11,7 @@ def check(master_files, dev_branch_files, dev_branch_name):
     if extra:
         print(f"❌ {dev_branch_name}: {', '.join(sorted(extra))}")
 
-    for name in set(mnames) & set(dbnames):
+    for name in sorted(set(mnames) & set(dbnames)):
         try:
             with open(mnames[name]) as fm, open(dbnames[name]) as fb:
                 mlen = len(fm.read())
