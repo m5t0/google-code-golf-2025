@@ -1,5 +1,5 @@
 def p(g):
- r=range;R=r(n:=len(g));m=[i+1for i in R if g[0][i]or g[i][2]][0];h=[7*[3]for _ in r(7)]
+ r=range;R=r(n:=len(g));m=[i+1for i in R if g[0][i]or g[i][2]][0];h=[7*[3]for _ in R]
  for k in r(n//m):
   for i in R:
    for x,y,z,v,s,t in(l:=m*-~k-1,i,k,i//m,1,0),(i,l,i//m,k,0,1):
