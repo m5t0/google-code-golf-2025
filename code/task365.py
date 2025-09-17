@@ -1,6 +1,6 @@
 def p(g,r=range):
  A=B=C=D=E=0
- for k in r(100):
+ for k in r(99):
   c=d=0;i,j=k//10,k%10
   while i+c<10and g[i+c][j]:c+=1
   while j+d<10and g[i][j+d]:d+=1
