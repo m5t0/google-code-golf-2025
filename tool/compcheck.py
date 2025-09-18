@@ -2,6 +2,10 @@ import copy
 import importlib.util
 import os
 import sys
+import concurrent.futures
+from threading import Lock
+
+MAX_WORKERS = 32
 
 DEFLATE = 0
 ZOPFLI = 1
@@ -52,7 +56,8 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
 
     def is_valid(compressed, delim_start, delim_end, check_result=False):
         def check(path):
-            spec = importlib.util.spec_from_file_location("code_golf_utils", "./input/google-code-golf-2025/code_golf_utils/code_golf_utils.py")
+            spec = importlib.util.spec_from_file_location("code_golf_utils",
+                                                          "./input/google-code-golf-2025/code_golf_utils/code_golf_utils.py")
             code_golf_utils = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(code_golf_utils)
             task_data = code_golf_utils.load_examples(task_num)
@@ -122,7 +127,7 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
 
             for i in range(len(compressed)):
                 if compressed[i] == 120:
-                    trimmed = compressed[:i] + compressed[i+1:]
+                    trimmed = compressed[:i] + compressed[i + 1:]
 
                     if is_valid(trimmed, delim_start, delim_end, check_result=True):
                         compressed = trimmed
@@ -144,11 +149,50 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
 
     return b' ' * 10000 if best is None else best
 
-deflate_cnt = 0
-zopfli_cnt = 0
-zlib_cnt = 0
 
-def process_code(task_num, author, code, color, out=None, write=False):
+class Counter:
+    def __init__(self):
+        self.deflate_cnt = 0
+        self.zopfli_cnt = 0
+        self.zlib_cnt = 0
+        self.total_saved = 0
+        self.lock = Lock()
+
+    def update(self, improvement, compressor):
+        with self.lock:
+            self.total_saved += improvement
+            if compressor == DEFLATE:
+                self.deflate_cnt += 1
+            elif compressor == ZOPFLI:
+                self.zopfli_cnt += 1
+            elif compressor == ZLIB:
+                self.zlib_cnt += 1
+
+
+def process_task(task_num, counter):
+    task = f"task{str(task_num).zfill(3)}.py"
+    our = f"./code/{task}"
+    pub = f"./input/solution2/{task}"
+    out = f"./submission/{task}"
+
+    output_lines = []
+    output_lines.append(" " * 10 + "\033[4m" + task + "\033[0m")
+
+    if os.path.isfile(our):
+        our_code = open(our, mode='r').read()
+        improvement, compressor_used, output_str = process_code_single(task_num, "our", our_code, "\033[92m", out, True)
+        output_lines.append(output_str)
+        if improvement > 0:
+            output_lines.append(f"Wrote to {out} (saved {improvement} bytes)")
+        counter.update(improvement, compressor_used)
+    else:
+        output_lines.append("our code not found")
+
+    output_lines.append("-" * 35)
+    return "\n".join(output_lines)
+
+
+def process_code_single(task_num, author, code, color, out=None, write=False):
     clear = "\033[0m"
     deflate = zip_src(task_num, code, len(code), compressor=DEFLATE)
     zopfli = zip_src(task_num, code, len(code), compressor=ZOPFLI)
@@ -156,51 +200,45 @@ def process_code(task_num, author, code, color, out=None, write=False):
     compressed_code = min(deflate, zopfli, zlib, key=len)
 
     if deflate == compressed_code:
-        global deflate_cnt
-        deflate_cnt += 1
-    if zopfli == compressed_code:
-        global zopfli_cnt
-        zopfli_cnt += 1
-    if zlib == compressed_code:
-        global zlib_cnt
-        zlib_cnt += 1
+        compressor_used = DEFLATE
+    elif zopfli == compressed_code:
+        compressor_used = ZOPFLI
+    elif zlib == compressed_code:
+        compressor_used = ZLIB
+    else:
+        compressor_used = -1
 
     improvement = len(code) - len(compressed_code)
+    if improvement < 0:
+        improvement = 0
 
-    print(f"{color}{author}            : {len(code)}{clear}")
-
-    if write:
-        assert out
-
-        os.makedirs(os.path.dirname(out), exist_ok=True)
-
-        with open(out, mode='wb') as f:
-            f.write(compressed_code if improvement > 0 else code.encode())
+    output_str = f"{color}{author}            : {len(code)}{clear}"
 
     if write and improvement > 0:
-        print(f"Wrote to {out} (saved {improvement} bytes)")
+        os.makedirs(os.path.dirname(out), exist_ok=True)
+        with open(out, mode='wb') as f:
+            f.write(compressed_code)
 
-    return improvement if improvement > 0 else 0
+    return improvement, compressor_used, output_str
 
-total_saved = 0
 
-for arg in sys.argv[1:]:
-    task_num = int(arg)
-    task = f"task{str(task_num).zfill(3)}.py"
-    our = f"./code/{task}"
-    pub = f"./input/solution2/{task}"
-    out = f"./submission/{task}"
+def main():
+    if len(sys.argv) < 2:
+        return
 
-    print(" " * 10 + "\033[4m" + task + "\033[0m")
+    counter = Counter()
+    tasks = [int(arg) for arg in sys.argv[1:]]
 
-    if our_code := open(our, mode='r').read() if os.path.isfile(our) else "":
-        total_saved += process_code(task_num, "our", our_code, "\033[92m", out, True)
-    # if pub_code := open(pub, mode='r').read() if os.path.isfile(pub) else "":
-    #     process_code("pub", pub_code, "\033[94m")
+    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = [executor.submit(process_task, task_num, counter) for task_num in tasks]
+        for future in concurrent.futures.as_completed(futures):
+            print(future.result())
 
-    print("-"*35)
+    print(f"Total saved: {counter.total_saved} bytes")
+    print(f"Deflate: {counter.deflate_cnt} times")
+    print(f"Zopfli: {counter.zopfli_cnt} times")
+    print(f"Zlib: {counter.zlib_cnt} times")
 
-print(f"Total saved: {total_saved} bytes")
-print(f"Deflate: {deflate_cnt} times")
-print(f"Zopfli: {zopfli_cnt} times")
-print(f"Zlib: {zlib_cnt} times")
+
+if __name__ == "__main__":
+    main()
