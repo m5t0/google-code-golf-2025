@@ -54,7 +54,7 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
                 b_out.append(b)
         return b"" + b_out
 
-    def is_valid(compressed, delim_start, delim_end, check_result=False):
+    def is_valid(compressed, delim_start, delim_end, check_result=False, check_all=False):
         def check(path):
             spec = importlib.util.spec_from_file_location("code_golf_utils",
                                                           "./input/google-code-golf-2025/code_golf_utils/code_golf_utils.py")
@@ -82,6 +82,10 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
                     return True
 
                 all_examples = task_data["train"] + task_data["test"] + task_data["arc-gen"]
+
+                if not check_all:
+                    all_examples = all_examples[:1]
+
                 for example in all_examples:
                     input_grid = copy.deepcopy(example["input"])
                     expected = example["output"]
