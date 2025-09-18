@@ -51,22 +51,37 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
         return b"" + b_out
 
     def is_valid(compressed, delim_start, delim_end, check_result=False):
-        def check(solution):
+        def check(path):
             spec = importlib.util.spec_from_file_location("code_golf_utils", "./input/google-code-golf-2025/code_golf_utils/code_golf_utils.py")
             code_golf_utils = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(code_golf_utils)
             task_data = code_golf_utils.load_examples(task_num)
 
             try:
-                namespace = {}
-                exec(solution, namespace)
-                if 'p' not in namespace: return False
-                all_examples = task_data['train'] + task_data['test'] + task_data['arc-gen']
+                task_name = "task_with_imports"
+                spec = importlib.util.spec_from_file_location(task_name, path)
+
+                if spec is None:
+                    return False
+
+                module = sys.modules[task_name] = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(module)
+
+                if not hasattr(module, "p"):
+                    return False
+
+                if not callable(program := getattr(module, 'p')):
+                    return False
+
+                if not check_result:
+                    return True
+
+                all_examples = task_data["train"] + task_data["test"] + task_data["arc-gen"]
                 for example in all_examples:
-                    input_grid = copy.deepcopy(example['input'])
-                    expected = example['output']
+                    input_grid = copy.deepcopy(example["input"])
+                    expected = example["output"]
                     try:
-                        actual = namespace['p'](input_grid)
+                        actual = program(input_grid)
                         if actual != expected:
                             return False
                     except:
@@ -78,10 +93,14 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
         src = get_src(compressed, delim_start, delim_end)
 
         try:
-            if check_result:
-                return check(src.decode("L1"))
-            exec(src.decode("L1"))
-            return True
+            import tempfile
+
+            with tempfile.NamedTemporaryFile(suffix=".py", mode="wb", delete=False) as f:
+                f.write(src)
+
+            res = check(f.name)
+            os.remove(f.name)
+            return res
         except:
             return False
 
@@ -95,7 +114,7 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
             if is_valid(compressed, delim_start, delim_end):
                 break
 
-        if not is_valid(compressed, delim_start, delim_end):
+        if not is_valid(compressed, delim_start, delim_end, check_result=True):
             compressed = sanitize(compressed)
 
         while True:
@@ -112,6 +131,9 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
             if len(compressed) == current_len:
                 break
 
+        if not is_valid(compressed, delim_start, delim_end, check_result=True):
+            continue
+
         s = get_src(compressed, delim_start, delim_end)
 
         if best is None or len(s) < len(best):
@@ -120,7 +142,7 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
         if len(best) > baseline + margin:
             break
 
-    return best
+    return b' ' * 10000 if best is None else best
 
 deflate_cnt = 0
 zopfli_cnt = 0
@@ -172,7 +194,7 @@ for arg in sys.argv[1:]:
     print(" " * 10 + "\033[4m" + task + "\033[0m")
 
     if our_code := open(our, mode='r').read() if os.path.isfile(our) else "":
-        total_saved += process_code(i, "our", our_code, "\033[92m", out, True)
+        total_saved += process_code(task_num, "our", our_code, "\033[92m", out, True)
     # if pub_code := open(pub, mode='r').read() if os.path.isfile(pub) else "":
     #     process_code("pub", pub_code, "\033[94m")
 
