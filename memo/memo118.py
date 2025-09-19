@@ -14,7 +14,7 @@ def p(p):
         # nマス十字方向に進むときに通るマスの集合で0を通らず2を通るもの
         l = [
             l
-            # 列と行について全探索
+            # 行と列について全探索
             for d in range(len(p))
             for i in range(len(p[0]))
             for l in [
