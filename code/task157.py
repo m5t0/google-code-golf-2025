@@ -5,4 +5,4 @@ def p(g,R=range):
   elif p:e+=[[n for n in R(150)if a[n]>4and n%r in p]];n,*p=[i+[n]for i in n for n in R(45)if 1>a[n]],
  for i in n:
   i=[any(n-i+e[0]in e*(6>i%r-n%r)for i,e in zip(i,e))|a[n]%5for n in R(150)]
-  if all(i[:45])*(i.count(0)==a.count(0)):return[i[n*r:][:r]for n in R(10)]
+  if(i.count(0)==a.count(0))*all(i[:45]):return[i[n*r:][:r]for n in R(10)]
