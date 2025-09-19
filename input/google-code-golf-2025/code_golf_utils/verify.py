@@ -25,12 +25,17 @@ for i in range(1, len(sys.argv))[::-1]:
         mode = code_golf_utils.DEBUG
         sys.argv.pop(i)
 
+all_pass = True
+
 for arg in sys.argv[1:]:
     task_num = int(arg)
     task_path = f"{task_dir}/task{str(task_num).zfill(3)}.py"
 
     if os.path.isfile(task_path):
         examples = code_golf_utils.load_examples(task_num=task_num)
-        code_golf_utils.verify_program(
+        all_pass &= code_golf_utils.verify_program(
             task_num=task_num, examples=examples, task_path=task_path, mode=mode
         )
+
+if not all_pass:
+    exit(1)
