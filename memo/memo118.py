@@ -36,3 +36,13 @@ def p(p):
             for l, n in l:
                 p[l][n] += 3 * (p[l][n] & 1)
             return p
+
+def p(p,r=range):
+ a,b=len(p),len(p[0])
+ for n in 2,3:
+  l=sorted([(-x,l)for d in r(a)for i in r(b)for l in[{(l,n)for l in r(-n,n+1)for l,n in[(d+l,i),(d,i+l)]if a>l>-1<n<b}]if(0in(v:=[p[l][n]for l,n in l]))<1and(x:=v.count(2))]);s=set()
+  for v,f in l:
+   if not f&s:s|=f
+  if sum(p,[]).count(2)<=[p[l][n]for l,n in s].count(2):
+   for l,n in s:p[l][n]+=3*(p[l][n]&1)
+   return p
