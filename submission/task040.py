@@ -1,0 +1,1 @@
+p=lambda g,r=range(10):[[g[i][j]and[g[0][-(j>4)],g[-(i>4)][0]][all(g[0])]for j in r]for i in r]

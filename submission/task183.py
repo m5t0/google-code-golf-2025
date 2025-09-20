@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[g[-(i>(a:=len(v)//2-3))][-(j>a)]*(w>0)for j,w in e(v[2:-2])]for i,v in e(g[2:-2])]

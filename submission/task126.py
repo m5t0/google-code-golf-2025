@@ -1,0 +1,1 @@
+def p(g):g[-1]=[4*(sum(map(bool,w))&1)for w in zip(*g)];return g

@@ -1,0 +1,1 @@
+p=lambda g:[[2*(w[i]|w[i+3]<1)for w in zip(*g)]for i in[0,1,2]]

@@ -1,0 +1,1 @@
+p=lambda g:[[[*{}.fromkeys(g[3])][g[3].index(x)-1]for x in v]for v in g]

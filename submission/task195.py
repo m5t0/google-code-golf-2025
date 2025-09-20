@@ -1,0 +1,1 @@
+p=lambda g,r=range(9):[[(a:=[[v[j]for j,w in enumerate(zip(*g))if 5in w]for v in g if 5in v])[i//3*3][j//3*3]&a[i%3*3][j%3*3]for j in r]for i in r]

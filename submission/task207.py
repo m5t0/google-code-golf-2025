@@ -1,0 +1,1 @@
+p=lambda g:[[sum(v:=g[i][j::3]+g[i+3][j::3])%(3*max(v)or 9)for j in[0,1]]for i in[0,1]]

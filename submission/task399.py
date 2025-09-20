@@ -1,0 +1,1 @@
+p=lambda g:[[(sum(sum(g,[]))/4>i+j)&~(i+j&1)for j in[0,1,2]]for i in[0,3,6]]

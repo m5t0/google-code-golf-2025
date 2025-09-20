@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[w or any(l>i>k>-1<s<j<t for(k,s),(l,t)in zip(*([divmod(i,10)for i,x in e(sum(g,[]))if x>3][j::4]for j in(0,3))))*2for j,w in e(v)]for i,v in e(g)]

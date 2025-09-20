@@ -1,0 +1,1 @@
+p=lambda g,r=range(20):[[g[1::2][i//4][1::2][j//4]for j in r]for i in r]

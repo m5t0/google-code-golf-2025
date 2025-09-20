@@ -1,0 +1,1 @@
+p=lambda g,D=lambda s:[k for i,k in enumerate(s)if i<1or k-s[i-1]]:[[[v]for v in D(next(zip(*g)))],[[*D(g[0])]]][len({*g[0]})>1]

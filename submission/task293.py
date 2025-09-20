@@ -1,0 +1,1 @@
+p=lambda g:[[[x:=w[g.index(v)],v[0]+w[0]-x][all(v+[*w])]for w in zip(*g)]for v in g]

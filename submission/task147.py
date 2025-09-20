@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[(w>0)*[3,8][(*g[i][j-(j>0):j+2],*[*zip(*g)][j][i-(i>0):i+2]).count(3)>2]for j,w in e(v)]for i,v in e(g)]

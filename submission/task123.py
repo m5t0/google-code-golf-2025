@@ -1,0 +1,1 @@
+p=lambda g,r=range(10):[[g[max(i,j)%(4+(g[4][0]>0))][0]for j in r]for i in r]

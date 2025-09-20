@@ -1,0 +1,1 @@
+p=lambda g:[[6*((v[i]|v[i+3])>0)for i in[0,1,2]]for v in g]

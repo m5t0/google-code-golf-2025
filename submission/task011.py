@@ -1,0 +1,1 @@
+r=range(11);p=lambda g:[[5*(i%4>2or j%4>2)or[v for k in r[:9]if max(sum(v:=[x[k%3*4:k%3*4+3]for x in g[k//3*4:k//3*4+3]],[]))<8][0][i//4][j//4]for j in r]for i in r]

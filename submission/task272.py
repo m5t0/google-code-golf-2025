@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[v[j]/(2-any(len(v)>(s:=~-j+k%3)>-1<i+k//3<len(w)and g[i+k//3][s]for k in[-2,0,2,4]))for j,w in e(zip(*g))]for i,v in e(g)]

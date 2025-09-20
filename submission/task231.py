@@ -1,0 +1,1 @@
+p=lambda g:[[v[j%6]for j in range(len(v)*2)]for v in g]

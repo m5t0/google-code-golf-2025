@@ -1,0 +1,1 @@
+p=lambda g,r=range(16):[[(g[i][j]-4or g[~i][~j]-4)+4for j in r]for i in r]

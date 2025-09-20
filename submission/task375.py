@@ -1,0 +1,1 @@
+def p(g):r=range(l:=len(g));return[[g[i][j]*((i+j+1)%l>0<(i-j)%l)for j in r]for i in r]

@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[max(v[:j+1])or(j>len(v)-2)*[0,*filter(None,sum(g[:i],[]))][-1]for j,_ in e(v)]for i,v in e(g)]

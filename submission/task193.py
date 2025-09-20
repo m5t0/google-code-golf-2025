@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[v[j]and len((a:={*v[j-1:j]+v[j+1:j+2]})and{w[i-1],*w[i+1:i+2]}-{0})*sum(a)for j,w in e(zip(*g))]for i,v in e(g)]
