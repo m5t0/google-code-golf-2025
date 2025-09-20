@@ -1,0 +1,1 @@
+p=lambda g,r=range(9):[[g[i][j]or+any(i+k//3-1in r and g[i+k//3-1][j+k%3-1:j+k%3]==[5]for k in r)for j in r]for i in r]

@@ -1,0 +1,1 @@
+p=lambda g,r=range(10):[[((k:=min(i,9-i))<1or k==2or((j<1)+(j>8)))*[max(max(g[5:])),max(max(g[:5]))][i<5]for j in r]for i in r]

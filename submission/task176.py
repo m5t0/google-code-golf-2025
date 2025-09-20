@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[w or(abs(-~j%12-1)<i or i+abs(j%12-6)<2)*4for j,w in e(v)]for i,v in e(g)]

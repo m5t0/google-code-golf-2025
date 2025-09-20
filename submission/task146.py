@@ -1,0 +1,1 @@
+p=lambda g:min(((v:=g[3*i:3*i+3])==[*map(list,zip(*v))],v)for i in(0,1,2))[1]

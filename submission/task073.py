@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[(i>3)*g[2][j]or(i>2)*w for j,w in e(v)]for i,v in e(g)]

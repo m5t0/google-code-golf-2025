@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[any(any(a[j%2::2])for a in g[i:])*4or g[i-1][j]for j,w in e(v)]for i,v in e(g)]

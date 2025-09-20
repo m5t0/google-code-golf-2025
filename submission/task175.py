@@ -1,0 +1,1 @@
+def p(g,r=range(21)):[exec("if(v:=g[y:=j][x:=i])<1:\n while g[x][y]<1:v=g[x:=x-1][y:=y-1]\ng[i][j]=v")for i in r for j in r if g[i][j]<1];return g

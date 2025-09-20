@@ -1,0 +1,1 @@
+p=lambda g:[x for c in range(1,10)if(x:=[[v[j]*(v[j]==c)for j in range(30)if c in[*zip(*g)][j]]for v in g if c in v])and sum(map(sum,x))//c>len(x)*len(x[0])//2][0]

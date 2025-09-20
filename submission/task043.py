@@ -1,0 +1,1 @@
+p=lambda g:[[v[j]or(sum(v)*sum([*zip(*g)][j])==25)*2for j in range(10)]for v in g]

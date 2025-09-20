@@ -1,0 +1,1 @@
+p=lambda g:[[[0,7,8,2][((w:=[sum(v),sum([*zip(*g)][j])])[0]==7 or w[1]==7)+2*(w[0]==8 or w[1]==8)]for j in range(9)]for v in g]

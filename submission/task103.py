@@ -1,0 +1,1 @@
+p=lambda g:[[[7,1][g==[v[::-1]for v in g]]]]

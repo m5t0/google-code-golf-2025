@@ -1,0 +1,1 @@
+p=lambda g:[[any(v)and v[g[1].index(g[1][j])]for j,w in enumerate(v)]for v in g]

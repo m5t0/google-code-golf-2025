@@ -1,0 +1,1 @@
+def p(g):n=len(g)//2;return(x:=[a+a[::-1]for a in[[(w>0)*g[0][n]for w in v[:n]]for v in g[:n]]])+x[::-1]

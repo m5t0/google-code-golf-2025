@@ -1,0 +1,1 @@
+p=lambda g,r=range:[[sum(g[4*i+k//3][4*j+k%3]for k in r(9))>9for j in r(3)]for i in r(3)]

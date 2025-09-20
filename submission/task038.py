@@ -1,0 +1,1 @@
+p=lambda g,r=range:[[1*(sum((min(g[i][j:j+2]),min(g[i+1][j:j+2]))==(1,1)for j in r(8)for i in r(8))>k)for k in r(5)]]

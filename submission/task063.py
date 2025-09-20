@@ -1,0 +1,1 @@
+p=lambda g:[[v[j]or(((sum(v[1:-1])<1)|(sum(w[1:-1])<1)))*3for j,w in enumerate(zip(*g))]for v in g]
