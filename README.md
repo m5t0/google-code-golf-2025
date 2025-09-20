@@ -14,9 +14,9 @@
      タスクの入出力の例を可視化するコード
       - verify.py:
      コードが正しいかをサンプルでチェックするコード
-  - submission1:
+  - solution1:
    公開ノートブック[ARC AGI Code Golf - 216/400 solved](https://www.kaggle.com/code/fedimser/arc-agi-code-golf-216-400-solved)からダウンロードしてきた解答
-  - submimssion2:
+  - solution2:
     公開ノートブック[Optimize 391/400 DSL](https://www.kaggle.com/code/lucvan68/optimize-391-400-dsl/output)からダウンロードしてきた解答
 - code:
   submissionに使えるようなpythonファイルをタスク毎に並べるフォルダ
