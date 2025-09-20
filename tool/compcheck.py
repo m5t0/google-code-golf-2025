@@ -218,10 +218,14 @@ def process_code_single(task_num, author, code, color, out=None, write=False):
 
     output_str = f"{color}{author}            : {len(code)}{clear}"
 
-    if write and improvement > 0:
+    if write:
         os.makedirs(os.path.dirname(out), exist_ok=True)
+
         with open(out, mode='wb') as f:
-            f.write(compressed_code)
+            if improvement > 0:
+                f.write(compressed_code)
+            else:
+                f.write(code.encode())
 
     return improvement, compressor_used, output_str
 
