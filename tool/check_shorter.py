@@ -25,7 +25,7 @@ def check(master_files, dev_branch_files, dev_branch_name):
 
 def main():
     master_branch = "master"
-    dev_branches = ["moto", "sktkmozt"]
+    dev_branches = ["moto", "sktkmozt", "bono"]
     master_files = glob("./code/*.py")
 
     for dev_branch in dev_branches:
