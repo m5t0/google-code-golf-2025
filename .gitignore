@@ -11,3 +11,6 @@ wheels/
 
 # input data
 *.json
+
+# uv.lock
+uv.lock
