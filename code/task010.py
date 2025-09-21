@@ -1,1 +1,1 @@
-p=lambda g:[[j%2and v[j]*sum(g[9-sum([*zip(*g)][j])//5])//25for j in range(9)]for v in g]
+p=lambda g:[*zip(*[[v*sum(g[-sum(w)//5])/25for v in w]for w in zip(*g)])]
