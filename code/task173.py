@@ -1,0 +1,1 @@
+def p(n):a=len(n)-2;b=len(n[0])-2;[((r:=[n[l//a+f//3][d//b+f%3]for f in range(9)])==r[::-1])*r[4]*any(r[:4])*(r[4]==n[l%a+1][d%b+1]or sum(n[l%a+f//3][d%b+f%3]==r[f]for f in range(9))>7)and exec('for f in range(9):n[l%a+f//3][d%b+f%3]=r[f]')for l in range(a*a)for d in range(b*b)];return n
