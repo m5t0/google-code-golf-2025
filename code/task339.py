@@ -1,1 +1,1 @@
-p=lambda g:[[y:=max(sum(g,[]))]*str(g).count(str(y))]
+p=lambda g:[[*filter(None,sum(g,[]))]]
