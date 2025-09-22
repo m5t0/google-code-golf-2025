@@ -5,9 +5,14 @@ build/
 dist/
 wheels/
 *.egg-info
+*.pkl
+*.zip
 
 # Virtual environments
 .venv
 
 # input data
 *.json
+
+# PyCharm
+.idea
