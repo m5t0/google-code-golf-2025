@@ -9,5 +9,5 @@ n=17
 def p(g):
  for j in range(9)[::-1]:
   for i in range((n-j%3)*(n-j//3)):
-   for v in(a:=g[i%n:][:2+j//3])*(sum(sum(v[i//n:][:2+j%3])for v in a)<4):v[i//n:i//n+2+j%3]=[2]*(2+j%3)
+   for v in(a:=g[i%n:][:2+j//3])*(sum(sum(v[(s:=i//n):][:(k:=2+j%3)])for v in a)<4):v[s:s+k]=[2]*k
  return g
