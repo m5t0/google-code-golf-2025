@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[w[i]or max(abs(i-I)<=((s:=str(V)[1::3]).find('0',J)%-~len(V)+~s.rfind('0',0,J))/2>=abs(j-J)for I,V in e(g) for J,W in e(V)if W)*3or 9in w[:i]for j,w in e(zip(*g))]for i,V in e(g)]
