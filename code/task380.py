@@ -1,1 +1,1 @@
-p=lambda g,v=[0,1,2]:[[g[j][2-i]for j in v]for i in v]
+p=lambda g:[*zip(*g)][::-1]
