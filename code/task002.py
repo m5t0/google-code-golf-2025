@@ -1,6 +1,5 @@
 def p(g):
- n=len(g);g=[[4-b%2for b in a]for a in g]
  def f(i,j):
-  if-n<i<n>j>-n and g[i][j]>3:g[i][j]=0;f(i+1,j);f(i-1,j);f(i,j+1);f(i,j-1)
- for i in range(n):f(i,0);f(0,i);f(-1,i)
- return g
+  for k in[-1,1]*(g[i:=i%n][j:=j%n]<1):g[i][j]=4;f(i+k,j);f(i,j+k)
+ for i in range(n:=len(g)):f(i,0);f(0,i);f(-1,i)
+ return[[x+2^6for x in v]for v in g]
