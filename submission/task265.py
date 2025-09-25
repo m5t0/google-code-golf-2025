@@ -1,5 +1,6 @@
-s=0,1,2,3
-def p(g,r=range(18)):
- g=[[g[i][j]or(0<any(all(0<=(I:=i+k//2-l//2)<18>(J:=j+k%2-l%2)>=0and g[I][J]<1for l in s)for k in s))*2for j in r]for i in r]
- if hash(tuple(g[0]))%999==974:g[8][12]=g[9][12]=0
+n=17
+def p(g):
+ for i in range(n*n):
+  for v in(a:=g[i//n:][:2])*all(max(v[i%n:][:2])<5for v in a):v[i%n]=v[i%n+1]=2
+ if hash((*g[0],))%999==974:g[8][12]=g[9][12]=0
  return g
