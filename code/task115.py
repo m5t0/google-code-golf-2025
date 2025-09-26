@@ -1,1 +1,1 @@
-p=lambda g,D={}.fromkeys:[[*D(g[0])]]+[[x]for x in D(next(zip(*g)))][1:]
+p=lambda g:[*zip(*map(D:={}.fromkeys,zip(*map(D,g))))]
