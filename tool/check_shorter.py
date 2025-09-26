@@ -29,7 +29,7 @@ def main():
     master_files = glob("./code/*.py")
 
     for dev_branch in dev_branches:
-        os.system(f"git checkout {dev_branch} && cp -r ./code ./{dev_branch}")
+        os.system(f"git checkout {dev_branch} && git pull && cp -r ./code ./{dev_branch}")
         os.system(f"git checkout {master_branch}")
 
         dev_files = glob(f"./{dev_branch}/*.py")
