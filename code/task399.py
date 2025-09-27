@@ -1,1 +1,1 @@
-p=lambda g:[[(sum(sum(g,[]))/4>i+j)&~(i+j&1)for j in[0,1,2]]for i in[0,3,6]]
+p=lambda g:[[(s:=sum(sum(g,[]))/8)>0,0,s>1],[0,s>2,0],[s>3,0,s>4]]
