@@ -1,0 +1,1 @@
+def p(g):k=len(a:=[[w[g.index(v)]for w in zip(*g)if 8in w]for v in g if 8in v])+1;r=range(k+1);v=sum(g,[]);I,J=divmod([v.index(x)for x in v if x%8][0]-1,len(g[0]));h=[[max(g[i+I][j+J],0<i<k>j>0and a[i-1][j-1])for j in r]for i in r];f=lambda i,j:i-i*(i<min(j,k-j,k-i))+(k-i)*(k-i<min(j,k-j,i));return[[(h[i][j]>0)*h[f(i,j)][f(j,i)]for j in r]for i in r]
