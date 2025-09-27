@@ -1,15 +1,17 @@
-def p(g,e=enumerate):
- v=sum(g,[]);*a,c,_=sorted({*v},key=v.count);m,n=len(g),len(g[0]);b={k:[(i//n,i%n)for i,w in e(v)if w==k]for k in[c]+a};r=sum(b.values(),[]);h={}
+def p(g):
+ m,n=len(g),len(g[0]);t=[];r={(k//n,k%n):w for k in range(m*n)if(w:=g[k//n][k%n])}
  def f(i,j):
-  if m>i>-1<j<n and(v:=g[i][j])and(i,j)in r:r.remove((i,j));s[v]+=[(i,j)];f(i+1,j);f(i-1,j);f(i,j+1);f(i,j-1)
+  if m>i>-1<j<n and g[i][j]and(i,j)in r:s[i-u[0],j-u[1]]=r.pop((i,j));f(i+1,j);f(i-1,j);f(i,j+1);f(i,j-1)
  while r:
-  s={k:[]for k in b};f(*r[0])
-  if s[c]:
-   u,v,w=[s[i][0]for i in a];d=lambda k:(k[0]-u[0],k[1]-u[1]);h[d(v),d(w)]=[d(k)for k in s[c]]
-   for i,j in sum(s.values(),[]):b[g[i][j]].remove((i,j));g[i][j]=0
- for i,j in b[a[0]]:
-  for k,l in h.items():
-   for _ in range(8):
-    for x,y in l*all((i+x,j+y)in b[a[K+1]]for K,(x,y)in e(k)):g[i+x][j+y]=c
-    k,l=[[([-t,t][_%4==3],s)for s,t in v]for v in(k,l)];m,n=n,m
- return g
+  t+=[s:={}];u=min(r);f(*u)
+  if len(s.keys())<4:t=t[:-1]
+  else:
+   for x,y in s:g[u[0]+x][u[1]+y]=0
+ h=eval(str(g))
+ for s in t:
+  for _ in range(8):
+   for k in range(m*n):
+    if all(m>k//n+v[0]>-1<k%n+v[1]<n for v in s.keys())>0<2<sum(g[k//n+v[0]][k%n+v[1]]==w for v,w in s.items()):
+     for v,w in s.items():h[k//n+v[0]][k%n+v[1]]=w
+   s={([-f,f][_%4==3],e):w for(e,f),w in s.items()}
+ return h
