@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[8if((a:=[k for k,x in e(v)if x])and a[0]<j<a[-1]!=v[j]<1)or((b:=[k for k,x in e(w)if x])and b[0]<i<b[-1]!=w[i]<1)else v[j]for j,w in e(zip(*g))]for i,v in e(g)]
+p=lambda g,e=enumerate:[[w[i]or(1in{*w[i:]}&{*w[:i]}|{*v[:j]}&{*v[j:]})*8for j,w in e(zip(*g))]for i,v in e(g)]
