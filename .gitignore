@@ -16,4 +16,4 @@ wheels/
 uv.lock
 
 # cache file
-.pkl
+*.pkl
