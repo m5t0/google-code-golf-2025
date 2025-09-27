@@ -1,8 +1,10 @@
 import copy
+import concurrent.futures
+import hashlib
 import importlib.util
 import os
+import pickle
 import sys
-import concurrent.futures
 from threading import Lock
 
 MAX_WORKERS = 32
@@ -18,6 +20,7 @@ for i in range(1, len(sys.argv))[::-1]:
 
         for j in range(int(start), int(end) + 1):
             sys.argv.append(str(j))
+
 
 def zip_src(task_num, src, baseline, compressor=DEFLATE):
     margin = 10
@@ -154,17 +157,38 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
     return b' ' * 10000 if best is None else best
 
 
-class Counter:
+def get_hash(code):
+    return hashlib.sha256(code).hexdigest()
+
+
+class State:
     def __init__(self):
+        self.cache = {}
+        self.cache_path = os.path.join(os.path.dirname(__file__), "cache.pkl")
         self.deflate_cnt = 0
         self.zopfli_cnt = 0
         self.zlib_cnt = 0
         self.total_saved = 0
         self.lock = Lock()
 
-    def update(self, improvement, compressor):
+    def load_cache(self):
+        if os.path.isfile(self.cache_path):
+            with open(self.cache_path, "rb") as f:
+                self.cache = pickle.load(f)
+
+    def write_cache(self):
+        with open(self.cache_path, "wb") as f:
+            pickle.dump(self.cache, f)
+
+    def get_cache(self, task_num):
+        with self.lock:
+            return self.cache.get(task_num)
+
+    def update(self, task_num, code, improvement, compressor):
         with self.lock:
             self.total_saved += improvement
+            self.cache[task_num] = get_hash(code), improvement
+
             if compressor == DEFLATE:
                 self.deflate_cnt += 1
             elif compressor == ZOPFLI:
@@ -173,7 +197,7 @@ class Counter:
                 self.zlib_cnt += 1
 
 
-def process_task(task_num, counter):
+def process_task(task_num, state):
     task = f"task{str(task_num).zfill(3)}.py"
     our = f"./code/{task}"
     pub = f"./input/solution2/{task}"
@@ -183,12 +207,20 @@ def process_task(task_num, counter):
     output_lines.append(" " * 10 + "\033[4m" + task + "\033[0m")
 
     if os.path.isfile(our):
-        our_code = open(our, mode='r').read()
-        improvement, compressor_used, output_str = process_code_single(task_num, "our", our_code, "\033[92m", out, True)
-        output_lines.append(output_str)
-        if improvement > 0:
-            output_lines.append(f"Wrote to {out} (saved {improvement} bytes)")
-        counter.update(improvement, compressor_used)
+        with open(our, mode='r') as f:
+            our_code = f.read()
+
+        if (cache := state.get_cache(task_num)) and cache[0] == get_hash(our_code.encode()):
+            compressor_used = None
+            improvement = cache[1]
+            output_lines.append(f"our code already cached" + (f" (saved {improvement} bytes)" if improvement > 0 else ""))
+        else:
+            improvement, compressor_used, output_str = process_code_single(task_num, "our", our_code, "\033[92m", out, True)
+            output_lines.append(output_str)
+            if improvement > 0:
+                output_lines.append(f"Wrote to {out} (saved {improvement} bytes)")
+
+        state.update(task_num, our_code.encode(), improvement, compressor_used)
     else:
         output_lines.append("our code not found")
 
@@ -217,15 +249,13 @@ def process_code_single(task_num, author, code, color, out=None, write=False):
         improvement = 0
 
     output_str = f"{color}{author}            : {len(code)}{clear}"
+    final_code = compressed_code if improvement > 0 else code.encode()
 
     if write:
         os.makedirs(os.path.dirname(out), exist_ok=True)
 
         with open(out, mode='wb') as f:
-            if improvement > 0:
-                f.write(compressed_code)
-            else:
-                f.write(code.encode())
+            f.write(final_code)
 
     return improvement, compressor_used, output_str
 
@@ -234,18 +264,21 @@ def main():
     if len(sys.argv) < 2:
         return
 
-    counter = Counter()
+    state = State()
+    state.load_cache()
     tasks = [int(arg) for arg in sys.argv[1:]]
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        futures = [executor.submit(process_task, task_num, counter) for task_num in tasks]
+        futures = [executor.submit(process_task, task_num, state) for task_num in tasks]
         for future in concurrent.futures.as_completed(futures):
             print(future.result())
 
-    print(f"Total saved: {counter.total_saved} bytes")
-    print(f"Deflate: {counter.deflate_cnt} times")
-    print(f"Zopfli: {counter.zopfli_cnt} times")
-    print(f"Zlib: {counter.zlib_cnt} times")
+    state.write_cache()
+
+    print(f"Total saved: {state.total_saved} bytes")
+    print(f"Deflate: {state.deflate_cnt} times")
+    print(f"Zopfli: {state.zopfli_cnt} times")
+    print(f"Zlib: {state.zlib_cnt} times")
 
 
 if __name__ == "__main__":
