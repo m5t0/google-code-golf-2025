@@ -1,0 +1,1 @@
+p=lambda g,r=range:[[g[(s:=[(I,J)for I in r(len(g)-2)for J in r(len(g[0])-2)if all(v:=[g[I+k//3][J+k%3]for k in r(9)])&(sum(k for k in r(9)if v[k]-5)==[4,7,8,13,0,19,16,25,20][i//3*3+j//3])][0])[0]+i%3][s[1]+j%3]for j in r(9)]for i in r(9)]
