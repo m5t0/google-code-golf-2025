@@ -1,1 +1,1 @@
-p=lambda g:[[c for c in sum(g,[])if c]]
+p=lambda g:[[*filter(int,sum(g,[]))]]
