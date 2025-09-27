@@ -1,7 +1,7 @@
 def p(g):
  m,n=len(g),len(g[0]);t=[];r={(k//n,k%n):w for k in range(m*n)if(w:=g[k//n][k%n])}
  def f(i,j):
-  if m>i>-1<j<n and g[i][j]and(i,j)in r:s[i-u[0],j-u[1]]=r.pop((i,j));f(i+1,j);f(i-1,j);f(i,j+1);f(i,j-1)
+  if m>i>-1<j<n and(i,j)in r:s[i-u[0],j-u[1]]=r.pop((i,j));f(i+1,j);f(i-1,j);f(i,j+1);f(i,j-1)
  while r:
   t+=[s:={}];u=min(r);f(*u)
   if len(s.keys())<4:t=t[:-1]
