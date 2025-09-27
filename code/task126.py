@@ -1,1 +1,1 @@
-def p(g):g[-1]=[sum(map(bool,w))%2*4for w in zip(*g)];return g
+p=lambda g:g[:-1]+[[(sum(w)<max(w)*2)*4for w in zip(*g)]]
