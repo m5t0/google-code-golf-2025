@@ -1,1 +1,1 @@
-def p(g,e=enumerate):g=[[w[i]*((w[i]in v[j-1:j]+v[j+1:j+2])&(w[i]in w[i-1:i]+w[i+1:i+2]))for j,w in e(zip(*g))]for i,v in e(g)];return[[x*(max({*(V:=sum(g,[]))}-{0},key=V.count)==x)for x in v]for v in g]
+def p(g,e=enumerate):g=[[w[i]*(w[i]in{*v[j-1:j+2:2]}&{*w[i-1:i+2:2]})for j,w in e(zip(*g))]for i,v in e(g)];return[[x*(sum(g,[]).count(x)>6)for x in v]for v in g]
