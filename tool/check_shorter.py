@@ -3,6 +3,8 @@ import os
 import shutil
 
 def check(master_files, dev_branch_files, dev_branch_name):
+    ok = True
+
     mnames = {os.path.basename(f): f for f in master_files}
     dbnames = {os.path.basename(f): f for f in dev_branch_files}
 
@@ -10,6 +12,7 @@ def check(master_files, dev_branch_files, dev_branch_name):
 
     if extra:
         print(f"❌ {dev_branch_name}: {', '.join(sorted(extra))}")
+        ok = False
 
     for name in sorted(set(mnames) & set(dbnames)):
         try:
@@ -18,10 +21,14 @@ def check(master_files, dev_branch_files, dev_branch_name):
                 dblen = len(fb.read())
             if mlen > dblen:
                 print(f"❌ {name}: master={mlen} bytes, {dev_branch_name}={dblen} bytes (master not shorter)")
+                ok = False
             # else:
             #     print(f"✅ {name}: master shorter ({mlen} < {dblen})")
         except UnicodeError:
             print(f"{name}: File may contain BOM")
+
+    if ok:
+        print(f"✅ {dev_branch_name}: OK")
 
 def main():
     master_branch = "master"
