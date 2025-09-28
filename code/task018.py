@@ -2,13 +2,13 @@ def p(g):
  m,n,*t=len(g),len(g[0]);r={(k//n,k%n):sum(g,[])[k]for k in range(m*n)if sum(g,[])[k]}
  def f(i,j):
   if m>i>-1<j<n>0<((i,j)in r):
-   s[i-u[0],j-u[1]]=r.pop((i,j))
+   s[i-x,j-y]=r.pop((i,j))
    for k in-1,1:f(i+k,j);f(i,j+k)
  while r:
-  t+=[s:={}];u=min(r);f(*u)
+  t+=[s:={}];x,y=min(r);f(x,y)
   if len(s)<4:t.pop()
   else:
-   for x,y in s:g[u[0]+x][u[1]+y]=0
+   for i,j in s:g[x+i][y+j]=0
  h=eval(str(g))
  for s in t:
   for _ in range(8):
