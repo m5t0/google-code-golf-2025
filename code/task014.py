@@ -1,1 +1,1 @@
-p=lambda g:[[w[g.index(v)]for w in zip(*g)if m in w]for v in g if(m:=min({*(V:=sum(g,[]))}-{0},key=V.count))in v]
+p=lambda g:[[w[g.index(v)]for w in zip(*g)if len({*w})>2]for v in g if len({*v})>2]
