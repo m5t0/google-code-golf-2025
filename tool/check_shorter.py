@@ -32,7 +32,8 @@ def check(master_files, dev_branch_files, dev_branch_name):
             # else:
             #     print(f"✅ {name}: master shorter ({mlen} < {dblen})")
         except UnicodeError:
-            print(f"{name}: File may contain BOM")
+            if "submission" not in mnames[name] + dbnames[name]:
+                print(f"{name}: File may contain BOM")
 
     if ok:
         print(f"✅ {dev_branch_name}: OK")
