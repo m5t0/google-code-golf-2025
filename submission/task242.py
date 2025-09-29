@@ -1,1 +1,1 @@
-p=lambda g:[[y for x,y in zip(v,v[::-1])if x<1]for v in g if 0in v]
+p=lambda g:[[v[~i]for i in range(16)if v[i]<1]for v in g if 0in v]
