@@ -1,1 +1,1 @@
-def p(g):n=len(a:=max(h for c in range(1,10)if(h:=[[sum({*sum(g,[])}-{c})*(x==c)for x,w in zip(v,zip(*g))if c in w]for v in g if c in v])and h[-1]==h[-2]))//3;return[v[::n]for v in a[::n]]
+def p(g):n=len(a:=max(h for c in range(1,10)if(h:=[[sum({*sum(g,[])}-{c})*(w[0]==c)for w in zip(v,*g)if c in w]for v in g if c in v])and h[-1]==h[-2]))//3;return[v[::n]for v in a[::n]]
