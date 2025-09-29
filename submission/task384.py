@@ -1,1 +1,1 @@
-p=lambda g:[[w[g.index(v)]for w in zip(*g)for _ in"__"if 4in w]for v in g for _ in"__"if 4in v]
+p=lambda g:[[w[0]for w in zip(v,*g)for _ in"__"if 4in w]for v in g for _ in"__"if 4in v]
