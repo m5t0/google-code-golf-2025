@@ -1,1 +1,1 @@
-p=lambda g:[[w[g.index(v)]or any(w)*8for w in zip(*g)]*2for v in g]*2
+p=lambda g:[[w[0]or any(w)*8for w in zip(v,*g)]*2for v in g]*2
