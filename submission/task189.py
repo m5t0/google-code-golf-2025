@@ -1,0 +1,1 @@
+def p(g,e=enumerate):f=lambda v:(3*(v==8),7*(v!=8));x,a=f(g[2][0]);y,b=f(g[0][2]);return[[g[a+i//3][b+j//3]*(w>0)for j,w in e(v[y:y+6])]for i,v in e(g[x:x+6])]

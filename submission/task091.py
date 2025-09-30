@@ -1,0 +1,1 @@
+def p(g):f=lambda h=max,l=[*zip(*g)]:h(i for i,v in enumerate(l)if 5in v);a,b,c,d=f(min,g),f(l=g),f(min),f();return[[*v[c:d+1]]for v in g[a-1:b+2]]

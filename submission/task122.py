@@ -1,0 +1,1 @@
+p=lambda g:[[v[-2-(b:=len(g[0]))%2:b&~1]+v[:-2]for v in g],g[-2-(a:=len(g))%2:a&~1]+g[:-2]][(g[0]+g[1]).count(3)==1]

@@ -1,0 +1,1 @@
+p=lambda g:[[w and(y:=g[6][0])*(w!=y)for w in v]for v in g]

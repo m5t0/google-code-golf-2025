@@ -1,0 +1,1 @@
+p=lambda g:[[v[j]for j,w in enumerate(zip(*g))if any(w)][::-1]for v in g if any(v)]

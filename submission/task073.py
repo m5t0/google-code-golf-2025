@@ -1,0 +1,1 @@
+p=lambda g,r=range(5):[[(i>3)*g[2][j]or(i>2)*g[i][j]for j in r]for i in r]

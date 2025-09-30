@@ -1,0 +1,1 @@
+p=lambda g:[exec("k=b.index(0);g[i+k//2][j+k%2]=1")for I in range(36)if(b:=[g[(i:=I//6)+x//2][(j:=I%6)+x%2]for x in(0,1,2,3)]).count(8)==3]and g

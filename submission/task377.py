@@ -1,0 +1,1 @@
+def p(g,r=range):s=len(w:=max((v[:1]+[v[j+1]for j in r(len(v)-1)if v[j]-v[j+1]]for v in g),key=len));return[[w[min(i,j,s+~j,s+~i)]for i in r(s)]for j in r(s)]

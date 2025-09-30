@@ -1,0 +1,1 @@
+p=lambda g:[[a|b for a,b in zip(r[:4],r[8::-1])]for r in g]

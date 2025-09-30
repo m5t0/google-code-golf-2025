@@ -29,3 +29,11 @@ pprint(
         ]
     )
 )
+
+# bonoさんの案の短縮
+def p(g):
+ n=len(g)
+ for v in g[1:-1]:v[1:-1]=[x or 4for x in v[1:-1]]
+ for k in range(9999):
+  if g[i:=k//n%n][j:=k%n]>3>min(g[i+k//3][j-1+k%3]for k in[-2,0,2,4]):g[i][j]=0
+ return g

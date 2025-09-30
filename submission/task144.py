@@ -1,0 +1,1 @@
+p=lambda g:[[3*(x|y<1)for x,y in zip(a,b)]for a,b in zip(g,g[5:])]

@@ -1,0 +1,1 @@
+def p(g,e=enumerate):a,b=zip(*[(i,j)for i,v in e(g)for j,w in e(v)if w]);return[[g[i][j]or(abs(i-sum(a)//2)+abs(j-sum(b)//2)<2)*3for j,_ in e(v)]for i,v in e(g)]

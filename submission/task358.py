@@ -1,0 +1,1 @@
+def p(g,e=enumerate):f=lambda v,I:[x for k,x in e(v)if(k-I)%(len({*str(g)})-5)==0<x][0];return[[f(v,j)if len({*v})>2else f(w,i)if len({*w})>2else 0for j,w in e(zip(*g))]for i,v in e(g)]

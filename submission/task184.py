@@ -1,0 +1,1 @@
+def p(g):f=lambda l:[-1]+[i for i,v in enumerate(l)if any(v)^1]+[len(l)];a,b=f(g),f([*zip(*g)]);return[[max(max(v[k+1:l])for v in g[i+1:j])for k,l in zip(b,b[1:])]for i,j in zip(a,a[1:])]

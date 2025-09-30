@@ -1,0 +1,1 @@
+p=lambda g:[exec("g[k//9+l//3-1][k%9+l%3-1]=1")for k in range(81)for l in[0,1,2,3,5,6,7,8]*(g[k//9][k%9]==5)]and g

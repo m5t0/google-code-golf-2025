@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[(i>=len(g)-w.count(c:=max(w)))*c for j,w in e(zip(*g))]for i,_ in e(g)]

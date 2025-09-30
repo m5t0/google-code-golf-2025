@@ -1,0 +1,1 @@
+e=enumerate;p=lambda g:[[(f:=lambda x,l=g[i]:x*any(s==x for s in l))(1)+f(3)or f(2,w)for j,w in e(zip(*g))]for i,v in e(g)]

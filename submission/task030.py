@@ -1,0 +1,1 @@
+def p(g,r=range):s=r(m:=len(g));t=[max(max(i*(v[i]==x)for i in s)for v in zip(*g))for x in s];return[[(g*3)[m+i+t[max([*zip(*g)][j])]-t[1]][j]for j in r(10)]for i in s]

@@ -1,0 +1,1 @@
+def p(g):y=2*len(g)-2;return[g[min(i%y,y-i%y)]for i in range(2*y+1)]

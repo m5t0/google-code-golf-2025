@@ -1,0 +1,1 @@
+p=lambda g,r=range(10):[[8*((a:=[k for k in r if g[i][k]])and a[0]<=j<=a[-1]or len(b:=[k for k in r if g[k][j]])and b[0]<=i<=b[-1])for j in r]for i in r]

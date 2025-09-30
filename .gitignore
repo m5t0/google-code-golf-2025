@@ -4,11 +4,15 @@ __pycache__/
 build/
 dist/
 wheels/
-submission/
 *.egg-info
+*.pkl
+*.zip
 
 # Virtual environments
 .venv
 
 # input data
 *.json
+
+# PyCharm
+.idea

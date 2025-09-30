@@ -1,0 +1,1 @@
+p=lambda g:max([(a:=[[v[j]for j,w in enumerate(zip(*g))if c in w]for v in g if c in v])*(a==[v[::-1]for v in a])for c in range(10)])
