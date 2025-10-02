@@ -1,1 +1,1 @@
-p=lambda g,r=range(18):[[i*j%(len({*str(g)})-5)+1for j in r]for i in r]
+p=lambda g,r=range(18):[[i*j%max(sum(g,[]))+1for j in r]for i in r]
