@@ -1,1 +1,1 @@
-p=lambda g,r=range:[[g[(i+j)%2][j]for j in r(6)]for i in r(2)]
+p=lambda g:[s:=[*zip(*g)][0]*3,s[::-1]]
