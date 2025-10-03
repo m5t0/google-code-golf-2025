@@ -1,0 +1,1 @@
+p=lambda g:[g[0],[max(g[0][j-(s:=j>0)::1+s][:2])for j in range(len(g[0]))]]*3
