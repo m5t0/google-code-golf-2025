@@ -1,6 +1,12 @@
 ﻿from glob import glob
 import os
 import shutil
+import subprocess
+
+
+def run_cmd(cmd):
+    subprocess.run(cmd, shell=True, check=True,
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 def check(master_files, dev_branch_files, dev_branch_name):
@@ -42,22 +48,26 @@ def check(master_files, dev_branch_files, dev_branch_name):
 def main():
     master_branch = "master"
     dev_branches = ["moto", "sktkmozt", "bono"]
+
+    run_cmd("git checkout master && git pull")
     master_files = glob("./code/*.py")
 
     for dev_branch in dev_branches:
-        os.system(f"git checkout {dev_branch} && git pull")
+        try:
+            run_cmd(f"git checkout {dev_branch} && git pull")
 
-        shutil.copytree("./code", f"./{dev_branch}/code")
+            shutil.copytree("./code", f"./{dev_branch}/code", dirs_exist_ok=True)
 
-        if os.path.isdir("./submission"):
-            shutil.copytree("./submission", f"./{dev_branch}/submission")
+            if os.path.isdir("./submission"):
+                shutil.copytree("./submission", f"./{dev_branch}/submission", dirs_exist_ok=True)
 
-        os.system(f"git checkout {master_branch}")
+            run_cmd(f"git checkout {master_branch}")
 
-        dev_files = glob(f"./{dev_branch}/code/*.py")
-        check(master_files, dev_files, dev_branch)
-
-        shutil.rmtree(f"./{dev_branch}")
+            dev_files = glob(f"./{dev_branch}/code/*.py")
+            check(master_files, dev_files, dev_branch)
+        finally:
+            if os.path.isdir(f"./{dev_branch}"):
+                shutil.rmtree(f"./{dev_branch}")
 
 
 if __name__ == "__main__":
