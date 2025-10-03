@@ -1,1 +1,2 @@
-def p(g,e=enumerate):f=lambda v,I:[x for k,x in e(v)if(k-I)%(len({*str(g)})-5)==0<x][0];return[[f(v,j)if len(set(v))>2else f(w,i)if len(set(w))>2else 0for j,w in e(zip(*g))]for i,v in e(g)]
+f=lambda v,j:(s:=len({*v})-1)>1and sum(v[j%s::s])
+p=lambda g,e=enumerate:[[f(v,j)or f(w,i)for j,w in e(zip(*g))]for i,v in e(g)]
