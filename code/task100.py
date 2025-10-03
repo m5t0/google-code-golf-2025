@@ -1,0 +1,1 @@
+p=lambda g:[[max({*(v:=sum(g,[]))}-{0},key=lambda x:(s:=g[v.index(x)//10].count(x))*(v.count(x)/2-s+2))]*2]*2
