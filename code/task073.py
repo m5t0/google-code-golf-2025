@@ -1,0 +1,1 @@
+p=lambda g:g[:1]*3+g[3:4]+[[5-4*(1in w)for w in zip(*g)]]
