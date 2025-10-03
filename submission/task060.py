@@ -1,1 +1,1 @@
-p=lambda g:[[((5,v[10])[j>5],v[0])[j<5]*(v[0]>0)for j in range(11)]for v in g]
+p=lambda g:[v[:1]*5+[any(v)*5]+v[-1:]*5for v in g]
