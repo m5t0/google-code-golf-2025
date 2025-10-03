@@ -1,1 +1,1 @@
-def p(g,r=range):n=len(g);m=len(g[0]);x=[[i//m,i%m]for i in r(n*m)if g[i//m][i%m]][-1];return[[[0,[7,8][(y:=abs(j-x[1]))%2]][y+i<=x[0]]for j in r(m)]for i in r(n)]
+p=lambda g,e=enumerate:[[(7+(y:=abs(j-g[0].index(7)))%2)*(y+i<sum(sum(g,[]))/7)for j,w in e(v)]for i,v in e(g)]
