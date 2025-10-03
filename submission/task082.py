@@ -1,1 +1,1 @@
-p=lambda g:[[max([(h:=[*zip(*g)])[j],max(h[j-1:j]+h[j+1:j+2])][i%2])for j in range(len(g[0]))]for i in range(6)]
+p=lambda g:[h:=g[0],[*map(max,h[:1]+h[:-1],h[1:]+[h[-2]])]]*3
