@@ -1,1 +1,1 @@
-def p(g):r=range(len(g));return[[(i>0)*g[i-1][j]/4for j in r]for i in r]
+p=lambda g:g[-1:]+[[x/4for x in v]for v in g[:-1]]
