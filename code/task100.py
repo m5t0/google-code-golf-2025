@@ -1,1 +1,1 @@
-p=lambda g,r=range:[[max(((k-i)*(l-j),v)for i in r(9)for j in r(9)for k in r(11)for l in r(j,11)if(v:=g[i][j])and len({*g[i][j:l]+g[k-1][j:l],*(b:=[*zip(*g)])[j][i:k]+b[l-1][i:k]})<2)[1]]*2]*2
+p=lambda g:2*[[max(v:=sum(g,[]),key=lambda x:(x>0,(s:=g[v.index(x)//10].count(x))*(v.count(x)-2*s+4)))]*2]
