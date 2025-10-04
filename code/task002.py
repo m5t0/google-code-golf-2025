@@ -1,3 +1,2 @@
-def p(g,r=str.replace):
- for _ in(g:=r(str(g),*'04'))*4:*g,=zip(*eval(r(r(str(g),'0, 4','0,0'),'(4','(0'))[::-1])
- return g
+a="g[:]=zip(*eval(str(g).replace('%s'))[::-1]);"
+p=lambda g:exec(a%"0','4"+(a%"0, 4','0,0"*2+a%"(4','(0")*37)or g
