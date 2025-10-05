@@ -1,2 +1,1 @@
-s=0,1,2
-p=lambda g:[[(g[3*i][3*j]-5or g[3*i][3*j+1]-5or g[3*i+1][3*j]-5)+5for j in s]for i in s]
+p=lambda g:[[sum({*w[:3],5})-5for w in(v,v[3:],v[6:])]for v in g[::3]]
