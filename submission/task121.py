@@ -1,1 +1,1 @@
-def p(g):I,J=divmod(sum(g,[]).index(8),13);g[1][1]=max(sum(g:=[[(s:=g[I+i][J+j])%8and s for j in [-1,0,1]]for i in[-1,0,1]],[]));return g
+def p(g):x=sum(g,[]);v[4]=max(v:=[(s:=x[x.index(8)+j+k])%8and s for j in(-13,0,13)for k in(-1,0,1)]);return[v[:3],v[3:6],v[6:]]
