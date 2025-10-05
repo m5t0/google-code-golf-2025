@@ -1,1 +1,1 @@
-def p(g,r=range(13)):v=min((sum(g,[]).count(g[i][j]),[a[j-1:j+2]for a in g[i-1:i+2]])for i in r for j in r)[1];v[1][1]=0;v[1][1]=max(sum(v,[]));return v
+def p(g):I,J=divmod(sum(g,[]).index(8),13);g[1][1]=max(sum(g:=[[(s:=g[I+i][J+j])%8and s for j in [-1,0,1]]for i in[-1,0,1]],[]));return g
