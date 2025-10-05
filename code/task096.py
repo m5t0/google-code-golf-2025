@@ -1,12 +1,12 @@
 def p(g,r=range):
- c=[i for i in r(10)if i in sum(g,[])];f=[[0,10,t]for t in c]
+ f=[[0,10,t]for t in [i for i in r(10)if i in sum(g,[])]]
  for _ in r(4):
   for v in g:
-   for i in r(len(c)):
-    a=[j for j in r(len(v))if v[j]==c[i]];s=l=0
+   for i in r(len(f)):
+    a=[j for j in r(len(v))if v[j]==f[i][2]];s=l=0
     if a:s,l=min(a),max(a)
     if(l-s+1)>=f[i][0]:
-      b=[j for j in r(s,l+1)if v[j]!=c[i]];X=l-s+1
+      b=[j for j in r(s,l+1)if v[j]!=f[i][2]];X=l-s+1
       if b==[]:x=0
       else:x=max(b)-min(b)+1;X=(min(b)-s)*2+x
       if(f[i][1]>x)|(X>f[i][0]):f[i][1]=x;f[i][0]=X
