@@ -1,5 +1,5 @@
 def p(g,r=range):
- for I in r(80,-1,-1):
-  if (x:=g[i:=I//9][j:=I%9])*(y:=g[i+1][j])*(z:=g[i][j+1])>0:
-   for k in r(len({x,y,z,g[i+1][j+1]})):g[i+2+k][j]=g[i+2+k][j+1]=3
+ for I in r(81)[::-1]:
+  s={g[i:=I//9+k//2][j:=I%9+k%2]for k in r(4)}
+  for k in min(s)*[*r(len(s))]:g[t:=i+1+k][j-1]=g[t][j]=3
  return g
