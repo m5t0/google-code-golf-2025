@@ -1,1 +1,1 @@
-def p(g,r=range):n=len(g);c,I=max((g[I//n][I%n],I)for I in r(n*n));return[[c*(abs(i-I//n)==abs(j-I%n))for j in r(n)]for i in r(n)]
+def p(g):r=range(n:=len(g));v=sum(g,[]);return[[((I:=v.index(sum(v)))//n-i in(I%n-j,j-I%n))*v[I]for j in r]for i in r]
