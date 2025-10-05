@@ -1,2 +1,2 @@
-p=lambda g,e=enumerate:[exec("""while(3in v)*(v[j]-3):g[i][j]=w[i];j+=(3in v[j:])-(3in v[:j])
-while(3in w)*(w[i]-3):g[i][j]=v[j];i+=(3in w[i:])-(3in w[:i])""")for j,w in e(zip(*g))for i,v in e(g)if v[j]]and g
+f=lambda v,j:(3in v[:j])*sum(v[j:])+(3in v[j:])*sum(v[:j])
+p=lambda g,e=enumerate:[[w[i]or f(v,j)+f(w,i)for j,w in e(zip(*g))]for i,v in e(g)]
