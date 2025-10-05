@@ -1,1 +1,1 @@
-p=lambda g:[[a[j+4]or b[j]or b[j+4]or a[j]for j in(0,1,2,3)]for a,b in zip(g,g[4:])]
+p=lambda g:[[max(t,key=bool)for t in zip(a[4:],b,b[4:],a)]for a,b in zip(g,g[4:])]
