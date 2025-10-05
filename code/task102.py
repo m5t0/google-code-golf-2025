@@ -1,0 +1,2 @@
+f=lambda v,j:[*v[j:],5].index(5)+[*v[j::-1],5].index(5)
+p=lambda g,e=enumerate:[g:=[[w[i]or(f(v,j)==f(w,i))*2for j,w in e(zip(*g))]for i,v in e(g)],exec("g[:]=zip(*eval(str(g).replace('2, 0','0,0'))[::-1]);"*92)][0]
