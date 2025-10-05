@@ -1,2 +1,1 @@
-r=0,1,2,3
-p=lambda g:[[next((v for k in(1,2,3,0)if(v:=g[k//2*4+i][k%2*4+j])),0)for j in r]for i in r]
+p=lambda g:[[a[j+4]or b[j]or b[j+4]or a[j]for j in(0,1,2,3)]for a,b in zip(g,g[4:])]
