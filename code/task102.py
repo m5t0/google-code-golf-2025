@@ -1,6 +1,2 @@
-def p(g,r=range):
- *h,=zip(*g)
- for k in r(144):
-  for l in r(2,12-max(x:=k//12,y:=k%12)):
-   for v in(min(g[x][y:(w:=y+l)]+g[z:=x+l][y:w]+[*h[y][x:z]+h[w][x:z]])>4>max(sum((g[i][y+1:w]for i in r(x+1,z)),[])))*g[x+1:z]:v[y+1:w]=[2]*(l-1)
- return g
+f=lambda v,j:[*v[j:],5].index(5)+[*v[j::-1],5].index(5)
+p=lambda g,e=enumerate:[g:=[[w[i]or(f(v,j)==f(w,i))*2for j,w in e(zip(*g))]for i,v in e(g)],exec("g[:]=zip(*eval(str(g).replace('2, 0','0,0'))[::-1]);"*20)][0]
