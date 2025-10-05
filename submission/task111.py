@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[w for j,w in e(v)if'5'in str([*zip(*g)][j-(j>0):j+2])]for i,v in e(g)if'5'in str(g[max(i-3,0):i])]
+p=lambda g:[g[i+(I:=sum(g,[]).index(5))//10][I%10-1:][:3]for i in[1,2,3]]
