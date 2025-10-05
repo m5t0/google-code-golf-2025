@@ -1,3 +1,2 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes('MÁ‚0†_eá´"œ¸ìIfSÊì“ÜŒOï&D=õÏ×ÿk=Ùù2XáÒ3­v#eèIWY¥O$;"B-£ñØv œaÌQ§<{Ò{Áx…ĞYy„søé)ë¥ş¯—s=z^~õd#T0ŞWá›$2"ùâEÖ>›¸C<–Ïˆ6Â½',"L1"),-9))
+f=lambda v,j:(3in v[:j])*sum(t:=v[j:])+(3in t)*sum(v[:j])
+p=lambda g,e=enumerate:[[w[i]or f(v,j)+f(w,i)for j,w in e(zip(*g))]for i,v in e(g)]
