@@ -1,0 +1,1 @@
+def p(g):r=range(n:=len(g));v=sum(g,[]);return[[(abs((I:=v.index(m:=sum(v)))//n-i)==abs(I%n-j))*m for j in r]for i in r]
