@@ -1,1 +1,1 @@
-p=lambda g:[[(v[0]*2+v[1]*4+v[2]*3)/5]*3for v in g]
+p=lambda j:[[[2,4,3][r.index(5)]]*3for r in j]

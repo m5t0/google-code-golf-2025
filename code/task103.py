@@ -1,1 +1,1 @@
-p=lambda g:[[1+6*(g!=[v[::-1]for v in g])]]
+p=lambda g:[[1]]if g==g[::-1]else[[7]]

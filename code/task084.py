@@ -1,1 +1,3 @@
-def p(g):n=len(g);return[[g[i][j]or(i+j==n-1)*2+4*(i==n-1)for j in range(n)]for i in range(n)]
+def p(r):
+ for A in range(1,len(r[0])):r[-1][A]=4;r[A-1][-A]=2
+ return r

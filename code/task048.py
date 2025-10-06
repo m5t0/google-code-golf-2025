@@ -1,7 +1,4 @@
-def p(g):
- m,n=len(g),len(g[0])
- def f(i,j):
-  for k in[-1,1]*(m>i>-1<j<n and 0<g[i][j]<9):g[i][j]=9;f(i+k,j);f(i,j+k)
- for k in range(m*n):
-  if g[k//n][k%n]==2:f(k//n,k%n);break
- return[[8*('2'not in"%s"%g)]]
+def p(d):
+ def f(y,x):
+  if w>x>-1<y<len(d)and d[y][x]:d[y][x]=0;[f(y-1+i//3,x-1+i%3)for i in range(9)]
+ f(*divmod(sum(d,[]).index(2),w:=len(d[0])));return[[8*(2 not in sum(d,[]))]]

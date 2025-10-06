@@ -1,1 +1,1 @@
-p=lambda g:[[max(g[k][l]for k in I for l in J)for J in[[0],range(1,6),[6]]]for I in[[0],[1,2,3],[4]]]
+p=lambda g,:[[g[i][j]or g[i+2][j]or g[i][j+4]or g[i+2][j+4]for j in [0,1,2]]for i in [0,1,2]]
