@@ -1,1 +1,5 @@
-def p(g):b=min(v:=sum(g,[]),key=v.count);r=range(n:=len(g));return[[g[i][j]or(i+abs(j-n//2)+1+(v.count(b)<3)==n)*b for j in r]for i in r]
+def p(g):
+ l=len(g)//2;a=3
+ for i in range(l+1):
+  if g[-2][l-i]<1:g[-a][l-i]=(b:=g[-1][l]);g[-a][l+i]=b;a+=1
+ return g
