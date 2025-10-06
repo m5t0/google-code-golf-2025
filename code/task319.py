@@ -1,9 +1,8 @@
 def p(g):
  v=sum(g,[]);e=max(v,key=v.count)
- f=lambda c,h,m:m(i for i,v in enumerate(h)if c in v)
  l=[([[[e,w][w==c]for w in r]for r in g],c)for c in range(10)if c in v and c-e]
  for b,c in l:
-  a=[[w for w in r[f(c,zip(*b),min):f(c,zip(*b),max)+1]]for r in b[f(c,b,min):f(c,b,max)+1]]
+  a=[[w[0]for w in zip(v,*b)if c in w]for v in b if c in v]
   c=[[w for w in r for _ in'00']for r in a for _ in'00']
   for B,_ in l:
    for i in range(1-len(c),(N:=len(B))):
