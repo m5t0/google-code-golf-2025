@@ -1,1 +1,1 @@
-p=lambda g:[[v[j%(6if(h:=[*zip(*g)])[0]==(0,0,0,6,2)else([k for k in[8,4]if h[0]==h[k]and h[1]==h[1+k]]or[6])[0])]for j in range(15)]for v in g]
+p=lambda g:[(v[:6+2*(v[:4]in(v[4:8],v[8:12]))]*3)[:15]for v in g]
