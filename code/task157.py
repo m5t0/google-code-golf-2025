@@ -1,8 +1,1 @@
-def p(g,R=range):
- a,*p=sum(g,e:=[]),;n=[[]];r=15
- for i in R(16):
-  if(5in a[i::r])>i/r:p+=[i]
-  elif p:e+=[[n for n in R(150)if a[n]>4and n%r in p]];n,*p=[i+[n]for i in n for n in R(45)if 1>a[n]],
- for i in n:
-  i=[any(n-i+e[0]in e*(6>i%r-n%r)for i,e in zip(i,e))|a[n]%5for n in R(150)]
-  if(i.count(0)==a.count(0))*all(i[:45]):return[i[n*r:][:r]for n in R(10)]
+def p(n):p,i,*r=range,15;m=sum(n,[]);n=[[]];[(n:=[n+[(f,r)]for n in n for f in p(45)if m[f]<1],r:=[])for f in p(16)if r==(r:=r+[p for p in p(f,150,i)if(i>f)&m[p]])>[]];return max([*zip(*[((any(p-f+min(n)in n*(f%i-p%i<6)for f,n in n)|m[p]%5)%3for p in p(150))]*i)]for n in n)
