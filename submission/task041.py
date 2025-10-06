@@ -1,3 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes('mÃP@¯Bæ[lÆIHİİÛû¹¯¸½àz>”Ìj®­<ğp½"Ú‡,‚ı‰4‰5š`|ÜY¹‹Ñ-Áe>]k_sE}¼z¢9âğ¤çë#ø|£1oüŞ‘ÅåPk×2º—‡Úk»:iº•ì¯ï~OÕµµ3',"L1"),-9))
+p=lambda g:[[sum({*v[:j+1]}&{*v[j:]})for j in range(10)]for v in g]

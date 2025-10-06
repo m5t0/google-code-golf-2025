@@ -1,8 +1,2 @@
-def p(g):
- A=B=C=D=E=0
- for k in range(99):
-  c=d=0;i,j=k//10,k%10
-  while i+c<10and g[i+c][j]:c+=1
-  while j+d<10and g[i][j+d]:d+=1
-  if(f:=sum(t[j:j+d].count(2)for t in g[i:i+c]))>E:A,B,C,D,E=i,j,c,d,f
- return[r[B:B+D]for r in g[A:A+C]]
+f=lambda v:v[:[*v,0].index(0)]
+p=lambda g,e=enumerate:max((str(s:=[f(g[i+I][j:])for I,_ in e(f(w[i:]))]).count('2'),-i-j,s)for j,w in e(zip(*g))for i,_ in e(g))[2]

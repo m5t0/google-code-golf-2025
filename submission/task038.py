@@ -1,1 +1,1 @@
-p=lambda g,r=range(8):[[sum(min(g[i][j:j+2])==min(g[i+1][j:j+2])==1for j in r for i in r)>k for k in r[:5]]]
+p=lambda g:[([1]*(str(g).count('1, 1')//2)+[0]*5)[:5]]

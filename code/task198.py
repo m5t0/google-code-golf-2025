@@ -1,7 +1,2 @@
-def p(g):
- r=range(n:=len(g));m=[i+1for i in r if g[0][i]or g[i][2]][0];h=[7*[3]for _ in r]
- for k in r[:n//m]:
-  for i in r:
-   for x,y,z,v,s,t in(l:=m*-~k-1,i,k,i//m,1,0),(i,l,i//m,k,0,1):
-    if g[x][y]<1:g[x][y]=4;exec("if-~i%m:h[z][v]=h[z+s][v+t]=4")
- return[[g[i][j]or h[i//m][j//m]for j in r]for i in r]
+f=lambda v,j,c:[*v[j:],c].index(c)+[*v[j::-1],c].index(c)
+p=lambda g,e=enumerate:(g:=[[w[i]or 4-(f(v,j,m:=max(g[1]))==f(w,i,m)>2)for j,w in e(zip(*g))]for i,v in e(g)],exec('g[:]=zip(*eval(str(g).replace("4, 3","4,4"))[::-1]);'*16))[0]

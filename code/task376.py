@@ -1,1 +1,1 @@
-def p(g):y=2*len(g)-2;return[g[min(i%y,y-i%y)]for i in range(2*y+1)]
+p=lambda g:(g+g[-2:0:-1])*2+g[:1]

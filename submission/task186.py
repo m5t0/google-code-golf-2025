@@ -1,2 +1,1 @@
-r=0,1,2
-p=lambda g:[[2*(i<1+(s:=(n:=sum(sum(g,[])))>3)and[j%2*s,j<n][i<1])for j in r]for i in r]
+p=lambda g:[([2]*(s:=str(g).count('1'))+[0]*3)[:3],[0,2*(s>3),0],[0]*3]

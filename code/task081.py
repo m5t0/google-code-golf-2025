@@ -1,1 +1,1 @@
-p=lambda g:[exec("k=b.index(0);g[i+k//2][j+k%2]=1")for I in range(36)if(b:=[g[(i:=I//6)+x//2][(j:=I%6)+x%2]for x in(0,1,2,3)]).count(8)==3]and g
+p=lambda g,e=enumerate:[[w[i]or(8in w[i-1:i]+w[i:i+2])&(8in v[j-1:j]+v[j:j+2])for j,w in e(zip(*g))]for i,v in e(g)]
