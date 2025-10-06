@@ -1,11 +1,8 @@
 def p(g):
- v=sum(g,[]);e=max(v,key=v.count)
- l=[([[[e,w][w==c]for w in r]for r in g],c)for c in range(10)if c in v and c-e]
- for b,c in l:
-  a=[[w[0]for w in zip(v,*b)if c in w]for v in b if c in v]
-  c=[[w for w in r for _ in'00']for r in a for _ in'00']
-  for B,_ in l:
-   for i in range(1-len(c),(N:=len(B))):
-    for j in range(1-(M:=len(c[0])),(O:=len(B[0]))):
-     s=[(u:=B[i+x][j+y])*((u!=e)==(c[x][y]!=e))for x in range(len(c))for y in range(M)if N>i+x>-1<j+y<O]
-     if all(s)and s.count(t:=sum({*s}-{e}))==v.count(t)>0:return a
+ v=sum(g,[]);e=max(v,key=v.count);l=[c for c in range(10)if c!=e and c in v]
+ for c in l:
+  a=[[[e,w[0]][w[0]==c]for w in zip(v,*g)if c in w]for v in g if c in v];d=[[w for w in r for _ in'00']for r in a for _ in'00']
+  for h in l:
+   for i in range(1-len(d),(N:=len(g))):
+    for j in range(1-(M:=len(d[0])),(O:=len(g[0]))):
+     if all(s:=[[e,u:=g[i+x][j+y]][u==h]*((u==h)==(d[x][y]==c))for x in range(len(d))for y in range(M)if N>i+x>-1<j+y<O])>0<s.count(t:=sum({*s}-{e}))==v.count(t):return a
