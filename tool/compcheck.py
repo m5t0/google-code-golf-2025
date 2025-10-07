@@ -5,25 +5,14 @@ import importlib.util
 import json
 import os
 import pickle
-import re
 import sys
 from threading import Lock
 
 import numpy as np
 
-MAX_WORKERS = 32
-
 DEFLATE = 0
 ZOPFLI = 1
 ZLIB = 2
-
-for i in range(1, len(sys.argv))[::-1]:
-    if ".." in sys.argv[i]:
-        start, end = sys.argv[i].split("..")
-        sys.argv.pop(i)
-
-        for j in range(int(start), int(end) + 1):
-            sys.argv.append(str(j))
 
 
 def zip_src(task_num, src, baseline, compressor=DEFLATE):
@@ -273,11 +262,29 @@ def main():
     if len(sys.argv) < 2:
         return
 
+    cache = True
+
+    for i in range(1, len(sys.argv)):
+        if sys.argv[i] == "--no-cache":
+            cache = False
+            sys.argv.pop(i)
+
+    for i in range(1, len(sys.argv))[::-1]:
+        if ".." in sys.argv[i]:
+            start, end = sys.argv[i].split("..")
+            sys.argv.pop(i)
+
+            for j in range(int(start), int(end) + 1):
+                sys.argv.append(str(j))
+
     state = State()
-    state.load_cache()
+
+    if cache:
+        state.load_cache()
+
     tasks = [int(arg) for arg in sys.argv[1:]]
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+    with concurrent.futures.ThreadPoolExecutor() as executor:
         futures = [executor.submit(process_task, task_num, state) for task_num in tasks]
         for future in concurrent.futures.as_completed(futures):
             print(future.result())
