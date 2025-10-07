@@ -1,2 +1,1 @@
-f=lambda g,V:(t:=[g[0]]*g.count(V))*(s:=[x for x in sum(g,[])if x][0]in V)+[v for v in g if v!=V]+t*-~-s
-p=lambda g:[[*zip(*f(Z:=[*map(list,zip(*g))],V:=[v for v in g+Z if~-len(v)==v.count(0)][0]))],f(g,V)][V in g]
+p=lambda g:[g:=[*zip(*(len(g)-len(u:=[v for v in g if~-v.count(max([*filter(any,g)][0]))]))*g[:1]+u)][::-1]for _ in[0]*4][3]
