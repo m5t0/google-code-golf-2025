@@ -1,0 +1,1 @@
+def p(g,r=[0,1,2]):x=max(sum(g,[]));return[[[0,5][(i==r[2-x])|(j==(x+1)//2)]for j in r]for i in r]

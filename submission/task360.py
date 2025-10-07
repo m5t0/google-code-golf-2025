@@ -1,0 +1,1 @@
+p=lambda g:[[*map(max,zip(v[:4],v[9::-1]))]for v in g]

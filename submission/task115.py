@@ -1,0 +1,1 @@
+p=lambda g:[*zip(*map(D:={}.fromkeys,zip(*[*map(D,g)])))]

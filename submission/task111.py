@@ -1,0 +1,1 @@
+p=lambda g:[g[i+(I:=sum(g,[]).index(5))//10][I%10-1:][:3]for i in[1,2,3]]

@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[max({*v[j::3]}&{*v[:j+1:3]}|{*w[i::3],0}&{*w[:i+1:3],0})for j,w in e(zip(*g))]for i,v in e(g)]

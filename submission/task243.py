@@ -1,0 +1,1 @@
+p=lambda g:exec("g[:]=zip(*eval(str(g).replace('1, 0','1,1'))[::-1]);"*92)or g

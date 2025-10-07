@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[w[i]or 5in{*v[:j]}&{*v[j:]}&{*w[:i]}&{*w[i:]}and (s:=str(v)[1::3]).find("5",j)%-~len(v)+~s.rfind("5",0,j)+5for j,w in e(zip(*g))]for i,v in e(g)]

@@ -1,0 +1,1 @@
+def p(g,r=range):v=sum(g,[]);return[[1-(0<i<3>j>0)and sorted([[i-v.index(x)for i in r(169)if v[i]==x]+[x]for x in{*v}-{0}])[[0,1,3,2][i//2*2+j//2]][3]for j in r(4)]for i in r(4)]

@@ -1,0 +1,1 @@
+p=lambda g:[[sum(v[i::3])and 6for i in[0,1,2]]for v in g]

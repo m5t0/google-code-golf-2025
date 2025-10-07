@@ -1,0 +1,1 @@
+p=lambda g,r=range:[[g[i//3][j//3]==max((sum(g,[]).count(k),k)for k in r(10))[1]and g[i%3][j%3]for j in r(9)]for i in r(9)]

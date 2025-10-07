@@ -1,0 +1,1 @@
+p=lambda g:[[max(V:=v+[*w],key=V.count)for w in zip(*g)]for v in g]

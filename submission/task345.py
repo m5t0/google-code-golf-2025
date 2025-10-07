@@ -1,0 +1,1 @@
+p=lambda g,r=range(10):[[g[i][j]or(({2}<={*(Z:=[*zip(*g)])[j][i:]}<={0,2})+({*Z[j-1][i-(i>0):]}>{0,5}))*2for j in r]for i in r]

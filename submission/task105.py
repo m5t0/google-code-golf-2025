@@ -1,0 +1,1 @@
+f=lambda g,e=enumerate,C=list.count:[[w[g.index(v)]or(sum((C(w[i::k],1)+C(w[i::k],2)>2)+(C(v[j::k],1)+C(v[j::k],2)>2)for k in[-1,1])>0)*2 for j,w in e([*map(list,zip(*g))])]for i,v in e(g)]

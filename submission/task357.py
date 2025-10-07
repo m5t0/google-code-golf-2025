@@ -1,0 +1,1 @@
+def p(g,r=range):n=len(g);m=len(g[0]);return[[[8,1][j in[s:=(n-1-i)%(2*m-2),2*m-2-s]]for j in r(m)]for i in r(n)]

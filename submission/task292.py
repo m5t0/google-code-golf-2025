@@ -1,0 +1,1 @@
+p=lambda g:[[v[j]and v[j]+2*(j%3<1)for j in range(len(g[0]))]for v in g]

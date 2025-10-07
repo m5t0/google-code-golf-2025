@@ -1,0 +1,1 @@
+p=lambda g:[[v[0]]*5+[any(v)*5]+[v[-1]]*5for v in g]

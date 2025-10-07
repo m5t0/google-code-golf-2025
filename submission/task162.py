@@ -1,0 +1,1 @@
+p=lambda g,r=range(18):[exec("for v in g[i:i+3]:v[j:j+3]=[1]*3"*(sum(sum(v[j:j+3])for v in g[i:i+3])<1))for i in r for j in r]and g

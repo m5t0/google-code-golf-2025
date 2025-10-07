@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[x or(3-2*(i>(I:=(V:=sum(g,[])).index(2)/len(v))))*(sum(V)/2+I>i+j)for j,x in e(v)]for i,v in e(g)]

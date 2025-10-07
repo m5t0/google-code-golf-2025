@@ -1,0 +1,1 @@
+p=lambda g:[[[x,x^13][x in[5,8]]for x in v]for v in g]

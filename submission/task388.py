@@ -1,0 +1,1 @@
+p=lambda g:[[w[i]or any(w)*8for _ in"__"for w in zip(*g)]for _ in"__"for i in range(len(g))]

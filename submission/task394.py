@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[g[i-(s:=2+(len(g)>6))+2*(i<s)][j-s+2*(j<s)]for j,w in e(zip(*g))if 0in w]for i,v in e(g)if 0in v]

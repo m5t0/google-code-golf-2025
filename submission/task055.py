@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[w[i]or int("020463010"[(sum(v[:j])+3*(sum(w[:i])))//8])for j,w in e(zip(*g))]for i,v in e(g)]

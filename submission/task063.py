@@ -1,0 +1,1 @@
+p=lambda g:[[w[0]or(any(v[1:-1])*any(w[2:-1])<1)*3for w in zip(v,*g)]for v in g]

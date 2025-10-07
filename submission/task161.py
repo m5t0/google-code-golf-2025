@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[((i%~-len(g)>0<j%~-len(v))*((m:=min(V:=sum(g,[]),key=V.count))in(v+[*w]))|(m==w[i]))*m for j,w in e(zip(*g))]for i,v in e(g)]

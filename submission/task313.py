@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[g[i&1][1+j%~-len({*g[0]})]for j,w in e(g)]for i,v in e(g)]

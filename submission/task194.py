@@ -1,0 +1,4 @@
+p=lambda g:[[*(a:=g+[*zip(*g)][::-1])[i],*a[~i][::-1]]for i in range(6)]
+
+
+p=lambda g:[[*(a:=g+[*zip(*g)][::-1])[i],*a[~i][::-1]]for i in range(len(g))]

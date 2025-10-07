@@ -1,0 +1,1 @@
+p=lambda g:[g[i][:4]+[x[i]for x in g[::-1]]+g[2-i][3::-1]for i in[0,1,2]]

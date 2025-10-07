@@ -1,0 +1,1 @@
+p=lambda g:[[w[g.index(v)]for w in zip(*g)if len({*w})>2]for v in g if len({*v})>2]

@@ -1,0 +1,1 @@
+def p(g):f=lambda n:divmod(sum(g,[]).index(n),len(g[0]));a,b=f(3);c,d=f(4);g[a][b]=0;g[a+(a<c)-(a>c)][b+(b<d)-(b>d)]=3;return g

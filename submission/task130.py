@@ -1,0 +1,1 @@
+p=lambda g:[[sum({*w[:3],5})-5for w in(v,v[3:],v[6:])]for v in g[::3]]
