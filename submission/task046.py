@@ -1,7 +1,3 @@
-def p(g):
- x=z=0;l=[];a=[*zip(*g)];a+=[[0]*3]*any(a[-1])
- for i,v in enumerate(a):
-  if any(v)^1:
-   l+=[[max(t*(t!=5)for s in a[x:i]for t in s)*(q>0)for q in p]for p in[*zip(*g[z:]+g[:z])][x:i]]
-   if a[i+1:]:z+=a[i+1].index(5)-a[i-1].index(5);x=i+1
- return[*zip(*l)]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("""MNnÀ0C_á‰Bc^ªì#‘'•™¹¯_İ¡ÈpF1´<ÚÕìæÖ-E×3VîYËe"Ğõ”±öåJ¯Ş¸g¯îP87=d—3d5DõTE½7FÜ##Èb æ,>îè„’*oå£äã…y¤HéÙUgHçHç $ïŞoO¼£G{bí±ş²»F•X½£@#R%ÚLİiÔ»2çŠ×YF+WÇ}õïvWsàôÑ8õ?Æ¥ÀO""","L1"),-9))

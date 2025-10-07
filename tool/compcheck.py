@@ -2,10 +2,14 @@ import copy
 import concurrent.futures
 import hashlib
 import importlib.util
+import json
 import os
 import pickle
+import re
 import sys
 from threading import Lock
+
+import numpy as np
 
 MAX_WORKERS = 32
 
@@ -91,10 +95,15 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
 
                 for example in all_examples:
                     input_grid = copy.deepcopy(example["input"])
-                    expected = example["output"]
+                    expected = np.array(example["output"])
                     try:
                         actual = program(input_grid)
-                        if actual != expected:
+
+                        actual = json.dumps(actual)
+                        actual = actual.replace("true", "1").replace("false", "0")
+                        actual = np.array(json.loads(actual))
+
+                        if not np.array_equal(actual, expected):
                             return False
                     except:
                         return False
