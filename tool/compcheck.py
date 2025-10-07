@@ -264,6 +264,11 @@ def main():
 
     cache = True
 
+    for i in range(1, len(sys.argv)):
+        if sys.argv[i] == "--no-cache":
+            cache = False
+            sys.argv.pop(i)
+
     for i in range(1, len(sys.argv))[::-1]:
         if ".." in sys.argv[i]:
             start, end = sys.argv[i].split("..")
@@ -271,10 +276,6 @@ def main():
 
             for j in range(int(start), int(end) + 1):
                 sys.argv.append(str(j))
-        elif sys.argv[i] == "--no-cache":
-            cache = False
-            sys.argv.pop(i)
-            break
 
     state = State()
 
