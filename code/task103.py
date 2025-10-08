@@ -1,1 +1,1 @@
-p=lambda g:[[1]]if g==g[::-1]else[[7]]
+p=lambda g:[[7**(g[0]!=g[2])]]

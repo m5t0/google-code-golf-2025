@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[(7+(y:=abs(j-g[0].index(7)))%2)*(y+i<sum(sum(g,[]))/7)for j,w in e(v)]for i,v in e(g)]
+p=lambda g,e=enumerate:[[(7+(y:=j-g[0].index(7))%2)*(abs(y)+i<sum(map(any,g)))for j,_ in e(v)]for i,v in e(g)]

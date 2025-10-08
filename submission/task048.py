@@ -1,4 +1,4 @@
-def p(d):
- def f(y,x):
-  if w>x>-1<y<len(d)and d[y][x]:d[y][x]=0;[f(y-1+i//3,x-1+i%3)for i in range(9)]
- f(*divmod(sum(d,[]).index(2),w:=len(d[0])));return[[8*(2 not in sum(d,[]))]]
+def p(g):
+ def f(x,y):
+  if w>y>-1<x<len(g)>0<g[x][y]:g[x][y]=0;[f(x-1+i//3,y-1+i%3)for i in range(9)]
+ f(*divmod(sum(g,[]).index(2),w:=len(g[0])));return[[8*('2'not in"%s"%g)]]

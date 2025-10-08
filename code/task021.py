@@ -1,1 +1,1 @@
-p=lambda H:[[(A:=H[0][0])]*-~sum(S!=A for S in H[0])]*-~sum(S[0]!=A for S in H)
+p=lambda g:[[(a:=g[0][0])]*-~sum(a!=v for v in g[0])]*-~sum(a!=v[0]for v in g)

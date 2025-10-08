@@ -9,4 +9,4 @@ def p(g,r=range):
  p=eval(str(p).replace(str(a),str(b)));f=eval(str(g))
  for i in r(900):
   for k in r((g[i//30][i%30]==c)*9):f[i//30-1+k//3][i%30-1+k%3]=p[k//3][k%3]
- a=p[0][1]if p[0][1]!=p[0][0]else p[1][0];exec(f"f[:]=zip(*eval(str(f).replace('{c}, {a}, {b}','{c},{a},{a}').replace('{a}, {a}, {b}','{a},{a},{a}'))[::-1]);"*60);return f
+ a=[p[0][1],p[1][0]][p[0][1]==p[0][0]];exec(f"f[:]=zip(*eval(str(f).replace('{c}, {a}, {b}','{c},{a},{a}').replace('{a}, {a}, {b}','{a},{a},{a}'))[::-1]);"*60);return f
