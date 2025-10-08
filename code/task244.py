@@ -1,1 +1,1 @@
-def p(g):r=range(s:=g[0].count(min(map(set,g)).pop())+1);n=len(g);return[[g[i*n//s+1][-j*n//s-1]for j in r]for i in r]
+def p(g):n=g.index([v for v in g if len({*v})<2][0])+1;return[v[-1::-n]for v in g[::n]]
