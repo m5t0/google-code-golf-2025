@@ -1,1 +1,1 @@
-def p(g):r,h=range(len(g)),lambda x,i:{*x[i::-3]}&{*x[i::3]};return[[(i%3<2>j%3)*max(h([*zip(*g)][j],i)|h(g[i],j))or g[i][j]for j in r]for i in r]
+p=lambda g,e=enumerate:[[max({*v[j::3]}&{*v[:j+1:3]}|{*w[i::3],0}&{*w[:i+1:3],0})for j,w in e(zip(*g))]for i,v in e(g)]

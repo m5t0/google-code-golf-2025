@@ -1,1 +1,1 @@
-p=lambda g:[[x or 3-any(v[:-1])*any(w[1:-1])*3for*w,x in zip(*g,v)]for v in g]
+p=lambda g:[[x or 3-any(v[1:-1])*any(w[1:-1])*3for*w,x in zip(*g,v)]for v in g]
