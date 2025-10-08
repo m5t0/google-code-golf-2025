@@ -1,1 +1,1 @@
-p=lambda g:[[max({*(v:=sum(g,[]))}-{0},key=lambda x:(s:=g[v.index(x)//10].count(x))*(v.count(x)/2-s+2))]*2]*2
+p=lambda g:2*[[max(range(1,10),key=lambda k:sum(k in{*v}&{*w}for w in zip(*g)for v in g))]*2]
