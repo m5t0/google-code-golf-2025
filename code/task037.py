@@ -1,0 +1,1 @@
+p=lambda g,r=range(10):[[max({*(v:=sum(g,[]))[(s:=i*10+j)::11]}&{*v[s::-11]}|{*v[s::9]}&{*v[s::-9]})for j in r]for i in r]
