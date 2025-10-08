@@ -1,1 +1,1 @@
-p=lambda g:[[v[j]for j,w in enumerate(zip(*g))if any(w)]*2for v in g if any(v)]
+p=lambda g:(f:=lambda g:[*filter(any,zip(*g))])(f(g)*2)
