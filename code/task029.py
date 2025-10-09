@@ -1,0 +1,1 @@
+p=lambda g:[[x for*w,x in zip(*g,v)if m in w][1:-1]for v in g if(m:=min(sum(g,[]),key=lambda k:len({tuple(x==k for x in v)for v in g})))in v][1:-1]
