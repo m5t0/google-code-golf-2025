@@ -1,18 +1,14 @@
 def p(g):
- m,n=len(g),len(g[0]);t=[];r={(k//n,k%n):w for k in range(m*n)if(w:=g[k//n][k%n])};b=[[0]*n for i in range(m)]
+ r,*c={(i,j):v for i,v in enumerate(g)for j,v in enumerate(v)if v},
  def f(i,j):
-  if m>i>-1<j<n and(i,j)in r:s[i-u[0],j-u[1]]=r.pop((i,j));f(i+1,j);f(i-1,j);f(i,j+1);f(i,j-1)
+  if(i,j)in r:[a,b][r.pop((i,j))-1]+=[(i-x,j-y)];f(i,j+1);f(i,j-1);f(i+1,j);f(i-1,j)
  while r:
-  t+=[s:={}];u=min(r);f(*u)
-  if len({*s.values()})<2:
-   t=t[:-1]
-   for v in s:b[u[0]+v[0]][u[1]+v[1]]=1
- for s in t:
-  for d in 3,2,1:
-   for k in range(m):
-    for l in range(-9,n):
-     a=[(k+v[0]*d+i//d,l+v[1]*d+i%d,w)for v,w in s.items()for i in range(d*d)]
-     if all((m>i>-1<j<n)<1or(g[i][j]<1or(g[i][j]==w)*b[i][j])for i,j,w in a)and[*s.values()].count(2)*d*d==sum(m>i>-1<j<n and g[i][j]==2for i,j,w in a):
-      for i,j,w in a:
-       if m>i>-1<j<n:g[i][j]=w;b[i][j]=0
+  a,b=[],[];x,y=[(x,y)for(x,y),v in r.items()if v==2][0];f(x,y)
+  if a:c=a;e=b;r={(i,j):r[i,j]for i,j in sorted(r)}
+  elif c:
+   d=max(d for d in(1,2,3)if g[x+d-1:]and[*zip(*g)][y+d-1:]and{*sum([*zip(*g[x:x+d])][y:y+d],())}=={2})
+   for i,j in c+e:
+    for k in range(d*d):
+     if(t:=y+j*d+k%d)>=0:g[s:=x+i*d+k//d][t]=1+((i,j)in e);r.pop((s,t),1)
+  else:r|={(x+i,y+j):g[x+i][y+j]for i,j in a+b}
  return g
