@@ -1,1 +1,1 @@
-def p(g,r=range):s=r(m:=len(g));t=[max(max(i*(v[i]==x)for i in s)for v in zip(*g))for x in s];return[[(g*3)[m+i+t[max([*zip(*g)][j])]-t[1]][j]for j in r(10)]for i in s]
+p=lambda g:[[(t:=[0]*7+r+[0]*7)and t[j]&1|2*(t[j-b+a]&1)|4*(t[j-c+a]&1)for j in range(7,17)]for a,b,c in[[min((r+[k]).index(k)for r in g)for k in(1,2,4)]]for r in g]
