@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[w-(w<2)for j,w in e(v)if(b:=[j for j,w in e(zip(*g))if{*w}>{1}])[0]<=j<=b[-1]]for i,v in e(g)if{*v}>{1}or{*g[i-len(g)+1]}>{1}<{*g[i-1]}]
+p=lambda g:[g:=[*zip(*[[x*(x>1)for x in v]for i,v in enumerate(g)if max(max(g[i:]))>1])][::-1]for _ in[0]*4][3]

@@ -1,4 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("""Ž±
-!D{¿Â*ì^¶I+Ü—ˆ…!*+ñ“SH¸rIyn˜ó¦Ìw›®7+¹Ù-krÕ>Òú±&xO]+>_Ìv‘•Ù0WØQÓ*~QÓq ô¹ÊH]ò"¼¸ÀÍh™ÚÞ4Bÿ³6ŠêhN”£o:1æ*=4Šj?""","L1"),-9))
+p=lambda g,e=enumerate:[[sum({*w[:i+1]}&{*w[i:]})or(sum({*v[:j+1]}&{*v[j:]}))for j,w in e(zip(*g))]for i,v in e(g)]
