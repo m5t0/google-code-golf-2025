@@ -4,7 +4,7 @@ def p(g):
   if(i,j)in r:[a,b][r.pop((i,j))-1]+=[(i-x,j-y)];f(i,j+1),f(i,j-1),f(i+1,j),f(i-1,j)
  while r:
   a,b=[],[];x,y=next(k for k in r if r[k]==2);f(x,y)
-  if a:c=a;e=b;r=dict(sorted(r.items()))
+  if a:c,e=a,b;r=dict(sorted(r.items()))
   elif c:
    d=max(d for d in(1,2,3)if g[x+d-1:]and g[0][y+d-1:]and{g[x+k//d][y+k%d]for k in range(d*d)}=={2})
    for i,j in c+e:
