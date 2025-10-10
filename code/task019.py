@@ -1,0 +1,1 @@
+def p(g,e=enumerate):g=[v*2for v in g*2];return[[w or any(len(g)>i+k>-1<j+l<len(v)and g[i+k][j+l]for k in[-1,1]for l in[-1,1])*8for j,w in e(v)]for i,v in e(g)]
