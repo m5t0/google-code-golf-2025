@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[g[i-[s:=2+(len(g)>6),-s][i<s]][j-[s,-s][j<s]]for j,w in e(zip(*g))if 0in w]for i,v in e(g)if 0in v]
+p=lambda d:(A:=2+(len(d)>6))and[[next(filter(None,r[j%A::A]))for j,x in enumerate(r)if x<1]for r in d if 0in r]
