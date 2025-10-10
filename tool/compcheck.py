@@ -34,7 +34,8 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
             print("Unknown compressor")
             return b""
 
-    get_src = lambda c, ds, de: b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + ds + c + de + b',"L1"),-9))'
+    header = lambda c: b"#coding:L1\n" if max(c) > 127 else b""
+    get_src = lambda c, ds, de: header(c) + b"import zlib\nexec(zlib.decompress(bytes(" + ds + c + de + b',"L1"),-9))'
 
     def sanitize(b_in):
         """Clean up problematic bytes in compressed b-string"""
