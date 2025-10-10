@@ -1,1 +1,1 @@
-p=lambda g:[[(w[i]>0)*((w==min(s:=[w for w in zip(*g)if any(w)]))*2+(w==max(s)))for w in zip(*g)]for i in range(9)]
+p=lambda g:(s:=[*map(sum,zip(*g))])and[[(x==max(s)or x==min({*s}-{0})and 2)*(i>8-x/5)for x in s]for i in range(9)]
