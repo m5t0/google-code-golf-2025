@@ -1,2 +1,1 @@
-s=0,1,2
-p=lambda g:[[sum(g[4*i+k//3][4*j+k%3]for k in range(9))>9for j in s]for i in s]
+p=lambda j:[[sum(r[k:k+3].count(6)for r in j[e:e+3])>1for k in(0,4,8)]for e in(0,4,8)]
