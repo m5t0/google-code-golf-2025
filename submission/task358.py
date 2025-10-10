@@ -1,2 +1,1 @@
-f=lambda v,j:(s:=len({*v})-1)>1and sum(v[j%s::s])
-p=lambda g,e=enumerate:[[f(v,j)or f(w,i)for j,w in e(zip(*g))]for i,v in e(g)]
+p=lambda g,f=lambda A:(B:=[*filter(int,A)])[2:]and(B*8)[-A.index(B[0])%len(B):]or A:[*zip(*map(f,zip(*map(f,g))))]
