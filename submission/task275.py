@@ -1,4 +1,1 @@
-def p(g):
- n=min(len(g),len(g[0]));a,b=[v[:n]for v in g[:n]],[v[-n:]for v in g[-n:]]
- if"8"in str(a):a,b=b,a
- return[[X*x/8for x in y for X in Y]for y in a for Y in b]
+p=lambda j:[[j[y//a-(b:=a*any(8in s[:a]for s in j[:a]))][x//a-b]*j[y%a-a+b][x%a-a+b]>>3for x in range(a*a)]for a in[len(j+j[0])//3]for y in range(a*a)]
