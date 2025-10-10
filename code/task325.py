@@ -1,2 +1,6 @@
-d=0,1,0,-1
-def p(g,r=range):D=lambda i,j:m>j>-1<i<n and g[i][j]==8and(exec("g[i][j]=9")or[D(i+d[k],j+d[~k])for k in r(4)]!=[]);n=len(g);m=len(g[0]);s=sum(D(i%n,i//n)for i in r(n*m));return[[(i==j)*8for i in r(s)]for j in r(s)]
+def p(g):
+ e=enumerate;s={i+1j*j for i,r in e(g)for j,v in e(r)if v};n=0
+ def f(z):
+  if z in s:s.remove(z);f(z+1);f(z-1);f(z+1j);f(z-1j)
+ while s:n+=1;f(next(iter(s)))
+ return[[0]*i+[8]+[0]*(n-i-1)for i in range(n)]
