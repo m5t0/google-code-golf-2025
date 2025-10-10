@@ -47,7 +47,7 @@ def check(master_files, dev_branch_files, dev_branch_name):
 
 def main():
     master_branch = "master"
-    dev_branches = ["moto", "sktkmozt", "bono"]
+    dev_branches = ["moto", "sktkmozt", "bono", "Lucien"]
 
     run_cmd("git checkout master && git pull")
     master_files = glob("./code/*.py")
