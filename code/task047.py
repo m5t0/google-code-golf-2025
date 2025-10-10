@@ -1,0 +1,1 @@
+p=lambda g:[[x or(max(v)+max(w))%13for*w,x in zip(*g,v)]for v in g]
