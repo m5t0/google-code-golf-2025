@@ -1,1 +1,1 @@
-def p(g,e=enumerate):x,(c,d),_=[(i,j)for i,v in e(g)for j,w in e(v)if w];f=lambda i,j:max(abs(i-c),abs(j-d));return[[(f(i,j)%f(*x)<1)*g[c][d]for j,_ in e(v)]for i,v in e(g)]
+def p(g):r=range(len(g));a=[(i,j)for i in r for j in r if g[i][j]];o,x=a[1];return[[g[o][x]*(max(i-o,j-x,key=abs)%(o-a[0][0])<1)for j in r]for i in r]
