@@ -1,1 +1,5 @@
-def p(g,r=range):*a,=zip(*g);[exec("g[m][n]=3+(i<m<s and j<n<t)")for k in r(169)for s in r(k//13,14)for t in r(k%13+2,14)if g[i:=k//13+1][j:=k%13+1]==6and{*g[i-1][j:t]+g[s+1][j:t]+[*a[t+1][i:s]]}=={8}for m in r(i-1,s+2)for n in r(j-1,t+2)if g[m][n]-6];return g
+def p(r):
+	C=[8]*17;r=[C]+[[8]+A+[8]for A in r]+[C];D=-1,0,1
+	for E in(4,5):
+		for F in range(225):A=F//15+1;B=F%15+1;G=[r[A+C][B+E]for C in D for E in D];r[A][B]-=E*(r[A][B]>7 and[sum(G)<66,6 in G][E&1])
+	return[A[1:-1]for A in r[1:-1]]

@@ -1,3 +1,3 @@
 def p(g):
- for i in range(1,len(g[0])):g[-1][i]=4;g[i-1][-i]=2
+ for A in range(1,len(g)):g[-1][A]=4;g[A-1][-A]=2
  return g

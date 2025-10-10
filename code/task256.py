@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[x or(3-2*(i>(I:=(V:=sum(g,[])).index(2)/len(v))))*(sum(V)/2+I>i+j)for j,x in e(v)]for i,v in e(g)]
+def p(g):r=g.index(x:=max(g));k=sum(x)>>1;return[([2-(i>r)+(i<r)]*(k+r-i)+[0]*13)[:len(x)]for i in range(len(g))]

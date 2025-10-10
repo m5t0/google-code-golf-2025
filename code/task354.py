@@ -1,4 +1,10 @@
-def p(g,r=range):
- def D(i,j,c):
-  if c>0<=j<10>i and g[i][j]==5:g[i][j]=c;[D(i+d[I],j+d[I-1],c)for I in r(4)]
- d=0,1,0,-1;[D(I//10,j:=I%10,g[0][j])for I in r(99)];return g
+def p(g):
+ h=g[0]
+ for r in g:
+  j=0
+  while j-10:
+   if r[j]-5:j+=1;continue
+   k=j
+   while k-10 and r[k]==5:k+=1
+   r[j:k]=[max(h[j:k])]*(k-j);j=k
+ return g

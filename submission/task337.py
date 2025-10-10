@@ -1,1 +1,1 @@
-p=lambda g:[[x^13*(x in[5,8])for x in v]for v in g]
+p=lambda j:[[A^13*(A in(5,8))for A in A]for A in j]

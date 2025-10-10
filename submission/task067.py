@@ -1,1 +1,1 @@
-p=lambda g:[v[:len(g)]for v in g]
+p=lambda g:[a[:len(g)]for a in g]

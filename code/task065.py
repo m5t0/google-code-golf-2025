@@ -1,1 +1,1 @@
-p=lambda g:min(v:=[[*map(lambda x:x[(s:=k%2*(n+1)):s+n],g[(t:=k//2*((n:=len(g)//2)+1)):t+n])]for k in range(4)],key=v.count)
+def p(g):s=sum(g,[]);w=len(g);i=w>>1;k=s.index(min(s,key=s.count));return[r[(k%w>i)*-i:][:i]for r in g[(k//w>i)*-i:][:i]]

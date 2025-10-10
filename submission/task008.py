@@ -1,4 +1,4 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("""eÎ1ƒ0ĞSxªlj¤–©
-ÊÒ3t‹25@¤UDªÂéDL<<û[öÓ6ğÆ–­´>6˜É’È “ƒë§/:î©yp¼–‹íÎ?‰\Ÿ“×U<Ö¡òÑ¼qtó8Á|7èj9b×üà»X'ø(êâÊ*6LÅ}G5ËˆFÈK¢sÄoD¤oúí¼­rZõZ^şûçóY	QjZ#I×DYfìƒ‡ö""","L1"),-9))
+def p(g):
+	C=enumerate
+	for D in[0]*4:A=max(A for(A,B)in C(g)if 2 in B);B=min(A for(A,B)in C(g)if 8 in B);g=[*zip(*(B>A)*(B-A-1)*[[0]*len(g[0])]+(g[:A+1]+g[B:],g)[A>=B])][::-1]
+	return g

@@ -1,1 +1,1 @@
-p=lambda g:[[sum({*v[:j+1]}&{*v[j:]})for j in range(10)]for v in g]
+p=lambda j,a=0:[[x and(a:=(a==0)*x)or x or a for x in r]for r in j]

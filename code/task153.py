@@ -1,14 +1,1 @@
-e=enumerate
-def f(h,a,i,j):
- f=1
- for s,v in e(a):
-  for t,w in e(v):
-   if w:
-    if(x:=i+s)<3>(y:=j+t)and h[x][y]<1:h[x][y]=w
-    else:f=0
- return f
-def p(g,r=range(16)):
- a,b=[z for c in r[1:]if(z:=[[w[i]for w in zip(*g)if c in w]for i,v in e(g)if c in v])]
- for k in r:
-  h=[[0]*3for _ in r[:3]]
-  if f(h,a,k//8,k//4%2)&f(h,b,k%4//2,k%2):return h
+def p(h):k=sum(h,[]);u=10;d=max(j:={*k}-{0},key=k.count);n=[q for q in range(u*u)if k[q]==d];m=min(q:={q%u for q in n});r=len(q);n,v=n[0]//u,n[-1]//u;n-=v-n<2 and 0 in h[n][m:m+r];m-=3-r and 0 in k[n*u+m:v*u+m+1:u];return[[q or sum(j)-d for q in q[m:m+3]]for q in (h+[[0]*u])[n:n+3]]

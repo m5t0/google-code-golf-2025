@@ -1,1 +1,4 @@
-p=lambda g:[(w:=[[0]*3,v[5:2:-1]])[b:=g[3][3]>0]+v[3:6]+w[b^1]for v in g[:3]]+g[3:]
+def p(j):
+	A=6*(j[3][3]<1)
+	for B in range(3):j[B][A:A+3]=j[B][3:6][::-1]
+	return j

@@ -1,5 +1,5 @@
-def p(g):
- l=len(g)//2;a=3
- for i in range(l+1):
-  if g[-2][l-i]<1:g[-a][l-i]=(b:=g[-1][l]);g[-a][l+i]=b;a+=1
- return g
+def p(g,a=3):
+	A=len(g)>>1
+	for B in range(A+1):
+		if g[~1][A-B]<1:g[-a][A-B]=g[-a][A+B]=g[~0][A];a+=1
+	return g

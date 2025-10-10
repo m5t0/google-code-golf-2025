@@ -1,1 +1,1 @@
-p=lambda g:[exec("g[k//9+l//3-1][k%9+l%3-1]=1")for k in range(81)for l in[0,1,2,3,5,6,7,8]*(g[k//9][k%9]==5)]and g
+p=lambda g,r=range(9):[[any(max(a[j-(j>0):j+2])for a in g[i-(i>0):i+2])|g[i][j]for j in r]for i in r]

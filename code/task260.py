@@ -1,3 +1,2 @@
-e=enumerate
-f=lambda g,m:m([i-j for i,v in e(g)for j,w in e(zip(*g))if(v[j-1]==5,w[i-1]==5)[m(0,1)]>w[i]]+[15-30*m(0,1)])
-p=lambda g:[[w-5and(w or(i-j)in(f(g,max)+1,f(g,min)-1)and sum({*sum(g,[])})-5)for j,w in e(v)]for i,v in e(g)]
+def p(g):
+ e=range(10);x,c=next((o-i,t)for i in e for o in e if(t:=g[i][o])%5);n=min(g:=[sum(o-i-x for o in e if g[i][o]==5)for i in e])<0<max(g);return[[c*((o-i-x in(0,(0<sum(g)or-1)*(12-g.count(0)-2*n)))|n*(o-i-x==4))for o in e]for i in e]

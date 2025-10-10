@@ -1,5 +1,1 @@
-def p(g):
- o=[[0]*3,[0]*3,[0]*3]
- for s in range(729):
-  if(g[i:=1+s//81][j:=1+s//9%9]==5)*(v:=g[i+s%9//3-1][j+s%3-1]):o[s%9//3][s%3]=v
- return o
+def p(s):s=sum(s,[]);t=~0,0,1;return[[max(s[i+o*11+a]for i in range(121)if s[i]==5)for a in t]for o in t]

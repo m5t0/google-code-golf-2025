@@ -1,1 +1,1 @@
-p=lambda g:[[any(v[i::3])*6for i in[0,1,2]]for v in g]
+p=lambda j:[[6*any(x)for x in zip(r,r[3:])]for r in j]

@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[exec("g[i][j]=0")for i,v in e(g)for j,w in e(v)if len({*str([*zip(*g[i-1:i+2])][j-1:j+2])})==7]and g
+p=lambda g:[((t:=0)or[(t:=t^v)&v for v in b],b)[a!=c]for a,b,c in zip([0]+g,g,g[1:]+[0])]

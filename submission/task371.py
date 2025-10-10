@@ -1,1 +1,4 @@
-def p(g,e=enumerate):a,b=zip(*[(i,j)for i,v in e(g)for j,w in e(v)if w]);return[[g[i][j]or(abs(i-sum(a)//2)+abs(j-sum(b)//2)<2)*3for j,_ in e(v)]for i,v in e(g)]
+def p(g):
+ i=sum(g,[]).index;m=i(1)+i(1,i(1)+1)>>1;w=len(g[0])
+ for s in-w,-1,0,1,w:g[(m+s)//w][(m+s)%w]=3
+ return g

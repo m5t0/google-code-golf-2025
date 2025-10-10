@@ -1,1 +1,1 @@
-p=lambda g:[*zip(*g)][::-1]
+p=lambda j:[*zip(*j)][::-1]

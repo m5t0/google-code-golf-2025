@@ -1,1 +1,1 @@
-p=lambda g:[[w and[w,4][j&1]for j,w in enumerate(v)]for v in g]
+p=lambda g:[[x and(x,4)[j&1]for j,x in enumerate(r)]for r in g]

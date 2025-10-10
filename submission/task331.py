@@ -1,2 +1,1 @@
-d=0,1,0,-1
-p=lambda g:[exec("g[I][J]=[7,8,6,2][k]")for x in range(100)for k in[0,1,2,3]*(g[x//10][x%10]&1)if-1<(I:=x//10+d[k])<10>(J:=x%10+d[k-1])>=0]and g
+p=lambda g,r=range(10):[[max(i and g[i-1][j]*8,j and g[i][j-1]*6,g[i][j],j-9 and g[i][j+1]*7,i-9 and g[i+1][j]*2)for j in r]for i in r]

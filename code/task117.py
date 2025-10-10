@@ -1,6 +1,2 @@
-def p(g,e=enumerate):
- x,y=[(i,j)for i,r in e(g)for j,v in e(r)if v*(j<len(g)-3>i>3)and all(g[i+k//3][j+k%3]==v*(1-(k//3+k%3)%2)for k in range(9))][0]
- for i,v in e(g):
-  for j,w in e(v):
-   if w and w-g[x][y]:g[a:=2*x-i+2][j]=g[i][b:=2*y-j+2]=g[a][b]=w
- return g
+def p(o):
+ r=range;p,p=len(o),len(o[0]);[(f:=g,a:=m)for g in r(1,p-1)for m in r(1,p-1)if o[g-1][m-1]==o[g-1][m+1]==o[g+1][m-1]==o[g+1][m+1]==o[g][m]>0];return[[max(o[g][m],o[(k:=(2*f-g)%p)][m],o[g][(i:=(2*a-m)%p)],o[k][i])for m in r(p)]for g in r(p)]

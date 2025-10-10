@@ -1,3 +1,5 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("5Oƒ•AMem[I½å Ç6r¿Ö=¿TMï²ˆ úzD›ŞfßTf0™‘éµBS&=‚î½'ìçóá>âÎ×S;ÖÃ{$ÓŞT÷£İ1½N4Ù®|ŒÅh¯×Ûıb{à»Dî†Ûı|Ç–¦Ş!hŞ€Í·O´h?ä-À‰*Ô3z_òCòœŒçÿ=Î¾˜Ğ‰Âãç³¨/-Óp…-âùËzbeÑUBWTT†Y÷HKÒÈë?","L1"),-9))
+def p(r):
+	C=[8]*17;r=[C]+[[8]+A+[8]for A in r]+[C];D=-1,0,1
+	for E in(4,5):
+		for F in range(225):A=F//15+1;B=F%15+1;G=[r[A+C][B+E]for C in D for E in D];r[A][B]-=E*(r[A][B]>7 and[sum(G)<66,6 in G][E&1])
+	return[A[1:-1]for A in r[1:-1]]
