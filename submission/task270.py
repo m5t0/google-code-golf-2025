@@ -1,1 +1,2 @@
-p=lambda g,e=enumerate:[[max((l in V[I+k:I+k+1])*(X:=l*7%11)*(X in V[I::-k])for V,I in((v,j),(w,i))for l in[1,2]for k in[-1,1])+(w[i]<3)*w[i]for j,w in e(zip(*g))]for i,v in e(g)]
+import re
+p=lambda g:exec("g[:]=zip(*eval(re.sub(r'2, 0,([\d,\s]*)3',r'2,3,\\1 0',re.sub(r'1, 0,([\d,\s]*)7',r'1,7,\\1 0',str(g))))[::-1]);"*8)or g
