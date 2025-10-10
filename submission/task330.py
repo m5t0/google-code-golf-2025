@@ -1,5 +1,4 @@
-d=0,1,0,-1
-def D(g,i,j,P):
- if(0<=i<10>j>=0)^1or P-g[i][j]-1:return 0
- g[i][j]+=1;return 1+sum(D(g,i+d[I],j+d[I-1],g[i][j])for I in[0,1,2,3])
-p=lambda g,e=enumerate:[[(w>0)+(D(g,i,j,w+(w>0))==6)for j,w in e(v)]for i,v in e(g)]
+def p(g):
+ f=lambda i,j:(0<=i<10>j>-1 and g[i][j]==v)and(g[i].__setitem__(j,k)or 1+f(i+1,j)+f(i-1,j)+f(i,j+1)+f(i,j-1))
+ for t in range(100):i=t//10;j=t%10;v=5;k=3;t=f(i,j);v=3;k=1+(t==6);f(i,j)
+ return g
