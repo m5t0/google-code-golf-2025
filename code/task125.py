@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[[t:=w[i],(6in{*v[j:]}&{*v[:j]}&{*w[i:]}&{*w[:i]})*4or any(min(v[j-(j>0):j+2])<8for v in g[i-(i>0):i+2])*3or 8][t>7]for j,w in e(zip(*g))]for i,v in e(g)]
