@@ -1,1 +1,1 @@
-p=lambda g,r=range(10):[[max(i and g[i-1][j]*8,j and g[i][j-1]*6,g[i][j],j-9 and g[i][j+1]*7,i-9 and g[i+1][j]*2)for j in r]for i in r]
+p=lambda g:[g:=[*zip(*eval(str(g).replace("0, 1",i+",1")))][::-1]for i in"7268"][3]
