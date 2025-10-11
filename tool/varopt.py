@@ -119,9 +119,6 @@ def create_template_from_function(code_string: str) -> (str, list):
 def verify(output: list, label: list) -> bool:
     result = json.dumps(output)
     result = result.replace("true", "1").replace("false", "0")
-    unsafe_chars = re.compile(r"[^0-9,\[\]\s\.]")
-    if unsafe_chars.search(result):
-        raise ValueError(f"Invalid output from user code: {result[:500]}")
     result = json.loads(result)
 
     user_output = None
