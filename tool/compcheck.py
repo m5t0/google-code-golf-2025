@@ -2,6 +2,7 @@ import copy
 import concurrent.futures
 import hashlib
 import importlib.util
+import itertools
 import json
 import os
 import pickle
@@ -10,7 +11,7 @@ from threading import Lock
 
 import numpy as np
 
-COMPCHECK_VERSION = "1.0"
+COMPCHECK_VERSION = "1.1"
 
 DEFLATE = 0
 ZOPFLI = 1
@@ -123,12 +124,16 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
         # We prefer that compressed source not end in a quotation mark
         while (compressed := compress_custom(src.encode(), level=level))[-1] == ord('"'): src += "#"
 
-        for delim_start, delim_end in [(b'"', b'"'), (b"'", b"'"), (b'r"', b'"'), (b"r'", b"'"), (b'"""', b'"""')]:
-            if is_valid(compressed, delim_start, delim_end):
-                break
+        curr = delim_start = delim_end = None
+        sanitized = sanitize(compressed)
 
-        if not is_valid(compressed, delim_start, delim_end, check_result=True):
-            compressed = sanitize(compressed)
+        for c, (ds, de) in itertools.product([compressed, sanitized],
+                                             [(b'"', b'"'), (b"'", b"'"), (b'r"', b'"'), (b"r'", b"'"),
+                                              (b'"""', b'"""')]):
+            if is_valid(c, ds, de) and (curr is None or len(c) < len(curr)):
+                curr, delim_start, delim_end = c, ds, de
+
+        compressed = curr
 
         while True:
             current_len = len(compressed)
