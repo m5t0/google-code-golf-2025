@@ -1,1 +1,2 @@
-def p(g):r=range(len(g));*a,=zip(*g);[exec("g[i][k:l+1]=g[j][k:l+1]=[3]*(l+1-k)\nfor x in r[i:j]:g[x][k]=g[x][l]=3"*all(g[i][k:l]+g[j][k:l]+[*a[k]][i:j]+[*a[l]][i:j]))for i in r for j in r[i+2:]for k in r for l in r[k+2:]];return g
+a="g[:]=zip(*eval(str(g).replace('%s'))[::-1]);"
+p=lambda g:exec(a%"(0','(2"*5+a%"2, 0','2,2"*62+a%"0, 1','0,3"*4+a%"1, 3','3,3"*4+a%"2','0")or g
