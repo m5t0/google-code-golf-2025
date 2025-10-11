@@ -1,2 +1,2 @@
-f=lambda g:[*zip(*g[:1]+[b for a,b in zip(g,g[1:])if a!=b])]
+f=lambda d:[*zip(*[b for a,b in zip([0]+d,d)if a!=b])]
 p=lambda g:f(f(g))
