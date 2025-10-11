@@ -1,1 +1,1 @@
-p=lambda g,r=range(10):[[g[i][j]&1or(i<sum(g[k][j]>0for k in r))*2for j in r]for i in r]
+p=lambda g:(*zip(*[sorted(c,key=[1,2,0].index)for c in zip(*g)]),)

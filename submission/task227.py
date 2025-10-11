@@ -1,1 +1,1 @@
-p=lambda g:[[(w[i]+w[i+4]<1)*2for w in zip(*g)]for i in[0,1,2,3]]
+p=lambda g:[[2-2*any(w)for w in v]for v in map(zip,g,g[4:])]

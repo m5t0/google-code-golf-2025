@@ -1,1 +1,8 @@
-p=lambda g,e=enumerate:[[w or any(l>i>k>-1<s<j<t for(k,s),(l,t)in zip(*([divmod(i,10)for i,x in e(sum(g,[]))if x>3][j::4]for j in(0,3))))*2for j,w in e(v)]for i,v in e(g)]
+def p(g):
+ r=range(10);d={}
+ for i in r:
+  a=b=0
+  for j in r:g[i][j]&4and(a:=b,b:=j)
+  for x in g[d.get((a,b),i)+1:i]:x[a+1:b]=[2]*(b+~a)
+  d[a,b]=i
+ return g

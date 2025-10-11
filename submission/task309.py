@@ -1,1 +1,1 @@
-p=lambda g:[[x&13for x in v]for v in g]
+p=lambda j:eval(str(j).replace(*"75"))

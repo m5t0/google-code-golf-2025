@@ -1,1 +1,1 @@
-p=lambda g:[[v[i]+v[i+5]and 3for v in zip(*g)]for i in[0,1,2,3]]
+p=lambda g:[[3*any(t)for t in k]for k in map(zip,g,g[5:])]

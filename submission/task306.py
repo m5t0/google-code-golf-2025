@@ -1,1 +1,1 @@
-p=lambda g,r=range,n=10:[[max(g[i%n][j%n::n]+(i-9and g[i%n+n][j%n::n]or[0]))for j in r(len(g[0]))]for i in r(19)]
+p=lambda g,r=range:(s:=[[max(max(v[j%10::10])for v in g[i::10])for j in r(len(g[0]))]for i in r(9)])+[g[9]]+s

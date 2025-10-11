@@ -1,4 +1,3 @@
-def p(g):
- X=[*map(bool,V:=sum(g,[]))].index(1);J=X%10
- for t,s in(a:=g[I:=X//10].count(x:=V[X]),b:=V[X::10].count(x)),(-1,b),(a,-1),(-1,-1):g[I+s][J+t]=g[A:=I+b+1-s-(s<0)*4][B:=J-~a-t-(t<0)*4];g[A][B]=0
+def p(g,d=divmod):
+ for _  in[0]*4:v=sum(g,[]);I,J=d(v.index(m:=max({*v}-{0},key=v.count))-11,10);A,B=d(88-v[::-1].index(m),10);g[I][J]=g[A][B];g[A][B]=0;g=[*map(list,zip(*g))][::-1]
  return g

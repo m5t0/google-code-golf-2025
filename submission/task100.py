@@ -1,1 +1,1 @@
-p=lambda g:2*[[max(v:=sum(g,[]),key=lambda x:(x>0,(s:=g[v.index(x)//10].count(x))*(v.count(x)-2*s+4)))]*2]
+p=lambda g:[[max((C.count(B)*sum(R[C.index(B)]==B for R in g),B)for C in g for B in C if B)[1]]*2]*2

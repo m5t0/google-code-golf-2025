@@ -1,5 +1,7 @@
-def p(g):
- h=[0,*map(any,g),0];j=[i for i in range(11)if h[i]^h[i+1]]
- for i,(_,a,b,c,d)in enumerate(sorted(((t-s)*((v:=10-g[s][::-1].index(4))-(u:=g[s].index(4))),s,t,u,v)for s,t in(j[:2],j[2:])),1):
-  for v in g[a+1:b-1]:v[c+1:d-1]=[i]*(d-c-2)
- return g
+def p(b):
+ C=D=0
+ for(E,B,F)in zip(b,b[1:],b[2:]):
+  C+=4>max(B)
+  for A in range(1,9):
+   if B[A+1]/4*E[A]*F[A]*B[A-1]:B[A]=5+C;D+=C*2-1
+ return[[(A>4)*(2-(A&1^(D<0)))or A for A in A]for A in b]

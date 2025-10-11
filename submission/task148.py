@@ -1,1 +1,3 @@
-p=lambda g,e=enumerate:[[w*(w==2)or(w>7)*4or((2in v[j:])*(8in v[:j])or(8in v[j:])*(2in v[:j]))*8or(i-abs((a:=[*zip(*g)])[0].index(2)-a[-1].index(2))in[k for k,z in e(g)if 8in z])*8for j,w in e(v)]for i,v in e(g)]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("EƒAES™r÷œíKdjm›É¯Qj|¼ğçJ¬JÄØj?ÍÏ<-–RíÍXA¡øıÎÄPüH¯İgË'9³ßRxûÛæzËxŒÂy>;ÍÚIr ½ŒÖVÔ@Ù‘Û[¾ª•pÆÄv§õDËgÑƒ˜8Ûštehé¤gÔ\×ÙKö¶¥¹ş¶¶ùlåZ","L1"),-9))

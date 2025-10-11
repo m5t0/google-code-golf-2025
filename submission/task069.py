@@ -1,7 +1,1 @@
-def p(g,e=enumerate):
- x,y,_=min(h:=[(i,j,w)for i,r in e(g)for j,w in e(r)if(w-8)*w])
- for i,j,_ in h:g[i][j]=0
- for i,r in e(g):
-  for j,w in e(r):
-   for k,l,z in(w==8)*h:g[i+k-x][j+l-y]=z
- return g
+def p(g,e=enumerate):a=[r.__setitem__(j,0)or(i,j,v)for i,r in e(g)for j,v in e(r)if v&7];A,B,_=a[0];[g[i+x-A].__setitem__(j+y-B,w)for i,r in e(g)for j,v in e(r)if v==8 for x,y,w in a];return g

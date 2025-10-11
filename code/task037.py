@@ -1,5 +1,1 @@
-def p(g,r=range):
- for k in r(1,s:=10):
-  a,b=[i for i in r(s*s)if g[i//s][i%s]==k]or[0,0]
-  for i in r(b//s-a//s):g[a//s+i][a%s+((a%s<b%s)-(b%s<a%s))*i]=k
- return g
+p=lambda g,r=range(10):[[max(max({*(v:=sum(g,[]))[(s:=i*10+j)::d]}&{*v[s::-d]})for d in(9,11))for j in r]for i in r]

@@ -1,1 +1,2 @@
-p=lambda g,r=range(16):[[(i+j)%max(sum(g,[]))+1for j in r]for i in r]
+r=range(16)
+p=lambda g:[[(i+j)%max(g[0])+1for j in r]for i in r]

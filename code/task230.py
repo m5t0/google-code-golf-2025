@@ -1,1 +1,1 @@
-def p(g):r=range(n:=len(g));return[[g[i][j]or max(n>j+2*(J:=1-k%2*2)>-1<i+(I:=1-k+k%2)*2<n>0<g[i+I][j+J]&g[i+2*I][j+2*J]and k+1for k in r[:4])for j in r]for i in r]
+p=lambda c:[exec("c[o][n:n+4:3]=1,2;c[o+3][n:n+4:3]=3,4")for o in range(len(c)-2)for n in range(len(c[0])-2)if min(c[o+1][n+1:n+3]+c[o+2][n+1:n+3])]and c

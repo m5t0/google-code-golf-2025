@@ -1,1 +1,1 @@
-p=lambda g,r=range(9):[[g[i//3][j//3]for j in r]for i in r]
+p=lambda g:[*map(f:=lambda v:sum(zip(v,v,v),()),f(g))]

@@ -1,1 +1,2 @@
-p=lambda g,r=range(9):[[(a:=[[w[0]for w in zip(v,*g)if 5in w]for v in g if 5in v])[i-i%3][j-j%3]&a[i%3*3][j%3*3]for j in r]for i in r]
+f=lambda g:[*filter(any,zip(*g))]
+def p(g):h=f(f(g[::3])[::3]);return[[c&d for c in a for d in b]for a in h for b in h]

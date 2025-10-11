@@ -1,2 +1,1 @@
-from itertools import*
-p=lambda g:[*accumulate([v+[0]*3for v in g]+[[0]*6]*3,lambda a,b:[*map(sum,zip([0]+a,b))])]
+p=lambda g,l=[0]*6:[l:=[*map(max,[0]+l[:5],r+[0]*3)]for r in g+3*[l]]

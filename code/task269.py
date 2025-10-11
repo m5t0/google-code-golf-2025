@@ -1,1 +1,1 @@
-def p(g):n=len({*str(g)})-5;r=range(3*n);return[[g[i//n][j//n]for j in r]for i in r]
+def p(g):a={*sum(g,[])}-{0};return[[v for v in r for _ in a]for r in g for _ in a]

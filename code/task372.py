@@ -1,1 +1,1 @@
-p=lambda g:[[a|b for a,b in zip(g[i],g[i+6])]for i in range(5)]
+p=lambda g:[[*map(sum,zip(*x))]for x in zip(g,g[6:])]

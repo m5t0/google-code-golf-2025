@@ -1,3 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes('EAƒ E÷b– 4XÜi8	™i`tjhÕ¤§/hL7?“Ÿ÷ç=‡…‘t²ï+ ı^g¦"Áş•ræ3ğ›fMRvƒÕÆ(¬5Šcu0Â$voËˆ&Glê3¸›±â¶‰:ğèÏÉ\å†\ë®Oî³&Ûd›¨Ùd¢”3š±dY§“8ê(âU`c',"L1"),-9))
+def p(g):n=str(g).count('2')//4+1;s=[2]*n;n//=3;return[s,*[sum((n*[x]for*w,x in zip(*g,v)if{*w}-{0,2}),[2])+[2]for v in g if{*v}-{0,2}for _ in[0]*n],s]

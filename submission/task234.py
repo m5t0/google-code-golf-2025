@@ -1,2 +1,1 @@
-def p(g):
- for _ in' '*4:u=[r for r in g if r.count(max([*filter(any,g)][0]))-1];g=[*zip(*(len(g)-len(u))*g[:1]+u)][::-1]
+p=lambda g:[g:=[*zip(*(len(g)-len(u:=[v for v in g if~-v.count(m(m(g,key=any)))]))*g[:1]+u)][::-1]for m in[max]*4][3]

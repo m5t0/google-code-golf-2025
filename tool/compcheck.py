@@ -10,6 +10,8 @@ from threading import Lock
 
 import numpy as np
 
+COMPCHECK_VERSION = "1.0"
+
 DEFLATE = 0
 ZOPFLI = 1
 ZLIB = 2
@@ -34,7 +36,8 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
             print("Unknown compressor")
             return b""
 
-    get_src = lambda c, ds, de: b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + ds + c + de + b',"L1"),-9))'
+    header = lambda c: b"#coding:L1\n" if max(c) > 127 else b""
+    get_src = lambda c, ds, de: header(c) + b"import zlib\nexec(zlib.decompress(bytes(" + ds + c + de + b',"L1"),-9))'
 
     def sanitize(b_in):
         """Clean up problematic bytes in compressed b-string"""
@@ -174,7 +177,12 @@ class State:
             with open(self.cache_path, "rb") as f:
                 self.cache = pickle.load(f)
 
+        if self.cache.get("VERSION") != COMPCHECK_VERSION:
+            self.cache = {}
+
     def write_cache(self):
+        self.cache["VERSION"] = COMPCHECK_VERSION
+
         with open(self.cache_path, "wb") as f:
             pickle.dump(self.cache, f)
 
@@ -185,7 +193,7 @@ class State:
     def update(self, task_num, code, improvement, compressor):
         with self.lock:
             self.total_saved += improvement
-            self.cache[task_num] = get_hash(code), improvement
+            self.cache[task_num] = compressor, get_hash(code), improvement
 
             if compressor == DEFLATE:
                 self.deflate_cnt += 1
@@ -208,9 +216,10 @@ def process_task(task_num, state):
         with open(our, mode='r') as f:
             our_code = f.read()
 
-        if (cache := state.get_cache(task_num)) and cache[0] == get_hash(our_code.encode()):
-            compressor_used = None
-            improvement = cache[1]
+        # (compressor used, hash, improvement) = cache
+        if (cache := state.get_cache(task_num)) and cache[1] == get_hash(our_code.encode()):
+            compressor_used = cache[0]
+            improvement = cache[2]
             output_lines.append(
                 f"our code already cached" + (f" (saved {improvement} bytes)" if improvement > 0 else ""))
         else:

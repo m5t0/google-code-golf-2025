@@ -1,1 +1,1 @@
-p=lambda g:[[v[j]for j,c in enumerate(zip(*g))if any(c)]for v in g if any(v)]
+p=lambda g,f=filter:[*zip(*f(any,zip(*f(any,g))))]

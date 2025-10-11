@@ -1,1 +1,1 @@
-p=lambda g,r=range:[g[(I:=(b:=[[g[A//(m:=len(g[0])//3)*3+I//3][A%m*3+I%3]>0for I in r(9)]for A in r(len(sum(g,[]))//9)]).index(min(b,key=b.count)))//m*3+i][(a:=I%m*3):a+3]for i in r(3)]
+def p(g):b=[[r[c:c+3]for r in g[i:i+3]]for i in range(0,len(g),3)for c in range(0,len(g[0]),3)];m=[sum(t,[]).count(0)for t in b];return b[m.index(min(m,key=m.count))]

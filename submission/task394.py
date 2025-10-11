@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[g[i-[s:=2+(len(g)>6),-s][i<s]][j-[s,-s][j<s]]for j,w in e(zip(*g))if 0in w]for i,v in e(g)if 0in v]
+p=lambda g:[[max(v[j%(A:=len(g)//7+2)::A])for j,w in enumerate(v)if w<1]for v in g if 0in v]

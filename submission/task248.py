@@ -1,1 +1,1 @@
-def p(g):m=len(g[0]);t=2*m-2;r=range;return[[j in[s:=(9-i)%t,-s%t]for j in r(m)]for i in r(10)]
+p=lambda g:(a:=len(g[0])-1)and[[x==abs((i+a-9)%(2*a)-a)for x in range(-~a)]for i in range(10)]
