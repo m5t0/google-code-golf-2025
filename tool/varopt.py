@@ -206,9 +206,11 @@ def get_score(code: str, examples_to_check: list) -> (int, int):
                 return 999, 999
 
             compressed = compress_custom(COMPRESSOR, code.encode())
+            # min(compressed.count(b"'"), compressed.count(b'"')) when use " or ' as delim
+            # 4                                                   when use """ or ''' as delim
             penalty = sum(
                 compressed.count(c) for c in [b"\\", b"\0", b"\n", b"\r"]
-            ) + min(compressed.count(b"'"), compressed.count(b'"'))
+            ) + min(min(compressed.count(b"'"), compressed.count(b'"')), 4)
             return len(compressed), penalty
     except Exception:
         return 998, 998
@@ -305,7 +307,7 @@ def main():
     candidate_names = list("qertyuiopasdfghjklzxcbnm")
 
     initial_code = FUNCTION_TEMPLATE.replace("##", "")
-    PAYLOAD_OVERHEAD = 60
+    PAYLOAD_OVERHEAD = 63
 
     # --- Initial Validation ---
     print("Running initial validation against all examples...")
