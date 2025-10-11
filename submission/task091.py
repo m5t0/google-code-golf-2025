@@ -1,1 +1,1 @@
-def p(g):v=sum(g,[]);I,J=divmod(v.index(5),len(g[0]));return[V[J:g[I].index(5,J+1)+1]for V in g[I-1:I+v.count(5)//2+1]]
+def p(g):v=sum(g,[]);I=v.index;i,l=I(5),len(g[0]);return[r[i%l:I(5,i+1)%l+1]for r in g[i//l-1:][:v.count(5)+4>>1]]

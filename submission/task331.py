@@ -1,1 +1,1 @@
-p=lambda g,r=range(10):[[max(i and g[i-1][j]*8,j and g[i][j-1]*6,g[i][j],j-9 and g[i][j+1]*7,i-9 and g[i+1][j]*2)for j in r]for i in r]
+p=lambda g,z=[0]:[[a+8*b+2*c+7*d+6*e for a,b,c,d,e in zip(r,u,d,r[1:]+z,z+r[:-1])]for u,r,d in zip([z*10]+g,g,g[1:]+[z*10])]
