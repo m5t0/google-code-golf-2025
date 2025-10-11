@@ -1,2 +1,3 @@
-f=lambda v,j,c:[*v[j:],c].index(c)+[*v[j::-1],c].index(c)
-p=lambda g,e=enumerate:(g:=[[w[i]or 4-(f(v,j,m:=max(g[1]))==f(w,i,m)>2)for j,w in e(zip(*g))]for i,v in e(g)],exec('g[:]=zip(*eval(str(g).replace("4, 3","4,4"))[::-1]);'*16))[0]
+import re
+a="re.sub(r'"
+p=lambda g:exec(r"g[:]=zip(*eval(%s3, 4','4,4',%s([^034], )3, \1',r'\1 4,\1',%s(([^034], ){2,})3',r'\1 4',%s0','3',str(g))))))[::-1]);"%(a,a,a,a)*80)or g
