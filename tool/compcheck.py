@@ -2,6 +2,7 @@ import copy
 import concurrent.futures
 import hashlib
 import importlib.util
+import itertools
 import json
 import os
 import pickle
@@ -9,6 +10,8 @@ import sys
 from threading import Lock
 
 import numpy as np
+
+COMPCHECK_VERSION = "1.2"
 
 DEFLATE = 0
 ZOPFLI = 1
@@ -121,12 +124,16 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
         # We prefer that compressed source not end in a quotation mark
         while (compressed := compress_custom(src.encode(), level=level))[-1] == ord('"'): src += "#"
 
-        for delim_start, delim_end in [(b'"', b'"'), (b"'", b"'"), (b'r"', b'"'), (b"r'", b"'"), (b'"""', b'"""')]:
-            if is_valid(compressed, delim_start, delim_end):
-                break
+        curr = delim_start = delim_end = None
+        sanitized = sanitize(compressed)
 
-        if not is_valid(compressed, delim_start, delim_end, check_result=True):
-            compressed = sanitize(compressed)
+        for c, (ds, de) in itertools.product([compressed, sanitized],
+                                             [(b'"', b'"'), (b"'", b"'"), (b'r"', b'"'), (b"r'", b"'"),
+                                              (b'"""', b'"""'), (b"'''", b"'''"), (b'r"""', b'"""'), (b"r'''", b"'''")]):
+            if is_valid(c, ds, de) and (curr is None or len(c) < len(curr)):
+                curr, delim_start, delim_end = c, ds, de
+
+        compressed = curr
 
         while True:
             current_len = len(compressed)
@@ -175,7 +182,12 @@ class State:
             with open(self.cache_path, "rb") as f:
                 self.cache = pickle.load(f)
 
+        if self.cache.get("VERSION") != COMPCHECK_VERSION:
+            self.cache = {}
+
     def write_cache(self):
+        self.cache["VERSION"] = COMPCHECK_VERSION
+
         with open(self.cache_path, "wb") as f:
             pickle.dump(self.cache, f)
 
@@ -186,7 +198,7 @@ class State:
     def update(self, task_num, code, improvement, compressor):
         with self.lock:
             self.total_saved += improvement
-            self.cache[task_num] = get_hash(code), improvement
+            self.cache[task_num] = compressor, get_hash(code), improvement
 
             if compressor == DEFLATE:
                 self.deflate_cnt += 1
@@ -209,9 +221,10 @@ def process_task(task_num, state):
         with open(our, mode='r') as f:
             our_code = f.read()
 
-        if (cache := state.get_cache(task_num)) and cache[0] == get_hash(our_code.encode()):
-            compressor_used = None
-            improvement = cache[1]
+        # (compressor used, hash, improvement) = cache
+        if (cache := state.get_cache(task_num)) and cache[1] == get_hash(our_code.encode()):
+            compressor_used = cache[0]
+            improvement = cache[2]
             output_lines.append(
                 f"our code already cached" + (f" (saved {improvement} bytes)" if improvement > 0 else ""))
         else:
