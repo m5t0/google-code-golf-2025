@@ -4,5 +4,5 @@ def p(g):
   if r[j-2]<1:
    for r in g:
     for d in 2,3:r[j+d],r[j-d]=r[j-d],0
-  g=[*map(list,zip(*g[::-1]))]
+  *g,=map(list,zip(*g[::-1]))
  return g
