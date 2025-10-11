@@ -1,1 +1,1 @@
-p=lambda g,D=dict.fromkeys,F=filter,Z=zip:[*Z(*D(Z(*D(Z(*F(any,Z(*F(any,g))))))))]
+p=lambda g,f=lambda d:[*zip(*[b for a,b in zip([0]+d,d)if(a!=b)*any(b)])]:f(f(g))
