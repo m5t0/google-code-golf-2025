@@ -34,7 +34,8 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
             print("Unknown compressor")
             return b""
 
-    get_src = lambda c, ds, de: b"#coding:L1\nimport zlib\nexec(zlib.decompress(bytes(" + ds + c + de + b',"L1"),-9))'
+    header = lambda c: b"#coding:L1\n" if max(c) > 127 else b""
+    get_src = lambda c, ds, de: header(c) + b"import zlib\nexec(zlib.decompress(bytes(" + ds + c + de + b',"L1"),-9))'
 
     def sanitize(b_in):
         """Clean up problematic bytes in compressed b-string"""
@@ -211,9 +212,11 @@ def process_task(task_num, state):
         if (cache := state.get_cache(task_num)) and cache[0] == get_hash(our_code.encode()):
             compressor_used = None
             improvement = cache[1]
-            output_lines.append(f"our code already cached" + (f" (saved {improvement} bytes)" if improvement > 0 else ""))
+            output_lines.append(
+                f"our code already cached" + (f" (saved {improvement} bytes)" if improvement > 0 else ""))
         else:
-            improvement, compressor_used, output_str = process_code_single(task_num, "our", our_code, "\033[92m", out, True)
+            improvement, compressor_used, output_str = process_code_single(task_num, "our", our_code, "\033[92m", out,
+                                                                           True)
             output_lines.append(output_str)
             if improvement > 0:
                 output_lines.append(f"Wrote to {out} (saved {improvement} bytes)")
