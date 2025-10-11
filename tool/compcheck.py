@@ -11,7 +11,7 @@ from threading import Lock
 
 import numpy as np
 
-COMPCHECK_VERSION = "1.1"
+COMPCHECK_VERSION = "1.2"
 
 DEFLATE = 0
 ZOPFLI = 1
@@ -129,7 +129,7 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
 
         for c, (ds, de) in itertools.product([compressed, sanitized],
                                              [(b'"', b'"'), (b"'", b"'"), (b'r"', b'"'), (b"r'", b"'"),
-                                              (b'"""', b'"""')]):
+                                              (b'"""', b'"""'), (b"'''", b"'''"), (b'r"""', b'"""'), (b"r'''", b"'''")]):
             if is_valid(c, ds, de) and (curr is None or len(c) < len(curr)):
                 curr, delim_start, delim_end = c, ds, de
 
