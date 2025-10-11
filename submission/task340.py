@@ -1,4 +1,5 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("""%ËA
-!…á«¸4ÓµËi=IpQ¨#JM™Qèékã*¼ü|¯°©]G.ğYB}VÆâŞu”CW÷³2µ1³°èÿH¬ÙÕÃ¥‘±³s“jìÌ«±£w¡iÒ>iŸ´O:•-Y(FJ²÷Të„l¬I˜±Œ›áaıö©*cWƒıM»^"€|¶ùà""","L1"),-9))
+def p(g):
+ for _ in[0]*4:
+  for v in g[1:-1]:v[1]=v[0]*(v[0]in v[1:])
+  g=[*map(list,zip(*g))][::-1]
+ return g[:2]+[v[:2]+[0]*(len(v)-4)+v[-2:]for v in g[2:-2]]+g[-2:]
