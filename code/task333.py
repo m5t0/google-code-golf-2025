@@ -1,2 +1,2 @@
-f=lambda v,j:(3in v[:j])*sum(t:=v[j:])+(3in t)*sum(v[:j])
-p=lambda g,e=enumerate:[[w[i]or f(v,j)+f(w,i)for j,w in e(zip(*g))]for i,v in e(g)]
+import re
+p=lambda g:exec(r"g[:]=zip(*eval(re.sub(r'3, ([0, ]*)0, ([^0])',r'3,\1\2,\2',str(g)))[::-1]);"*24)or g
