@@ -334,6 +334,10 @@ def main():
         + "-" * 30
     )
 
+    if global_best_base + 20 > len(initial_code):
+        print("compressed code is too longer than uncompressed code, so quit.")
+        return
+
     for i in range(LIMIT):
         if i > 0 and i % NEXT_REBASE == 0:
             REBASE_INTERVAL *= REBASE_INTERVAL_SCALING
@@ -379,7 +383,6 @@ def main():
             FUNCTION_TEMPLATE, original_vars = create_template_from_function(
                 global_best_code
             )
-            current_mapping = {var: var for var in original_vars}
             current_base, current_penalty = get_score(
                 global_best_code, checked_examples
             )  # Rescore with potentially new examples
@@ -428,8 +431,18 @@ def main():
     )
     print("\nFinal optimized code:")
     print(global_best_code)
-    with open(filename, "w") as h:
-        h.write(global_best_code)
+
+    if PAYLOAD_OVERHEAD + sum(get_score(global_best_code, checked_examples)) < min(
+        len(initial_code),
+        PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
+    ):
+        print("Write the best code to the file!")
+        with open(filename, "w") as h:
+            h.write(global_best_code)
+    else:
+        print(
+            "Don't write the best code to the file because it's not shorter than initial code."
+        )
 
 
 if __name__ == "__main__":
