@@ -1,3 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("xÚEŒ1†_%p$Sn- Ö'©¢³Ş”4wn+löîÓ8$ù“/ß8·ë-ƒ˜ö,÷âñØğoZ}Œkl™8-ëU  ³¤±ı#áeUz4òôÇtÅ¤·²çgÁGo(&&¢º@ÿa«‚¬0+ŠÖ87®™%†á9ñÅFÅ^uC‰çdF‰ìÑ&@Bú","L1")))
+p=lambda n,e=range:(s:=e(21),l:=min(i for i in e(2,10)if all((a-b)*a*b<1for a,b in zip(n[0],n[0][i:]))),o:={(a%l,b%l):v for a in s for b in s if(v:=n[a][b])})and[[o[i%l,j%l]for j in s]for i in s]
