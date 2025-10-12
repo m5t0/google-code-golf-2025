@@ -4,16 +4,40 @@ from queue import Queue
 import numpy as np
 import pickle
 import argparse
+import time
+import math
 
 sys.path.append("./input/google-code-golf-2025/code_golf_utils")
 from code_golf_utils import *
 from typing import Callable, Any
 
+TASK_ID = 1
 UNSAFE_MODE = False
 SCORE_TIMEOUT_TIME = 1  # seconds
 VALIDATE_TIMEOUT_TIME = 60  # seconds
 FINAL_VALIDATE_TIMEOUT_TIME = 300  # seconds
 COMPRESSOR = "zopfli"
+
+
+# ---------------- Timer Utility ----------------------------
+class Timer:
+    def __init__(self):
+        self.start()
+
+    def start(self):
+        self.start_time = time.time()
+
+    def elapsed_time(self):
+        now = time.time()
+        s = now - self.start_time
+        return s
+
+    def remain_time(self, percent: float):
+        s = self.elapsed_time()
+        es = s / (percent)
+        rs = es - s
+
+        return rs
 
 
 # ---------------- load compcheck cache ------------------------
@@ -187,12 +211,21 @@ def validate_code(
     examples_to_check: list,
     timeout: int | float = VALIDATE_TIMEOUT_TIME,
     unsafe_mode=UNSAFE_MODE,
+    phase="validating",
+    task_id=TASK_ID,
 ) -> tuple[int, list] | None:
     """Checks code against all examples. Returns the first failing example or None."""
     try:
         return run_with_thread_timeout(
             validate_code_runner, timeout, code, examples_to_check, unsafe_mode
         )
+    except TimeoutError:
+        if phase != "scoring":
+            print(
+                f"task{task_id:03d} WARNING: Raised Timeout Error when {phase}",
+                file=sys.stderr,
+            )
+        return examples_to_check[0]
     except Exception:
         # Code fails to execute, so it's invalid. Return the first example as the failure point.
         return examples_to_check[0]
@@ -229,7 +262,11 @@ def get_score(
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=SyntaxWarning)
             failing_example = validate_code(
-                code, examples_to_check, timeout=timeout, unsafe_mode=False
+                code,
+                examples_to_check,
+                timeout=timeout,
+                unsafe_mode=False,
+                phase="scoring",
             )
             if failing_example is not None:
                 return 999, 999
@@ -248,6 +285,7 @@ def get_score(
 
 def main():
     global \
+        TASK_ID, \
         UNSAFE_MODE, \
         SCORE_TIMEOUT_TIME, \
         VALIDATE_TIMEOUT_TIME, \
@@ -310,8 +348,15 @@ def main():
     )
     parser.add_argument(
         "--use-compcheck-cache",
+        type=bool,
         default=True,
         help="use compcheck cache to determine the compressor type",
+    )
+    parser.add_argument(
+        "--auto-timeout-setting",
+        type=bool,
+        default=True,
+        help="set a timeout by the first execution time",
     )
 
     args = parser.parse_args()
@@ -341,7 +386,7 @@ def main():
         with open(filename, "r") as h:
             RAW_FUNCTION_STRING = h.read().strip()
     except Exception:
-        print(f"task{TASK_ID:03d} FATAL: Failed to load the file.", file=sys.stderr)
+        print(f"task{TASK_ID:03d} FATAL: Failed to load the file", file=sys.stderr)
         return
 
     task_data = load_examples(TASK_ID)
@@ -367,13 +412,30 @@ def main():
 
     # --- Initial Validation ---
     print("Running initial validation against all examples...")
-    if validate_code(initial_code, all_examples) is not None:
+    timer = Timer()
+    if (
+        validate_code(initial_code, all_examples, timeout=None, unsafe_mode=False)
+        is not None
+    ):
         print(
-            f"task{TASK_ID:03d} FATAL: Initial raw function is incorrect. Exiting.",
+            f"task{TASK_ID:03d} FATAL: Initial code didn't pass the test. Exiting.",
             file=sys.stderr,
         )
-        raise ValueError("Failed with original")
+        return
+
     print("Initial code PASSED validation.")
+
+    running_time = timer.elapsed_time()
+    if args.auto_timeout_setting:
+        SCORE_TIMEOUT_TIME = max(1, running_time / 10)
+        VALIDATE_TIMEOUT_TIME = (
+            running_time * 2 if not UNSAFE_MODE else max(1, running_time / 10)
+        )
+        FINAL_VALIDATE_TIMEOUT_TIME = running_time * 10
+
+        print(
+            f"Setting timeout automatically. score_timeout:{SCORE_TIMEOUT_TIME:.2f}s, validate_timeout:{VALIDATE_TIMEOUT_TIME:.2f}s, final_vaildate_timeout:{FINAL_VALIDATE_TIMEOUT_TIME:.2f}s"
+        )
 
     current_base, current_penalty = get_score(initial_code, checked_examples)
     current_total_size = PAYLOAD_OVERHEAD + current_base + current_penalty
@@ -500,6 +562,7 @@ def main():
             all_examples,
             timeout=FINAL_VALIDATE_TIMEOUT_TIME,
             unsafe_mode=False,
+            phase="final validating",
         )
         is not None
     ):

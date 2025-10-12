@@ -1,1 +1,1 @@
-p=lambda n:(s:=range(21),l:=min(i for i in s[2:]if all((a-b)*a*b<1for a,b in zip(n[0],n[0][i:]))),n:={(a%l,b%l):v for a in s for b in s if(v:=n[a][b])})and[[n[i%l,j%l]for j in s]for i in s]
+p=lambda r:(z:=range(21),l:=min(n for n in z[2:]if all((n-a)*n*a<1for n,a in zip(r[0],r[0][n:]))),r:={(n%l,a%l):i for n in z for a in z if(i:=r[n][a])})and[[r[n%l,a%l]for a in z]for n in z]

@@ -1,16 +1,16 @@
-def p(e):
- for f,i in enumerate(e):
-  if 5in i:m=i.index(5);break
+def p(x):
+ for r,e in enumerate(x):
+  if 5in e:f=e.index(5);break
  else:return 1
- if[5]==i[m+1:m+2]and e[f+1][m:m+2]==[5,5]:
-  i[m:m+2]=e[f+1][m:m+2]=8,8
-  if p(e):return e
-  i[m:m+2]=e[f+1][m:m+2]=5,5
- if i[m+1:m+3]==[5,5]:
-  i[m:m+3]=2,2,2
-  if p(e):return e
-  i[m:m+3]=5,5,5
- if f<6and e[f+1][m]==e[f+2][m]==5:
-  i[m]=e[f+1][m]=e[f+2][m]=2
-  if p(e):return e
-  i[m]=e[f+1][m]=e[f+2][m]=5
+ if[5]==e[f+1:f+2]and x[r+1][f:f+2]==[5,5]:
+  e[f:f+2]=x[r+1][f:f+2]=8,8
+  if p(x):return x
+  e[f:f+2]=x[r+1][f:f+2]=5,5
+ if e[f+1:f+3]==[5,5]:
+  e[f:f+3]=2,2,2
+  if p(x):return x
+  e[f:f+3]=5,5,5
+ if r<6and x[r+1][f]==x[r+2][f]==5:
+  e[f]=x[r+1][f]=x[r+2][f]=2
+  if p(x):return x
+  e[f]=x[r+1][f]=x[r+2][f]=5
