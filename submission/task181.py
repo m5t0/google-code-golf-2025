@@ -1,4 +1,3 @@
 def p(j):
-	A=6*(j[3][3]<1)
-	for B in range(3):j[B][A:A+3]=j[B][3:6][::-1]
-	return j
+ for r in j[:3]:c=6*(j[3][3]<1);r[c:c+3]=r[5:2:-1]
+ return j
