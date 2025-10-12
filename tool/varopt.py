@@ -451,7 +451,7 @@ def main():
             h.write(global_best_code)
     else:
         print(
-            "Don't write the best code to the file because it's not shorter than initial code."
+            "Don't write the best code to the file because it's not shorter than the initial code."
         )
 
 
