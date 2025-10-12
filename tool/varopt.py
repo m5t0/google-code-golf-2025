@@ -357,7 +357,10 @@ def main():
     # --- Initial Validation ---
     print("Running initial validation against all examples...")
     if validate_code(initial_code, all_examples) is not None:
-        print("FATAL: Initial raw function is incorrect. Exiting.")
+        print(
+            "task{TASK_ID:03d} FATAL: Initial raw function is incorrect. Exiting.",
+            file=sys.stderr,
+        )
         raise ValueError("Failed with original")
     print("Initial code PASSED validation.")
 
@@ -480,7 +483,8 @@ def main():
         is not None
     ):
         print(
-            "WARNING: The final best code failed full validation. Something may be wrong."
+            f"task{TASK_ID:03d} WARNING: The final best code failed full validation. Something may be wrong.(This warning sometimes occur due to the unsafe option.)",
+            file=sys.stderr,
         )
         return
     else:
