@@ -25,7 +25,10 @@ def load_compressor_from_cache(task_id: int, default: str) -> str:
             print(f"Loaded compressor type {compressor} from the cache")
             return compressor
     except Exception as e:
-        print(f"WARNING:Raised exception while reading the cache")
+        print(
+            f"task{task_id:03d} WARNING:Raised exception while reading the cache",
+            file=sys.stderr,
+        )
         return default
 
 
