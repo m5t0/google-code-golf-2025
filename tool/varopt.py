@@ -1,7 +1,8 @@
-import ast, keyword, re, random, json, zopfli.zlib, copy, sys, os, zipfile, glob, warnings, zlib, time
+import ast, keyword, re, random, json, copy, sys, os, zipfile, glob, warnings, zlib, time
 import threading, ctypes
 from queue import Queue
 import numpy as np
+import pickle
 import argparse
 
 sys.path.append("./input/google-code-golf-2025/code_golf_utils")
@@ -13,6 +14,20 @@ SCORE_TIMEOUT_TIME = 1  # seconds
 VALIDATE_TIMEOUT_TIME = 60  # seconds
 FINAL_VALIDATE_TIMEOUT_TIME = 300  # seconds
 COMPRESSOR = "zopfli"
+
+
+# ---------------- load compcheck cache ------------------------
+def load_compressor_from_cache(task_id: int, default: str) -> str:
+    try:
+        with open("./tool/cache.pkl", "rb") as f:
+            data = pickle.load(f)
+            compressor = ["deflate", "zopfli", "zlib"][data[task_id][0]]
+            print(f"Loaded compressor type {compressor} from the cache")
+            return compressor
+    except Exception as e:
+        print(f"WARNING:Raised exception while reading the cache")
+        return default
+
 
 # ------------------ multithread utility ------------------------------
 
@@ -63,7 +78,7 @@ def run_with_thread_timeout(
     assert not x.is_alive()
 
     if alive:
-        raise Exception()
+        raise TimeoutError()
     try:
         return result_queue.get()
     except Exception:
@@ -288,6 +303,11 @@ def main():
         action="store_true",
         help="validate only with 1 example when this option exists",
     )
+    parser.add_argument(
+        "--use-compcheck-cache",
+        default=True,
+        help="use compcheck cache to determine the compressor type",
+    )
 
     args = parser.parse_args()
 
@@ -302,6 +322,9 @@ def main():
     NEXT_REBASE = args.next_rebase
     REBASE_INTERVAL_SCALING = args.rebase_interval_scaling
     UNSAFE_MODE = args.unsafe
+
+    if args.use_compcheck_cache:
+        COMPRESSOR = load_compressor_from_cache(TASK_ID, COMPRESSOR)
 
     print("*" * 60)
     print(filename, TASK_ID)
