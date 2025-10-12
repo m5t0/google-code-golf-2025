@@ -1,4 +1,1 @@
-def p(g):
- (a,b),(c,d)=(divmod(sum(g,[]).index(x),len(g[0]))for x in[3,2]);g[c][b:d:b<d or-1]=[8]*abs(b-d)
- while a-c:g[a:=a+(a<c or-1)][b]=8
- return g
+p=lambda g:[g:=[[w or(max(max(g[:j+1]))>0<max(max(g[j:])))*(3-k in v)*8for j,w in enumerate(v)]for v in zip(*g)]for k in[0,1]][1]
