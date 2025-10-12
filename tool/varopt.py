@@ -11,13 +11,6 @@ sys.path.append("./input/google-code-golf-2025/code_golf_utils")
 from code_golf_utils import *
 from typing import Callable, Any
 
-TASK_ID = 1
-UNSAFE_MODE = False
-SCORE_TIMEOUT_TIME = 1  # seconds
-VALIDATE_TIMEOUT_TIME = 60  # seconds
-FINAL_VALIDATE_TIMEOUT_TIME = 300  # seconds
-COMPRESSOR = "zopfli"
-
 
 # ---------------- Timer Utility ----------------------------
 class Timer:
@@ -209,10 +202,10 @@ def validate_code_runner(
 def validate_code(
     code: str,
     examples_to_check: list,
-    timeout: int | float = VALIDATE_TIMEOUT_TIME,
-    unsafe_mode=UNSAFE_MODE,
-    phase="validating",
-    task_id=TASK_ID,
+    timeout: int | float,
+    unsafe_mode: bool,
+    phase: str,
+    task_id: int,
 ) -> tuple[int, list] | None:
     """Checks code against all examples. Returns the first failing example or None."""
     try:
@@ -255,8 +248,9 @@ def compress_custom(compressor: str, data: str):
 def get_score(
     code: str,
     examples_to_check: list,
-    compressor: str = COMPRESSOR,
-    timeout: int | float = SCORE_TIMEOUT_TIME,
+    compressor: str,
+    timeout: int | float,
+    task_id: int,
 ) -> tuple[int, int]:
     try:
         with warnings.catch_warnings():
@@ -267,6 +261,7 @@ def get_score(
                 timeout=timeout,
                 unsafe_mode=False,
                 phase="scoring",
+                task_id=task_id,
             )
             if failing_example is not None:
                 return 999, 999
@@ -284,13 +279,12 @@ def get_score(
 
 
 def main():
-    global \
-        TASK_ID, \
-        UNSAFE_MODE, \
-        SCORE_TIMEOUT_TIME, \
-        VALIDATE_TIMEOUT_TIME, \
-        FINAL_VALIDATE_TIMEOUT_TIME, \
-        COMPRESSOR
+    TASK_ID = 1
+    UNSAFE_MODE = False
+    SCORE_TIMEOUT_TIME = 1  # seconds
+    VALIDATE_TIMEOUT_TIME = 60  # seconds
+    FINAL_VALIDATE_TIMEOUT_TIME = 300  # seconds
+    COMPRESSOR = "zopfli"
 
     parser = argparse.ArgumentParser()
     parser.add_argument("task_id", type=int, help="task id")
@@ -414,7 +408,14 @@ def main():
     print("Running initial validation against all examples...")
     timer = Timer()
     if (
-        validate_code(initial_code, all_examples, timeout=None, unsafe_mode=False)
+        validate_code(
+            initial_code,
+            all_examples,
+            timeout=None,
+            unsafe_mode=False,
+            phase="validating",
+            task_id=TASK_ID,
+        )
         is not None
     ):
         print(
@@ -437,7 +438,13 @@ def main():
             f"Setting timeout automatically. score_timeout:{SCORE_TIMEOUT_TIME:.2f}s, validate_timeout:{VALIDATE_TIMEOUT_TIME:.2f}s, final_vaildate_timeout:{FINAL_VALIDATE_TIMEOUT_TIME:.2f}s"
         )
 
-    current_base, current_penalty = get_score(initial_code, checked_examples)
+    current_base, current_penalty = get_score(
+        initial_code,
+        checked_examples,
+        compressor=COMPRESSOR,
+        timeout=SCORE_TIMEOUT_TIME,
+        task_id=TASK_ID,
+    )
     current_total_size = PAYLOAD_OVERHEAD + current_base + current_penalty
 
     # Global best tracking
@@ -468,7 +475,16 @@ def main():
                 TASK_ID,
                 min(
                     len(initial_code),
-                    PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
+                    PAYLOAD_OVERHEAD
+                    + sum(
+                        get_score(
+                            initial_code,
+                            checked_examples,
+                            compressor=COMPRESSOR,
+                            timeout=SCORE_TIMEOUT_TIME,
+                            task_id=TASK_ID,
+                        )
+                    ),
                 ),
             ),
             file=sys.stderr,
@@ -483,7 +499,14 @@ def main():
                 f"\n--- Rebase at iter {i}: Validating global best (Size: {global_best_total_size}) ---"
             )
 
-            failing_example = validate_code(global_best_code, all_examples)
+            failing_example = validate_code(
+                global_best_code,
+                all_examples,
+                timeout=VALIDATE_TIMEOUT_TIME,
+                unsafe_mode=UNSAFE_MODE,
+                phase="validating",
+                task_id=TASK_ID,
+            )
 
             if failing_example:
                 fail_id, fail_ex = failing_example
@@ -521,7 +544,11 @@ def main():
                 global_best_code
             )
             current_base, current_penalty = get_score(
-                global_best_code, checked_examples
+                global_best_code,
+                checked_examples,
+                compressor=COMPRESSOR,
+                timeout=SCORE_TIMEOUT_TIME,
+                task_id=TASK_ID,
             )  # Rescore with potentially new examples
             print(f"New rebase variables: {original_vars}\n" + "-" * 30)
 
@@ -541,7 +568,13 @@ def main():
         for var in original_vars:
             trial_code = trial_code.replace(f"##{var}##", trial_mapping[var])
 
-        trial_base, trial_penalty = get_score(trial_code, checked_examples)
+        trial_base, trial_penalty = get_score(
+            trial_code,
+            checked_examples,
+            compressor=COMPRESSOR,
+            timeout=SCORE_TIMEOUT_TIME,
+            task_id=TASK_ID,
+        )
         trial_total_size = PAYLOAD_OVERHEAD + trial_base + trial_penalty
 
         if trial_total_size <= global_best_total_size:
@@ -563,6 +596,7 @@ def main():
             timeout=FINAL_VALIDATE_TIMEOUT_TIME,
             unsafe_mode=False,
             phase="final validating",
+            task_id=TASK_ID,
         )
         is not None
     ):
@@ -572,6 +606,8 @@ def main():
                 all_examples,
                 timeout=FINAL_VALIDATE_TIMEOUT_TIME,
                 unsafe_mode=False,
+                phase="validating",
+                task_id=TASK_ID,
             )
             is not None
         ):
@@ -596,9 +632,26 @@ def main():
     print("\nFinal optimized code:")
     print(global_best_code)
 
-    if PAYLOAD_OVERHEAD + sum(get_score(global_best_code, checked_examples)) < min(
+    if PAYLOAD_OVERHEAD + sum(
+        get_score(
+            global_best_code,
+            checked_examples,
+            compressor=COMPRESSOR,
+            timeout=SCORE_TIMEOUT_TIME,
+            task_id=TASK_ID,
+        )
+    ) < min(
         len(initial_code),
-        PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
+        PAYLOAD_OVERHEAD
+        + sum(
+            get_score(
+                initial_code,
+                checked_examples,
+                compressor=COMPRESSOR,
+                timeout=SCORE_TIMEOUT_TIME,
+                task_id=TASK_ID,
+            )
+        ),
     ):
         print("Write the best code to the file!")
         print(
@@ -606,9 +659,27 @@ def main():
                 TASK_ID,
                 min(
                     len(initial_code),
-                    PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
+                    PAYLOAD_OVERHEAD
+                    + sum(
+                        get_score(
+                            initial_code,
+                            checked_examples,
+                            compressor=COMPRESSOR,
+                            timeout=SCORE_TIMEOUT_TIME,
+                            task_id=TASK_ID,
+                        )
+                    ),
                 ),
-                PAYLOAD_OVERHEAD + sum(get_score(global_best_code, checked_examples)),
+                PAYLOAD_OVERHEAD
+                + sum(
+                    get_score(
+                        global_best_code,
+                        checked_examples,
+                        compressor=COMPRESSOR,
+                        timeout=SCORE_TIMEOUT_TIME,
+                        task_id=TASK_ID,
+                    )
+                ),
             ),
             file=sys.stderr,
         )
@@ -623,7 +694,16 @@ def main():
                 TASK_ID,
                 min(
                     len(initial_code),
-                    PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
+                    PAYLOAD_OVERHEAD
+                    + sum(
+                        get_score(
+                            initial_code,
+                            checked_examples,
+                            compressor=COMPRESSOR,
+                            timeout=SCORE_TIMEOUT_TIME,
+                            task_id=TASK_ID,
+                        )
+                    ),
                 ),
             ),
             file=sys.stderr,
