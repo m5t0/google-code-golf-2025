@@ -9,6 +9,7 @@ sys.path.append("./input/google-code-golf-2025/code_golf_utils")
 from code_golf_utils import *
 from typing import Callable, Any
 
+TASK_ID = 1
 UNSAFE_MODE = False
 SCORE_TIMEOUT_TIME = 1  # seconds
 VALIDATE_TIMEOUT_TIME = 60  # seconds
@@ -187,12 +188,21 @@ def validate_code(
     examples_to_check: list,
     timeout: int | float = VALIDATE_TIMEOUT_TIME,
     unsafe_mode=UNSAFE_MODE,
+    phase="validating",
+    task_id=TASK_ID,
 ) -> tuple[int, list] | None:
     """Checks code against all examples. Returns the first failing example or None."""
     try:
         return run_with_thread_timeout(
             validate_code_runner, timeout, code, examples_to_check, unsafe_mode
         )
+    except TimeoutError:
+        if phase!="scoring":
+            print(
+                f"task{task_id:03d} WARNING: Raised Timeout Error when {phase}",
+                file=sys.stderr,
+            )
+        return examples_to_check[0]
     except Exception:
         # Code fails to execute, so it's invalid. Return the first example as the failure point.
         return examples_to_check[0]
@@ -229,7 +239,11 @@ def get_score(
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=SyntaxWarning)
             failing_example = validate_code(
-                code, examples_to_check, timeout=timeout, unsafe_mode=False
+                code,
+                examples_to_check,
+                timeout=timeout,
+                unsafe_mode=False,
+                phase="scoring",
             )
             if failing_example is not None:
                 return 999, 999
@@ -248,6 +262,7 @@ def get_score(
 
 def main():
     global \
+        TASK_ID, \
         UNSAFE_MODE, \
         SCORE_TIMEOUT_TIME, \
         VALIDATE_TIMEOUT_TIME, \
@@ -341,7 +356,7 @@ def main():
         with open(filename, "r") as h:
             RAW_FUNCTION_STRING = h.read().strip()
     except Exception:
-        print(f"task{TASK_ID:03d} FATAL: Failed to load the file.", file=sys.stderr)
+        print(f"task{TASK_ID:03d} FATAL: Failed to load the file", file=sys.stderr)
         return
 
     task_data = load_examples(TASK_ID)
@@ -369,10 +384,10 @@ def main():
     print("Running initial validation against all examples...")
     if validate_code(initial_code, all_examples) is not None:
         print(
-            f"task{TASK_ID:03d} FATAL: Initial raw function is incorrect. Exiting.",
+            f"task{TASK_ID:03d} FATAL: Initial code didn't pass the test. Exiting.",
             file=sys.stderr,
         )
-        raise ValueError("Failed with original")
+        return
     print("Initial code PASSED validation.")
 
     current_base, current_penalty = get_score(initial_code, checked_examples)
@@ -500,6 +515,7 @@ def main():
             all_examples,
             timeout=FINAL_VALIDATE_TIMEOUT_TIME,
             unsafe_mode=False,
+            phase="final validating",
         )
         is not None
     ):
