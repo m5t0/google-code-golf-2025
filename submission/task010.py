@@ -1,1 +1,1 @@
-p=lambda g:[*zip(*[[v*sum(g[-sum(w)//5])/25for v in w]for w in zip(*g)])]
+p=lambda g:[[x*sum(g[-sum(w)//5])/25for*w,x in zip(*g,v)]for v in g]

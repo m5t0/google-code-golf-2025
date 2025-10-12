@@ -1,5 +1,5 @@
-def p(g,e=enumerate):
- h=lambda n:[(i,j)for i,r in e(g)for j,v in e(r)if v&n];u=lambda l:[*map(min,*l),*map(max,*l)];z=lambda t,b,T,B:max(T-b-1,0)-max(t-B-1,0);y=u(a:=h(2))+u(h(8))
- for i,j in a:g[i][j]=0
- for i,j in a:g[i+z(*y[::2])][j+z(*y[1::2])]=2
- return g
+def p(x,e=enumerate):
+ m=lambda n:[(u,i)for u,i in e(x)for i,a in e(i)if a&n];i=lambda n:[*map(min,*n),*map(max,*n)];r=lambda x,r,n,e:max(n-r-1,0)-max(x-e-1,0);n=i(a:=m(2))+i(m(8))
+ for u,i in a:x[u][i]=0
+ for u,i in a:x[u+r(*n[::2])][i+r(*n[1::2])]=2
+ return x

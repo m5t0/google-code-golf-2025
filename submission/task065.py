@@ -1,1 +1,1 @@
-def p(g):n=len(g)//2;return min(v:=[[*map(lambda x:x[(s:=k%2*(n+1)):s+n],g[(t:=k//2*(n+1)):t+n])]for k in range(4)],key=lambda y:v.count(y))
+def p(g):r=range(n:=len(g)//2);n+=1;return[[min(v:=g[i][j::n]+g[i+n][j::n],key=v.count)for j in r]for i in r]

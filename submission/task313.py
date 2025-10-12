@@ -1,0 +1,1 @@
+def p(g):r=range(len(g));return[[g[i&1][1+j%~-len({*g[0]})]for j in r]for i in r]

@@ -1,1 +1,1 @@
-p=lambda g,r=range(10):[[((k:=min(i,9-i))<1or k==2or((j<1)+(j>8)))*[max(max(g[5:])),max(max(g[:5]))][i<5]for j in r]for i in r]
+p=lambda g,R=range(10):[[sum(g[2+i//5*5])*(i%7&-3<1or j%9<1)for j in R]for i in R]

@@ -1,1 +1,1 @@
-def p(g,e=enumerate):c=min((x,c)for c in range(10)if(x:=sum(g,[]).count(c)))[1];[g==exec("v[j]=len((a:={*v[j-(j>0):j+2]}-{0,c})and{*[*zip(*g)][j][i-(i>0):i+2]}-{0,c})*sum(a)")for i,v in e(g)for j,w in e(v)if w==c];return g
+p=lambda g,e=enumerate:[[[s:=w[i],sum({*v[j-(j>0):j+2]}&{*w[i-(i>0):i+2]})-s][sum(g,[]).count(s)<30]for j,w in e(zip(*g))]for i,v in e(g)]

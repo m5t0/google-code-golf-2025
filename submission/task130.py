@@ -1,1 +1,1 @@
-p=lambda g,r=range:[[max((str(v:=[a[3*j:3*j+3]for a in g[3*i:3*i+3]]).count(str(w:=v[k//3][k%3])),w)for k in r(9))[1]for j in r(3)]for i in r(3)]
+p=lambda g:[[sum({*v[i:i+3],5})-5for i in(0,3,6)]for v in g[::3]]

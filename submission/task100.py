@@ -1,1 +1,1 @@
-p=lambda g,r=range:[[max(((k-i)*(l-j),v)for i in r(9)for j in r(9)for k in r(i+2,11)for l in r(j+2,11)if(v:=g[i][j])and len({*g[i][j:l]+g[k-1][j:l]+(b:=[*map(list,zip(*g))])[j][i:k]+b[l-1][i:k]})==1)[1]]*2]*2
+p=lambda g:[[max((C.count(B)*sum(R[C.index(B)]==B for R in g),B)for C in g for B in C if B)[1]]*2]*2

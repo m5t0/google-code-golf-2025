@@ -1,0 +1,1 @@
+p=lambda g:[[v[~i]for i in range(16)if v[i]<1]for v in g if 0in v]

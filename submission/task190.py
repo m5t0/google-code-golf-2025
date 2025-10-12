@@ -1,1 +1,2 @@
-def p(g,r=range):[exec("a=i+l//2*3-1;b=j+l%2*3-1\nwhile g[a][b]and-1<(a:=a+l//2*2-1)<10>(b:=b+l%2*2-1)>-1:g[a][b]=g[i][j]")for k in r(81)if min(g[i:=k//9][(j:=k%9):j+2]+g[i+1][j:j+2])for l in r(4)];return g
+import re
+p=lambda g:exec(r"g[:]=zip(*eval(re.sub(r'0(?=.{34}(?:.{35})*([1-9]).{34}\1.{31}\1)',r'\1',str(g)))[::-1]);"*4)or g

@@ -1,1 +1,1 @@
-p=lambda g:[[v[j//2]for j in range(2*len(v))if len({*[*zip(*g)][j//2]})>1]for v in g if len({*v})>1for k in range(2)]
+p=lambda g:sum([[sum(([w[0]]*2for w in zip(v,*g)if 4in w),[])]*2*(4in v)for v in g],[])

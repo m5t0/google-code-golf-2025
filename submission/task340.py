@@ -1,2 +1,5 @@
-f=lambda v,j,m:v[0]*(j==1)*(v[0]in v[1:])+v[-1]*(j==m-2)*(v[-1]in v[:-1])
-p=lambda g,e=enumerate:[[[f(v,j,m:=len(g[0]))+f(w,i,n:=len(g)),v[j]][min(i,n-1-i,j,m-1-j)<1]for j,w in e(zip(*g))]for i,v in e(g)]
+def p(g):
+ for _ in[0]*4:
+  for v in g[1:-1]:v[1]=v[0]*(v[0]in v[1:])
+  *g,=map(list,zip(*g[::-1]))
+ return g[:2]+[v[:2]+[0]*(len(v)-4)+v[-2:]for v in g[2:-2]]+g[-2:]

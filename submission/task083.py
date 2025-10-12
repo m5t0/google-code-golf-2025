@@ -1,1 +1,1 @@
-p=lambda g:[[g[min(i,5-i)][min(j,7-j)]for j in range(8)]for i in range(6)]
+p=lambda g:[v+v[::-1]for v in g+g[::-1]]

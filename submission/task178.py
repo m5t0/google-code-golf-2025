@@ -1,1 +1,1 @@
-p=lambda g,D=lambda s:[k for i,k in enumerate(s)if i<1or k!=s[i-1]]:[[[v]for v in D([*zip(*g)][0])],[[*D(g[0])]]][len({*g[0]})>1]
+p=lambda g:[*map(f:=lambda g:[b for a,b in zip([0]+g,g)if a!=b],f(g))]

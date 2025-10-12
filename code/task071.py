@@ -1,1 +1,1 @@
-p=lambda g,r=range(16):[[[v[(j,2*k-j+b)[v[j]==c]]for j in r]for v in g]for c in r if len({v[j]for v in g for j in r if c in v if c in[*zip(*g)][j]})<2for b in(0,1)for k in r if all((v[j]!=c!=v[t]!=v[j])^1if(t:=2*k-j+b)in r else v[j]in(0,c)for v in g for j in r)][0]
+p=lambda d,j=range(16):[[[i[(f,2*e-f+h)[i[f]==a]]for f in j]for i in d]for a in j if len({i[f]for i in d for f in j if a in i if a in[*zip(*d)][f]})<2for h in(0,1)for e in j if all((i[f]!=a!=i[t]!=i[f])^1if(t:=2*e-f+h)in j else i[f]in(0,a)for i in d for f in j)][0]

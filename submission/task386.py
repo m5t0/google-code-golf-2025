@@ -1,0 +1,1 @@
+p=lambda g:[[3-3*any(v[j::4])for j in[0,1,2]]for v in g]

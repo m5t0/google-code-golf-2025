@@ -1,0 +1,1 @@
+p=lambda g:[g:=[*zip(*eval(str(g).replace("0, 1",i+",1")))][::-1]for i in"7268"][3]

@@ -1,1 +1,1 @@
-def p(g):r,m,n=range,len(g),len(g[0]);g=[g,[*zip(*g)]][m<n];a,b=[i for i in r(len(g))if sum(g[i])];c=2*(a-b);return[[((k:=[i,j][m<n])>=min(a,b))*((k%c==a%c)*sum(g[a])+(k%c==b%c)*sum(g[b]))for j in r(n)]for i in r(m)]
+def p(s):o,m,n=range,len(s),len(s[0]);s=[s,[*zip(*s)]][m<n];a,i=[f for f in o(len(s))if sum(s[f])];p=2*(a-i);return[[((k:=[f,r][m<n])>=min(a,i))*((k%p==a%p)*sum(s[a])+(k%p==i%p)*sum(s[i]))for r in o(n)]for f in o(m)]

@@ -1,4 +1,4 @@
-def p(g,r=range):
- m,n=len(g),len(g[0]);i,j,k,l=max(((j-i)*(l-k),i,j,k,l)for i in r(m)for j in r(i+2,m+1)for k in r(n)for l in r(k+2,n+1)if max(max(r[k:l])for r in g[i:j])<1)[1:]
- for p in r(i,j):g[p][k:l]=[6]*(l-k)
- return g
+def p(m,r=range):
+ q,g=len(m),len(m[0]);e,f,n,i=max(((f-e)*(i-n),e,f,n,i)for e in r(q)for f in r(e+2,q+1)for n in r(g)for i in r(n+2,g+1)if max(max(r[n:i])for r in m[e:f])<1)[1:]
+ for r in r(e,f):m[r][n:i]=[6]*(i-n)
+ return m

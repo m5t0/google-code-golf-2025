@@ -1,1 +1,1 @@
-p=lambda g,r=range:[[g[i][j]or any(any(v[j%6::6])for v in g[i%6::6])*g[5][0]for j in r(len(g[0]))]for i in r(len(g))]
+R=range(17);p=lambda g:[[g[y][x]or g[y%6][x%6]and g[0][5]for x in R]for y in R]

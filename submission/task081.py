@@ -1,1 +1,1 @@
-p=lambda g,r=range:[[g[i][j]or+any(sum(0<i+k//2<7>j+k%2>0and g[i+k//2+l//2-1][j+k%2+l%2-1]for l in r(4))>20for k in r(4))for j in r(7)]for i in r(7)]
+p=lambda g,e=enumerate:[[w[i]or(8in w[i-1:i]+w[i:i+2])&(8in v[j-1:j]+v[j:j+2])for j,w in e(zip(*g))]for i,v in e(g)]

@@ -1,1 +1,1 @@
-p=lambda g:[[min(min(g[k][l],g[l][k])for k in[i,31-i]for l in[j,31-j]if-1<k<30>l>-1)for j in range(30)]for i in range(30)]
+p=lambda g:[[min(min(g[k][l],g[l][k])for k in[i,31-i]for l in[j,31-j]if k<30>l)for j in range(30)]for i in range(30)]

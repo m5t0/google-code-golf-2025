@@ -1,7 +1,7 @@
-def p(g):
- l=len;*z,=zip(*g);g=[z,g][v:=1in{l({*c})for c in z}];n=l(g[0]);o=[n*[0]for _ in g]
- for s in range(l(g)*n):
-  if(c:=(b:=g[i:=s//n])[j:=s%n])*(l({*[*zip(*g)][j]})<2):
-   a=o[i];a[j]=c;a[j-1]=c*(c in b[:j])
-   if j<n-1:a[j+1]=c*(c in b[j+1:])
- return([*zip(*o)],o)[v]
+def p(r):
+ p=len;*n,=zip(*r);r=[n,r][f:=1in{p({*u})for u in n}];n=p(r[0]);t=[n*[0]for u in r]
+ for u in range(p(r)*n):
+  if(u:=(l:=r[i:=u//n])[g:=u%n])*(p({*[*zip(*r)][g]})<2):
+   i=t[i];i[g]=u;i[g-1]=u*(u in l[:g])
+   if g<n-1:i[g+1]=u*(u in l[g+1:])
+ return([*zip(*t)],t)[f]

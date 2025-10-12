@@ -1,1 +1,1 @@
-p=lambda g:sorted([x for c in range(1,10)if(x:=[[v[j]for j in range(len(v))if c in[*zip(*g)][j]]for v in g if c in v])],key=lambda x:len(x)*len(x[0]))[0]
+p=lambda g:[[w[0]for w in zip(v,*g)if m in w]for v in g if(m:=min({*(V:=sum(g,[]))}-{0},key=V.count))in v]

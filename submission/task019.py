@@ -1,6 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("""5ÌÁ
-ƒ0Ğ»_±Aë
-µ§"ú!Á$&”D––ü~“m=ÍÌ;Ì®\rœmÇ
-L¸`œ_:d@yW-Ò¬FI‰.€í¬ªxº2—æq;Ê	“¿(1±‰b®Ğu#ëZÔgõ—‚3`¥«%}Ôö~˜Ä”ïá××ÜÓ¥PrUó?óÕ³Òïˆ_""","L1"),-9))
+def p(g,e=enumerate):g*=2;return[[w or any(sum((u:=r*2)[j-1:j]+u[j+1:j+2])for r in g[i-1:i]+g[i+1:i+2])<<3for j,w in e(v*2)]for i,v in e(g)]

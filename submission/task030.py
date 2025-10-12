@@ -1,1 +1,1 @@
-def p(g,r=range):m=len(g);t=[max(max(i*(v[i]==x)for i in r(m))for v in zip(*g))for x in r(10)];return[[(g*3)[m+i+t[max([*zip(*g)][j])]-t[1]][j]for j in r(len(g[0]))]for i in r(m)]
+p=lambda g:[[(t:=r+[0]*7)[j]%2|t[(a:=(i:=sum(g,[]).index)(1)%10)+j-i(2)%10]%2*2|t[j-i(4)%10+a]%2*4for j in range(10)]for r in g]

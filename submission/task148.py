@@ -1,1 +1,3 @@
-def p(g,e=enumerate):a=[*zip(*g)];return[[w*(w==2)or(w>7)*4or((2in v[j:])*(8in v[:j])or(8in v[j:])*(2in v[:j]))*8or(i-abs(a[0].index(2)-a[-1].index(2))in[k for k,z in e(g)if 8in z])*8for j,w in e(v)]for i,v in e(g)]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("ELƒALeË3û¶?‘­³m&F©ÝáÏ•<Y•ˆ±Õ~šŸyZ,¥Ú›±‚Bñû1ˆ¡ø?^;gË'óÞRxüíqÄ“ƒó }v™´“ä zÿ­­¨²#··|U+áŒ»ŠíN«DËgÑƒ˜x[tghéäÙS®û£bŒäz-mƒ¹Êµ","L1"),-9))

@@ -1,4 +1,7 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("""ENEv1ÝÏ)´”9¼rŸOâ0†ñö(ˆY?3Jt$#ðJŸx÷—ç;âÓý-æ„Gž”`‹„ê8wÏg
-¼÷Çlöçû=ÚFŸ¼¬¥œÑ<mòîËÔqk°)êÖdˆØŠ†vˆ½Tç“pº¹k)Åù~yfF¼	ì¤Zÿ%â†[î¸§åÉCÈç?Ä8¤™d+‚~ét¼?Ëd>+{Îa6‡jºÃL¤âBÔ¦íêyö""","L1"),-9))
+def p(b):
+ C=D=0
+ for(E,B,F)in zip(b,b[1:],b[2:]):
+  C+=4>max(B)
+  for A in range(1,9):
+   if B[A+1]/4*E[A]*F[A]*B[A-1]:B[A]=5+C;D+=C*2-1
+ return[[(A>4)*(2-(A&1^(D<0)))or A for A in A]for A in b]

@@ -1,1 +1,1 @@
-p=lambda g:[x for c in range(1,10)if(x:=[[v[j]*(v[j]==c)for j in range(30)if c in[*zip(*g)][j]]for v in g if c in v])and sum(map(sum,x))//c>len(x)*len(x[0])//2][0]
+p=lambda g,r=range(30):min((len(t)-(1in t[0])*2,t)for c in r if(t:=[[v[j]for j in r if c in[*zip(*g)][j]]for v in g if c in v]))[1]

@@ -1,1 +1,1 @@
-p=lambda g:[[v[j]for j in range(len(v))if len({*[*zip(*g)][j]})>1]*2for v in g if len({*v})>1]
+p=lambda g:(f:=lambda g:[*filter(any,zip(*g))])(f(g)*2)

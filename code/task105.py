@@ -1,1 +1,1 @@
-def p(g,e=enumerate):*l,=zip(*g);f=lambda m=l,h=min:h(i for i,v in e(m)if any(v));h=lambda y,v:sum(w or j in y for j,w in e(v))>3;a=f(g),f(g,max);b=f(),f(l,max);return[[v[j]or a[0]<=i<=a[1]and b[0]<=j<=b[1]and(h(b,v)|h(a,w)|(i in a)|(j in b))*2for j,w in e(l)]for i,v in e(g)]
+def p(e,s=enumerate):*t,=zip(*e);f=lambda r=t,n=min:n(i for i,r in s(r)if any(r));n=lambda f,r:sum(e or j in f for j,e in s(r))>3;a=f(e),f(e,max);f=f(),f(t,max);return[[r[j]or a[0]<=i<=a[1]and f[0]<=j<=f[1]and(n(f,r)|n(a,e)|(i in a)|(j in f))*2for j,e in s(t)]for i,r in s(e)]

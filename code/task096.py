@@ -1,18 +1,18 @@
-def p(g,r=range):
- c=[*{*sum(g,[])}];f=[[0,10,t]for t in c]
- for _ in r(4):
-  for v in g:
-   for i in r(len(c)):
-    a=[j for j in r(len(v))if v[j]==c[i]];s=l=0
-    if a:s,l=min(a),max(a)
-    if(l-s+1)>=f[i][0]:
-      b=[j for j in r(s,l)if v[j]-c[i]];X=l-s+1
-      if b:x=max(b)-min(b)+1;X=(min(b)-s)*2+x
-      else:x=0
-      if(f[i][1]>x)|(X>f[i][0]):f[i][1]=x;f[i][0]=X
-  g=[*zip(*g[::-1])]
- f.sort();g=eval(str([[f[-1][2]]*f[-2][0]]*f[-2][0]))
- for _ in r(4):
-  for i in r(len(f)-1):w,x=f[i][:2];X,j=(w-x)//2,len(f)-i-2;g[j][j:j+w]=[f[i][2]]*X+[f[-1][2]]*x+[f[i][2]]*X if x else[f[i][2]]*w
-  g=[*map(list,zip(*g[::-1]))]
- return g
+def p(m,o=range):
+ u=[*{*sum(m,[])}];r=[[0,10,o]for o in u]
+ for l in o(4):
+  for n in m:
+   for l in o(len(u)):
+    i=[t for t in o(len(n))if n[t]==u[l]];s=p=0
+    if i:s,p=min(i),max(i)
+    if(p-s+1)>=r[l][0]:
+      i=[t for t in o(s,p)if n[t]-u[l]];b=p-s+1
+      if i:q=max(i)-min(i)+1;b=(min(i)-s)*2+q
+      else:q=0
+      if(r[l][1]>q)|(b>r[l][0]):r[l][1]=q;r[l][0]=b
+  m=[*zip(*m[::-1])]
+ r.sort();m=eval(str([[r[-1][2]]*r[-2][0]]*r[-2][0]))
+ for l in o(4):
+  for l in o(len(r)-1):a,q=r[l][:2];b,t=(a-q)//2,len(r)-l-2;m[t][t:t+a]=[r[l][2]]*b+[r[-1][2]]*q+[r[l][2]]*b if q else[r[l][2]]*a
+  m=[*map(list,zip(*m[::-1]))]
+ return m
