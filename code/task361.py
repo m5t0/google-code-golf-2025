@@ -1,1 +1,3 @@
-def p(i):g,d=[(2*n+e-1,2*x+e-1)for e in(3,2)for n in range(8)for x in range(8)if all(all(a[x:x+e])for a in i[n:n+e])][0];[(l:=2*n-g,e:=2*x-d)and exec('l,e=-e,l;i[g+l>>1][d+e>>1]=a;'*3)for n in range(10)for x in range(10)if(a:=i[n][x])];return i
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes(']!„_%`ÿİ-vwá”öE~!×_"İÉ=şUà,2ÍgjÆ‘goˆ³Üi„cÉ+‰Kí:ûWaÄb†“ÃäfX±9<¨ÿ zfS‚q°Êö‡!ÛC³ÌÜŒBHR·:8õKn¶Ù1ªô„)qÒ‚xRÃš®k7èVêª­š–ó¾eßîc‰¬Ô­Ö`m­ªĞç[Ú£',"L1"),-9))

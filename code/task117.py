@@ -1,2 +1,3 @@
-def p(o):
- r=range;p,p=len(o),len(o[0]);[(f:=g,a:=m)for g in r(1,p-1)for m in r(1,p-1)if o[g-1][m-1]==o[g-1][m+1]==o[g+1][m-1]==o[g+1][m+1]==o[g][m]>0];return[[max(o[g][m],o[(k:=(2*f-g)%p)][m],o[g][(i:=(2*a-m)%p)],o[k][i])for m in r(p)]for g in r(p)]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("MÎC!`\00öÁ8í÷PÎ^ä±Jîªdc¿¤Ôù¿ş§ó¬BáêÂ6›ƒÓUT|¹ÜQŒvÃ5W„U˜¸/3kpˆ*i…èY¡ C©?ˆÿ°Í°­Í¶6ı4İèæŞŸ–‰’ıÂdQN…p¿yøµò‰½„8ÜÊ4¼ãi(šuXç¹{¦","L1"),-9))

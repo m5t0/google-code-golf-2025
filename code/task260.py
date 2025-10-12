@@ -1,2 +1,3 @@
-def p(g):
- e=range(10);x,c=next((o-i,t)for i in e for o in e if(t:=g[i][o])%5);n=min(g:=[sum(o-i-x for o in e if g[i][o]==5)for i in e])<0<max(g);return[[c*((o-i-x in(0,(0<sum(g)or-1)*(12-g.count(0)-2*n)))|n*(o-i-x==4))for o in e]for i in e]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("UÃ0EØWÆ{ÑLZ+´}_Aui}™,%ØÇoÕ²¸¸çœ‡›Å<vá(ìÔûRMÄ®d€¨B•qŽIX8±Í¸Ï0CîÈ›`M´xm±gZƒïÈ¼ÖecUùÄñ&jOR‹ƒ–±€Ç>¹¼&6f’p¾F]6¥Ç˜TêFùÛWÎ Q5’ñÍrGˆîˆ¿®=•>","L1"),-9))

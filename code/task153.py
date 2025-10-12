@@ -1,1 +1,3 @@
-def p(h):k=sum(h,[]);u=10;d=max(j:={*k}-{0},key=k.count);n=[q for q in range(u*u)if k[q]==d];m=min(q:={q%u for q in n});r=len(q);n,v=n[0]//u,n[-1]//u;n-=v-n<2 and 0 in h[n][m:m+r];m-=3-r and 0 in k[n*u+m:v*u+m+1:u];return[[q or sum(j)-d for q in q[m:m+3]]for q in (h+[[0]*u])[n:n+3]]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("E’1ğ+ç—Åäú%]Ë1ÒÃÌùík´0Šj–rS@çK.¸õ0ØÜæ‹å~Eñ¯'ÿªˆ¾¡•§[lâª}h2zh7”DÌÏ³ø¡Àf.¬—k#šW/¦n[(£CŠ[RNã±W„zz4,i4}Ì6>L=)Òq²=ŒÕ0×í=W 	/RN_Ø6ê}Kx8ñ°ôøXÎux¿ 9š/·K%âd!ü‚#:æö","L1"),-9))

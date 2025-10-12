@@ -1,8 +1,3 @@
-def p(f,e=enumerate):
- d,m=zip(*((d,m)for d,a in e(f)for m,r in e(a)if r))
- a=d[0];t=a+d[-1];r=min(m);i=r+max(m)
- for d,m in zip(d,m):
-  for u,n in(d,m),(a+m-r,r+d-a):
-   for u in u,t-u:
-    for n in n,i-n:f[u][n]=max(f[u][n],f[d][m])
- return f
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("-±jE!@÷ûµFh×wñKÄ! ‡¤ PúõUo·“C’SÃÛ1¶ÔtJ3Í¿.¨(é·¿Ý‡s=ÛR]¡9>£ =#ùÎ`Þ_@©æÏrD¡æøUnKÒÕ‰¿{² ô³ð‚ç—ìã]X¸ƒGOÔ¥BGA¢¡…é,<ûlâˆó¨ãt;ÅõÅy–¬%íÖ?#çZ²”U¶6¦)ð","L1"),-9))
