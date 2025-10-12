@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[(i>3)*g[2][j]or(i>2)*w for j,w in e(v)]for i,v in e(g)]
+p=lambda g:g[:1]*3+[g[3],[5-4*x for x in g[2]]]

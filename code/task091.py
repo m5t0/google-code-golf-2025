@@ -1,1 +1,1 @@
-def p(g):f=lambda h=max,l=[*zip(*g)]:h(i for i,v in enumerate(l)if 5in v);a,b,c,d=f(min,g),f(l=g),f(min),f();return[[w for w in v[c:d+1]]for v in g[a-1:b+2]]
+def p(g):v=sum(g,[]);I=v.index;i,l=I(5),len(g[0]);return[r[i%l:I(5,i+1)%l+1]for r in g[i//l-1:][:v.count(5)+4>>1]]

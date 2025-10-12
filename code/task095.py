@@ -1,1 +1,2 @@
-p=lambda g,r=range(9):[[g[i][j]or+any(i+k//3-1in r and g[i+k//3-1][j+k%3-1:j+k%3]==[5]for k in r)for j in r]for i in r]
+import re
+p=lambda g:exec("g[:]=zip(*eval(re.sub('0, ([^0]), 0',r'1,\\1,1',str(g))));"*2)or g

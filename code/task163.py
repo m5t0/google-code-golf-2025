@@ -1,1 +1,4 @@
-def p(g,r=range(11)):(i,j),=[(g.index(v),v.index(4))for v in g if 4in v];return[[(k%4>2or l%4>2)*5or(k//4==i%4)*(l//4==j%4)*g[i//4*4+k%4][j//4*4+l%4]for l in r]for k in r]
+def p(l):
+ y,x=divmod(sum(l,[]).index(4),11);a=y&3;b=x&3;t=[[x*(x==5)for x in r]for r in l]
+ for r in 0,1,2:t[4*a+r][4*b:4*b+3]=l[y-a+r][x-b:][:3]
+ return t

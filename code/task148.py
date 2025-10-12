@@ -1,1 +1,1 @@
-def p(g,e=enumerate):a=[*zip(*g)];return[[w*(w==2)or(w>7)*4or((2in v[j:])*(8in v[:j])or(8in v[j:])*(2in v[:j]))*8or(i-abs(a[0].index(2)-a[-1].index(2))in[k for k,z in e(g)if 8in z])*8for j,w in e(v)]for i,v in e(g)]
+p=lambda g,e=enumerate:[[w*(w==2)or(w>7)*4or((2in v[j:])*(8in v[:j])or(8in v[j:])*(2in v[:j]))*8or(i-abs((a:=[*zip(*g)])[0].index(2)-a[-1].index(2))in[k for k,z in e(g)if 8in z])*8for j,w in e(v)]for i,v in e(g)]

@@ -1,1 +1,1 @@
-def p(g,e=enumerate):[exec("g[i+k//3-1][j+k%3-1]=4")for i,v in e(g)for j,w in e(zip(*g))if min(v)*min(w)for k in range(9)if k!=4];return g
+def p(g):i,j=g.index(max(g)),g[0].index(max(g[0]));a=g[i-1];g[i+1]=a;a[j-1:j+2]=4,4,4;g[i][j-1:j+2:2]=4,4;return g

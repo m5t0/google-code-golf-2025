@@ -1,8 +1,5 @@
 def p(g):
- f=lambda h,m:m(i for i,v in enumerate(h)if 4in v)
- i,j,k,l=f(g,min),f(g,max),f(zip(*g),min),f(zip(*g),max)
- a=[v[k:l+1]for v in g[i:j+1]]
- b=[[w[0]for w in zip(v,*g[j+1:])if any(w)]for v in g[j+1:]if any(v)]
+ f=lambda h,m:m(i for i,v in enumerate(h)if 4in v);i,j,k,l=f(g,min),f(g,max),f(zip(*g),min),f(zip(*g),max);a=[v[k:l+1]for v in g[i:j+1]];b=[[x for*w,x in zip(*g[j+1:],v)if any(w)]for v in g[j+1:]if any(v)]
  for d in 2,3,4:
   for i in range(len(a)):
    for j in range(len(a[0])):

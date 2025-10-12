@@ -1,1 +1,3 @@
-def p(g,r=range):f=lambda x:min(i for i in r(len(x))if any(x[i]));x,y=f(g),f([*zip(*g)]);return[[max((v:=g[x+k//2][y+k%2])*(v!=2)for k in r(4))*max((g[x+k//2][y+k%2]==2)*(abs((w:=(i-x-k//2)//(k//2*2-1))-(j-y-k%2)//(k%2*2-1))<2and w>=0)for k in r(4))or g[i][j]for j in r(len(g[0]))]for i in r(len(g))]
+r=range(9)
+f=lambda x:min(i for i in r if any(x[i]))
+p=lambda g:[[max((v:=g[(x:=f(g))+k//2][(y:=f([*zip(*g)]))+k%2])*(v!=2)for k in r[:4])*max((g[t:=x+k//2][u:=y+k%2]==2)*(2>((w:=(i-t)//(k//2*2-1))-(j-u)//(k%2*2-1))>=-1<w)for k in r[:4])or g[i][j]for j in r]for i in r]

@@ -1,1 +1,1 @@
-def p(g,r=range):n=len(g);a=[*zip(*g)];[exec("g[i][k:l+1]=g[j][k:l+1]=[3]*(l+1-k)\nfor x in r(i,j+1):g[x][k]=g[x][l]=3")for i in r(n)for j in r(i+2,n)for k in r(n)for l in r(k+2,n)if(0 in{*g[i][k:l+1]+g[j][k:l+1]+[*a[k]][i:j+1]+[*a[l]][i:j+1]})^1];return g
+def p(g):r=range(len(g));*a,=zip(*g);[exec("g[i][k:l+1]=g[j][k:l+1]=[3]*(l+1-k)\nfor x in r[i:j]:g[x][k]=g[x][l]=3"*all(g[i][k:l]+g[j][k:l]+[*a[k]][i:j]+[*a[l]][i:j]))for i in r for j in r[i+2:]for k in r for l in r[k+2:]];return g

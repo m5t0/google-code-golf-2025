@@ -1,0 +1,1 @@
+p=lambda g:[[x|y*z<<1for x,y,z in zip(a,a[1:]+[0],[0]+a)]for a in g]

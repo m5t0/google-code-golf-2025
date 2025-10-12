@@ -1,1 +1,1 @@
-p=lambda g:[*map(list,zip(*(w[(i:=w.count(max(w))):]+i*(0,)for w in zip(*g))))]
+p=lambda g:[*zip(*(w[(i:=w.count(max(w))):]+i*(0,)for w in zip(*g)))]

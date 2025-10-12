@@ -1,0 +1,1 @@
+p=lambda g,f=lambda d:zip(*{}.fromkeys(map(tuple,filter(any,d)))):[*f(f(g))]

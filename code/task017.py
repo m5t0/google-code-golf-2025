@@ -1,6 +1,1 @@
-r,n=range,21
-def p(g):
- for s in r(1,11):
-  v,f=[[0]*s for i in r(s)],1
-  for i in r(n*n):f-=(a:=g[x:=i//n][y:=i%n])*(b:=v[x%s][y%s])*(a!=b);v[x%s][y%s]=max(a,b)
-  if f>0:return[[v[i%s][j%s]for j in r(n)]for i in r(n)]
+p=lambda n:(s:=range(21),l:=min(i for i in s[2:]if all((a-b)*a*b<1for a,b in zip(n[0],n[0][i:]))),n:={(a%l,b%l):v for a in s for b in s if(v:=n[a][b])})and[[n[i%l,j%l]for j in s]for i in s]

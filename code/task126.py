@@ -1,3 +1,1 @@
-def p(g):
- for j,w in enumerate(zip(*g)):g[-1][j]=4*(sum([v>0for v in w])==1)
- return g
+p=lambda g:g[:-1]+[[(sum(w)<max(w)*2)*4for w in zip(*g)]]

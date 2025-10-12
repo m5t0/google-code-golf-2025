@@ -1,5 +1,5 @@
 def p(g):
- a=sum(g,[]);b=a.index(1);c=528-a[::-1].index(1);m=c//23-b//23+1;f=n=c%23-b%23+1;h=range(m*n)
+ a=sum(g,[]);c=528-a[::-1].index(1);b=a.index(1);m=c//23-b//23+1;f=n=c%23-b%23+1;h=range(m*n)
  for _ in range(8):
   for i in range(-9,24):
    for l in range(-9,24):

@@ -1,1 +1,1 @@
-p=lambda g:[sum([[(g[1][4*k+1]+5)%10]*3+[5]for k in(0,1,2)],[])[:-1]]*3+(g[4:]and[[5]*11]+p(g[4:]))
+p=lambda g,r=range:[[[5,g[i&-4|1][j&-4|1]+5][i%4<3>j%4]for j in r(11)]for i in r(len(g))]

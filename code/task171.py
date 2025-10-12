@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[8*(i*(len(g)-1-i)*j*(len(g[0])-1-j)<1)for j,w in e(v)]for i,v in e(g)]
+p=lambda g:[s:=[8]*len(g[0]),*[[8,*g[0][2:],8]]*(len(g)-2),s]

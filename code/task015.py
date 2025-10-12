@@ -1,6 +1,4 @@
 def p(g):
- r,h=range,g.copy()
- for i in r(81):
-  for j in r(9):
-   if(a:=j//3-1)|(b:=j%3-1)and(c:=7-3*(a*b!=0))==10-3*g[i//9][i%9]and h[n:=i//9+a][m:=i%9+b]<1:h[n][m]=c
- return h
+ for k in range(81):
+  if 0<(c:=g[i:=k//9][j:=k%9])<3:g[i+c-1][j+1]=g[i+1][j-c+1]=g[i-1][j+c-1]=g[i-c+1][j-1]=6//c+1
+ return g

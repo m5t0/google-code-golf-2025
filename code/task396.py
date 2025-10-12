@@ -1,0 +1,1 @@
+def p(g,e=enumerate):M=min(V:=sum(g,[]),key=V.count);a=max(([v[j:J+1]for v in g[i:I+1]]for i,_ in e(g)for j,_ in e(g[0])for I,_ in e(g)for J,_ in e(g[0])if{sum({*V})-M}=={*g[i][j:J+1],*[*zip(*g)][j][i:I+1]}),key=lambda g:len(sum(g,[])));return[[x and M for x in v]for v in a]

@@ -1,6 +1,1 @@
-def p(g,r=range):
- for l in 3,4,5:
-  for k in r(5*(10-l)):
-   if{*g[(i:=k//5+l+1)-1][(j:=k%5):j+5]+[*[*zip(*g)][j]][i-l:i]}=={1}:
-    for m in r((l+1)*5):g[p][q]=g[p:=i-m//5-1][q:=j+m%5]or max(w*(w!=1)for v in g[i-l:i]for w in v[j:j+5])
- return g
+p=lambda g,r=range:[exec("g[p][q]=g[p:=i-m//5][q:=j+m%5]or max(sum(g[i-l:i],[]))")for l in r(3,6)for i in r(10)for j in r(5)if{*g[i][j:j+5],*[*zip(*g)][j][i+1-l:i]}=={1}for m in r(5*l+5)]and g

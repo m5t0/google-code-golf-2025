@@ -1,1 +1,1 @@
-p=lambda g:[[max((str(g).count(str(w)),w)for v in g for w in v)[1]]*3]*3
+p=lambda g:[[max(s:=sum(g,[]),key=s.count)]*3]*3

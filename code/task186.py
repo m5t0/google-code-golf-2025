@@ -1,1 +1,1 @@
-p=lambda g,r=range(3):[[2*(i<1+(s:=(n:=sum(sum(g,[])))>3)and[s*(j==1),j<n][i<1])for j in r]for i in r]
+p=lambda g:(([2]*(s:=sum(sum(g,[])))+[0]*3)[:3],[0,(s>3)*2,0],[0]*3)

@@ -1,8 +1,6 @@
-r,n=range,29
+r=range(841)
 def p(g):
- for z in 0,1:
-  for s in r(1,n):
-   for t in r(1,n):
-    v,f=[[0]*t for _ in r(s)],1
-    for i in r(n*n):f-=(a:=g[x:=i//n][y:=i%n])*(b:=v[(w:=(x-z*y//6))%s][y%t])*(a!=b);v[w%s][y%t]=max(a,b)
-    if f>0:return[[v[(i-z*j//6)%s][j%t]for j in r(n)]for i in r(n)]
+ for S in r:
+  s,t=S//56+1,S//2%28+1;R=r[:29];v,f=[t*[0]for _ in R],1
+  for i in r:a=g[x:=i//29][y:=i%29];b=v[u:=(x-S%2*y//6)%s][y%t];f-=a*b*(a!=b);v[u][y%t]=max(a,b)
+  if f>0:return[[v[(i-S%2*j//6)%s][j%t]for j in R]for i in R]

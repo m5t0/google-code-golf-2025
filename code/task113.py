@@ -1,1 +1,1 @@
-p=lambda g:(v:=g[:len(g)//2])+v[::-1]
+p=lambda g:g[:5]+g[4::-1]

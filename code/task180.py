@@ -1,1 +1,1 @@
-p=lambda g,r=range(4):[[([v for k in(1,2,3,0)if(v:=g[k//2*4+i][k%2*4+j])]+[0])[0]for j in r]for i in r]
+p=lambda g:[[max(t,key=bool)for t in zip(a[4:],b,b[4:],a)]for a,b in zip(g,g[4:])]

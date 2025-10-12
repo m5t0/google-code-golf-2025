@@ -1,1 +1,1 @@
-p=lambda g:[[v[j]for j in range(len(v))if len({*[*zip(*g)][j]})>1][:3]for v in g if len({*v})>1][:3]
+p=lambda g:[[v[j]for j,c in enumerate(zip(*g))if any(c)][:3]for v in g if any(v)][:3]

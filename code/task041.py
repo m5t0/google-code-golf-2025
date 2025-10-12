@@ -1,1 +1,1 @@
-def p(g,r=range(10)):h=[[(v:=g[i][j])*(j<9and(i<9 and g[i+1][j+1]==v or g[i][j+1]==v))-(j>0 and(w:=g[i][j-1])*(j>1and(i<9and g[i+1][j-2]==w or g[i][j-2]==w)))for j in r]for i in r];return[[sum(x[:j+1])for j in r]for x in h]
+p=lambda g:[[sum({*v[:j+1]}&{*v[j:]})for j in range(10)]for v in g]

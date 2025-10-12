@@ -1,1 +1,2 @@
-def p(g,e=enumerate,r=range(9)):a=[[v[j]for j,w in e(zip(*g))if any(w)]for i,v in e(g)if any(v)];return[[a[i//3*3][j//3*3]&a[i%3*3][j%3*3]for j in r]for i in r]
+f=lambda g:[*filter(any,zip(*g))]
+def p(g):h=f(f(g[::3])[::3]);return[[c&d for c in a for d in b]for a in h for b in h]

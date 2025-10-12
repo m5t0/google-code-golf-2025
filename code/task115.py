@@ -1,2 +1,1 @@
-from itertools import*
-f=lambda s:[k for k,_ in groupby(s)];p=lambda g:max([f(g[0])],[[v]for v in f([*zip(*g)][0])])
+p=lambda g:[*zip(*map(D:={}.fromkeys,zip(*map(D,g))))]

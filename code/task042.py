@@ -1,1 +1,1 @@
-p=lambda g,r=range:[[g[i][j]or any(10>i+(x:=max(map(sum,zip(*g)))//3*(k//2*2-1))>-1<j+(y:=2*x*(t:=k%2*2-1))<10>i+y*t>-1<j+x*t<10and g[i+x][j+y]==g[i+y*t][j+x*t]==3for k in r(4))*8for j in r(10)]for i in r(10)]
+p=lambda g,r=range(10):[[g[i][j]or any(0<j+(y:=2*(x:=max(map(sum,zip(*g)))//3*(k-k%2-1))*(t:=k%2*2-1))<10>i+y*t>0and g[i+x][j+y]==g[i+y*t][j+x*t]==3for k in r[:4])*8for j in r]for i in r]

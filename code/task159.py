@@ -1,4 +1,1 @@
-def p(g,r=range):
- n=sum(2in v for v in g)-2;m=n//3;a=[[2]*(n+2)]
- for c in r(10):
-  if len(l:=[[w[g.index(v)]for w in zip(*g)if c in w]for v in g if c in v])==3:return a+[[2,*(l[i//m][j//m]for j in r(n)),2]for i in r(n)]+a
+def p(g):n=str(g).count('2')//4+1;s=[2]*n;n//=3;return[s,*[sum((n*[x]for*w,x in zip(*g,v)if{*w}-{0,2}),[2])+[2]for v in g if{*v}-{0,2}for _ in[0]*n],s]

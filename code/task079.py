@@ -1,1 +1,1 @@
-p=lambda g,r=range:max(v:=[w for i in r(12)for j in r(12)if all(map(any,w:=[g[i+k][j:j+3]for k in r(3)]))*all(map(any,zip(*w)))],key=lambda x:str(v).count(str(x)))
+p=lambda g,r=range(12):max(v:=[w for i in r for j in r if all(map(any,w:=[g[i+k][j:j+3]for k in r[:3]]))*all(map(any,zip(*w)))],key=v.count)

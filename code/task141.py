@@ -1,1 +1,1 @@
-def p(g,e=enumerate):c,x,y=max((w,i,j)for i,v in e(g)for j,w in e(v));return[[c*(abs(i-x)==abs(j-y))for j,w in e(v)]for i,v in e(g)]
+def p(g):r=range(n:=len(g));v=sum(g,[]);return[[((I:=v.index(sum(v)))//n-i in(I%n-j,j-I%n))*v[I]for j in r]for i in r]

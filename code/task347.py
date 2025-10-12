@@ -1,0 +1,1 @@
+p=lambda g:[[any(v[i::3])*6for i in[0,1,2]]for v in g]
