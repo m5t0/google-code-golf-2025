@@ -137,7 +137,7 @@ def verify(output: list, label: list) -> bool:
 
 
 def validate_code_runner(
-    code: str, examples_to_check: list, result_queue: Queue
+    code: str, examples_to_check: list, unsafe_mode: bool, result_queue: Queue
 ) -> tuple | None:
     """Checks code against all examples. Returns the first failing example or None."""
     if UNSAFE_MODE:
@@ -164,12 +164,15 @@ def validate_code_runner(
 
 
 def validate_code(
-    code: str, examples_to_check: list, timeout: int | float = VALIDATE_TIMEOUT_TIME
+    code: str,
+    examples_to_check: list,
+    timeout: int | float = VALIDATE_TIMEOUT_TIME,
+    unsafe_mode=UNSAFE_MODE,
 ) -> tuple | None:
     """Checks code against all examples. Returns the first failing example or None."""
     try:
         return run_with_thread_timeout(
-            validate_code_runner, timeout, code, examples_to_check
+            validate_code_runner, timeout, code, examples_to_check, unsafe_mode
         )
     except Exception:
         # Code fails to execute, so it's invalid. Return the first example as the failure point.
@@ -334,10 +337,14 @@ def main():
         + "-" * 30
     )
 
-    if PAYLOAD_OVERHEAD + global_best_base + global_best_penalty + 20 > len(
-        initial_code
+    if (
+        PAYLOAD_OVERHEAD + global_best_base + global_best_penalty
+        > len(initial_code) + 20
     ):
         print("Compressed code is too longer than uncompressed code, so quit.")
+        print(
+            f"Uncompressed Code:{len(initial_code)} bytes, Compressed Code:{PAYLOAD_OVERHEAD + global_best_base + global_best_penalty} bytes"
+        )
         return
 
     for i in range(LIMIT):
@@ -421,7 +428,7 @@ def main():
 
     # --- Final Result ---
     print(f"\nFinal validation of best code found...")
-    if validate_code(global_best_code, all_examples) is not None:
+    if validate_code(global_best_code, all_examples, unsafe_mode=False) is not None:
         print(
             "WARNING: The final best code failed full validation. Something may be wrong."
         )
