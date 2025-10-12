@@ -334,8 +334,10 @@ def main():
         + "-" * 30
     )
 
-    if global_best_base + 20 > len(initial_code):
-        print("compressed code is too longer than uncompressed code, so quit.")
+    if PAYLOAD_OVERHEAD + global_best_base + global_best_penalty + 20 > len(
+        initial_code
+    ):
+        print("Compressed code is too longer than uncompressed code, so quit.")
         return
 
     for i in range(LIMIT):
@@ -423,6 +425,7 @@ def main():
         print(
             "WARNING: The final best code failed full validation. Something may be wrong."
         )
+        return
     else:
         print("Final code PASSED validation.")
 
