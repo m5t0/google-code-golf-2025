@@ -1,7 +1,7 @@
-def p(g):
- x=z=0;a,*l=[*zip(*g)],;a+=[[0]*3]*any(a[-1])
- for i,v in enumerate(a):
-  if any(v)^1:
-   l+=[[max({*sum(a[x:i],())}-{5})*(q>0)for q in p]for p in[*zip(*g[z:]+g[:z])][x:i]]
-   if a[i+1:]:z+=a[i+1].index(5)-a[i-1].index(5);x=i+1
- return[*zip(*l)]
+def p(y):
+ u=m=0;a,*t=[*zip(*y)],;a+=[[0]*3]*any(a[-1])
+ for r,p in enumerate(a):
+  if any(p)^1:
+   t+=[[max({*sum(a[u:r],())}-{5})*(p>0)for p in p]for p in[*zip(*y[m:]+y[:m])][u:r]]
+   if a[r+1:]:m+=a[r+1].index(5)-a[r-1].index(5);u=r+1
+ return[*zip(*t)]

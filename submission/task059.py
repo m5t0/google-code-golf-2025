@@ -1,1 +1,3 @@
-p=lambda g,r=range(11):[x for s in r[::-1]if sum(map(sum,(x:=[[5*(g[i][j]==5)or(c:=[b for a in g for b in a if(b-5)*b][0])*(sum(sum(v[j-j%4:j-j%4+3])for v in g[i-i%4:i-i%4+3])//c==s)for j in r]for i in r])))>200][0]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("-LA½JİÉÖfz‘¼µíûw¬|6X¸¥¸“l[açVqÈN'xS7‰j~'i5©èıŞÌ4šôcÉJ·aüß²îD7ƒe”šÔšˆ7¨;Áêl&²™;5¦ëv70:“&¢F]jwíòú–ïæb‚Èô2Cé.åŠ|…r8tˆ‘4´ÂP™bLÕ\00¿óñ(Úÿ","L1"),-9))

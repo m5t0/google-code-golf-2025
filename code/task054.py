@@ -1,12 +1,12 @@
-def p(g,r=range):
- a=g[0][0];l=sorted((sum(g,[]).count(i),i)for i in r(10)if i!=a);b=l[-1][1];c=[i for _,i in l if f'{i}, {b}'in str(g) and i!=b][0]
+def p(o,r=range):
+ e=o[0][0];s=sorted((sum(o,[]).count(i),i)for i in r(10)if i!=e);d=s[-1][1];c=[i for p,i in s if f'{i}, {d}'in str(o) and i!=d][0]
  for i in r(900):
-  if g[i//30][i%30]==c:
-   f=[v[i%30-1:i%30+2]for v in g[i//30-1:i//30+2]]
-   if(b in sum(f,[])or a==f[0][1])^1:
-    p=[v[i%30-1:i%30+2]for v in g[i//30-1:i//30+2]]
-    for k in r(25):g[i//30-2+k//5][i%30-2+k%5]=a
- p=eval(str(p).replace(str(a),str(b)));f=eval(str(g))
+  if o[i//30][i%30]==c:
+   f=[p[i%30-1:i%30+2]for p in o[i//30-1:i//30+2]]
+   if(d in sum(f,[])or e==f[0][1])^1:
+    p=[p[i%30-1:i%30+2]for p in o[i//30-1:i//30+2]]
+    for n in r(25):o[i//30-2+n//5][i%30-2+n%5]=e
+ p=eval(str(p).replace(str(e),str(d)));f=eval(str(o))
  for i in r(900):
-  for k in r((g[i//30][i%30]==c)*9):f[i//30-1+k//3][i%30-1+k%3]=p[k//3][k%3]
- a=[p[0][1],p[1][0]][p[0][1]==p[0][0]];exec(f"f[:]=zip(*eval(str(f).replace('{c}, {a}, {b}','{c},{a},{a}').replace('{a}, {a}, {b}','{a},{a},{a}'))[::-1]);"*60);return f
+  for n in r((o[i//30][i%30]==c)*9):f[i//30-1+n//3][i%30-1+n%3]=p[n//3][n%3]
+ e=[p[0][1],p[1][0]][p[0][1]==p[0][0]];exec(f"f[:]=zip(*eval(str(f).replace('{c}, {e}, {d}','{c},{e},{e}').replace('{e}, {e}, {d}','{e},{e},{e}'))[::-1]);"*60);return f

@@ -1,10 +1,10 @@
-def p(g):
- f=lambda h,m:m(i for i,v in enumerate(h)if 4in v);i,j,k,l=f(g,min),f(g,max),f(zip(*g),min),f(zip(*g),max);a=[v[k:l+1]for v in g[i:j+1]];b=[[x for*w,x in zip(*g[j+1:],v)if any(w)]for v in g[j+1:]if any(v)]
+def p(j):
+ r=lambda h,f:f(m for m,d in enumerate(h)if 4in d);m,n,c,r=r(j,min),r(j,max),r(zip(*j),min),r(zip(*j),max);a=[d[c:r+1]for d in j[m:n+1]];f=[[m for*d,m in zip(*j[n+1:],d)if any(d)]for d in j[n+1:]if any(d)]
  for d in 2,3,4:
-  for i in range(len(a)):
-   for j in range(len(a[0])):
-    if all(a[k][l]in{0,4}or len(b)*d>k-i>-1<l-j<len(b[0])*d and a[k][l]==b[(k-i)//d][(l-j)//d]for k in range(len(a))for l in range(len(a[0]))):
-     for k in range(len(a)):
-      for l in range(len(a[0])):
-       if len(b)*d>k-i>-1<l-j<len(b[0])*d:a[k][l]=b[(k-i)//d][(l-j)//d]
+  for m in range(len(a)):
+   for n in range(len(a[0])):
+    if all(a[c][r]in{0,4}or len(f)*d>c-m>-1<r-n<len(f[0])*d and a[c][r]==f[(c-m)//d][(r-n)//d]for c in range(len(a))for r in range(len(a[0]))):
+     for c in range(len(a)):
+      for r in range(len(a[0])):
+       if len(f)*d>c-m>-1<r-n<len(f[0])*d:a[c][r]=f[(c-m)//d][(r-n)//d]
      return a

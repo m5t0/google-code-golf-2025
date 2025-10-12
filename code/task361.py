@@ -1,1 +1,1 @@
-def p(g,r=range(10)):I,J=[(2*i+e-1,2*j+e-1)for e in(3,2)for i in r[:8]for j in r[:8]if{1}-{0in v[j:j+e]for v in g[i:i+e]}][0];[(l:=2*x-I,e:=2*y-J)and exec('l,e=-e,l;g[I+l>>1][J+e>>1]=a;'*3)for x in r for y in r if(a:=g[x][y])];return g
+def p(g,r=range(10)):d,x=[(2*i+e-1,2*u+e-1)for e in(3,2)for i in r[:8]for u in r[:8]if{1}-{0in g[u:u+e]for g in g[i:i+e]}][0];[(l:=2*i-d,e:=2*u-x)and exec('l,e=-e,l;g[d+l>>1][x+e>>1]=a;'*3)for i in r for u in r if(a:=g[i][u])];return g

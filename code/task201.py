@@ -1,4 +1,4 @@
 def p(g):
- (I,J),_,_,(K,L),*a=[(i,j)for i in range(13)for j in range(13)if g[i][j]==4]
- for v in g[I:K+1]:a+=[v[J:L+1]];v[J:L+1]=[0]*(L-J+1)
- b=[[w[0]for w in zip(v,*g)if any(w)]for v in g if any(v)];return[a[0],*[[a[1][0]]+v[::1-2*(a[1][0]in[*zip(*b)][-1])]+[a[1][-1]]for v in b],a[-1]]
+ (h,o),d,d,(e,j),*z=[(p,j)for p in range(13)for j in range(13)if g[p][j]==4]
+ for p in g[h:e+1]:z+=[p[o:j+1]];p[o:j+1]=[0]*(j-o+1)
+ g=[[p[0]for p in zip(p,*g)if any(p)]for p in g if any(p)];return[z[0],*[[z[1][0]]+p[::1-2*(z[1][0]in[*zip(*g)][-1])]+[z[1][-1]]for p in g],z[-1]]

@@ -1,7 +1,3 @@
 #coding:L1
 import zlib
-exec(zlib.decompress(bytes("""=ŽÑ
-ƒ0EßýŠ<6U‡2öRé~¤dPX•‚:çæè*þûÁ½ÝC’“{w-L¢C•AÐQW-d¯Œ~²C*›kc*’g’vü
-kÊš0ƒö1ƒ/>àGpã2¸Ù¾°ìßo~ðV3BÏ†Á±Ê×2$CPž
-¸•ëeC)ž×
-Ù÷dÛD§&*Ê;£"!í·ÄVþb|^+R1×{¤“ï.ˆ–‰SÏ?7A§y³{/ó!î‘~""","L1"),-9))
+exec(zlib.decompress(bytes("MÎÁjÄ à{žbŽ3FKBÙ‹Á¾ˆLAX´bÖ.ûîÀÞþoæîwÈØIOÐL4Ëæ¤¨ÆŠ¿Qtb¹¹ÙX»°ødáRGgÕÊ4ÁþS È!O-úâªG7;ŒŸ™¾×Q¡!º>Åo‹‡Ðta‰D/õ¼½H`þZhx§–ùŠ×6jž»Õ‘‰ÏYêØbË¼jÖq6gäîþ7RGWo}kæxŸ øÚÊWâ","L1"),-9))

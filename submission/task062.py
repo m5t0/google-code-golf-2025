@@ -1,5 +1,3 @@
-def f(l):
- for i in range(9):
-  if{*l[i]}=={0,2}and{*l[i+1]}=={0}:return[[w or 3for w in v]for v in(l[:i]+l[i-1::-1]+[[0]*10]*9)[:10]]
-h=lambda l:f(l)or(v:=f(l[::-1]))and v[::-1]
-p=lambda g:h(g)or[*zip(*h([*zip(*g)]))]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("EAƒ0…ïşŠÛ:Án'ı%!‡ê¶‚»Lüï«ºá!äåñ¾ğR?ÀlÄbÃ¤ 0fĞ˜½é6ÆaqBÊkK{¹®1§İ¨ıa­¨ıüÖL¤PøÛù„ÿÒ¡r] Æ#6k¢–/ÓYÂ²¹ÒğŒ¯{Š ¸µ™Ô(†¢h¬9G%gV÷,¹Ï(Æ©ù	±l-","L1"),-9))

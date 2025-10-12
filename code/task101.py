@@ -1,20 +1,20 @@
 def p(g):
- m,n=len(g),len(g[0]);t=[];r={(k//n,k%n):w for k in range(m*n)if(w:=g[k//n][k%n])};b=[[0]*n for _ in g]
- def f(i,j):
-  if m>i>-1<j<n and(i,j)in r:
-   s[i-x,j-y]=r.pop((i,j))
-   for k in-1,1:f(i,j+k);f(i+k,j)
+ m,n=len(g),len(g[0]);t=[];r={(t//n,t%n):q for t in range(m*n)if(q:=g[t//n][t%n])};b=[[0]*n for _ in g]
+ def z(p,j):
+  if m>p>-1<j<n and(p,j)in r:
+   s[p-u,j-f]=r.pop((p,j))
+   for t in-1,1:z(p,j+t);z(p+t,j)
  while r:
-  t+=[s:={}];x,y=min(r);f(x,y)
+  t+=[s:={}];u,f=min(r);z(u,f)
   if len({*s.values()})<2:
    t.pop()
-   for i,j in s:b[x+i][y+j]=1
+   for p,j in s:b[u+p][f+j]=1
  for s in t:
   for d in 3,2,1:
-   for k in range(m):
+   for t in range(m):
     for l in range(-9,n):
-     a=[(k+x*d+i//d,l+y*d+i%d,w)for(x,y),w in s.items()for i in range(d*d)]
-     if all((m>i>-1<j<n>g[i][j]>1>(g[i][j]==w)*b[i][j])^1for i,j,w in a)*([*s.values()].count(2)*d*d==sum(m>i>-1<j<n>2==g[i][j]for i,j,w in a)):
-      for i,j,w in a:
-       if-1<j:b[i][j],g[i][j]=0,w
+     a=[(t+u*d+p//d,l+f*d+p%d,q)for(u,f),q in s.items()for p in range(d*d)]
+     if all((m>p>-1<j<n>g[p][j]>1>(g[p][j]==q)*b[p][j])^1for p,j,q in a)*([*s.values()].count(2)*d*d==sum(m>p>-1<j<n>2==g[p][j]for p,j,q in a)):
+      for p,j,q in a:
+       if-1<j:b[p][j],g[p][j]=0,q
  return g

@@ -1,3 +1,3 @@
 r=range(9)
 f=lambda x:min(i for i in r if any(x[i]))
-p=lambda g:[[max((v:=g[(x:=f(g))+k//2][(y:=f([*zip(*g)]))+k%2])*(v!=2)for k in r[:4])*max((g[t:=x+k//2][u:=y+k%2]==2)*(2>((w:=(i-t)//(k//2*2-1))-(j-u)//(k%2*2-1))>=-1<w)for k in r[:4])or g[i][j]for j in r]for i in r]
+p=lambda n:[[max((p:=n[(x:=f(n))+k//2][(y:=f([*zip(*n)]))+k%2])*(p!=2)for k in r[:4])*max((n[q:=x+k//2][p:=y+k%2]==2)*(2>((q:=(i-q)//(k//2*2-1))-(a-p)//(k%2*2-1))>=-1<q)for k in r[:4])or n[i][a]for a in r]for i in r]

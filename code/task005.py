@@ -1,1 +1,1 @@
-def p(g,r=range(21)):f=lambda x:min(i for i in r if min(x[i:i+3]));s=f([*map(m:=max,g)]);t=f([*map(m,*g)]);h=lambda x:4*((x>0)-(x<0));return[[m(g[s+h(x:=(i-s)//4)+k//3][t+h(y:=(j-t)//4)+k%3]for k in r[:9])*(g[s+(i-s)%4][t+(j-t)%4]>=(x*x==y*y)|(x*y==0)>0)for j in r]for i in r]
+def p(e,g=range(21)):l=lambda m:min(p for p in g if min(m[p:p+3]));q=l([*map(n:=max,e)]);t=l([*map(n,*e)]);d=lambda m:4*((m>0)-(m<0));return[[n(e[q+d(m:=(p-q)//4)+n//3][t+d(a:=(u-t)//4)+n%3]for n in g[:9])*(e[q+(p-q)%4][t+(u-t)%4]>=(m*m==a*a)|(m*a==0)>0)for u in g]for p in g]

@@ -1,5 +1,5 @@
-def p(g,s=range(-2,10)):
- for i in s:
-  for j in s:
-   for a in((n:=g[i+1][j])==g[i-1][j]==g[i][j+1]>0)*[*s[:5]]:c=g[i][j];g[i-a][j]=g[i][j-a]=n;g[i+a][j+a]=g[i+a][j-a]=c
- return g
+def p(r,e=range(-2,10)):
+ for p in e:
+  for o in e:
+   for a in((n:=r[p+1][o])==r[p-1][o]==r[p][o+1]>0)*[*e[:5]]:d=r[p][o];r[p-a][o]=r[p][o-a]=n;r[p+a][o+a]=r[p+a][o-a]=d
+ return r

@@ -1,4 +1,3 @@
-def p(g):
- if(n:=len(g))<3:return[[3]*n]*n
- if n<4:return[[3]*3,[0,0,3],[3]*3]
- a=[[3]*n,[0]*(n-1)+[3]]+[[3,0]+v+[0,3]for v in p([s[2:-2]for s in g[2:-2]])]+[[3]+[0]*(n-2)+[3],[3]*n];a[2][1]=3;return a
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("MNµÃ@í=…:3*i=uÑ9höþ9Š>œEÁaãÁUcÓ?dÔiØa³Ê~¬#r4êc`ìNÿuL¨HŠ9±{ ½èGÁ˜–a¬sŽ‰0)8–˜Ì¸šV¸ŽZš„ª&­~¥ÁåZ~Qe‰ç¦ª˜Jî±un@^","L1"),-9))

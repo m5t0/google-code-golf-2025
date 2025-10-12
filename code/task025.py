@@ -1,7 +1,7 @@
 def p(g):
- l=len;*z,=zip(*g);g=[z,g][v:=1in{l({*c})for c in z}];n=l(g[0]);o=[n*[0]for _ in g]
- for s in range(l(g)*n):
-  if(c:=(b:=g[i:=s//n])[j:=s%n])*(l({*[*zip(*g)][j]})<2):
-   a=o[i];a[j]=c;a[j-1]=c*(c in b[:j])
-   if j<n-1:a[j+1]=c*(c in b[j+1:])
+ e=len;*o,=zip(*g);g=[o,g][v:=1in{e({*f})for f in o}];n=e(g[0]);o=[n*[0]for _ in g]
+ for s in range(e(g)*n):
+  if(f:=(l:=g[r:=s//n])[h:=s%n])*(e({*[*zip(*g)][h]})<2):
+   i=o[r];i[h]=f;i[h-1]=f*(f in l[:h])
+   if h<n-1:i[h+1]=f*(f in l[h+1:])
  return([*zip(*o)],o)[v]

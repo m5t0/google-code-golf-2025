@@ -1,13 +1,13 @@
 def p(g,r=range):
- n=len(g);q=1
- for _ in r(4):
-  a,h=zip(*((i,j)for i in r(n)for j in r(n)if g[i][j]));a,x,c,d=min(a),max(a),min(h),max(h);t=g[a][c];l=g[a].count(t)
-  if(l<g[x].count(t))&q:
-   q,h,m=0,c+l//2,d-l//2
-   for t in r(x):g[t][h:m+1]=[4]*(m-h+1)
-   for t in r(a+1,x):g[t][c+1:d]=[4]*(d-c-1)
-   for u in r(a+1):
-    if h>=u:g[a-u][h-u]=4
-    if m+u<n:g[a-u][m+u]=4
+ o=len(g);j=1
+ for i in r(4):
+  s,h=zip(*((i,l)for i in r(o)for l in r(o)if g[i][l]));s,x,e,d=min(s),max(s),min(h),max(h);i=g[s][e];l=g[s].count(i)
+  if(l<g[x].count(i))&j:
+   j,h,p=0,e+l//2,d-l//2
+   for i in r(x):g[i][h:p+1]=[4]*(p-h+1)
+   for i in r(s+1,x):g[i][e+1:d]=[4]*(d-e-1)
+   for i in r(s+1):
+    if h>=i:g[s-i][h-i]=4
+    if p+i<o:g[s-i][p+i]=4
   g=[*map(list,zip(*g[::-1]))]
  return g

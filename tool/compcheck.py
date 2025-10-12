@@ -11,7 +11,7 @@ from threading import Lock
 
 import numpy as np
 
-COMPCHECK_VERSION = "1.2"
+COMPCHECK_VERSION = "1.3"
 
 DEFLATE = 0
 ZOPFLI = 1
@@ -160,7 +160,7 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
         if len(best) > baseline + margin:
             break
 
-    return b' ' * 10000 if best is None else best
+    return best
 
 
 def get_hash(code):
@@ -247,19 +247,15 @@ def process_task(task_num, state):
 
 def process_code_single(task_num, author, code, color, out=None, write=False):
     clear = "\033[0m"
-    deflate = zip_src(task_num, code, len(code), compressor=DEFLATE)
-    zopfli = zip_src(task_num, code, len(code), compressor=ZOPFLI)
-    zlib = zip_src(task_num, code, len(code), compressor=ZLIB)
-    compressed_code = min(deflate, zopfli, zlib, key=len)
+    compressors = [DEFLATE, ZOPFLI, ZLIB]
+    compressed_codes = [zip_src(task_num, code, len(code), compressor) for compressor in compressors]
+    passed_codes = list(filter(None, compressed_codes))
 
-    if deflate == compressed_code:
-        compressor_used = DEFLATE
-    elif zopfli == compressed_code:
-        compressor_used = ZOPFLI
-    elif zlib == compressed_code:
-        compressor_used = ZLIB
-    else:
-        compressor_used = -1
+    if passed_codes == []:
+        return 0, -1, f"{color}{author}            : not passed{clear}"
+
+    compressed_code = min(passed_codes, key=len)
+    compressor_used = compressed_codes.index(compressed_code)
 
     improvement = len(code) - len(compressed_code)
     if improvement < 0:

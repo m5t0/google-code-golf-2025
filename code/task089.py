@@ -1,6 +1,6 @@
-def p(g):
- n=13;h={c:[(i//n,i%n)for i in range(169)if g[i//n][i%n]==c]for c in range(169)};f={c:((x,y),[(d,i-x,(j-y)*[-1,1][c-2])for i,j in h[d]])for c in(2,3)for d in range(169)for x,y in h[c]if{(x+s//3-1,y+s%3-1)for s in range(9)if s-4}&{*h[d]}}
- for c in f:
-  for x,y in h[c]:
-   for d,i,j in f[c][1]*((x,y)!=f[c][0]):g[i+x][j+y]=d
- return g
+def p(r):
+ n=13;i={e:[(o//n,o%n)for o in range(169)if r[o//n][o%n]==e]for e in range(169)};u={e:((g,a),[(d,o-g,(n-a)*[-1,1][e-2])for o,n in i[d]])for e in(2,3)for d in range(169)for g,a in i[e]if{(g+d//3-1,a+d%3-1)for d in range(9)if d-4}&{*i[d]}}
+ for e in u:
+  for g,a in i[e]:
+   for d,o,n in u[e][1]*((g,a)!=u[e][0]):r[o+g][n+a]=d
+ return r
