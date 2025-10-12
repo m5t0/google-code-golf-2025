@@ -1,1 +1,2 @@
-p=lambda g,r=range(9):[[(h:=[[w[i]for w in zip(*g)if any(w)]for i in r if any(g[i])])[i//3][j//3]and h[i%3][j%3]for j in r]for i in r]
+f=lambda g:[*filter(any,zip(*g))]
+p=lambda g:[[c&d for c in a for d in b]for a in f(f(g)) for b in f(f(g))]
