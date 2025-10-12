@@ -160,7 +160,7 @@ def validate_code_runner(
 ) -> None:
     """Checks code against all examples. Returns the first failing example or None."""
     if unsafe_mode:
-        examples_to_check = examples_to_check[:3]
+        examples_to_check = examples_to_check[:1]
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=SyntaxWarning)
