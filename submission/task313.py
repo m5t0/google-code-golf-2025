@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[g[i&1][1+j%~-len({*g[0]})]for j,w in e(g)]for i,v in e(g)]
+def p(g):n=len(g);return[(g[i&1][1:len({*g[0]})]*9)[:n]for i in range(n)]
