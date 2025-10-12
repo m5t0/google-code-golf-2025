@@ -1,3 +1,7 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("…ÅQDïT‘î.¡Ü!Yt½|şàÎ5c/³ù‚ö±eÊf{¼]Îã-v6	É–ìX¾€É‚o™CˆË®ôãídÂQÏ‰Bª„ÈåhİkŒ?­h’Vu¾væ$Iíw­~ÊÉg!}ø›Êõ#°ºÚéÓ¨òÕ2iA§^¶5)@…|ÒÒçoPí¹ëÙ[Z","L1"),-9))
+def p(g):
+ s=[[0]*15]*2
+ for _ in s*2:
+  for k in[0,1]:
+   if g[3+k].count(2)>4:g[k:k+2]=g[6+k:4+k:-1];g[5+k:7+k]=s
+  *g,=map(list,zip(*g[::-1]))
+ return g
