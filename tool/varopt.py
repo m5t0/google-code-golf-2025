@@ -11,6 +11,7 @@ from typing import Callable, Any
 UNSAFE_MODE = False
 SCORE_TIMEOUT_TIME = 1  # seconds
 VALIDATE_TIMEOUT_TIME = 60  # seconds
+FINAL_VALIDATE_TIMEOUT_TIME = 300  # seconds
 COMPRESSOR = "zopfli"
 
 # ------------------ multithread utility ------------------------------
@@ -72,7 +73,7 @@ def run_with_thread_timeout(
 # ----------------- optimization code -----------------------
 
 
-def create_template_from_function(code_string: str) -> (str, list):
+def create_template_from_function(code_string: str) -> tuple[str, list]:
     tree = ast.parse(code_string)
     variable_names = {
         node.id
@@ -138,9 +139,9 @@ def verify(output: list, label: list) -> bool:
 
 def validate_code_runner(
     code: str, examples_to_check: list, unsafe_mode: bool, result_queue: Queue
-) -> tuple | None:
+) -> None:
     """Checks code against all examples. Returns the first failing example or None."""
-    if UNSAFE_MODE:
+    if unsafe_mode:
         examples_to_check = examples_to_check[:1]
     try:
         with warnings.catch_warnings():
@@ -168,7 +169,7 @@ def validate_code(
     examples_to_check: list,
     timeout: int | float = VALIDATE_TIMEOUT_TIME,
     unsafe_mode=UNSAFE_MODE,
-) -> tuple | None:
+) -> tuple[int, list] | None:
     """Checks code against all examples. Returns the first failing example or None."""
     try:
         return run_with_thread_timeout(
@@ -200,15 +201,21 @@ def compress_custom(compressor: str, data: str):
         raise Exception("Unknown compressor")
 
 
-def get_score(code: str, examples_to_check: list) -> (int, int):
+def get_score(
+    code: str,
+    examples_to_check: list,
+    compressor: str = COMPRESSOR,
+    timeout: int | float = SCORE_TIMEOUT_TIME,
+) -> tuple[int, int]:
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=SyntaxWarning)
-            failing_example = validate_code(code, examples_to_check, SCORE_TIMEOUT_TIME)
+            failing_example = validate_code(code, examples_to_check, timeout=timeout)
             if failing_example is not None:
                 return 999, 999
 
-            compressed = compress_custom(COMPRESSOR, code.encode())
+            compressed = compress_custom(compressor, code.encode())
+
             # min(compressed.count(b"'"), compressed.count(b'"')) when use " or ' as delim
             # 4                                                   when use """ or ''' as delim
             penalty = sum(
@@ -220,7 +227,12 @@ def get_score(code: str, examples_to_check: list) -> (int, int):
 
 
 def main():
-    global UNSAFE_MODE, SCORE_TIMEOUT_TIME, VALIDATE_TIMEOUT_TIME, COMPRESSOR
+    global \
+        UNSAFE_MODE, \
+        SCORE_TIMEOUT_TIME, \
+        VALIDATE_TIMEOUT_TIME, \
+        FINAL_VALIDATE_TIMEOUT_TIME, \
+        COMPRESSOR
 
     parser = argparse.ArgumentParser()
     parser.add_argument("task_id", type=int, help="task id")
@@ -232,34 +244,40 @@ def main():
         help="compressor type",
     )
     parser.add_argument(
-        "--score_timeout",
+        "--score-timeout",
         type=float,
         default=SCORE_TIMEOUT_TIME,
         help="timeout time(seconds) when scoring (only few examples are used when scoring)",
     )
     parser.add_argument(
-        "--validate_timeout",
+        "--validate-timeout",
         type=float,
         default=VALIDATE_TIMEOUT_TIME,
         help="timeout time(seconds) when validating (all examples are used when validating)",
     )
     parser.add_argument(
+        "--final-validate-timeout",
+        type=float,
+        default=FINAL_VALIDATE_TIMEOUT_TIME,
+        help="timeout time(seconds) when final validating (all examples are used when validating)",
+    )
+    parser.add_argument(
         "--limit", type=int, default=6000, help="limit of the number of trials"
     )
     parser.add_argument(
-        "--rebase_interval",
+        "--rebase-interval",
         type=int,
         default=500,
         help="a parameter that determines the speed of the meter's increase until the next rebase",
     )
     parser.add_argument(
-        "--next_rebase",
+        "--next-rebase",
         type=int,
         default=500,
         help="a parameter that determines the size of meter until the next rebase",
     )
     parser.add_argument(
-        "--rebase_interval_scaling",
+        "--rebase-interval-scaling",
         type=float,
         default=1.3,
         help="a parameter that controls the degree of increase (scaling) of the rebase_interval",
@@ -268,7 +286,7 @@ def main():
         "--unsafe",
         default=UNSAFE_MODE,
         action="store_true",
-        help="verify only with 1 example when this option exists",
+        help="validate only with 1 example when this option exists",
     )
 
     args = parser.parse_args()
@@ -278,6 +296,7 @@ def main():
     COMPRESSOR = args.compressor
     SCORE_TIMEOUT_TIME = args.score_timeout
     VALIDATE_TIMEOUT_TIME = args.validate_timeout
+    FINAL_VALIDATE_TIMEOUT_TIME = args.final_validate_timeout
     LIMIT = args.limit
     REBASE_INTERVAL = args.rebase_interval
     NEXT_REBASE = args.next_rebase
@@ -428,7 +447,15 @@ def main():
 
     # --- Final Result ---
     print(f"\nFinal validation of best code found...")
-    if validate_code(global_best_code, all_examples, unsafe_mode=False) is not None:
+    if (
+        validate_code(
+            global_best_code,
+            all_examples,
+            timeout=FINAL_VALIDATE_TIMEOUT_TIME,
+            unsafe_mode=False,
+        )
+        is not None
+    ):
         print(
             "WARNING: The final best code failed full validation. Something may be wrong."
         )
