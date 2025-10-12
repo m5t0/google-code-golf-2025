@@ -1,1 +1,2 @@
-p=lambda g,e=enumerate:[[sum({*w[:i+1]}&{*w[i:]})or sum({*v[:j+1]}&{*v[j:]})for j,w in e(zip(*g))]for i,v in e(g)]
+f=lambda g:[[w or sum({*v[:j]}&{*v[j:]})for j,w in enumerate(v)]for v in zip(*g)]
+p=lambda g:f(f(g))
