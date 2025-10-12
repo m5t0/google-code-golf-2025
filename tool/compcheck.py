@@ -168,9 +168,10 @@ def get_hash(code):
 
 
 class State:
-    def __init__(self):
+    def __init__(self, no_cache):
         self.cache = {}
         self.cache_path = os.path.join(os.path.dirname(__file__), "cache.pkl")
+        self.no_cache = no_cache
         self.deflate_cnt = 0
         self.zopfli_cnt = 0
         self.zlib_cnt = 0
@@ -192,6 +193,8 @@ class State:
             pickle.dump(self.cache, f)
 
     def get_cache(self, task_num):
+        if self.no_cache:
+            return None
         with self.lock:
             return self.cache.get(task_num)
 
@@ -278,11 +281,11 @@ def main():
     if len(sys.argv) < 2:
         return
 
-    cache = True
+    no_cache = False
 
     for i in range(1, len(sys.argv)):
         if sys.argv[i] == "--no-cache":
-            cache = False
+            no_cache = True
             sys.argv.pop(i)
 
     for i in range(1, len(sys.argv))[::-1]:
@@ -293,10 +296,8 @@ def main():
             for j in range(int(start), int(end) + 1):
                 sys.argv.append(str(j))
 
-    state = State()
-
-    if cache:
-        state.load_cache()
+    state = State(no_cache)
+    state.load_cache()
 
     tasks = [int(arg) for arg in sys.argv[1:]]
 
