@@ -1,1 +1,1 @@
-p=lambda g:[[w[i]+(len(w)-w.count(2)/2<=i)*6for w in zip(*g)]for i in range(len(g))]
+p=lambda g:[[w[i]+(len(g)-sum(w)/4<=i)*6for w in zip(*g)]for i in range(len(g))]
