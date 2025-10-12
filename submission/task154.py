@@ -1,6 +1,6 @@
-def p(g,s=[[0]*15]*2):
- for _ in s*2:
+def p(g):
+ for _ in[0]*4:
   for k in 0,1:
-   if g[3+k].count(2)>4:g[6+k:4+k:-1]=g[k:k+2];g[k:k+2]=s
+   if g[3+k].count(2)>4:g[6+k:4+k:-1]=g[k:k+2];g[k:k+2]=[[0]*15]*2
   *g,=zip(*g[::-1])
  return g
