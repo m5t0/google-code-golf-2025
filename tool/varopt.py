@@ -160,7 +160,7 @@ def validate_code_runner(
 ) -> None:
     """Checks code against all examples. Returns the first failing example or None."""
     if unsafe_mode:
-        examples_to_check = examples_to_check[:1]
+        examples_to_check = examples_to_check[:3]
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=SyntaxWarning)
@@ -228,7 +228,9 @@ def get_score(
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=SyntaxWarning)
-            failing_example = validate_code(code, examples_to_check, timeout=timeout)
+            failing_example = validate_code(
+                code, examples_to_check, timeout=timeout, unsafe_mode=False
+            )
             if failing_example is not None:
                 return 999, 999
 
@@ -329,12 +331,18 @@ def main():
     if args.use_compcheck_cache:
         COMPRESSOR = load_compressor_from_cache(TASK_ID, COMPRESSOR)
 
+    warnings.filterwarnings("ignore", category=SyntaxWarning)
+
     print("*" * 60)
     print(filename, TASK_ID)
 
     # --- Setup ---
-    with open(filename, "r") as h:
-        RAW_FUNCTION_STRING = h.read().strip()
+    try:
+        with open(filename, "r") as h:
+            RAW_FUNCTION_STRING = h.read().strip()
+    except Exception:
+        print(f"task{TASK_ID:03d} FATAL: Failed to load the file.", file=sys.stderr)
+        return
 
     task_data = load_examples(TASK_ID)
     all_examples = list(
@@ -361,7 +369,7 @@ def main():
     print("Running initial validation against all examples...")
     if validate_code(initial_code, all_examples) is not None:
         print(
-            "task{TASK_ID:03d} FATAL: Initial raw function is incorrect. Exiting.",
+            f"task{TASK_ID:03d} FATAL: Initial raw function is incorrect. Exiting.",
             file=sys.stderr,
         )
         raise ValueError("Failed with original")
@@ -387,11 +395,21 @@ def main():
 
     if (
         PAYLOAD_OVERHEAD + global_best_base + global_best_penalty
-        > len(initial_code) + 20
+        > len(initial_code) + 30
     ):
         print("Compressed code is too longer than uncompressed code, so quit.")
         print(
             f"Uncompressed Code:{len(initial_code)} bytes, Compressed Code:{PAYLOAD_OVERHEAD + global_best_base + global_best_penalty} bytes"
+        )
+        print(
+            "task{0:03d}: {1} bytes".format(
+                TASK_ID,
+                min(
+                    len(initial_code),
+                    PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
+                ),
+            ),
+            file=sys.stderr,
         )
         return
 
@@ -485,13 +503,29 @@ def main():
         )
         is not None
     ):
-        print(
-            f"task{TASK_ID:03d} WARNING: The final best code failed full validation. Something may be wrong.(This warning sometimes occur due to the unsafe option.)",
-            file=sys.stderr,
-        )
-        return
-    else:
-        print("Final code PASSED validation.")
+        if (
+            validate_code(
+                last_known_good_code,
+                all_examples,
+                timeout=FINAL_VALIDATE_TIMEOUT_TIME,
+                unsafe_mode=False,
+            )
+            is not None
+        ):
+            print(
+                f"task{TASK_ID:03d} WARNING: The final best code failed full validation. Something may be wrong.(This warning sometimes occurs when using the unsafe option.)",
+                file=sys.stderr,
+            )
+            return
+        else:
+            global_best_code = last_known_good_code
+            (
+                global_best_base,
+                global_best_penalty,
+            ) = (last_known_good_base, last_known_good_penalty)
+            global_best_total_size = last_known_good_total_size
+
+    print("Final code PASSED validation.")
 
     print(
         f"\nBest score achieved: {global_best_total_size} bytes (Base: {global_best_base}, Penalty: {global_best_penalty})"
@@ -504,11 +538,32 @@ def main():
         PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
     ):
         print("Write the best code to the file!")
+        print(
+            "task{0:03d}: {1} bytes -> {2} bytes".format(
+                TASK_ID,
+                min(
+                    len(initial_code),
+                    PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
+                ),
+                PAYLOAD_OVERHEAD + sum(get_score(global_best_code, checked_examples)),
+            ),
+            file=sys.stderr,
+        )
         with open(filename, "w") as h:
             h.write(global_best_code)
     else:
         print(
             "Don't write the best code to the file because it's not shorter than the initial code."
+        )
+        print(
+            "task{0:03d}: {1} bytes".format(
+                TASK_ID,
+                min(
+                    len(initial_code),
+                    PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
+                ),
+            ),
+            file=sys.stderr,
         )
 
 
