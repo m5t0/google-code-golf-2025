@@ -377,17 +377,7 @@ def main(pool: TimeoutThreadPool):
         help="set a timeout by the first execution time",
     )
 
-    args = parser.parse_args(
-        [
-            "--limit",
-            "12000",
-            "--auto-timeout-setting",
-            False,
-            "--score-timeout",
-            "1",
-            "319",
-        ]
-    )
+    args = parser.parse_args()
 
     TASK_ID = args.task_id
     filename = f"./code/task{TASK_ID:03d}.py"
