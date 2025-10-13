@@ -171,7 +171,11 @@ def verify(output: list, label: list) -> bool:
     if (
         (type(output) is not list and type(output) is not tuple)
         or any(type(v) is not list and type(v) is not tuple for v in output)
-        or any(type(w) is not int and type(w) is not float for v in output for w in v)
+        or any(
+            type(w) is not int and type(w) is not float and type(w) is not bool
+            for v in output
+            for w in v
+        )
     ):
         return False
     result = json.dumps(output)
@@ -667,7 +671,7 @@ def main(pool: TimeoutThreadPool):
         f"\nBest score achieved: {global_best_total_size} bytes (Base: {global_best_base}, Penalty: {global_best_penalty})"
     )
     print("\nFinal optimized code:")
-    print(global_best_code)
+    print(global_best_code,end="\n\n")
 
     # overwrite initial code if submission file exists is shorter than the initial code
     submission_file = f"./submission/task{TASK_ID:03d}"
@@ -679,6 +683,10 @@ def main(pool: TimeoutThreadPool):
                     initial_code = data
         except Exception:
             pass
+
+    print(
+        f"before best:{len(initial_code)} bytes, varopt compress best:{PAYLOAD_OVERHEAD + global_best_base + global_best_penalty} bytes"
+    )
 
     if PAYLOAD_OVERHEAD + sum(
         get_score(
