@@ -1,2 +1,3 @@
-d=0,1,0,-1
-def p(g,r=range):D=lambda i,j,P:sum(m>(y:=j+d[k-1])>-1<(x:=i+d[k])<n>g[x][y]>2and(P-(k^2)and D(x,y,k))+(m>(Y:=j+d[k-2])>-1<(X:=i+d[k-1])<n>g[X][Y]>2)for k in r(4));n=len(g);m=len(g[0]);return[[g[i][j]and[0,1,6,2][D(i,j,5)]for j in r(m)]for i in r(n)]
+import re
+s="g[:]=zip(*eval(re.sub(r'%s',str(g)))[::-1]);"
+p=lambda g:exec((s%"([1-9])(?=, [1-9].{%d}[1-9])',r'\\1+1"+s%r"([1-9])(?=, ([^0\1]))',r'max(\1,\2)"*32)*2%(len(g[0])*3-2,len(g)*3-2)*2+s%r"([1-9])',r'1+(\1>5)+(\1==5)*5"+s%"','"*3)or g
