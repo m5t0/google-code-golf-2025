@@ -1,1 +1,1 @@
-p=lambda g,f=lambda d:[*zip(*[b for a,b in zip([0]+d,d)if(a!=b)*any(b)])]:f(f(g))
+p=lambda g,f=lambda d:zip(*{}.fromkeys(map(tuple,filter(any,d)))):[*f(f(g))]

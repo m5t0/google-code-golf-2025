@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:exec('A,B=max(i for i,r in e(g)if 2in r),min(i for i,r in e(g)if 8in r);g[:]=[*zip(*(B>A)*(B-A-1)*[[0]*len(g[0])]+(g,g[:A+1]+g[B:])[B>A])][::-1];'*4)or g
+p=lambda g:[g:=[*zip(*(len(g)-len(u:=[v for i,v in enumerate(g)if any(v)or max(max(g[i:]))<8]))*[min(g)]+u)][::-1]for _ in[0]*4][3]

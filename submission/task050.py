@@ -1,1 +1,2 @@
-p=lambda g,e=enumerate,s=sum:[[v[j]or(s(v[:j])*s(v[j:])|s(w[:i])*s(w[i:]))*3>>6for j,w in e(zip(*g))]for i,v in e(g)]
+f=lambda g:[[w or(8in{*v[:j]}&{*v[j:]})*3for j,w in enumerate(v)]for v in zip(*g)]
+p=lambda g:f(f(g))

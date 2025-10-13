@@ -1,5 +1,1 @@
-def p(r):
-	C=[8]*17;r=[C]+[[8]+A+[8]for A in r]+[C];D=-1,0,1
-	for E in(4,5):
-		for F in range(225):A=F//15+1;B=F%15+1;G=[r[A+C][B+E]for C in D for E in D];r[A][B]-=E*(r[A][B]>7 and[sum(G)<66,6 in G][E&1])
-	return[A[1:-1]for A in r[1:-1]]
+p=lambda g,e=enumerate:[[[t:=w[i],(6in{*v[j:]}&{*v[:j]}&{*w[i:]}&{*w[:i]})*4or any(min(v[j-(j>0):j+2])<8for v in g[i-(i>0):i+2])*3or 8][t>7]for j,w in e(zip(*g))]for i,v in e(g)]

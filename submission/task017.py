@@ -1,1 +1,3 @@
-p=lambda n,e=range:(s:=e(21),l:=min(i for i in e(2,10)if all((a-b)*a*b<1for a,b in zip(n[0],n[0][i:]))),o:={(a%l,b%l):v for a in s for b in s if(v:=n[a][b])})and[[o[i%l,j%l]for j in s]for i in s]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("MŒÃPEåAIêµ€Øû’2]&¤YÐÙ¿ÏºÑArÎ]Zè|´$ÁFmÕ¼ß`°*µÙ¢Øc-Q<ËÆ#‰[Ñ€8öÑÛeØÿÕvÃH>KýD¬Ií	ÑiµN‘üooGû¢8µä6ÁjNÌÉ¿NSŽ^Þ","L1"),-9))

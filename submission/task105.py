@@ -1,1 +1,3 @@
-def p(g,e=enumerate):*l,=zip(*g);f=lambda m=l,h=min:h(i for i,v in e(m)if 1in v);a,b=f(g),f(g,max);x,y=f(),f(l,max);return[[v[j]or(a<=i<=b)*(x<=j<=y)*(sum(v[x+1:y])+sum(w[a+1:b])+(i in(a,b))+(j in(x,y))>1)*2for j,w in e(l)]for i,v in e(g)]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("UnCQè*Äá§ŞØv9Ë‡„dğæÚ»×wéÕà}ğËšŸ¡oò¡ÔT9à?ÁÊ©5~–xê‚sP8<›‚VŞÀğ‹An ¹1¨-‡†uºyÿLX×Ú¦r×fƒ<´ÑÕ¼6t¬Å ä‡Z]û7wî›~|¾åÍMÜØİºYn&w{Çr3½“ìA·ëXw,¨ƒ EA$-ĞÁdml/P¢jvqDÒİÅ/Nw+","L1"),-9))

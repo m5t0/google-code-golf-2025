@@ -1,3 +1,3 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes('xÚ-Ã0†ÈS¬V€VŸ$eëÎ¹byú%KğK|ÿçw/*¾‹Ù|ùh0 È—§ë~“F­äâÏë(â®d·¶6?(§]_¾à<}lĞö©,áa1:ß*à¸Y®˜ÁrÁÌxÌ&wÍ¥eiá]Ö¸¤i IÄiX”†5‘¦¦5/¶dœEÙ',"L1")))
+def p(g,d=divmod):
+ for _  in[0]*4:v=sum(g,[]);I,J=d(v.index(m:=max({*v}-{0},key=v.count))-11,10);A,B=d(88-v[::-1].index(m),10);g[I][J]=g[A][B];g[A][B]=0;g=[*map(list,zip(*g))][::-1]
+ return g

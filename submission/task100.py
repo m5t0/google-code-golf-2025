@@ -1,1 +1,1 @@
-p=lambda g:[[max((C.count(B)*sum(R[C.index(B)]==B for R in g),B)for C in g for B in C if B)[1]]*2]*2
+p=lambda g:2*[[max(range(1,10),key=lambda k:sum(k in{*v}&{*w}for w in zip(*g)for v in g))]*2]

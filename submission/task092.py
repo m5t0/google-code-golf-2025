@@ -1,2 +1,2 @@
-f=lambda w,i:((b:=max(w[:i+1]))==max(w[i:]))*b
-p=lambda g,e=enumerate:[[v[j]or f(w,i)or f(v,j)for j,w in e(zip(*g))]for i,v in e(g)]
+f=lambda g:[[w or sum({*v[:j]}&{*v[j:]})for j,w in enumerate(v)]for v in zip(*g)]
+p=lambda g:f(f(g))

@@ -1,1 +1,1 @@
-p=lambda g,s=lambda x:x[-2-len(x)%2:len(x)&~1]+x[:-2]:[[*map(s,g)],s(g)][(g[0]+g[1]).count(3)==1]
+p=lambda g:[[*map(s:=lambda x:x[-2-len(x)%2:len(x)&~1]+x[:-2],g)],s(g)][(g[0]+g[1]).count(3)==1]

@@ -1,1 +1,1 @@
-p=lambda g,z=[0]:[[a+8*b+2*c+7*d+6*e for a,b,c,d,e in zip(r,u,d,r[1:]+z,z+r[:-1])]for u,r,d in zip([z*10]+g,g,g[1:]+[z*10])]
+p=lambda g:[g:=[*zip(*eval(str(g).replace("0, 1",i+",1")))][::-1]for i in"7268"][3]
