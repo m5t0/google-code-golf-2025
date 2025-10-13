@@ -1,1 +1,1 @@
-def p(l,p=range):[exec("l[o][k]=(l[o:=k+f//3][k:=n+f%3]>0)*5")for f in p(1,64)if((o:=l[k:=f//8][n:=f%8])<1or(l[k-1][n]-o)*(l[k][n-1]-o))*all((l[k+f//3][n+f%3]>0)-(l[f//3][f%3]<1)for f in p(9))for f in p(9)];return l
+def p(e,p=range):[exec("e[o][b]=(e[o:=b+f//3][b:=d+f%3]>0)*5")for f in p(1,64)if((o:=e[b:=f//8][d:=f%8])<1or(e[b-1][d]-o)*(e[b][d-1]-o))*all((e[b+f//3][d+f%3]>0)-(e[f//3][f%3]<1)for f in p(9))for f in p(9)];return e

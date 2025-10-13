@@ -1,1 +1,1 @@
-def p(z,p=enumerate):z=[[max(a[d],a[~d],n[~e],z[~d][~e])for e,a in p(zip(*z))]for d,n in p(z)];return[[a[d]or sum(e&1and(19-d>e>d)*n[d-17]+(19-d<e<d)*n[d-2]for d,e,n in((d,e,n),(e,d,a)))for e,a in p(zip(*z))]for d,n in p(z)]
+def p(z,p=enumerate):z=[[max(a[s],a[~s],n[~e],z[~s][~e])for e,a in p(zip(*z))]for s,n in p(z)];return[[a[s]or sum(e&1and(19-s>e>s)*n[s-17]+(19-s<e<s)*n[s-2]for s,e,n in((s,e,n),(e,s,a)))for e,a in p(zip(*z))]for s,n in p(z)]

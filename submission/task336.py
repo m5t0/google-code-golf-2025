@@ -1,1 +1,3 @@
-p=lambda g,r=range(10):[[(h:=[[v[j]or(5in{*[*zip(*g)][j]}&{*v})*8for j in r]for v in g])[i][j]or sum(8in(s:=V[I::k])and s.index(8)<s.index(5)for k in[-1,1]for V,I in[(h[i],j),([*[*zip(*h)][j]],i)])*8for j in r]for i in r]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes('efÀ0†_%`î"›¥by’sH4™#½VbÔªï>Ùø¾s~ßjÜÒ¸ZÔÏÓ;z"¨>uJ¼7˜E/Kö[°‚L‰ï—ËöíRöf’5öÂHe|Ã×‹(œ>(eï;cÔÕœo¢k>aÁg|èurS—‡C¥Â.¡z2êo»‚ü¿¢üá',"L1"),-9))
