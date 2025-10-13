@@ -267,7 +267,6 @@ def create_template_from_function(code_string: str) -> tuple[str, list]:
     template = code_string
     for name in sorted(list(variable_names), key=len, reverse=True):
         template = re.sub(r"\b" + re.escape(name) + r"\b", f"##{name}##", template)
-    print(template)
     return template.replace("def ##p##", "def p").replace(
         "##p##=lambda", "p=lambda"
     ).replace("##f##'", "f'").replace('##f##"', 'f"'), sorted(list(variable_names))
@@ -542,7 +541,7 @@ def main(pool: TimeoutProcessPool):
         RAW_FUNCTION_STRING
     )
     print(f"Initial variables: {original_vars}\n")
-    candidate_names = list("qertyuiopasdfghjklzxcbnm")
+    candidate_names = list("abcdefghijklmnopqrstuvwxyz")
 
     initial_code = FUNCTION_TEMPLATE.replace("##", "")
     PAYLOAD_OVERHEAD = 63
@@ -708,7 +707,7 @@ def main(pool: TimeoutProcessPool):
         num_changes = random.randint(1, min(6, len(original_vars)))
         vars_to_change = random.sample(original_vars, k=num_changes)
         for var, new_name in zip(
-            vars_to_change, random.sample(candidate_names, k=num_changes)
+            vars_to_change, random.sample(list(set(candidate_names)-set(original_vars)), k=num_changes)
         ):
             trial_mapping[var] = new_name
 
