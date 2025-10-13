@@ -1,1 +1,1 @@
-f=lambda n:[("*"*(2*i-1)).center(2*n-1)for i in range(1,n+1)]
+f=lambda n:[f'{"*"*(i-~i):^{2*n-1}}'for i in range(n)]
