@@ -1,12 +1,12 @@
 import ast, keyword, re, random, json, copy, sys, os, zipfile, glob, warnings, zlib, time
-import ctypes, concurrent.futures
+import ctypes, concurrent.futures, multiprocessing
 import compcheck
-from queue import Queue
 import numpy as np
 import pickle
 import argparse
 import time
 import math
+import psutil
 
 sys.path.append("./input/google-code-golf-2025/code_golf_utils")
 from code_golf_utils import *
@@ -53,72 +53,176 @@ def load_compressor_from_cache(task_id: int, default: str) -> str:
 # ------------------ multithread utility ------------------------------
 
 
-class TimeoutThreadPool:
+# Define as top-level function (to make it pickleable)
+def _wrapped_func(func, *args, **kwargs):
+    """Wrapper function to record process ID"""
+    current_process = multiprocessing.current_process()
+    pid = current_process.pid
+
+    try:
+        return func(*args, **kwargs)
+    except Exception as e:
+        print(f"Process {pid} encountered an error: {e}")
+        raise
+
+
+class TimeoutProcessPool:
     def __init__(self, max_workers=None):
-        self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=max_workers)
+        self.max_workers = max_workers
+        self.executor = concurrent.futures.ProcessPoolExecutor(max_workers=max_workers)
         self._shutdown = False
-        self.task_id = 1
+        self._timeout_occurred = False
 
     def execute_with_timeout(self, func, timeout, *args, **kwargs):
         if self._shutdown:
             raise RuntimeError("Pool is shutdown")
 
-        future = self.executor.submit(func, *args, **kwargs)
+        # Reinitialize executor if it became unstable from previous timeout
+        if self._timeout_occurred:
+            self._restart_executor()
+
+        # Use top-level function
+        future = self.executor.submit(_wrapped_func, func, *args, **kwargs)
         try:
-            return future.result(timeout=timeout)
+            result = future.result(timeout=timeout)
+            return result
         except concurrent.futures.TimeoutError:
-            self._cancel_future(future)
+            # Force terminate process on timeout
+            # print(
+            #     f"Timeout detected for function {func.__name__}, terminating process..."
+            # )
+            self._terminate_process_tree(future)
+
+            # Set timeout flag and reinitialize executor
+            self._timeout_occurred = True
+            self._restart_executor()
+
             raise TimeoutError(
                 f"Function {func.__name__} timed out after {timeout} seconds"
             )
+        except Exception as e:
+            # Check executor status for other exceptions too
+            if "broken" in str(e).lower() or "terminated" in str(e).lower():
+                self._timeout_occurred = True
+                self._restart_executor()
+            raise
 
-    def _cancel_future(self, future):
+    def _terminate_process_tree(self, future):
+        """Terminate the process tree"""
         try:
+            # Identify the running process
+            if hasattr(future, "_process") and future._process is not None:
+                pid = future._process.pid
+
+                try:
+                    # Get the main process
+                    parent = psutil.Process(pid)
+
+                    # Terminate the process tree including all child processes
+                    children = parent.children(recursive=True)
+
+                    # First terminate child processes
+                    for child in children:
+                        try:
+                            child.terminate()
+                        except psutil.NoSuchProcess:
+                            pass
+
+                    # Wait for child processes to terminate
+                    gone, alive = psutil.wait_procs(children, timeout=5)
+
+                    # Force kill any remaining processes
+                    for child in alive:
+                        try:
+                            child.kill()
+                        except psutil.NoSuchProcess:
+                            pass
+
+                    # Terminate the parent process
+                    try:
+                        parent.terminate()
+                        parent.wait(timeout=5)
+                    except (psutil.NoSuchProcess, psutil.TimeoutExpired):
+                        try:
+                            parent.kill()
+                        except psutil.NoSuchProcess:
+                            pass
+
+
+                except psutil.NoSuchProcess:
+                    print(f"Process {pid} no longer exists")
+                except Exception as e:
+                    print(f"Error terminating process {pid}: {e}")
+
+            # Cancel the Future as well
             future.cancel()
 
-            if future.running():
-                self._safe_terminate_thread(future)
-
         except Exception as e:
-            print(f"Error canceling future: {e}")
+            print(f"Error in process termination: {e}")
 
-    def _safe_terminate_thread(self, future):
+    def _restart_executor(self):
+        """Reinitialize the executor"""
+
+        # Shutdown the old executor
         try:
-            if hasattr(future, "_thread"):
-                thread = future._thread
-                if thread and thread.is_alive():
-                    self._raise_exception_in_thread(thread)
+            self.executor.shutdown(wait=False)
         except Exception as e:
-            print(f"Safe termination failed: {e}")
+            print(f"Error during executor shutdown: {e}")
 
-    def _raise_exception_in_thread(self, thread):
+        # Clean up orphaned processes
+        self._cleanup_orphaned_processes()
+
+        # Create a new executor
+        self.executor = concurrent.futures.ProcessPoolExecutor(
+            max_workers=self.max_workers
+        )
+        self._timeout_occurred = False
+
+    def _cleanup_orphaned_processes(self):
+        """Clean up orphaned processes"""
         try:
-            if thread.is_alive():
-                exc = ctypes.py_object(SystemExit)
-                ctypes.pythonapi.PyThreadState_SetAsyncExc(
-                    ctypes.c_long(thread.ident), exc
-                )
+            current_pid = os.getpid()
+            for proc in psutil.process_iter(["pid", "name", "status"]):
+                try:
+                    # Target Python processes that are not in zombie state
+                    if (
+                        "python" in proc.info["name"].lower()
+                        and proc.info["status"] != psutil.STATUS_ZOMBIE
+                        and proc.info["pid"] != current_pid
+                    ):
+                        # If parent process doesn't exist or parent process is not current process
+                        parent = proc.parent()
+                        if (
+                            parent is None
+                            or parent.pid == 1
+                            or parent.pid == current_pid
+                        ):
+                            proc.terminate()
+                except (psutil.NoSuchProcess, psutil.AccessDenied):
+                    continue
         except Exception as e:
-            print(f"Failed to interrupt thread: {e}")
+            print(f"Error during orphaned process cleanup: {e}")
 
     def shutdown(self, wait=True):
         self._shutdown = True
-        self.executor.shutdown(wait=wait, cancel_futures=not wait)
+        self.executor.shutdown(wait=wait)
+
+        # Also clean up residual processes during shutdown
+        if not wait:
+            self._cleanup_orphaned_processes()
 
 
 def run_with_thread_timeout(
     func: Callable[..., Any],
     timeout: int | float,
-    pool: TimeoutThreadPool,
+    pool: TimeoutProcessPool,
     *args: Any,
     **kwargs: Any,
 ) -> Any:
     """
     Execute a function in a separate thread with a timeout.
     """
-    result_queue = Queue()
-    pool.execute_with_timeout(func, timeout, *args, result_queue, **kwargs)
-    return result_queue.get()
+    return pool.execute_with_timeout(func, timeout, *args, **kwargs)
 
 
 # ----------------- optimization code -----------------------
@@ -163,6 +267,7 @@ def create_template_from_function(code_string: str) -> tuple[str, list]:
     template = code_string
     for name in sorted(list(variable_names), key=len, reverse=True):
         template = re.sub(r"\b" + re.escape(name) + r"\b", f"##{name}##", template)
+    print(template)
     return template.replace("def ##p##", "def p").replace(
         "##p##=lambda", "p=lambda"
     ).replace("##f##'", "f'").replace('##f##"', 'f"'), sorted(list(variable_names))
@@ -198,9 +303,7 @@ def verify(output: list, label: list) -> bool:
     )
 
 
-def validate_code_runner(
-    code: str, examples_to_check: list, unsafe_mode: bool, result_queue: Queue
-) -> None:
+def validate_code_runner(code: str, examples_to_check: list, unsafe_mode: bool) -> None:
     """Checks code against all examples. Returns the first failing example or None."""
     if unsafe_mode:
         examples_to_check = examples_to_check[:1]
@@ -210,19 +313,17 @@ def validate_code_runner(
             solution_namespace = {}
             exec(code, solution_namespace)
             p_func = solution_namespace.get("p")
+            sys.setrecursionlimit(100)
 
             for i, example in examples_to_check:
                 if not verify(
                     p_func(copy.deepcopy(example["input"])), example["output"]
                 ):
-                    result_queue.put((i, example))
-                    return  # FAILED
-            result_queue.put(None)
+                    return i, example  # FAILED
             return  # PASSED
     except Exception:
         # Code fails to execute, so it's invalid. Return the first example as the failure point.
-        result_queue.put(examples_to_check[0])
-        return
+        return examples_to_check[0]
 
 
 def validate_code(
@@ -232,9 +333,17 @@ def validate_code(
     unsafe_mode: bool,
     phase: str,
     task_id: int,
-    pool: TimeoutThreadPool,
+    pool: TimeoutProcessPool,
 ) -> tuple[int, list] | None:
     """Checks code against all examples. Returns the first failing example or None."""
+    return run_with_thread_timeout(
+        validate_code_runner,
+        timeout,
+        pool,
+        code,
+        examples_to_check,
+        unsafe_mode,
+    )
     try:
         return run_with_thread_timeout(
             validate_code_runner,
@@ -283,7 +392,7 @@ def get_score(
     compressor: str,
     timeout: int | float,
     task_id: int,
-    pool: TimeoutThreadPool,
+    pool: TimeoutProcessPool,
 ) -> tuple[int, int]:
     try:
         with warnings.catch_warnings():
@@ -312,7 +421,7 @@ def get_score(
         return 998, 998
 
 
-def main(pool: TimeoutThreadPool):
+def main(pool: TimeoutProcessPool):
     TASK_ID = 1
     UNSAFE_MODE = False
     SCORE_TIMEOUT_TIME = 1  # seconds
@@ -731,7 +840,7 @@ def main(pool: TimeoutThreadPool):
 
 
 if __name__ == "__main__":
-    pool = TimeoutThreadPool(1)
+    pool = TimeoutProcessPool(1)
     try:
         main(pool=pool)
     finally:
