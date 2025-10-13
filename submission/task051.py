@@ -1,4 +1,3 @@
-def p(a):
-	F=len(a);C=len(a[0]);D=sum(a,[]);E=min({*D}-{0},key=D.count);A,B=divmod(D.index(E),C);G,H=next((D,E)for(D,E)in((0,1),(1,0),(0,-1),(-1,0))if(0<=A+D<F)*(0<=B+E<C)*a[A+D][B+E]<1)
-	while(-1<(A:=A-G)<F)&(-1<(B:=B-H)<C):a[A][B]=a[A][B]or E
-	return a
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("-K∑r√0ù≠Ø–îd Gç*¯óI/∏∞π˜Rñ◊üc_(8TGÅì 1ˇâç›·ËÈxéPÃFu†(	ûç∑O˚6_|'øöÛ9ùp√‰‰≥øí‰¯M∆qofJ|;x–Á√/K∞¶Cù±hT∑j†Uá(ÏD≤Ùì√TÚ2Lõ≤—l∑Q∑õ:¨◊O	¨ü	d i˜®˚è_œq;£û=ÈeGˇúu®>ù©.ﬂ","L1"),-9))

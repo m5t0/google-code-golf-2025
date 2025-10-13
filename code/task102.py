@@ -1,8 +1,8 @@
 def p(g):
- R=range
- for s in R(1,5):
-  for i in R(1,12-s):
-   for j in R(1,12-s):
-    if all(g[i-1][x]==g[i+s][x]==5 for x in R(j,j+s))and all(g[y][j-1]==g[y][j+s]==5 for y in R(i,i+s))and sum(g[y][x]for y in R(i,i+s)for x in R(j,j+s))<1:
-     for y in R(i,i+s):g[y][j:j+s]=[2]*s
+ u=range
+ for a in u(1,5):
+  for i in u(1,12-a):
+   for n in u(1,12-a):
+    if all(g[i-1][e]==g[i+a][e]==5 for e in u(n,n+a))and all(g[m][n-1]==g[m][n+a]==5 for m in u(i,i+a))and sum(g[m][e]for m in u(i,i+a)for e in u(n,n+a))<1:
+     for m in u(i,i+a):g[m][n:n+a]=[2]*a
  return g

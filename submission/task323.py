@@ -1,1 +1,1 @@
-def p(g):i=g.index(max(g));R=range(13);return[(d:=r-i)and[(abs(c-g[i].index(8)+d+(d<0)-(d>0))<=~d&1)*5 for c in R]or g[i]for r in R]
+def p(g):i=g.index(max(g));R=range(13);return[(d:=r-i)and[(abs(c-g[i].index(8)+d+(d<0)-(d>0))<=~d&1)*5for c in R]or g[i]for r in R]

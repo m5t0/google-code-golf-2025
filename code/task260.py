@@ -1,3 +1,3 @@
-c=enumerate
-g=lambda n,m:m([o-e for o,z in c(n)for e,p in c(zip(*n))if(z[e-1]==5,p[o-1]==5)[m(0,1)]>p[o]]+[15-30*m(0,1)])
-p=lambda n:[[p-5and(p or(o-e)in(g(n,max)+1,g(n,min)-1)and sum({*sum(n,[])})-5)for e,p in c(z)]for o,z in c(n)]
+f=enumerate
+l=lambda n,m:m([d-a for d,z in f(n)for a,i in f(zip(*n))if(z[a-1]==5,i[d-1]==5)[m(0,1)]>i[d]]+[15-30*m(0,1)])
+p=lambda n:[[i-5and(i or(d-a)in(l(n,max)+1,l(n,min)-1)and sum({*sum(n,[])})-5)for a,i in f(z)]for d,z in f(n)]

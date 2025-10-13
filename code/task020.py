@@ -1,8 +1,8 @@
-def p(f,e=enumerate):
- d,m=zip(*((d,m)for d,a in e(f)for m,r in e(a)if r))
- a=d[0];t=a+d[-1];r=min(m);i=r+max(m)
- for d,m in zip(d,m):
-  for u,n in(d,m),(a+m-r,r+d-a):
-   for u in u,t-u:
-    for n in n,i-n:f[u][n]=max(f[u][n],f[d][m])
- return f
+def p(e,i=enumerate):
+ p,m=zip(*((p,m)for p,n in i(e)for m,r in i(n)if r))
+ n=p[0];u=n+p[-1];r=min(m);f=r+max(m)
+ for p,m in zip(p,m):
+  for z,i in(p,m),(n+m-r,r+p-n):
+   for z in z,u-z:
+    for i in i,f-i:e[z][i]=max(e[z][i],e[p][m])
+ return e

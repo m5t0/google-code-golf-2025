@@ -1,8 +1,8 @@
-def p(d,t=range(10)):
- u=sum(d,[]).index(2);x=[(f-u//10,s-u%10)for f in t for s in t if d[f][s]&2]
- for u,e in(d[0][5:7]==[0,2])*x:d[1+u][8+e]=2
- for s in t:
-  for f in t:
-   for u,e in x*all(f+x<10>s+u>=d[f+x][s+u]<1for x,u in x):d[f+u][s+e]=2
- if d[5].count(2)>7:d[1][3:7]=[0]*4
- return d
+def p(n,q=range(10)):
+ f=sum(n,[]).index(2);r=[(e-f//10,u-f%10)for e in q for u in q if n[e][u]&2]
+ for f,i in(n[0][5:7]==[0,2])*r:n[1+f][8+i]=2
+ for u in q:
+  for e in q:
+   for f,i in r*all(e+f<10>u+q>=n[e+f][u+q]<1for f,q in r):n[e+f][u+i]=2
+ if n[5].count(2)>7:n[1][3:7]=[0]*4
+ return n
