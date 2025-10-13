@@ -1,1 +1,1 @@
-p=lambda g:[[(t:=r+[0]*7)[j]%2|t[(a:=(i:=sum(g,[]).index)(1)%10)+j-i(2)%10]%2*2|t[j-i(4)%10+a]%2*4for j in range(10)]for r in g]
+p=lambda g:[[r[j]&1|r[j-((i:=sum(g,[]).index)(2)-i(1))%10]%2*2|r[j-(i(4)-i(1))%10]%2*4for j in range(10)]for r in g]

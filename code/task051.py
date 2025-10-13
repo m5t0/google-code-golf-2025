@@ -1,4 +1,4 @@
-def p(f,r=range):
- s=sum(f,[]);u,t=divmod(s.index(min(s,key=s.count)),i:=len(f[0]))
- for l in r(9):
-  if(n:=l//3-1,l:=l%3-1)!=(0,0)and n*l==0and f[u-n][t-l]<1:return[[f[s][o]or((s-u)*l==(o-t)*n and(n and(s-u)//n>0 or l and(o-t)//l>0))*f[u][t]for o in r(i)]for s in r(len(f))]
+def p(a):
+	F=len(a);C=len(a[0]);D=sum(a,[]);E=min({*D}-{0},key=D.count);A,B=divmod(D.index(E),C);G,H=next((D,E)for(D,E)in((0,1),(1,0),(0,-1),(-1,0))if(0<=A+D<F)*(0<=B+E<C)*a[A+D][B+E]<1)
+	while(-1<(A:=A-G)<F)&(-1<(B:=B-H)<C):a[A][B]=a[A][B]or E
+	return a

@@ -1,6 +1,2 @@
-def p(a,f=enumerate):
- n,t=[(i,p)for i,r in f(a)for p,r in f(r)if r*(p<len(a)-3>i>3)and all(a[i+n//3][p+n%3]==r*(1-(n//3+n%3)%2)for n in range(9))][0]
- for i,r in f(a):
-  for p,r in f(r):
-   if r and r-a[n][t]:a[o:=2*n-i+2][p]=a[i][p:=2*t-p+2]=a[o][p]=r
- return a
+def p(o):
+ r=range;p,p=len(o),len(o[0]);[(f:=g,a:=m)for g in r(1,p-1)for m in r(1,p-1)if o[g-1][m-1]==o[g-1][m+1]==o[g+1][m-1]==o[g+1][m+1]==o[g][m]>0];return[[max(o[g][m],o[(k:=(2*f-g)%p)][m],o[g][(i:=(2*a-m)%p)],o[k][i])for m in r(p)]for g in r(p)]

@@ -1,3 +1,4 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("UOnÅ0½JÄvë‘X©rëCPŠÃéçvøÃ1<1©…º‰í¹ÆûQWSluÁª¢9«ÔT¦Uå¦:ÌIÙR`ÅÃ’È™*¡ÅÓÇG0Äå·P¥LVWûÛö8}ßÆ8Ü€=9°<æ;ç»Y®$‰d]·ß8 `>Ä§ç‡Æ¼²ŸãA:wL	”fá@ª 2H²´âÉ~‰æé[Ú½Â‡KSœ´ÛÃŸ","L1"),-9))
+def p(g,e=enumerate):
+ for _ in[0]*4:g=[*zip(*[v for i,v in e(g)if any(all(v)for v in g[:i+1])])][::-1]
+ for _ in[0]*4:g=[*zip(*[[w or(sum({v[0]}&{*v[j:]}))for j,w in e(v)]for v in g])][::-1]
+ return g

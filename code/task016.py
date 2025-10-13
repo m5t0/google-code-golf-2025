@@ -1,1 +1,1 @@
-p=lambda g:[[int("0564312798"[w])for w in v]for v in g]
+p=lambda e:[[int('0564312798'[m])for m in m]for m in e]

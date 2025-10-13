@@ -1,1 +1,1 @@
-def p(i,o=range):*r,=zip(*i);[exec("i[n][h]=3+(a<n<f and x<h<c)")for g in o(169)for f in o(g//13,14)for c in o(g%13+2,14)if i[a:=g//13+1][x:=g%13+1]==6and{*i[a-1][x:c]+i[f+1][x:c]+[*r[c+1][a:f]]}=={8}for n in o(a-1,f+2)for h in o(x-1,c+2)if i[n][h]-6];return i
+p=lambda g,e=enumerate:[[[t:=w[i],(6in{*v[j:]}&{*v[:j]}&{*w[i:]}&{*w[:i]})*4or any(min(v[j-(j>0):j+2])<8for v in g[i-(i>0):i+2])*3or 8][t>7]for j,w in e(zip(*g))]for i,v in e(g)]

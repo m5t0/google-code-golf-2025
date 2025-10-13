@@ -1,1 +1,1 @@
-def p(n,e=enumerate):l=len({*n[4]})+1;a=range(l*5);r=[[n[i//l][m//l]for m in a]for i in a];a=r[:-l];n=lambda z=min,a=[*zip(*r)][:-l]:z(i for i,r in e(a)if any(r[:-l]));z=n(a=a),n(max,a);a=n(),n(max);return[[l or any((i-z)*(2*n-1)==(m-l)*(2*r-1)for n,z in e(z)for r,l in e(a))*2for m,l in e(r)]for i,r in e(r)]
+def p(n):s=sum(n,[]);e=len({*s})-1;A,B=1>s[1],1>s[5];R=range(5*e);return[[n[i//e][j//e]or(i in(j+e*(A-B),~j+e*(A+B+2)))*2 for j in R]for i in R]

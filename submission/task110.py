@@ -1,3 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("eNµBAÍ©gw˜kç»»u+!Éè³òOìXè¸]áiÙı9øÜëÛIŞ·ú^ÜÏÅÒ/˜Öb±ÛÓ}=Yéê@~;¯OKÍl¸yä¶|HÚKÒ‚[	¢Üc-c€sëÎ/‚róÅ4‘ÜjyF·&kâ/{<)Äâ=.6ƒ$HğEàô¢O‹–`aàÙ}ûoyÎ­²ÊãÛ­¾¡øGH¥òU*5Æzü","L1"),-9))
+def p(g):t=lambda A:[(0 in r and min(A,key=lambda s:(0 in s,sum(x^y for x,y in zip(r,s)if x)))or r)for r in A];return g[0][1]and t(g)or[*map(list,zip(*t([*zip(*g)])))]

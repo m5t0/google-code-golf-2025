@@ -1,19 +1,19 @@
-def p(g):
- m,n,*t=len(g),len(g[0]);r={(a//n,a%n):sum(g,[])[a]for a in range(m*n)if sum(g,[])[a]}
- def l(i,u):
-  if m>i>-1<u<n>0<((i,u)in r):
-   e[i-j,u-h]=r.pop((i,u))
-   for a in-1,1:l(i+a,u);l(i,u+a)
+def p(p):
+ m,d,*f=len(p),len(p[0]);r={(e//d,e%d):sum(p,[])[e]for e in range(m*d)if sum(p,[])[e]}
+ def a(i,z):
+  if m>i>-1<z<d>0<((i,z)in r):
+   l[i-n,z-s]=r.pop((i,z))
+   for e in-1,1:a(i+e,z);a(i,z+e)
  while r:
-  t+=[e:={}];j,h=min(r);l(j,h)
-  if len(e)<4:t.pop()
+  f+=[l:={}];n,s=min(r);a(n,s)
+  if len(l)<4:f.pop()
   else:
-   for i,u in e:g[j+i][h+u]=0
- k=eval(str(g))
- for e in t:
-  for q in range(8):
-   for a in range(m*n):
-    if all(m>a//n+j[0]>-1<a%n+j[1]<n for j in e)>0<2<sum(g[a//n+j[0]][a%n+j[1]]==w for j,w in e.items()):
-     for j,w in e.items():k[a//n+j[0]][a%n+j[1]]=w
-   e={([-l,l][q&3>2],e):w for(e,l),w in e.items()}
- return k
+   for i,z in l:p[n+i][s+z]=0
+ n=eval(str(p))
+ for l in f:
+  for r in range(8):
+   for e in range(m*d):
+    if all(m>e//d+g[0]>-1<e%d+g[1]<d for g in l)>0<2<sum(p[e//d+g[0]][e%d+g[1]]==i for g,i in l.items()):
+     for g,i in l.items():n[e//d+g[0]][e%d+g[1]]=i
+   l={([-a,a][r&3>2],e):i for(e,a),i in l.items()}
+ return n

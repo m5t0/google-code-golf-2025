@@ -1,14 +1,1 @@
-r=enumerate
-def y(i,e,a,u):
- y=1
- for g,e in r(e):
-  for e,f in r(e):
-   if f:
-    if(p:=a+g)<3>(n:=u+e)and i[p][n]<1:i[p][n]=f
-    else:y=0
- return y
-def p(g,f=range(16)):
- e,u=[p for u in f[1:]if(p:=[[f[a]for f in zip(*g)if u in f]for a,e in r(g)if u in e])]
- for g in f:
-  i=[[0]*3for y in f[:3]]
-  if y(i,e,g//8,g//4%2)&y(i,u,g%4//2,g%2):return i
+def p(h):k=sum(h,[]);u=10;d=max(j:={*k}-{0},key=k.count);n=[q for q in range(u*u)if k[q]==d];m=min(q:={q%u for q in n});r=len(q);n,v=n[0]//u,n[-1]//u;n-=v-n<2 and 0 in h[n][m:m+r];m-=3-r and 0 in k[n*u+m:v*u+m+1:u];return[[q or sum(j)-d for q in q[m:m+3]]for q in (h+[[0]*u])[n:n+3]]

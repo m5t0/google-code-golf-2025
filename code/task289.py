@@ -1,1 +1,1 @@
-def p(g):n=len({*str(g)})-5;r=range(3*n);return[[g[i//n][j//n]for j in r]for i in r]
+def p(g):S=len({*str(g)})-5;A=range(3*S);return[[g[B//S][C//S]for C in A]for B in A]

@@ -1,1 +1,4 @@
-def p(l,o=enumerate):m=lambda l:[i for i,k in o(l)if all(k)];f,b=m(l);c,p=m(zip(*l));m=lambda p,m,i,a:max(max(c)*(max(c)==b)for c,b in((a[p+1:i+1],a[m]),(a[i:m],a[p])));return[[k[c+e]or max(m(f,b,f+i,a),m(c,p,c+e,k))for e,a in o([*zip(*l)][c:p+1])]for i,k in o(l[f:b+1])]
+def p(g,e=enumerate):
+ for _ in[0]*4:g=[*zip(*[v for i,v in e(g)if any(all(v)for v in g[:i+1])])][::-1]
+ for _ in[0]*4:g=[*zip(*[[w or(sum({v[0]}&{*v[j:]}))for j,w in e(v)]for v in g])][::-1]
+ return g

@@ -1,3 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes('5f1†_%€™4ëÜiac$‚©ËV˜ÌqG›ê»·Év!şï—/®eswĞP¨è³ãGÁUHŠÂ·×ôšğå™Œõ£€ø7ŒF)iª§“äÔÆ¹İÌ5WÕñŒuCJë"9*	·÷+»N­j`J¾×;xÃ</¬ª›f°á`¬›cı‚ıÄØI‰1(4şŒ‘Iá1Zy<MSw³)B]:z¸x]ÎHm‘‰ö‡cJCß§úDr,£¿Œ¦a>şvğ/',"L1"),-9))
+def p(n):s=sum(n,[]);e=len({*s})-1;A,B=1>s[1],1>s[5];R=range(5*e);return[[n[i//e][j//e]or(i in(j+e*(A-B),~j+e*(A+B+2)))*2 for j in R]for i in R]

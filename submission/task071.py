@@ -1,3 +1,4 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("mNr…1¾Ê¾QP›9Iæá·6Uwo65F‹^aeê¶·ß«XÙ¡ã'—âVk4Oû§r9H{^ä+­•ÂõºwLú²Z]Y±|aê;ËŸHñÅ€¢ûbĞ>6-'Ï¥ë¬y÷§DöàÇû'‚åSY!rNŞ+…+´Íbs2õÜŞªÊEĞaê€àâ…âßBb­×¯","L1"),-9))
+def p(o):
+	B=sum(o,[]);A,E=sorted(map(B.index,{*B}-{0}));C=E&15;A=A%16+15-B[A|15::-1].index(B[A])
+	for D in o:D[C:C+4]=D[A-C:A-C-4:-1]
+	return o

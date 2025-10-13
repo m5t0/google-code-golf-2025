@@ -1,3 +1,3 @@
-m=range(9)
-f=lambda r:min(i for i in m if any(r[i]))
-p=lambda l:[[max((p:=l[(r:=f(l))+e//2][(j:=f([*zip(*l)]))+e%2])*(p!=2)for e in m[:4])*max((l[o:=r+e//2][p:=j+e%2]==2)*(2>((o:=(i-o)//(e//2*2-1))-(a-p)//(e%2*2-1))>=-1<o)for e in m[:4])or l[i][a]for a in m]for i in m]
+r=range(9)
+f=lambda p:min(i for i in r if any(p[i]))
+p=lambda o:[[max((m:=o[(p:=f(o))+e//2][(a:=f([*zip(*o)]))+e%2])*(m!=2)for e in r[:4])*max((o[m:=p+e//2][n:=a+e%2]==2)*(2>((m:=(i-m)//(e//2*2-1))-(k-n)//(e%2*2-1))>=-1<m)for e in r[:4])or o[i][k]for k in r]for i in r]

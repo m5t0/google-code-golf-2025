@@ -1,1 +1,1 @@
-p=lambda g,r=range(10):[[(t:=g[i-(s:=str(g).count('5'))][j+s-10])*(t!=5)for j in r]for i in r]
+p=lambda g:(s:=str(g).count('5'))and[[x^5and x for x in r[s:]+r[:s]]for r in g[-s:]+g[:-s]]

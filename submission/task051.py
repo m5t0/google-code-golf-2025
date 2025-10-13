@@ -1,3 +1,4 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes('%OËNC!İ÷+Æ…ÉL…Æ•Wé€!rÃÃèßË¥r^œ™ñ!Â7FQM½óg íÍ´±OÉ:z¢Ÿ~öâ±]ûğ‹{blâ+ü™vù(ƒ;‘H›É1ZíˆNK…‰¡âëÑ)"ÏˆR/ò*òDÏĞ“A-4İÙŸ³1ú@ÑÉÎv™İûu«¡ÊÖFÛœ-®TÄ&i,²Ó™a~Âõ.G)¾iXó§´2Jå›&:ÏæÙëâ4Ëc¹D‹µ[¹',"L1"),-9))
+def p(a):
+	F=len(a);C=len(a[0]);D=sum(a,[]);E=min({*D}-{0},key=D.count);A,B=divmod(D.index(E),C);G,H=next((D,E)for(D,E)in((0,1),(1,0),(0,-1),(-1,0))if(0<=A+D<F)*(0<=B+E<C)*a[A+D][B+E]<1)
+	while(-1<(A:=A-G)<F)&(-1<(B:=B-H)<C):a[A][B]=a[A][B]or E
+	return a

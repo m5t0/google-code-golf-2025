@@ -1,1 +1,1 @@
-def p(g,r=range(13)):a,b=divmod(sum(g,[]).index(8),13);return[[g[i][j]or(abs(i-a+j-b+(i<a)-(i>a))<2-(j-b&1))*5for j in r]for i in r]
+def p(g):i=g.index(max(g));R=range(13);return[(d:=r-i)and[(abs(c-g[i].index(8)+d+(d<0)-(d>0))<=~d&1)*5 for c in R]or g[i]for r in R]

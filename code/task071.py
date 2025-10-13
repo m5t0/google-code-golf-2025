@@ -1,1 +1,4 @@
-p=lambda o,f=range(16):[[[q[(s,2*k-s+p)[q[s]==l]]for s in f]for q in o]for l in f if len({q[s]for q in o for s in f if l in q if l in[*zip(*o)][s]})<2for p in(0,1)for k in f if all((q[s]!=l!=q[n]!=q[s])^1if(n:=2*k-s+p)in f else q[s]in(0,l)for q in o for s in f)][0]
+def p(o):
+	B=sum(o,[]);A,E=sorted(map(B.index,{*B}-{0}));C=E&15;A=A%16+15-B[A|15::-1].index(B[A])
+	for D in o:D[C:C+4]=D[A-C:A-C-4:-1]
+	return o
