@@ -1,5 +1,5 @@
 import ast, keyword, re, random, json, copy, sys, os, zipfile, glob, warnings, zlib, time
-import threading, ctypes
+import ctypes, concurrent.futures
 from queue import Queue
 import numpy as np
 import pickle
@@ -52,58 +52,72 @@ def load_compressor_from_cache(task_id: int, default: str) -> str:
 # ------------------ multithread utility ------------------------------
 
 
-# referenced:https://qiita.com/76r6qo698/items/5fdad284ebc547baf324
-class CustomThread(threading.Thread):
-    def __init__(self, group=None, target=None, name=None, args=(), kwargs={}):
-        threading.Thread.__init__(self, group=group, target=target, name=name)
-        self.args = args
-        self.kwargs = kwargs
-        return
+class TimeoutThreadPool:
+    def __init__(self, max_workers=None):
+        self.executor = concurrent.futures.ThreadPoolExecutor(max_workers=max_workers)
+        self._shutdown = False
+        self.task_id = 1
 
-    def run(self):
-        self._target(*self.args, **self.kwargs)
+    def execute_with_timeout(self, func, timeout, *args, **kwargs):
+        if self._shutdown:
+            raise RuntimeError("Pool is shutdown")
 
-    def get_id(self):
-        if hasattr(self, "_thread_id"):
-            return self._thread_id
-        for id, thread in threading._active.items():
-            if thread is self:
-                return id
+        future = self.executor.submit(func, *args, **kwargs)
+        try:
+            return future.result(timeout=timeout)
+        except concurrent.futures.TimeoutError:
+            self._cancel_future(future)
+            raise TimeoutError(
+                f"Function {func.__name__} timed out after {timeout} seconds"
+            )
 
-    def raise_exception(self):
-        thread_id = self.get_id()
-        resu = ctypes.pythonapi.PyThreadState_SetAsyncExc(
-            ctypes.c_long(thread_id), ctypes.py_object(SystemExit)
-        )
-        if resu > 1:
-            ctypes.pythonapi.PyThreadState_SetAsyncExc(ctypes.c_long(thread_id), 0)
+    def _cancel_future(self, future):
+        try:
+            future.cancel()
+
+            if future.running():
+                self._safe_terminate_thread(future)
+
+        except Exception as e:
+            print(f"Error canceling future: {e}")
+
+    def _safe_terminate_thread(self, future):
+        try:
+            if hasattr(future, "_thread"):
+                thread = future._thread
+                if thread and thread.is_alive():
+                    self._raise_exception_in_thread(thread)
+        except Exception as e:
+            print(f"Safe termination failed: {e}")
+
+    def _raise_exception_in_thread(self, thread):
+        try:
+            if thread.is_alive():
+                exc = ctypes.py_object(SystemExit)
+                ctypes.pythonapi.PyThreadState_SetAsyncExc(
+                    ctypes.c_long(thread.ident), exc
+                )
+        except Exception as e:
+            print(f"Failed to interrupt thread: {e}")
+
+    def shutdown(self, wait=True):
+        self._shutdown = True
+        self.executor.shutdown(wait=wait, cancel_futures=not wait)
 
 
 def run_with_thread_timeout(
-    func: Callable[..., Any], timeout: int | float, *args: Any, **kwargs: Any
+    func: Callable[..., Any],
+    timeout: int | float,
+    pool: TimeoutThreadPool,
+    *args: Any,
+    **kwargs: Any
 ) -> Any:
     """
     Execute a function in a separate thread with a timeout.
     """
     result_queue = Queue()
-    x = CustomThread(
-        name="Thread", target=func, args=(*args, result_queue), kwargs=kwargs
-    )
-    x.start()
-    x.join(timeout)
-    alive = x.is_alive()
-    if alive:
-        x.raise_exception()
-    x.join()
-    assert not x.is_alive()
-
-    if alive:
-        raise TimeoutError()
-    try:
-        return result_queue.get()
-    except Exception:
-        raise
-
+    pool.execute_with_timeout(func,timeout,*args,result_queue,**kwargs)
+    return result_queue.get()
 
 # ----------------- optimization code -----------------------
 
@@ -153,6 +167,8 @@ def create_template_from_function(code_string: str) -> tuple[str, list]:
 
 
 def verify(output: list, label: list) -> bool:
+    if any(type(w)is not int and type(w) is not float for v in output for w in v):
+        return False
     result = json.dumps(output)
     result = result.replace("true", "1").replace("false", "0")
     result = json.loads(result)
@@ -206,11 +222,17 @@ def validate_code(
     unsafe_mode: bool,
     phase: str,
     task_id: int,
+    pool: TimeoutThreadPool,
 ) -> tuple[int, list] | None:
     """Checks code against all examples. Returns the first failing example or None."""
     try:
         return run_with_thread_timeout(
-            validate_code_runner, timeout, code, examples_to_check, unsafe_mode
+            validate_code_runner,
+            timeout,
+            pool,
+            code,
+            examples_to_check,
+            unsafe_mode,
         )
     except TimeoutError:
         if phase != "scoring":
@@ -251,6 +273,7 @@ def get_score(
     compressor: str,
     timeout: int | float,
     task_id: int,
+    pool: TimeoutThreadPool,
 ) -> tuple[int, int]:
     try:
         with warnings.catch_warnings():
@@ -262,6 +285,7 @@ def get_score(
                 unsafe_mode=False,
                 phase="scoring",
                 task_id=task_id,
+                pool=pool,
             )
             if failing_example is not None:
                 return 999, 999
@@ -278,7 +302,7 @@ def get_score(
         return 998, 998
 
 
-def main():
+def main(pool: TimeoutThreadPool):
     TASK_ID = 1
     UNSAFE_MODE = False
     SCORE_TIMEOUT_TIME = 1  # seconds
@@ -353,7 +377,17 @@ def main():
         help="set a timeout by the first execution time",
     )
 
-    args = parser.parse_args()
+    args = parser.parse_args(
+        [
+            "--limit",
+            "12000",
+            "--auto-timeout-setting",
+            False,
+            "--score-timeout",
+            "1",
+            "319",
+        ]
+    )
 
     TASK_ID = args.task_id
     filename = f"./code/task{TASK_ID:03d}.py"
@@ -415,6 +449,7 @@ def main():
             unsafe_mode=False,
             phase="validating",
             task_id=TASK_ID,
+            pool=pool,
         )
         is not None
     ):
@@ -444,6 +479,7 @@ def main():
         compressor=COMPRESSOR,
         timeout=SCORE_TIMEOUT_TIME,
         task_id=TASK_ID,
+        pool=pool,
     )
     current_total_size = PAYLOAD_OVERHEAD + current_base + current_penalty
 
@@ -483,6 +519,7 @@ def main():
                             compressor=COMPRESSOR,
                             timeout=SCORE_TIMEOUT_TIME,
                             task_id=TASK_ID,
+                            pool=pool,
                         )
                     ),
                 ),
@@ -506,6 +543,7 @@ def main():
                 unsafe_mode=UNSAFE_MODE,
                 phase="validating",
                 task_id=TASK_ID,
+                pool=pool,
             )
 
             if failing_example:
@@ -549,6 +587,7 @@ def main():
                 compressor=COMPRESSOR,
                 timeout=SCORE_TIMEOUT_TIME,
                 task_id=TASK_ID,
+                pool=pool,
             )  # Rescore with potentially new examples
             print(f"New rebase variables: {original_vars}\n" + "-" * 30)
 
@@ -574,6 +613,7 @@ def main():
             compressor=COMPRESSOR,
             timeout=SCORE_TIMEOUT_TIME,
             task_id=TASK_ID,
+            pool=pool,
         )
         trial_total_size = PAYLOAD_OVERHEAD + trial_base + trial_penalty
 
@@ -597,6 +637,7 @@ def main():
             unsafe_mode=False,
             phase="final validating",
             task_id=TASK_ID,
+            pool=pool,
         )
         is not None
     ):
@@ -608,6 +649,7 @@ def main():
                 unsafe_mode=False,
                 phase="validating",
                 task_id=TASK_ID,
+                pool=pool,
             )
             is not None
         ):
@@ -639,6 +681,7 @@ def main():
             compressor=COMPRESSOR,
             timeout=SCORE_TIMEOUT_TIME,
             task_id=TASK_ID,
+            pool=pool,
         )
     ) < min(
         len(initial_code),
@@ -650,6 +693,7 @@ def main():
                 compressor=COMPRESSOR,
                 timeout=SCORE_TIMEOUT_TIME,
                 task_id=TASK_ID,
+                pool=pool,
             )
         ),
     ):
@@ -667,6 +711,7 @@ def main():
                             compressor=COMPRESSOR,
                             timeout=SCORE_TIMEOUT_TIME,
                             task_id=TASK_ID,
+                            pool=pool,
                         )
                     ),
                 ),
@@ -678,6 +723,7 @@ def main():
                         compressor=COMPRESSOR,
                         timeout=SCORE_TIMEOUT_TIME,
                         task_id=TASK_ID,
+                        pool=pool,
                     )
                 ),
             ),
@@ -702,6 +748,7 @@ def main():
                             compressor=COMPRESSOR,
                             timeout=SCORE_TIMEOUT_TIME,
                             task_id=TASK_ID,
+                            pool=pool,
                         )
                     ),
                 ),
@@ -711,4 +758,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    pool = TimeoutThreadPool(1)
+    try:
+        main(pool=pool)
+    finally:
+        pool.shutdown()
