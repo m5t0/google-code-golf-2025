@@ -1,1 +1,1 @@
-p=lambda g,r=range(9):[[g[i//3][j//3]==max([*r,9],key=sum(g,[]).count)and g[i%3][j%3]for j in r]for i in r]
+p=lambda g,r=range(9):[[g[i%3][j%3]*(g[i//3][j//3]==max(s:=sum(g,[]),key=s.count))for j in r]for i in r]
