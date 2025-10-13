@@ -167,7 +167,7 @@ def create_template_from_function(code_string: str) -> tuple[str, list]:
 
 
 def verify(output: list, label: list) -> bool:
-    if any(type(w)is not int and type(w) is not float for v in output for w in v):
+    if type(output)is not list or any(type(v) is not list for v in output) or any(type(w)is not int and type(w) is not float for v in output for w in v):
         return False
     result = json.dumps(output)
     result = result.replace("true", "1").replace("false", "0")
@@ -673,6 +673,16 @@ def main(pool: TimeoutThreadPool):
     )
     print("\nFinal optimized code:")
     print(global_best_code)
+
+    # overwrite initial code if submission file exists is shorter than the initial code
+    submission_file=f"./submission/task{TASK_ID:03d}"
+    if os.path.exists(submission_file)and os.path.isfile(submission_file):
+        try:
+            with open(submission_file, 'rb') as f:
+                data = f.read()
+                if len(data)<len(initial_code):
+                    initial_code = data
+        except Exception:pass
 
     if PAYLOAD_OVERHEAD + sum(
         get_score(
