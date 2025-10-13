@@ -1,5 +1,6 @@
 import ast, keyword, re, random, json, copy, sys, os, zipfile, glob, warnings, zlib, time
 import ctypes, concurrent.futures
+import compcheck
 from queue import Queue
 import numpy as np
 import pickle
@@ -671,7 +672,7 @@ def main(pool: TimeoutThreadPool):
         f"\nBest score achieved: {global_best_total_size} bytes (Base: {global_best_base}, Penalty: {global_best_penalty})"
     )
     print("\nFinal optimized code:")
-    print(global_best_code,end="\n\n")
+    print(global_best_code, end="\n\n")
 
     # overwrite initial code if submission file exists is shorter than the initial code
     submission_file = f"./submission/task{TASK_ID:03d}"
@@ -683,6 +684,18 @@ def main(pool: TimeoutThreadPool):
                     initial_code = data
         except Exception:
             pass
+
+    # calculate accurate code length
+    global_best_total_size = len(compcheck.zip_src(
+        TASK_ID,
+        global_best_code,
+        len(global_best_code),
+        ["deflate", "zopfli", "zlib"].index(COMPRESSOR),
+    ))
+    (
+        global_best_base,
+        global_best_penalty,
+    ) = (global_best_total_size, 0)
 
     print(
         f"before best:{len(initial_code)} bytes, varopt compress best:{PAYLOAD_OVERHEAD + global_best_base + global_best_penalty} bytes"
