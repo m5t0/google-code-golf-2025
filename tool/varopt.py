@@ -312,7 +312,6 @@ def validate_code_runner(code: str, examples_to_check: list, unsafe_mode: bool) 
             solution_namespace = {}
             exec(code, solution_namespace)
             p_func = solution_namespace.get("p")
-            sys.setrecursionlimit(100)
 
             for i, example in examples_to_check:
                 if not verify(
@@ -335,14 +334,6 @@ def validate_code(
     pool: TimeoutProcessPool,
 ) -> tuple[int, list] | None:
     """Checks code against all examples. Returns the first failing example or None."""
-    return run_with_thread_timeout(
-        validate_code_runner,
-        timeout,
-        pool,
-        code,
-        examples_to_check,
-        unsafe_mode,
-    )
     try:
         return run_with_thread_timeout(
             validate_code_runner,
