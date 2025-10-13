@@ -698,7 +698,7 @@ def main(pool: TimeoutProcessPool):
         num_changes = random.randint(1, min(6, len(original_vars)))
         vars_to_change = random.sample(original_vars, k=num_changes)
         for var, new_name in zip(
-            vars_to_change, random.sample(list(set(candidate_names)-set(original_vars)), k=num_changes)
+            vars_to_change, random.sample(candidate_names, k=num_changes)
         ):
             trial_mapping[var] = new_name
 
