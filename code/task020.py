@@ -1,8 +1,8 @@
 def p(e,i=enumerate):
- p,m=zip(*((p,m)for p,n in i(e)for m,r in i(n)if r))
- n=p[0];u=n+p[-1];r=min(m);f=r+max(m)
- for p,m in zip(p,m):
-  for z,i in(p,m),(n+m-r,r+p-n):
-   for z in z,u-z:
-    for i in i,f-i:e[z][i]=max(e[z][i],e[p][m])
+ o,m=zip(*((o,m)for o,n in i(e)for m,r in i(n)if r))
+ n=o[0];f=n+o[-1];r=min(m);p=r+max(m)
+ for o,m in zip(o,m):
+  for u,i in(o,m),(n+m-r,r+o-n):
+   for u in u,f-u:
+    for i in i,p-i:e[u][i]=max(e[u][i],e[o][m])
  return e
