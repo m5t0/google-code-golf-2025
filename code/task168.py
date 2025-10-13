@@ -1,1 +1,2 @@
-p=lambda g,r=range:[exec("i,j=k//36+l//2,k//4%9+l%2;c=max(g[i])\nwhile-1<(i:=i+(l&2)-1)<10>(j:=j+l%2*2-1)>-1:g[i][j]=c"*all((g[k//36+m//2][k//4%9+m%2]>0)^((l:=k&3)==m)for m in r(4)))for k in r(324)]and g
+import re
+p=lambda g:exec(r"g[:]=zip(*eval(re.sub(r'0(?=(.{35})+..([^0]).{28}\2, \2)',r'\2',str(g)))[::-1]);"*4)or g
