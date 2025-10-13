@@ -1,1 +1,1 @@
-f=lambda n:[' '*(n-1-i)+'*'*(2*i+1)for i in range(n)]
+f=lambda n:[' '*(n-1-i)+'*'*(i-~i)for i in range(n)]
