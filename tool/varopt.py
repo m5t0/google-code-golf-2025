@@ -453,18 +453,12 @@ def main(pool: TimeoutProcessPool):
         "--rebase-interval",
         type=int,
         default=500,
-        help="a parameter that determines the speed of the meter's increase until the next rebase",
-    )
-    parser.add_argument(
-        "--next-rebase",
-        type=int,
-        default=500,
-        help="a parameter that determines the size of meter until the next rebase",
+        help="a parameter that determines the steps until the next rebase",
     )
     parser.add_argument(
         "--rebase-interval-scaling",
         type=float,
-        default=1.3,
+        default=1.0,
         help="a parameter that controls the degree of increase (scaling) of the rebase_interval",
     )
     parser.add_argument(
@@ -496,7 +490,7 @@ def main(pool: TimeoutProcessPool):
     FINAL_VALIDATE_TIMEOUT_TIME = args.final_validate_timeout
     LIMIT = args.limit
     REBASE_INTERVAL = args.rebase_interval
-    NEXT_REBASE = args.next_rebase
+    NEXT_REBASE = REBASE_INTERVAL
     REBASE_INTERVAL_SCALING = args.rebase_interval_scaling
     UNSAFE_MODE = args.unsafe
 
