@@ -675,84 +675,43 @@ def main(pool: TimeoutThreadPool):
     print(global_best_code, end="\n\n")
 
     # overwrite initial code if submission file exists is shorter than the initial code
-    submission_file = f"./submission/task{TASK_ID:03d}"
-    if os.path.exists(submission_file) and os.path.isfile(submission_file):
-        try:
-            with open(submission_file, "rb") as f:
-                data = f.read()
-                if len(data) < len(initial_code):
-                    initial_code = data
-        except Exception:
-            pass
+    def get_better_submission_code(initial_code):
+        submission_file = f"./submission/task{TASK_ID:03d}.py"
+        if os.path.exists(submission_file) and os.path.isfile(submission_file):
+            try:
+                with open(submission_file, "rb") as f:
+                    data = f.read()
+                    if len(data) < len(initial_code):
+                        return data
+            except Exception:
+                pass
 
-    # calculate accurate code length
-    global_best_total_size = len(compcheck.zip_src(
-        TASK_ID,
-        global_best_code,
-        len(global_best_code),
-        ["deflate", "zopfli", "zlib"].index(COMPRESSOR),
-    ))
-    (
-        global_best_base,
-        global_best_penalty,
-    ) = (global_best_total_size, 0)
-
-    print(
-        f"before best:{len(initial_code)} bytes, varopt compress best:{PAYLOAD_OVERHEAD + global_best_base + global_best_penalty} bytes"
+    better_submission_code = get_better_submission_code(initial_code)
+    initial_code = (
+        better_submission_code if better_submission_code is not None else initial_code
     )
 
-    if PAYLOAD_OVERHEAD + sum(
-        get_score(
+    # calculate accurate code length
+    global_best_compressed_size = len(
+        compcheck.zip_src(
+            TASK_ID,
             global_best_code,
-            checked_examples,
-            compressor=COMPRESSOR,
-            timeout=SCORE_TIMEOUT_TIME,
-            task_id=TASK_ID,
-            pool=pool,
+            len(global_best_code),
+            ["deflate", "zopfli", "zlib"].index(COMPRESSOR),
         )
-    ) < min(
-        len(initial_code),
-        PAYLOAD_OVERHEAD
-        + sum(
-            get_score(
-                initial_code,
-                checked_examples,
-                compressor=COMPRESSOR,
-                timeout=SCORE_TIMEOUT_TIME,
-                task_id=TASK_ID,
-                pool=pool,
-            )
-        ),
-    ):
+    )
+
+    print(
+        f"before best:{len(initial_code)} bytes, varopt compress best:{global_best_compressed_size} bytes"
+    )
+
+    if global_best_compressed_size < len(initial_code):
         print("Write the best code to the file!")
         print(
             "task{0:03d}: {1} bytes -> {2} bytes".format(
                 TASK_ID,
-                min(
-                    len(initial_code),
-                    PAYLOAD_OVERHEAD
-                    + sum(
-                        get_score(
-                            initial_code,
-                            checked_examples,
-                            compressor=COMPRESSOR,
-                            timeout=SCORE_TIMEOUT_TIME,
-                            task_id=TASK_ID,
-                            pool=pool,
-                        )
-                    ),
-                ),
-                PAYLOAD_OVERHEAD
-                + sum(
-                    get_score(
-                        global_best_code,
-                        checked_examples,
-                        compressor=COMPRESSOR,
-                        timeout=SCORE_TIMEOUT_TIME,
-                        task_id=TASK_ID,
-                        pool=pool,
-                    )
-                ),
+                len(initial_code),
+                global_best_compressed_size,
             ),
             file=sys.stderr,
         )
@@ -765,20 +724,7 @@ def main(pool: TimeoutThreadPool):
         print(
             "task{0:03d}: {1} bytes".format(
                 TASK_ID,
-                min(
-                    len(initial_code),
-                    PAYLOAD_OVERHEAD
-                    + sum(
-                        get_score(
-                            initial_code,
-                            checked_examples,
-                            compressor=COMPRESSOR,
-                            timeout=SCORE_TIMEOUT_TIME,
-                            task_id=TASK_ID,
-                            pool=pool,
-                        )
-                    ),
-                ),
+                len(initial_code),
             ),
             file=sys.stderr,
         )
