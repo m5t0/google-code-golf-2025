@@ -1,6 +1,6 @@
-def p(g,e=enumerate):
- A,B=[(i,j,x)for i,r in e(g)for j,x in e(r)if x]
- for I,J,s in A,B:
-  while abs((i:=A[0]+B[0]-2*I)+(j:=A[1]+B[1]-2*J))>2:g[I][J]=s;I+=(i>0)-(i<0);J+=(j>0)-(j<0)
-  for k in-2,-1,1,2:g[I-i+k*j][J-j+k*i]=g[I+2*j][J+2*i]=g[I-2*j][J-2*i]=s
- return g
+def p(f,e=enumerate):
+ a,t=[(i,o,t)for i,r in e(f)for o,t in e(r)if t]
+ for e,l,n in a,t:
+  while abs((i:=a[0]+t[0]-2*e)+(o:=a[1]+t[1]-2*l))>2:f[e][l]=n;e+=(i>0)-(i<0);l+=(o>0)-(o<0)
+  for x in-2,-1,1,2:f[e-i+x*o][l-o+x*i]=f[e+2*o][l+2*i]=f[e-2*o][l-2*i]=n
+ return f

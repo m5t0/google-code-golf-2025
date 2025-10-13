@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[w*(w==2)or(w>7)*4or((2in o[m:])*(8in o[:m])or(8in o[m:])*(2in o[:m]))*8or(a-abs((y:=[*zip(*g)])[0].index(2)-y[-1].index(2))in[m for m,e in e(g)if 8in e])*8for m,w in e(o)]for a,o in e(g)]
+p=lambda m,e=enumerate:[[n*(n==2)or(n>7)*4or((2in o[p:])*(8in o[:p])or(8in o[p:])*(2in o[:p]))*8or(a-abs((b:=[*zip(*m)])[0].index(2)-b[-1].index(2))in[p for p,e in e(m)if 8in e])*8for p,n in e(o)]for a,o in e(m)]

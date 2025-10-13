@@ -1,11 +1,11 @@
-def p(g,r=range):
- c,m,n,l,t=[],len(g[0]),len(g),[g]*5,sum(g,[])
- for i in r(9):c+=[i+1]*(0<t.count(i+1)<3)
- a=d=g[0][g[0][0]in c];z=sum({*t}-{*c,a})
- if any(g[i][j]==c[0]and sum((x==a)-(x==z)for v in g[i and i-1:i+2]for x in v[j and j-1:j+2])>0for i in r(n)for j in r(m)):d=z
+def p(q,r=range):
+ s,l,n,e,o=[],len(q[0]),len(q),[q]*5,sum(q,[])
+ for i in r(9):s+=[i+1]*(0<o.count(i+1)<3)
+ a=d=q[0][q[0][0]in s];o=sum({*o}-{*s,a})
+ if any(q[i][n]==s[0]and sum((i==a)-(i==o)for v in q[i and i-1:i+2]for i in v[n and n-1:n+2])>0for i in r(n)for n in r(l)):d=o
  for i in r(4):
-  l=[[*map(list,zip(*j))][::-1]for j in l];v=l[i]
-  for x in r(len(v)-1):
-   for y in r(len(v[0])-1):
-    if v[x][y]in c:v[x+1][y+1]=l[4][x+1][y+1]=c[0]
- return[[[l[4][j][k],c[g[j][k]in(d,c[1])]][l[4][j][k]in c]for k in r(m)]for j in r(n)]
+  e=[[*map(list,zip(*n))][::-1]for n in e];v=e[i]
+  for i in r(len(v)-1):
+   for u in r(len(v[0])-1):
+    if v[i][u]in s:v[i+1][u+1]=e[4][i+1][u+1]=s[0]
+ return[[[e[4][n][u],s[q[n][u]in(d,s[1])]][e[4][n][u]in s]for u in r(l)]for n in r(n)]

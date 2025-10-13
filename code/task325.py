@@ -1,6 +1,6 @@
-def p(g):
- e=enumerate;s={i+1j*j for i,r in e(g)for j,v in e(r)if v};n=0
- def f(z):
-  if z in s:s.remove(z);f(z+1);f(z-1);f(z+1j);f(z-1j)
- while s:n+=1;f(next(iter(s)))
- return[[0]*i+[8]+[0]*(n-i-1)for i in range(n)]
+def p(n):
+ e=enumerate;i={d+1j*i for d,n in e(n)for i,n in e(n)if n};n=0
+ def p(n):
+  if n in i:i.remove(n);p(n+1);p(n-1);p(n+1j);p(n-1j)
+ while i:n+=1;p(next(iter(i)))
+ return[[0]*d+[8]+[0]*(n-d-1)for d in range(n)]

@@ -1,13 +1,13 @@
-def p(g,r=range):
- n=len(g);q=1
- for _ in r(4):
-  a,h=zip(*((i,j)for i in r(n)for j in r(n)if g[i][j]));a,x,c,d=min(a),max(a),min(h),max(h);t=g[a][c];l=g[a].count(t)
-  if(l<g[x].count(t))&q:
-   q,h,m=0,c+l//2,d-l//2
-   for t in r(x):g[t][h:m+1]=[4]*(m-h+1)
-   for t in r(a+1,x):g[t][c+1:d]=[4]*(d-c-1)
-   for u in r(a+1):
-    if h>=u:g[a-u][h-u]=4
-    if m+u<n:g[a-u][m+u]=4
-  g=[*map(list,zip(*g[::-1]))]
- return g
+def p(o,z=range):
+ l=len(o);q=1
+ for x in z(4):
+  e,i=zip(*((x,f)for x in z(l)for f in z(l)if o[x][f]));e,u,f,p=min(e),max(e),min(i),max(i);x=o[e][f];i=o[e].count(x)
+  if(i<o[u].count(x))&q:
+   q,i,c=0,f+i//2,p-i//2
+   for x in z(u):o[x][i:c+1]=[4]*(c-i+1)
+   for x in z(e+1,u):o[x][f+1:p]=[4]*(p-f-1)
+   for f in z(e+1):
+    if i>=f:o[e-f][i-f]=4
+    if c+f<l:o[e-f][c+f]=4
+  o=[*map(list,zip(*o[::-1]))]
+ return o

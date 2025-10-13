@@ -1,12 +1,12 @@
-f=lambda v,i:max(((s:=(str(v)[1::3])).rfind("8",0,i+k)-s.rfind("2",0,i+k))*(s.find("8",i+k)%(l:=1+len(v))-s.find("2",i+k)%l)for k in[0,1])>0
-def p(g,e=enumerate):
- h=eval(str(g))
- s=set()
- for i,v in e(g):
-  for j,w in e(zip(*g)):
-   h[i][j]+=f(w,i)+f(v,j)
-   if h[i][j]>8:
-    h[i][j]=2
-    for k in range(9):
-     if k!=4:s.add((i-1+k//3,j-1+k%3))
- return[[((i,j)in s and 8)or(w[i]>0)*(w[i]//8*6+2)for j,w in e(zip(*h))]for i,v in e(h)]
+d=lambda v,l:max(((t:=(str(v)[1::3])).rfind("8",0,l+a)-t.rfind("2",0,l+a))*(t.find("8",l+a)%(d:=1+len(v))-t.find("2",l+a)%d)for a in[0,1])>0
+def p(g,p=enumerate):
+ i=eval(str(g))
+ t=set()
+ for l,v in p(g):
+  for e,u in p(zip(*g)):
+   i[l][e]+=d(u,l)+d(v,e)
+   if i[l][e]>8:
+    i[l][e]=2
+    for a in range(9):
+     if a!=4:t.add((l-1+a//3,e-1+a%3))
+ return[[((l,e)in t and 8)or(u[l]>0)*(u[l]//8*6+2)for e,u in p(zip(*i))]for l,v in p(i)]

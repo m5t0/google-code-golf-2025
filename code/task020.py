@@ -1,8 +1,8 @@
-def p(o,r=range):
- for i in r(36):
-  v,g,p,f=[0]*9,0,i//6+2,i%6+2
-  for i in r(25):
-   if~((d:=i//5-2)+(t:=i%5-2))%2:g+=o[i:=p+d][n:=f+t]>0;v[s]=v[s:=d*d+t*t]or o[i][n]
+def p(r,p=range):
+ for i in p(36):
+  e,g,n,f=[0]*9,0,i//6+2,i%6+2
+  for i in p(25):
+   if~((a:=i//5-2)+(t:=i%5-2))%2:g+=r[i:=n+a][j:=f+t]>0;e[a]=e[a:=a*a+t*t]or r[i][j]
   if g>9:
-   for i in r(25):o[p+d][f+t]=~((d:=i//5-2)+(t:=i%5-2))%2*v[d*d+t*t]
-   return o
+   for i in p(25):r[n+a][f+t]=~((a:=i//5-2)+(t:=i%5-2))%2*e[a*a+t*t]
+   return r

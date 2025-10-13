@@ -1,3 +1,3 @@
-f=lambda v,k:(len({*(w:=v[:k+1])})>1<len({*v[k:]}))*({*w}!={*v[k:]})
-h=lambda l,m=min:m(l,key=l.count)
-p=lambda g,e=enumerate:[[[v[j],h(v),h(w)][v[j]==h(g[0],max)and f(v,j)+f(w,i)*2]for j,w in e(zip(*g))]for i,v in e(g)]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("EÌÁJÀ0€áûž¢Þ’®ˆóXŒ/Rz¨.ÂpÉJè@+{wçT½„ä#üLk‘§¹8ae…-’¥(ã”ñÀÇéá›-IÌ¢?÷vÜÐŸòa’E#ƒ…W~'»}Þvm8Ôß”Xwa+cJÉ’æ `xŽ†ùº‰zº;½¼aÑÙ}õG†*úûü²™ÓÐÜ¢N¡/|G¼´ûQÌŸ","L1"),-9))

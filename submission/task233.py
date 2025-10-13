@@ -1,5 +1,3 @@
 #coding:L1
 import zlib
-exec(zlib.decompress(bytes("""mQ®ã0COáå™”aÉ‘ObYÑlãT¥©eØQîþã|=ô¨¶pPŽÄVµ]Ù¨ÿÕ$Hj7	´Ó|¾6:ŒéÛÚ4/HìYxâ…¿h0—ÜsédNWC=¼©ë…É-3ö€Á_ì‘'¼TmÁ*µ"®…ÿÞ.&«N©vÕå)Á
-
- ¾ûD„q‚åQµ,C:ƒïÏwyðQùVŠZ|0·A¹ÕlÔ±X÷“Åz¼šæÍ÷ê{ì‘hÀaY¤‰:“ƒÓ>ÄÉíÞAÑìOÑz ¾y÷O˜_©x0|ðAB”j;ÛÙ,t.^éD$®D_ã\‹ÃßKgîâöÑžõÒ¼ˆmVUÁÆÜ©*tOÀOV¨Y“1øAœok+4¥·1yé""","L1"),-9))
+exec(zlib.decompress(bytes(r"mQçî¤ ÿ¾OÁõ×®×0<	!†‹hLd–°\5¾û‰ÿ^øÆ´_ÌÈXä'Äºu$mši.5¸tI¥•î¬‹¢Qr9ë/ži6óš&ßQa,¹‡Òb,fõQ_žÕe©bKØ}`PÄgóÈâ„çbMhC!jMó×2­7!Öz‹SŒ$ ÷î=Â»I¬Ä¯?-øýü_åÏ¥ˆò•¹y¤ÄÔH$÷É¤9×YÜ|©S<1‡]bSaµƒe¾†ôßì ç%šþ¾ø[Œ¯“·†>ð¨>ä“	@üVgùD'¢¦4Ûkk>þã–ÏÝÅÍÁX@Y©G±å}5!vúÝ)ø´FIR+…¯Äù¼V£ê¼	?=1û","L1"),-9))
