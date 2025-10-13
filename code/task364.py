@@ -1,2 +1,4 @@
-d=0,1,0,-1
-def p(g,r=range):D=lambda i,j,P:sum(m>(y:=j+d[k-1])>-1<(x:=i+d[k])<n>g[x][y]>2and(P-(k^2)and D(x,y,k))+(m>(Y:=j+d[k-2])>-1<(X:=i+d[k-1])<n>g[X][Y]>2)for k in r(4));n=len(g);m=len(g[0]);return[[g[i][j]and[0,1,6,2][D(i,j,5)]for j in r(m)]for i in r(n)]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("""xÚ\\O®ÅPÝÊgÒé7¯¢. 1&µõÍ§­?;åæŠ®éŠÜkõfúdHóDTôa>’—ªð"M_¼@…4l;¾
+<¹ûm¨%_~~ðbáOšÆÉ¹Ðº×þ¥i—ãl9ëÁVüð`o’—ü°oÄ²üÑ?uˆÎÃìŒÂ=£ÀòõCt¢yp‡ˆK"æŠ›€Û`E¿Êô@7È¬Þc°´À°™šÍô‚Áb\\\x00«"O""","L1")))

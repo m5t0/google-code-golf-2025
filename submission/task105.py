@@ -1,3 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("UÁÃ D…£ùĞnoIè F@´J²©úñKí¡Ë3š'ëÄF²Òæ%Ù™ŸÛ&’|…;4#vNFNf`‘d$/SÈ­‡ ÜmŠYXHœà¼AAìü?°QiK‚UÔìôIn;6Ñz`5}½t,ŒHuPâ_ìLÕ9Ûç2g¥Ššt…Yt/C/Y5çA˜İ˜zi<*øöÀ´â»V­‡¹.{ƒØü|•ˆ¨¿~Qÿ","L1"),-9))
+def p(g,e=enumerate):*l,=zip(*g);f=lambda m=l,h=min:h(i for i,v in e(m)if 1in v);a,b=f(g),f(g,max);x,y=f(),f(l,max);return[[v[j]or(a<=i<=b)*(x<=j<=y)*(sum(v[x+1:y])+sum(w[a+1:b])+(i in(a,b))+(j in(x,y))>1)*2for j,w in e(l)]for i,v in e(g)]
