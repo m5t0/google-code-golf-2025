@@ -1,5 +1,5 @@
-def p(t,f=range(10)):
- def p(c,g,r):
-  if{c,g}-{*f}or r!=t[c][g]^1:return 0
-  t[c][g]=r;return-~sum(p(c-1+a//3,g-1+a%3,r)for a in f[:9])
- e={p(c,g,9)for g in f for c in f}-{0};return[[((i:=t[c][g])>2)+(p(c,g,i^1)==min(e))for g in f]for c in f]
+def p(e,f=range(10)):
+ def p(g,a,r):
+  if{g,a}-{*f}or r!=e[g][a]^1:return 0
+  e[g][a]=r;return-~sum(p(g-1+u//3,a-1+u%3,r)for u in f[:9])
+ n={p(g,a,9)for a in f for g in f}-{0};return[[((i:=e[g][a])>2)+(p(g,a,i^1)==min(n))for a in f]for g in f]
