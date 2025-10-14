@@ -768,7 +768,8 @@ def main(pool: TimeoutProcessPool):
         # ------------------ neighborhood ------------------------------
         random_value = random.random()
         new_vars2 = copy.deepcopy(new_vars)
-        new_vars2 = swap_vars(new_vars2, num_changes=4)
+        if len(new_vars2) >= 2:
+            new_vars2 = swap_vars(new_vars2, num_changes=min(len(new_vars), 4))
         if len(new_vars2) >= 2 and random_value < 0.3:
             new_vars2 = swap_vars(
                 new_vars2,
@@ -822,9 +823,7 @@ def main(pool: TimeoutProcessPool):
                 < PAYLOAD_OVERHEAD + global_best_base + global_best_penalty
             ):
                 # reset NEXT_KICK_LIMIT_START
-                NEXT_KICK_LIMIT_START = max(
-                    NEXT_KICK_LIMIT_START, i + KICK_INTERVAL
-                )
+                NEXT_KICK_LIMIT_START = max(NEXT_KICK_LIMIT_START, i + KICK_INTERVAL)
                 NEXT_KICK = max(NEXT_KICK, i + KICK_INTERVAL)
 
             new_vars = new_vars2
