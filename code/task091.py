@@ -1,1 +1,1 @@
-def p(g):v=sum(g,[]);I=v.index;i,l=I(5),len(g[0]);return[r[i%l:I(5,i+1)%l+1]for r in g[i//l-1:][:v.count(5)+4>>1]]
+p=lambda g,t=0:[[x[1]for x in zip(*v)if t|(t:=t^(5in x))]for v in zip(g[:1]+g,g,g[1:]+g)if'5'in str(v)]

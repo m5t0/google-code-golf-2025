@@ -1,1 +1,1 @@
-p=lambda g:(a:=sum(g,[]),b:=min(a,key=a.count),c:=len(g[0]),d:=a.index(b),e:=~a[::-1].index(b)+len(a),[[x and b for x in r[d%c+1:e%c]]for r in g[d//c+1:e//c]])[-1]
+p=lambda g,t=0,s=0:[[max(q)*(w>0)for w,J in zip(v,q)if(s:=s+(J>0))&1][1:]for v in g if(v<(q:=max(g)))&(t:=t+(v==q))]

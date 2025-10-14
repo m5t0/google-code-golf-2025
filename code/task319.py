@@ -1,8 +1,8 @@
-def p(f):
- u=sum(f,[]);e=max(u,key=u.count);k=sorted({*u}-{e})
- for g in k:
-  j=[[[e,l][l==g]for*u,l in zip(*f,u)if g in u]for u in f if g in u];q=[[l for l in r for i in'00']for r in j for i in'00']
-  for t in k:
-   for w in range(1-len(q),len(f)):
-    for a in range(1-len(q[0]),len(f[0])):
-     if all(s:=[[e,f[w+x][a+y]][f[w+x][a+y]==t]*((f[w+x][a+y]==t)==(q[x][y]==g))for x in range(len(q))for y in range(len(q[0]))if len(f)>w+x>-1<a+y<len(f[0])])>0<s.count(t)==u.count(t):return j
+def p(k):
+ n=sum(k,[]);e=max(n,key=n.count);z=sorted({*n}-{e})
+ for c in z:
+  r=[[[e,m][m==c]for*n,m in zip(*k,n)if c in n]for n in k if c in n];d=[[m for m in r for y in'00']for r in r for y in'00']
+  for m in z:
+   for g in range(1-len(d),len(k)):
+    for p in range(1-len(d[0]),len(k[0])):
+     if all(s:=[[e,k[g+z][p+u]][k[g+z][p+u]==m]*((k[g+z][p+u]==m)==(d[z][u]==c))for z in range(len(d))for u in range(len(d[0]))if len(k)>g+z>-1<p+u<len(k[0])])>0<s.count(m)==n.count(m):return r

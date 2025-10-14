@@ -1,3 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes('EŒÃ@†_å`$]OÛm…#{‘2[&¬mÝìý×;Ó‘ü	¿ï[é¥Óí®ÁZ§¬óóÃ€‰5Ø’Ã|N)âÞŸ	&]a»-h"æ±cv!qÉýX/¬ÕW«&¸Æî›¢©«ìÑ—TóxÜcº55KÓu™hÆÝïò÷"^O}_ì_',"L1"),-9))
+p=lambda g,r=range(11),S=sum:min(a for k in r if(s:=S({*S(g,[])})-5)in S((a:=[[[(S(S(v[j//4*4:][:3])for v in g[i//4*4:][:3])>k*s)*s,5][g[i][j]==5]for j in r]for i in r]),[]))
