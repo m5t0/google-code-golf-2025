@@ -495,7 +495,7 @@ def main(pool: TimeoutProcessPool):
     parser.add_argument(
         "--kick-interval",
         type=int,
-        default=300,
+        default=1000,
         help="a parameter that determines the steps until the next kick",
     )
     parser.add_argument(
@@ -532,9 +532,10 @@ def main(pool: TimeoutProcessPool):
     VALIDATE_TIMEOUT_TIME = args.validate_timeout
     FINAL_VALIDATE_TIMEOUT_TIME = args.final_validate_timeout
     LIMIT = args.limit
-    kick_INTERVAL = args.kick_interval
-    NEXT_kick = kick_INTERVAL
-    kick_INTERVAL_SCALING = args.kick_interval_scaling
+    KICK_INTERVAL = args.kick_interval
+    NEXT_KICK = KICK_INTERVAL
+    KICK_INTERVAL_SCALING = args.kick_interval_scaling
+    NEXT_KICK_LIMIT_START = 0
     UNSAFE_MODE = args.unsafe
 
     if args.use_compcheck_cache:
@@ -673,9 +674,10 @@ def main(pool: TimeoutProcessPool):
     )
 
     for i in range(LIMIT):
-        if i > 0 and i % NEXT_kick == 0:
-            kick_INTERVAL *= kick_INTERVAL_SCALING
-            NEXT_kick += kick_INTERVAL
+        if i > 0 and i % NEXT_KICK == 0:
+            KICK_INTERVAL *= KICK_INTERVAL_SCALING
+            NEXT_KICK += KICK_INTERVAL
+            NEXT_KICK_LIMIT_START = NEXT_KICK
             print(
                 f"\n--- Checkpoint at iter {i}: Validating global best (Size: {global_best_total_size}) ---"
             )
@@ -726,7 +728,7 @@ def main(pool: TimeoutProcessPool):
             while True:
                 random_value = random.random()
                 new_vars2 = copy.deepcopy(new_vars)
-                if len(new_vars2) >= 2 and random_value < 0.8:
+                if len(new_vars2) >= 2 and random_value < 0.4:
                     num_changes = random.randint(
                         max(2, len(new_vars2) // 5), max(2, len(new_vars2) * 2 // 5)
                     )
@@ -767,19 +769,19 @@ def main(pool: TimeoutProcessPool):
         random_value = random.random()
         new_vars2 = copy.deepcopy(new_vars)
         new_vars2 = swap_vars(new_vars2, num_changes=4)
-        if len(new_vars2) >= 2 and random_value < 0.2:
+        if len(new_vars2) >= 2 and random_value < 0.3:
             new_vars2 = swap_vars(
                 new_vars2,
                 num_changes=2,
             )
-        elif len(new_vars2) >= 2 and random_value < 0.3:
+        elif len(new_vars2) >= 2 and random_value < 0.6:
             new_vars2 = swap_vars(
                 new_vars2,
                 num_changes=min(3, len(new_vars2)),
             )
-        if random_value < 0.6:
-            new_vars2 = change_vars(candidate_names, new_vars2, num_changes=1)
         elif random_value < 0.8:
+            new_vars2 = change_vars(candidate_names, new_vars2, num_changes=1)
+        elif random_value < 0.9:
             new_vars2 = change_vars(
                 candidate_names, new_vars2, num_changes=min(2, len(new_vars2))
             )
@@ -803,6 +805,28 @@ def main(pool: TimeoutProcessPool):
         trial_total_size = PAYLOAD_OVERHEAD + trial_base + trial_penalty
 
         if trial_total_size <= PAYLOAD_OVERHEAD + current_base + current_penalty:
+            NEXT_KICK = min(
+                NEXT_KICK_LIMIT_START + KICK_INTERVAL * 2,
+                NEXT_KICK + KICK_INTERVAL // 10,
+            )
+
+            if trial_total_size < PAYLOAD_OVERHEAD + current_base + current_penalty:
+                # reset NEXT_KICK_LIMIT_START
+                NEXT_KICK_LIMIT_START = max(
+                    NEXT_KICK_LIMIT_START, i + KICK_INTERVAL // 2
+                )
+                NEXT_KICK = max(NEXT_KICK, i + KICK_INTERVAL // 2)
+
+            if (
+                trial_total_size
+                < PAYLOAD_OVERHEAD + global_best_base + global_best_penalty
+            ):
+                # reset NEXT_KICK_LIMIT_START
+                NEXT_KICK_LIMIT_START = max(
+                    NEXT_KICK_LIMIT_START, i + KICK_INTERVAL
+                )
+                NEXT_KICK = max(NEXT_KICK, i + KICK_INTERVAL)
+
             new_vars = new_vars2
             current_base = trial_base
             current_penalty = trial_penalty
@@ -810,7 +834,7 @@ def main(pool: TimeoutProcessPool):
                 f"new variables: {new_vars2}, size:{PAYLOAD_OVERHEAD + current_base + current_penalty} @{i + 1}"
             )
 
-        if trial_total_size < PAYLOAD_OVERHEAD+global_best_base+global_best_penalty:
+        if trial_total_size < PAYLOAD_OVERHEAD + global_best_base + global_best_penalty:
             global_best_code = trial_code
             global_best_base, global_best_penalty = trial_base, trial_penalty
             global_best_total_size = trial_total_size
@@ -883,16 +907,16 @@ def main(pool: TimeoutProcessPool):
     )
 
     print(
-        f"before best:{len(initial_code)} bytes, varopt compress best:{PAYLOAD_OVERHEAD+global_best_base+global_best_penalty} bytes"
+        f"before best:{len(initial_code)} bytes, varopt compress best:{PAYLOAD_OVERHEAD + global_best_base + global_best_penalty} bytes"
     )
 
-    if PAYLOAD_OVERHEAD+global_best_base+global_best_penalty < len(initial_code):
+    if PAYLOAD_OVERHEAD + global_best_base + global_best_penalty < len(initial_code):
         print("Write the best code to the file!")
         print(
             "task{0:03d}: {1} bytes -> {2} bytes".format(
                 TASK_ID,
                 len(initial_code),
-                PAYLOAD_OVERHEAD+global_best_base+global_best_penalty,
+                PAYLOAD_OVERHEAD + global_best_base + global_best_penalty,
             ),
             file=sys.stderr,
         )
