@@ -1,1 +1,1 @@
-p=lambda g:[[(c^d)//2*3for c,d in zip(a,b)]for a,b in zip(g[:6],g[7:])]
+p=lambda g:[[3*(c!=d)for c,d in zip(*p)]for p in zip(g,g[7:])]

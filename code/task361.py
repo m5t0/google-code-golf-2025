@@ -1,1 +1,1 @@
-def p(i):g,d=[(2*n+e-1,2*x+e-1)for e in(3,2)for n in range(8)for x in range(8)if all(all(a[x:x+e])for a in i[n:n+e])][0];[(l:=2*n-g,e:=2*x-d)and exec('l,e=-e,l;i[g+l>>1][d+e>>1]=a;'*3)for n in range(10)for x in range(10)if(a:=i[n][x])];return i
+def p(r):d,x=[(2*n+e-1,2*o+e-1)for e in(3,2)for n in range(8)for o in range(8)if all(all(a[o:o+e])for a in r[n:n+e])][0];[(l:=2*n-d,e:=2*o-x)and exec('l,e=-e,l;r[d+l>>1][x+e>>1]=a;'*3)for n in range(10)for o in range(10)if(a:=r[n][o])];return r

@@ -1,3 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("MŒÃPEåAIêµ€Øû’2]&¤YĞÙ¿ÏºÑArÎ]Zè|´$ÁFmÕ¼ß`°*µÙ¢Øc-Q<ËÆ#‰[Ñ€8öÑÛeØÿÕvÃH>KıD¬Ií	ÑiµN‘üooGû¢8µä6ÁjNÌÉ¿NS^Ş","L1"),-9))
+p=lambda g,r=range(21):[[[max(max(v[j%k::k])for v in g[i%k::k])for j in r]for i in r]for k in r if any(v[:-k]==v[k:]for v in g)][0]

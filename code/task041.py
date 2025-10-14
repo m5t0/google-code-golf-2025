@@ -1,1 +1,1 @@
-p=lambda j,a=0:[[x and(a:=(a==0)*x)or x or a for x in r]for r in j]
+p=lambda g,t=0:[[x|(t:=t^x)for x in v]for v in g]

@@ -1,2 +1,2 @@
-r=lambda n,s:(n:=str(n)[1::3]).find('2',s)%-~len(n)+~n.rfind('2',0,s)
-p=lambda t,e=enumerate:[[l[m]or((d:=sorted({r(n,s)*r(l,m)for s,l in e(zip(*t))for m,n in e(t)}))[-1]==(a:=r(n,s)*r(l,m)))+(d[1]==a)*8for s,l in e(zip(*t))]for m,n in e(t)]
+d=lambda s,i:[*s[i:],2].index(2)+[*s[i::-1],2].index(2)-1
+p=lambda g,a=enumerate:[[r[t]or((o:=sorted({d(s,i)*d(r,t)for i,r in a(zip(*g))for t,s in a(g)if r[t]<1}))[-1]==(q:=d(s,i)*d(r,t)))+(o[0]==q)*8for i,r in a(zip(*g))]for t,s in a(g)]

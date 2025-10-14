@@ -1,1 +1,1 @@
-p=lambda g,r=range(10):[[(h:=[[v[j]or(5in{*[*zip(*g)][j]}&{*v})*8for j in r]for v in g])[i][j]or sum(8in(s:=V[I::k])and s.index(8)<s.index(5)for k in[-1,1]for V,I in[(h[i],j),([*[*zip(*h)][j]],i)])*8for j in r]for i in r]
+p=lambda i,l=range(10):[[(i:=[[n[p]or(5in{*[*zip(*i)][p]}&{*n})*8for p in l]for n in i])[a][p]or sum(8in(m:=b[z::n])and m.index(8)<m.index(5)for n in[-1,1]for b,z in[(i[a],p),([*[*zip(*i)][p]],a)])*8for p in l]for a in l]
