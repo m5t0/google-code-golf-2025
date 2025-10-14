@@ -1,0 +1,1 @@
+p=lambda g,r=range:[[[5,g[i&-4|1][j&-4|1]+5][i%4<3>j%4]for j in r(11)]for i in r(len(g))]

@@ -1,0 +1,1 @@
+p=lambda g:[w[::-1]for v in g if(w:=[*filter(int,v)])]

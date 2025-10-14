@@ -1,0 +1,1 @@
+def p(g):S=len({*str(g)})-5;A=range(3*S);return[[g[B//S][C//S]for C in A]for B in A]

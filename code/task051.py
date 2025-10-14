@@ -1,4 +1,4 @@
-def p(a):
-	F=len(a);C=len(a[0]);D=sum(a,[]);E=min({*D}-{0},key=D.count);A,B=divmod(D.index(E),C);G,H=next((D,E)for(D,E)in((0,1),(1,0),(0,-1),(-1,0))if(0<=A+D<F)*(0<=B+E<C)*a[A+D][B+E]<1)
-	while(-1<(A:=A-G)<F)&(-1<(B:=B-H)<C):a[A][B]=a[A][B]or E
-	return a
+def p(p):
+	d=len(p);o=len(p[0]);f=sum(p,[]);l=min({*f}-{0},key=f.count);i,e=divmod(f.index(l),o);q,c=next((f,l)for(f,l)in((0,1),(1,0),(0,-1),(-1,0))if(0<=i+f<d)*(0<=e+l<o)*p[i+f][e+l]<1)
+	while(-1<(i:=i-q)<d)&(-1<(e:=e-c)<o):p[i][e]=p[i][e]or l
+	return p

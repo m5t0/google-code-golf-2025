@@ -1,3 +1,2 @@
-import re
-s="g[:]=zip(*eval(re.sub(r'%s',str(g)))[::-1]);"
-p=lambda g:exec((s%"([1-9])(?=, [1-9].{%d}[1-9])',r'\\1+1"+s%r"([1-9])(?=, ([^0\1]))',r'max(\1,\2)"*32)*2%(len(g[0])*3-2,len(g)*3-2)*2+s%r"([1-9])',r'1+(\1>5)+(\1==5)*5"+s%"','"*3)or g
+l=0,1,0,-1
+def p(e,r=range):n=lambda t,u,s:sum(m>(q:=u+l[r-1])>-1<(a:=t+l[r])<b>e[a][q]>2and(s-(r^2)and n(a,q,r))+(m>(q:=u+l[r-2])>-1<(a:=t+l[r-1])<b>e[a][q]>2)for r in r(4));b=len(e);m=len(e[0]);return[[e[t][u]and[0,1,6,2][n(t,u,5)]for u in r(m)]for t in r(b)]

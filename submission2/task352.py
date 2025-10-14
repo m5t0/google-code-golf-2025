@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[v or any(2 in t[j-(j>0):j+2]for t in g[i-(i>0):i+2])for j,v in e(r)]for i,r in e(g)]

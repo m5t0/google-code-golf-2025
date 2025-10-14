@@ -1,0 +1,1 @@
+def p(g):i=sum(g,[]).index;a=i(1)%10;return[[(t:=r+[0]*7)[j]%2|t[j-i(2)%10+a]%2*2|t[j-i(4)%10+a]%2*4for j in range(10)]for r in g]

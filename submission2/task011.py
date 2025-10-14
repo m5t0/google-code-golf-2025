@@ -1,0 +1,1 @@
+r=range(11);p=lambda g:[[5*(g[i][j]==5)or[v for k in r if"8"not in str(v:=[*zip(*g[k//3*4:][:3])][k%3*4:][:3])][0][j//4][i//4]for j in r]for i in r]

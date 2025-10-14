@@ -1,0 +1,1 @@
+p=lambda g:(s:=sum(g,[]))and[s[(q:=s.index(5))+k:q+k+3]for k in(9,19,29)]

@@ -1,0 +1,1 @@
+p=lambda g,r=range(9):[g:=[*zip(*[[g[x][y]or(x<8>y<g[x+1][y]*g[x][y+1])*7for y in r]for x in r])][::-1]for _ in' '*12][-1]

@@ -1,0 +1,1 @@
+p=lambda g,r=range:[exec("g[k//18+l//3][k%18+l%3]=1")for k in r(324)if max(g[k//18+m//3][k%18+m%3]for m in r(9))<1for l in r(9)]and g

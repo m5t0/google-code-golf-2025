@@ -1,0 +1,1 @@
+p=lambda g:sum([[sum(([w[0]]*2for w in zip(v,*g)if 4in w),[])]*2*(4in v)for v in g],[])

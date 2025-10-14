@@ -1,0 +1,1 @@
+def p(g):r=range(len(g));a=[(i,j)for i in r for j in r if g[i][j]];o,x=a[1];return[[g[o][x]*(max(i-o,j-x,key=abs)%(o-a[0][0])<1)for j in r]for i in r]

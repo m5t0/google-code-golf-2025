@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[[s:=w[i],sum({*v[j-(j>0):j+2]}&{*w[i-(i>0):i+2]})-s][sum(g,[]).count(s)<30]for j,w in e(zip(*g))]for i,v in e(g)]
