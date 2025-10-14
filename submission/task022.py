@@ -1,1 +1,2 @@
-def p(s):s=sum(s,[]);t=~0,0,1;return[[max(s[i+o*11+a]for i in range(121)if s[i]==5)for a in t]for o in t]
+t=-1,0,1
+p=lambda g:[[max(s[i+a*11+b]for i in range(121)if(s:=sum(g,[]))[i]==5)for b in t]for a in t]
