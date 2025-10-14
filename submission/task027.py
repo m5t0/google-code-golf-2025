@@ -1,0 +1,1 @@
+p=lambda g,r=range(10):[[g[i][j]or(g[j][~i+([*map(list,zip(*g))][:-4:-1]!=g[:3])]>0)*2for j in r]for i in r]
