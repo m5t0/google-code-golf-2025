@@ -1,5 +1,2 @@
-def D(g,i,j,d):
- if len(g)>i>-1<j<len(v:=g[i]):
-  if v[j]%9:v[j]^=1;s=max(D(g,i+I//3,~-j+I%3,I)or 0for I in[-2,0,2,4]if I+d-2);v[j]^=1;return s
-  return(v[j]<9)*7
-p=lambda g,e=enumerate:[[D(g,i,j,1)+v[j]for j,_ in e(v)]for i,v in e(g)]
+a="g[:]=zip(*eval(str(g).replace('%s'))[::-1]);"
+p=lambda g:exec(a%"(9','(2"*5+a%"2, 9','2,2"*62+a%"9, 1','9,8"*4+a%"1, 8','8,8"*12+a%"2','9")or g

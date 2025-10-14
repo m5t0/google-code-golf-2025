@@ -1,1 +1,1 @@
-p=lambda g:[[x and 5-(len(v)-j)%2*2for j,x in enumerate(v)]for v in g]
+p=lambda g:[[x-2*(x>4)*(j+len(r)&1)for j,x in enumerate(r)]for r in g]

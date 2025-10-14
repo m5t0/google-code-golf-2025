@@ -1,6 +1,1 @@
-r=range(841)
-def p(g):
- for S in r:
-  s,t=S//56+1,S//2%28+1;R=r[:29];v,f=[t*[0]for _ in R],1
-  for i in r:a=g[x:=i//29][y:=i%29];b=v[u:=(x-S%2*y//6)%s][y%t];f-=a*b*(a!=b);v[u][y%t]=max(a,b)
-  if f>0:return[[v[(i-S%2*j//6)%s][j%t]for j in R]for i in R]
+def p(g):t=lambda A:[(0 in r and min(A,key=lambda s:(0 in s,sum(x^y for x,y in zip(r,s)if x)))or r)for r in A];return g[0][1]and t(g)or[*map(list,zip(*t([*zip(*g)])))]

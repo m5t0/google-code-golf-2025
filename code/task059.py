@@ -1,1 +1,1 @@
-p=lambda g,r=range(11):[x for s in r[::-1]if sum(map(sum,(x:=[[5*(g[i][j]==5)or(c:=[b for a in g for b in a if(b-5)*b][0])*(sum(sum(v[j-j%4:j-j%4+3])for v in g[i-i%4:i-i%4+3])//c==s)for j in r]for i in r])))>200][0]
+p=lambda f,n=range(11):[a for l in n[::-1]if sum(map(sum,(a:=[[5*(f[a][n]==5)or(e:=[a for n in f for a in n if(a-5)*a][0])*(sum(sum(a[n-n%4:n-n%4+3])for a in f[a-a%4:a-a%4+3])//e==l)for n in n]for a in n])))>200][0]

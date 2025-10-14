@@ -1,2 +1,3 @@
-f=lambda g,w,i,j:1-max(0in(s:=w[i::k])and{w[i]}=={(t:=g[i+s.index(0)*k])[j-1],*t[j+1:j+2]}for k in[-1,1])
-p=lambda g,e=enumerate:[[w[i]*[f(g,w,i,j),f([*zip(*g)],v,j,i)][len({*min(g)})>2]for j,w in e(zip(*g))]for i,v in e(g)]
+import re
+s="g[:]=zip(*eval(re.sub(r'%s',str(g)))[::-1]);"
+p=lambda g:exec(s%r"([^0])(?=[^\]]*0[^\]]*([^0, \]\1]))','0"*4)or g

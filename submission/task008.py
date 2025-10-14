@@ -1,4 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("""eÎ1ƒ0ĞSxªlj¤–©
-ÊÒ3t‹25@¤UDªÂéDL<<û[öÓ6ğÆ–­´>6˜É’È “ƒë§/:î©yp¼–‹íÎ?‰\Ÿ“×U<Ö¡òÑ¼qtó8Á|7èj9b×üà»X'ø(êâÊ*6LÅ}G5ËˆFÈK¢sÄoD¤oúí¼­rZõZ^şûçóY	QjZ#I×DYfìƒ‡ö""","L1"),-9))
+p=lambda g:[g:=[*zip(*(len(g)-len(u:=[v for i,v in enumerate(g)if any(v)or max(max(g[i:]))<8]))*[min(g)]+u)][::-1]for _ in[0]*4][3]

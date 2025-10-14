@@ -1,11 +1,7 @@
-def p(g,r=range):
- c,m,n,l,t=[],len(g[0]),len(g),[g]*5,sum(g,[])
- for i in r(9):c+=[i+1]*(0<t.count(i+1)<3)
- a=d=g[0][g[0][0]in c];z=sum({*t}-{*c,a})
- if any(g[i][j]==c[0]and sum((x==a)-(x==z)for v in g[i and i-1:i+2]for x in v[j and j-1:j+2])>0for i in r(n)for j in r(m)):d=z
- for i in r(4):
-  l=[[*map(list,zip(*j))][::-1]for j in l];v=l[i]
-  for x in r(len(v)-1):
-   for y in r(len(v[0])-1):
-    if v[x][y]in c:v[x+1][y+1]=l[4][x+1][y+1]=c[0]
- return[[[l[4][j][k],c[g[j][k]in(d,c[1])]][l[4][j][k]in c]for k in r(m)]for j in r(n)]
+def p(f):
+ z=range;e=sum(f,[]);j=sorted({*e},key=e.count);o,s,a,b=j;m,n=len(f),len(f[0])
+ if sum(a in r for r in f)>sum(b in r for r in f):a,b=b,a
+ j=[a in r for r in f];q=[a in r for r in zip(*f)]
+ r=[(u,e)for u in z(m)for e in z(n)if f[u][e]in{o,s}]
+ if s^next(f[u][e]for u,e in r if j[u]&q[e]):o,s=s,o
+ return[[(b,a,o,s)[2*any(abs(u-k)==abs(e-o)for k,o in r)+(j[u]&q[e])]for e in z(n)]for u in z(m)]

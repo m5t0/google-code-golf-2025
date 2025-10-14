@@ -1,18 +1,6 @@
-def p(g,r=range):
- c=[*{*sum(g,[])}];f=[[0,10,t]for t in c]
- for _ in r(4):
-  for v in g:
-   for i in r(len(c)):
-    a=[j for j in r(len(v))if v[j]==c[i]];s=l=0
-    if a:s,l=min(a),max(a)
-    if(l-s+1)>=f[i][0]:
-      b=[j for j in r(s,l)if v[j]-c[i]];X=l-s+1
-      if b:x=max(b)-min(b)+1;X=(min(b)-s)*2+x
-      else:x=0
-      if(f[i][1]>x)|(X>f[i][0]):f[i][1]=x;f[i][0]=X
-  g=[*zip(*g[::-1])]
- f.sort();g=eval(str([[f[-1][2]]*f[-2][0]]*f[-2][0]))
- for _ in r(4):
-  for i in r(len(f)-1):w,x=f[i][:2];X,j=(w-x)//2,len(f)-i-2;g[j][j:j+w]=[f[i][2]]*X+[f[-1][2]]*x+[f[i][2]]*X if x else[f[i][2]]*w
-  g=[*map(list,zip(*g[::-1]))]
- return g
+import re
+def p(i):
+ n=re.sub(', ','',str(i+[*zip(*i)]));n+=n[::-1];i=int(max(n,key=n.count));f={0:(0,i)}
+ for t in range(10):
+  if(t!=i)*(e:=re.findall(f'{t}+',n)):d=len((re.findall(f'{t}{t}([^]){t}]+){t}|$',n))[0]);f[len(max(e))*((d>0)+1)+d>>1]=d+1>>1,t
+ return[[i*((d:=f[n[1]])[0]>n[0])or d[1]for t in range(-max(f),max(f)+1)if(n:=sorted((abs(t),abs(e))))]for e in range(-max(f),max(f)+1)]

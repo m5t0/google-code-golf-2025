@@ -1,1 +1,3 @@
-def p(g,e=enumerate):a=[r.__setitem__(j,0)or(i,j,v)for i,r in e(g)for j,v in e(r)if v&7];A,B,_=a[0];[g[i+x-A].__setitem__(j+y-B,w)for i,r in e(g)for j,v in e(r)if v==8 for x,y,w in a];return g
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("Œ¥AE[sŒ*¼„iö˜êª¸¸ïFŸb4Øk‡tVbvœNŒR	v§“?Æy0¯ñÛÀ3T= OûŠ¿–ƒÊ‚uç‡u—1Ùå‡õvuI{øeFMòšü3fï¸‹›ïNkBQê","L1"),-9))

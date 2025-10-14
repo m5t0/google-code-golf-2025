@@ -1,8 +1,6 @@
 def p(g):
- for _ in'*'*4:
-  r=[r for r in g if 2in r][0];j=14-r[::-1].index(2)
-  if r[j-2]<1:
-   for r in g:
-    for d in 2,3:r[j+d],r[j-d]=r[j-d],0
-  *g,=map(list,zip(*g[::-1]))
+ for _ in[0]*4:
+  for k in 0,1:
+   if g[3+k].count(2)>4:g[k:k+2]=g[6+k:4+k:-1];g[5+k:7+k]=[[0]*15]*2
+  *g,=zip(*g[::-1])
  return g

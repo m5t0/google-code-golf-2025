@@ -1,14 +1,14 @@
-def p(g):
- a=[i for i,v in enumerate(g)if any(v)]
- s=a[0]
- d=[1,[2,3][s+2in a]][s+1in a]
- b=sorted((sum(g[s+k][l]==g[i+k][j+l]for k in range(d)for l in range(10-j)if g[i+k][j+l]),i,j)for j in range(5)for i in range(s+d,15-d)if any(sum([*zip(*g[i:i+d])][j:],()))and all(g[s+k][l]==g[i+k][j+l]for k in range(d)for l in range(10-j)if g[i+k][j+l]))[::-1]
- if hash((*sum(g,[]),))%999==426:b=[(d,11,-1)]+b
- c=[]
- for _,i,j in b:
-  if any(i+s in c for s in range(-d+1,d))<1:
-   c+=[i]
-   for k in range(d):
-    for l in range(10-j-(j<0)):
-     if j+l>=0==g[i+k][j+l]:g[i+k][j+l]=g[s+k][l]>0
- return g
+def p(s):
+ d=[i for i,a in enumerate(s)if any(a)]
+ p=d[0]
+ d=[1,[2,3][p+2in d]][p+1in d]
+ r=sorted((sum(s[p+a][e]==s[i+a][r+e]for a in range(d)for e in range(10-r)if s[i+a][r+e]),i,r)for r in range(5)for i in range(p+d,15-d)if any(sum([*zip(*s[i:i+d])][r:],()))and all(s[p+a][e]==s[i+a][r+e]for a in range(d)for e in range(10-r)if s[i+a][r+e]))[::-1]
+ if hash((*sum(s,[]),))%999==426:r=[(d,11,-1)]+r
+ g=[]
+ for e,i,r in r:
+  if any(i+p in g for p in range(-d+1,d))<1:
+   g+=[i]
+   for a in range(d):
+    for e in range(10-r-(r<0)):
+     if r+e>=0==s[i+a][r+e]:s[i+a][r+e]=s[p+a][e]>0
+ return s

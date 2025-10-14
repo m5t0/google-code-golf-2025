@@ -2,6 +2,7 @@ import copy
 import concurrent.futures
 import hashlib
 import importlib.util
+import itertools
 import json
 import os
 import pickle
@@ -10,7 +11,7 @@ from threading import Lock
 
 import numpy as np
 
-COMPCHECK_VERSION = "1.0"
+COMPCHECK_VERSION = "1.3"
 
 DEFLATE = 0
 ZOPFLI = 1
@@ -123,12 +124,16 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
         # We prefer that compressed source not end in a quotation mark
         while (compressed := compress_custom(src.encode(), level=level))[-1] == ord('"'): src += "#"
 
-        for delim_start, delim_end in [(b'"', b'"'), (b"'", b"'"), (b'r"', b'"'), (b"r'", b"'"), (b'"""', b'"""')]:
-            if is_valid(compressed, delim_start, delim_end):
-                break
+        curr = delim_start = delim_end = None
+        sanitized = sanitize(compressed)
 
-        if not is_valid(compressed, delim_start, delim_end, check_result=True):
-            compressed = sanitize(compressed)
+        for c, (ds, de) in itertools.product([compressed, sanitized],
+                                             [(b'"', b'"'), (b"'", b"'"), (b'r"', b'"'), (b"r'", b"'"),
+                                              (b'"""', b'"""'), (b"'''", b"'''"), (b'r"""', b'"""'), (b"r'''", b"'''")]):
+            if is_valid(c, ds, de) and (curr is None or len(c) < len(curr)):
+                curr, delim_start, delim_end = c, ds, de
+
+        compressed = curr
 
         while True:
             current_len = len(compressed)
@@ -155,7 +160,7 @@ def zip_src(task_num, src, baseline, compressor=DEFLATE):
         if len(best) > baseline + margin:
             break
 
-    return b' ' * 10000 if best is None else best
+    return best
 
 
 def get_hash(code):
@@ -163,9 +168,10 @@ def get_hash(code):
 
 
 class State:
-    def __init__(self):
+    def __init__(self, no_cache):
         self.cache = {}
         self.cache_path = os.path.join(os.path.dirname(__file__), "cache.pkl")
+        self.no_cache = no_cache
         self.deflate_cnt = 0
         self.zopfli_cnt = 0
         self.zlib_cnt = 0
@@ -187,6 +193,8 @@ class State:
             pickle.dump(self.cache, f)
 
     def get_cache(self, task_num):
+        if self.no_cache:
+            return None
         with self.lock:
             return self.cache.get(task_num)
 
@@ -239,19 +247,15 @@ def process_task(task_num, state):
 
 def process_code_single(task_num, author, code, color, out=None, write=False):
     clear = "\033[0m"
-    deflate = zip_src(task_num, code, len(code), compressor=DEFLATE)
-    zopfli = zip_src(task_num, code, len(code), compressor=ZOPFLI)
-    zlib = zip_src(task_num, code, len(code), compressor=ZLIB)
-    compressed_code = min(deflate, zopfli, zlib, key=len)
+    compressors = [DEFLATE, ZOPFLI, ZLIB]
+    compressed_codes = [zip_src(task_num, code, len(code), compressor) for compressor in compressors]
+    passed_codes = list(filter(None, compressed_codes))
 
-    if deflate == compressed_code:
-        compressor_used = DEFLATE
-    elif zopfli == compressed_code:
-        compressor_used = ZOPFLI
-    elif zlib == compressed_code:
-        compressor_used = ZLIB
-    else:
-        compressor_used = -1
+    if passed_codes == []:
+        return 0, -1, f"{color}{author}            : not passed{clear}"
+
+    compressed_code = min(passed_codes, key=len)
+    compressor_used = compressed_codes.index(compressed_code)
 
     improvement = len(code) - len(compressed_code)
     if improvement < 0:
@@ -273,11 +277,11 @@ def main():
     if len(sys.argv) < 2:
         return
 
-    cache = True
+    no_cache = False
 
     for i in range(1, len(sys.argv)):
         if sys.argv[i] == "--no-cache":
-            cache = False
+            no_cache = True
             sys.argv.pop(i)
 
     for i in range(1, len(sys.argv))[::-1]:
@@ -288,10 +292,8 @@ def main():
             for j in range(int(start), int(end) + 1):
                 sys.argv.append(str(j))
 
-    state = State()
-
-    if cache:
-        state.load_cache()
+    state = State(no_cache)
+    state.load_cache()
 
     tasks = [int(arg) for arg in sys.argv[1:]]
 

@@ -1,6 +1,6 @@
-def p(g,r=range,e=enumerate):
- a,*l,n=sum(g,[]),10
- for i,v in e(g):
-  if(5in v)>i/9<(0in v[(x:=v.index(5)+1):(y:=9-v[::-1].index(5))]):l+=[k for j in r(x,y)if a[k:=i*n+j]<1]
-  else:[a==exec("a[m-b[0]+l[0]],a[m]=a[m],0")for b in[[i for i,v in e(a)if v==c]for c in r(n)]if[m-b[0]for m in b]==[m-l[0]for m in l]for m in b];l=[]
- return[a[i*n:][:n]for i in r(n)]
+def p(f,r=range,e=enumerate):
+ u,*s,n=sum(f,[]),10
+ for m,f in e(f):
+  if(5in f)>m/9<(0in f[(i:=f.index(5)+1):(x:=9-f[::-1].index(5))]):s+=[f for l in r(i,x)if u[f:=m*n+l]<1]
+  else:[u==exec("u[m-l[0]+s[0]],u[m]=u[m],0")for l in[[m for m,f in e(u)if f==l]for l in r(n)]if[m-l[0]for m in l]==[m-s[0]for m in s]for m in l];s=[]
+ return[u[m*n:][:n]for m in r(n)]

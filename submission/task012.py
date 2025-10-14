@@ -1,5 +1,3 @@
-def p(g,s=range(-2,10)):
- for i in s:
-  for j in s:
-   for a in((n:=g[i+1][j])==g[i-1][j]==g[i][j+1]>0)*[*s[:5]]:c=g[i][j];g[i-a][j]=g[i][j-a]=n;g[i+a][j+a]=g[i+a][j-a]=c
- return g
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes('=Š1†¸§ ½ŞqƒN÷"”µUè&Ö÷_5‚ïûş¼J…¡£GÊ£sŞY6¨o‚E­şM5³3C¤4œÇTÑFáSY‘—çe÷´÷îˆ¡­yÍB«°Ä)ÕIulÊkiPùN@?',"L1"),-9))

@@ -1,6 +1,3 @@
-def p(g):
- e=enumerate;s={i+1j*j for i,r in e(g)for j,v in e(r)if v};n=0
- def f(z):
-  if z in s:s.remove(z);f(z+1);f(z-1);f(z+1j);f(z-1j)
- while s:n+=1;f(next(iter(s)))
- return[[0]*i+[8]+[0]*(n-i-1)for i in range(n)]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("%NµΓ0μ=ΕwfªΒ‹„ιe&QxχΗ£;½ή_:0n°ÒΗΫ|0Μλ€(`TBΥ^y$νZϊω[υ›Μ­D¬¨s―!lΙέ Q=Vκζ¦Ε¶)»ªξΐ£¬ZT”>άδϊOξU©Η|_½)rAϋέ.;ξζ‡PO‹JΜ„Τ†τÒΪλπ","L1"),-9))

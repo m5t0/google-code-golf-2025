@@ -1,5 +1,5 @@
-def p(g):
- f=eval(str(g))
- for k in range(200):
-  for d in range(g[(l:=k//100+3)+(i:=k//10%10):]>[]and{*g[i][(j:=k%10):j+l]+g[s:=i+~-l][j:j+l]}=={h:=g[i][j]}!={0}and l*l*3-4*l):f[i+(x:=d//l-l+2)][b:=j+(y:=d%l)]=f[a:=i+y][j+x]=h;f[i][b]=f[s][b]=f[a][j]=f[a][j+~-l]=g[i+1][j+1]
+def p(s):
+ f=eval(str(s))
+ for a in range(200):
+  for a in range(s[(r:=a//100+3)+(e:=a//10%10):]>[]and{*s[e][(g:=a%10):g+r]+s[u:=e+~-r][g:g+r]}=={l:=s[e][g]}!={0}and r*r*3-4*r):f[e+(d:=a//r-r+2)][t:=g+(a:=a%r)]=f[a:=e+a][g+d]=l;f[e][t]=f[u][t]=f[a][g]=f[a][g+~-r]=s[e+1][g+1]
  return f

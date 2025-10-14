@@ -1,1 +1,1 @@
-p=lambda g:[[8*(x|y<1)for x,y in zip(a,a[4:])]for a in g]
+p=lambda j:[[8*(a|b<1)for a,b in zip(a,a[4:])]for a in j]
