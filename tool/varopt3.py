@@ -495,7 +495,7 @@ def main(pool: TimeoutProcessPool):
     parser.add_argument(
         "--kick-interval",
         type=int,
-        default=1000,
+        default=300,
         help="a parameter that determines the steps until the next kick",
     )
     parser.add_argument(
@@ -626,15 +626,6 @@ def main(pool: TimeoutProcessPool):
     global_best_total_size = current_total_size
 
     compcheck_timer = Timer()
-    # calculate accurate code length
-    global_best_compressed_size = len(
-        compcheck.zip_src(
-            TASK_ID,
-            global_best_code,
-            global_best_total_size + 4,
-            ["deflate", "zopfli", "zlib"].index(COMPRESSOR),
-        )
-    )
 
     print(f"compcheck consumed time: {compcheck_timer.elapsed_time():.3f}s")
 
@@ -642,7 +633,6 @@ def main(pool: TimeoutProcessPool):
     last_known_good_code = initial_code
     last_known_good_base, last_known_good_penalty = current_base, current_penalty
     last_known_good_total_size = current_total_size
-    last_known_good_compressed_size = global_best_compressed_size
 
     if (
         PAYLOAD_OVERHEAD + global_best_base + global_best_penalty
@@ -675,10 +665,10 @@ def main(pool: TimeoutProcessPool):
         return
 
     print(
-        f"Initial size: {global_best_compressed_size}, score {global_best_total_size} (Base: {current_base}, Penalty: {current_penalty})\n{initial_code}\n\n"
+        f"Initial score {global_best_total_size} (Base: {current_base}, Penalty: {current_penalty})\n{initial_code}\n\n"
     )
     print(
-        f"initial variables: {new_vars}, score:{PAYLOAD_OVERHEAD + current_base + current_penalty}\n"
+        f"initial variables: {new_vars}, size:{PAYLOAD_OVERHEAD + current_base + current_penalty}\n"
         + "-" * 30
     )
 
@@ -712,7 +702,6 @@ def main(pool: TimeoutProcessPool):
                     last_known_good_penalty,
                 )
                 global_best_total_size = last_known_good_total_size
-                global_best_compressed_size = last_known_good_compressed_size
                 print(f"Reverted to size: {global_best_total_size}")
 
                 # Add the new failing example to the checked set if it's not already there
@@ -732,7 +721,6 @@ def main(pool: TimeoutProcessPool):
                     global_best_penalty,
                 )
                 last_known_good_total_size = global_best_total_size
-                last_known_good_compressed_size = global_best_compressed_size
 
             # ---------------- kick ------------------------
             while True:
@@ -772,7 +760,7 @@ def main(pool: TimeoutProcessPool):
                     break
 
             print(
-                f"new variables: {new_vars}, score: {PAYLOAD_OVERHEAD + current_base + current_penalty} @{i + 1}"
+                f"new variables: {new_vars}, size: {PAYLOAD_OVERHEAD + current_base + current_penalty} @{i + 1}"
             )
 
         # ------------------ neighborhood ------------------------------
@@ -819,28 +807,16 @@ def main(pool: TimeoutProcessPool):
             current_base = trial_base
             current_penalty = trial_penalty
             print(
-                f"new variables: {new_vars2}, score:{PAYLOAD_OVERHEAD + current_base + current_penalty} @{i + 1}"
+                f"new variables: {new_vars2}, size:{PAYLOAD_OVERHEAD + current_base + current_penalty} @{i + 1}"
             )
 
-        # compare with accurate compressed size
-        if trial_total_size <= global_best_total_size + 2:
-            trial_compressed_size = len(
-                compcheck.zip_src(
-                    TASK_ID,
-                    trial_code,
-                    trial_total_size + 4,
-                    ["deflate", "zopfli", "zlib"].index(COMPRESSOR),
-                )
-            )
-
-            if trial_compressed_size < global_best_compressed_size:
-                global_best_code = trial_code
-                global_best_base, global_best_penalty = trial_base, trial_penalty
-                global_best_total_size = trial_total_size
-                global_best_compressed_size = trial_compressed_size
-                print(f"\nNew best size: {global_best_compressed_size} @{i + 1}")
-                print(trial_code)
-                print(f"variables: {new_vars2}, score:{trial_total_size} @{i + 1}")
+        if trial_total_size < PAYLOAD_OVERHEAD+global_best_base+global_best_penalty:
+            global_best_code = trial_code
+            global_best_base, global_best_penalty = trial_base, trial_penalty
+            global_best_total_size = trial_total_size
+            print(f"\nNew best size: {trial_total_size} @{i + 1}")
+            print(trial_code)
+            print(f"variables: {new_vars2}, size:{trial_total_size} @{i + 1}")
 
     # --- Final Result ---
     print(f"\nFinal validation of best code found...")
@@ -907,16 +883,16 @@ def main(pool: TimeoutProcessPool):
     )
 
     print(
-        f"before best:{len(initial_code)} bytes, varopt compress best:{global_best_compressed_size} bytes"
+        f"before best:{len(initial_code)} bytes, varopt compress best:{PAYLOAD_OVERHEAD+global_best_base+global_best_penalty} bytes"
     )
 
-    if global_best_compressed_size < len(initial_code):
+    if PAYLOAD_OVERHEAD+global_best_base+global_best_penalty < len(initial_code):
         print("Write the best code to the file!")
         print(
             "task{0:03d}: {1} bytes -> {2} bytes".format(
                 TASK_ID,
                 len(initial_code),
-                global_best_compressed_size,
+                PAYLOAD_OVERHEAD+global_best_base+global_best_penalty,
             ),
             file=sys.stderr,
         )
