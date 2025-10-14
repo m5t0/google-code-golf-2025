@@ -526,7 +526,7 @@ def main(pool: TimeoutProcessPool):
         RAW_FUNCTION_STRING
     )
     print(f"Initial variables: {original_vars}\n")
-    candidate_names = list("abcdefghijklmnopqrstuvwxyz")
+    candidate_names = list("qertyuiopasdfghjklzxcbnm")
 
     initial_code = FUNCTION_TEMPLATE.replace("##", "")
     PAYLOAD_OVERHEAD = 63
