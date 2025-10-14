@@ -1,14 +1,14 @@
-t=enumerate
-def n(i,e,p,s):
- n=1
- for g,a in t(e):
-  for e,r in t(a):
-   if r:
-    if(a:=p+g)<3>(e:=s+e)and i[a][e]<1:i[a][e]=r
-    else:n=0
- return n
-def p(e,r=range(16)):
- e,p=[a for g in r[1:]if(a:=[[r[p]for r in zip(*e)if g in r]for p,a in t(e)if g in a])]
- for a in r:
-  i=[[0]*3for a in r[:3]]
-  if n(i,e,a//8,a//4%2)&n(i,p,a%4//2,a%2):return i
+r=enumerate
+def g(i,n,s,f):
+ g=1
+ for a,e in r(n):
+  for n,z in r(e):
+   if z:
+    if(e:=s+a)<3>(n:=f+n)and i[e][n]<1:i[e][n]=z
+    else:g=0
+ return g
+def p(n,z=range(16)):
+ n,s=[e for a in z[1:]if(e:=[[z[s]for z in zip(*n)if a in z]for s,e in r(n)if a in e])]
+ for e in z:
+  i=[[0]*3for e in z[:3]]
+  if g(i,n,e//8,e//4%2)&g(i,s,e%4//2,e%2):return i

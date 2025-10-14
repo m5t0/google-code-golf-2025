@@ -1,6 +1,6 @@
-def p(f,r=range):
- a,b=len(f),len(f[0]);e={(l,n)for l in r(a)for n in r(b)if f[l][n]&2};t=lambda i,l:[i and(t(i[1:],l)or not i[0]&l and t(i[1:],l|i[0])),l][e<=l]
- for n in 2,3:
-  if l:=t([l for t in r(a)for i in r(b)for l in[{(l,n)for l in r(-n,n+1)for l,n in[(t+l,i),(t,i+l)]if a>l>-1<n<b}]if min(f[l][n]for l,n in l)&2],set()):
-   for l,n in l:f[l][n]+=3*(f[l][n]&1)
-   return f
+def p(e,b=range):
+ r,f=len(e),len(e[0]);a={(n,t)for n in b(r)for t in b(f)if e[n][t]&2};l=lambda i,n:[i and(l(i[1:],n)or not i[0]&n and l(i[1:],n|i[0])),n][a<=n]
+ for t in 2,3:
+  if n:=l([n for l in b(r)for i in b(f)for n in[{(n,t)for n in b(-t,t+1)for n,t in[(l+n,i),(l,i+n)]if r>n>-1<t<f}]if min(e[n][t]for n,t in n)&2],set()):
+   for n,t in n:e[n][t]+=3*(e[n][t]&1)
+   return e

@@ -1,4 +1,4 @@
-def p(t,p=enumerate):
- r,i=min((r,i)for r,a in p(t)for i,a in p(a)if len(f:={*sum((a[i:i+3]for a in t[r:r+3]),[])})>1>(0in f));m,*u=3+(t[r][i+3]>0),
- for a in t[r:r+m]:u+=[a[i:i+m]];a[i:i+m]=[0]*m
- f=len(o:=[[a[0]for a in zip(a,*t)if any(a)]for a in t if any(a)]);m=f//m;return[[a*(o[m*r][m*i]>0)for i,a in p(a)]for r,a in p(u)]
+def p(m,p=enumerate):
+ t,u=min((t,u)for t,i in p(m)for u,i in p(i)if len(f:={*sum((i[u:u+3]for i in m[t:t+3]),[])})>1>(0in f));a,*d=3+(m[t][u+3]>0),
+ for i in m[t:t+a]:d+=[i[u:u+a]];i[u:u+a]=[0]*a
+ f=len(m:=[[i[0]for i in zip(i,*m)if any(i)]for i in m if any(i)]);a=f//a;return[[i*(m[a*t][a*u]>0)for u,i in p(i)]for t,i in p(d)]

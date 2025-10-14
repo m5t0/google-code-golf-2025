@@ -1,13 +1,13 @@
-def p(g,r=range):
- m,i=len(g),len(g[0]);f,*k=[],
- for z in r(m*i):
-  if g[e:=z//i][y:=z%i]==2:
-   f+=(n:={(0,0)}),;k+=(e,y),
-   for z in r(50):n|={(c,x)for f,z in n for h in r(9)if i>y+(x:=z+h%3-1)>=0<m>e+(c:=f+h//3-1)>=0<g[e+c][y+x]}
- b,y=k[f.index(n:=max(f,key=len))];l=n
- for q,(e,f)in zip(f,k):
-  for z in r(-3,5):
-   if q<{*n}and all(((i,h)in q)<=(g[e+i][f+h]==g[b+c][y+x])for(i,h),(c,x)in zip(n,l)):
-    for(i,h),(c,x)in zip(n,l):g[e+i][f+h]=g[b+c][y+x]
-   n=[(-h,i)for i,h in n];z or(n:=[(-i,h)for i,h in n])
- return g
+def p(t,h=range):
+ m,o=len(t),len(t[0]);i,*n=[],
+ for r in h(m*o):
+  if t[s:=r//o][f:=r%o]==2:
+   i+=(z:={(0,0)}),;n+=(s,f),
+   for r in h(50):z|={(u,_)for i,r in z for e in h(9)if o>f+(_:=r+e%3-1)>=0<m>s+(u:=i+e//3-1)>=0<t[s+u][f+_]}
+ m,f=n[i.index(z:=max(i,key=len))];p=z
+ for k,(s,i)in zip(i,n):
+  for r in h(-3,5):
+   if k<{*z}and all(((o,e)in k)<=(t[s+o][i+e]==t[m+u][f+_])for(o,e),(u,_)in zip(z,p)):
+    for(o,e),(u,_)in zip(z,p):t[s+o][i+e]=t[m+u][f+_]
+   z=[(-e,o)for o,e in z];r or(z:=[(-o,e)for o,e in z])
+ return t

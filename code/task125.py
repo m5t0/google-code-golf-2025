@@ -1,1 +1,1 @@
-def p(p,r=range):*a,=zip(*p);[exec("p[n][d]=3+(i<n<q and h<d<o)")for e in r(169)for q in r(e//13,14)for o in r(e%13+2,14)if p[i:=e//13+1][h:=e%13+1]==6and{*p[i-1][h:o]+p[q+1][h:o]+[*a[o+1][i:q]]}=={8}for n in r(i-1,q+2)for d in r(h-1,o+2)if p[n][d]-6];return p
+def p(i,p=range):*x,=zip(*i);[exec("i[d][o]=3+(e<d<r and n<o<q)")for a in p(169)for r in p(a//13,14)for q in p(a%13+2,14)if i[e:=a//13+1][n:=a%13+1]==6and{*i[e-1][n:q]+i[r+1][n:q]+[*x[q+1][e:r]]}=={8}for d in p(e-1,r+2)for o in p(n-1,q+2)if i[d][o]-6];return i
