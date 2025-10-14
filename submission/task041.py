@@ -1,1 +1,1 @@
-p=lambda g:[(t:=0)or[max(x,t:=t^x)for x in v]for v in g]
+p=lambda g,t=0:[[x|(t:=t^x)for x in v]for v in g]
