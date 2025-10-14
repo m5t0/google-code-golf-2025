@@ -1,1 +1,1 @@
-def p(g):I,J=divmod((v:=sum(g,[])).index(5),len(g[0]));return[V[J:J+g[I][J+1:].index(5)+2]for V in g[I-1:I+v.count(5)//2+1]]
+p=lambda g,t=0:[[x[1]for x in zip(*v)if t|(t:=t^(5in x))]for v in zip(g[:1]+g,g,g[1:]+g)if'5'in str(v)]
