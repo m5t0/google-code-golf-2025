@@ -1,2 +1,1 @@
-f=lambda g,w,i,j:1-max(0in(s:=w[i::k])and{w[i]}=={(t:=g[i+s.index(0)*k])[j-1],*t[j+1:j+2]}for k in[-1,1])
-p=lambda g,e=enumerate:[[w[i]*[f(g,w,i,j),f([*zip(*g)],v,j,i)][len({*min(g)})>2]for j,w in e(zip(*g))]for i,v in e(g)]
+p=lambda g,e=enumerate:[[v[j]*(v.count(v[j])>=(s:=sum(g,[])).count(v[j])/len(g))*(w.count(w[i])>=s.count(w[i])/len(g[0]))for j,w in e(zip(*g))]for i,v in e(g)]
