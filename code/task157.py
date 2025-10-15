@@ -1,1 +1,1 @@
-def p(n):p,i,*r=range,15;m=sum(n,[]);n=[[]];[(n:=[n+[(f,r)]for n in n for f in p(45)if m[f]<1],r:=[])for f in p(16)if r==(r:=r+[p for p in p(f,150,i)if(i>f)&m[p]])>[]];return max([*zip(*[((any(p-f+min(n)in n*(f%i-p%i<6)for f,n in n)|m[p]%5)%3for p in p(150))]*i)]for n in n)
+def p(m):n,p,*r=range,15;i=sum(m,[]);m=[[]];[(m:=[m+[(f,r)]for m in m for f in n(45)if i[f]<1],r:=[])for f in n(16)if r==(r:=r+[n for n in n(f,150,p)if(p>f)&i[n]])>[]];return max([*zip(*[((any(n-f+min(m)in m*(f%p-n%p<6)for f,m in m)|i[n]%5)%3for n in n(150))]*p)]for m in m)

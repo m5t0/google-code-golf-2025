@@ -1,7 +1,7 @@
-def p(f):
- z=range;e=sum(f,[]);j=sorted({*e},key=e.count);o,s,a,b=j;m,n=len(f),len(f[0])
- if sum(a in r for r in f)>sum(b in r for r in f):a,b=b,a
- j=[a in r for r in f];q=[a in r for r in zip(*f)]
- r=[(u,e)for u in z(m)for e in z(n)if f[u][e]in{o,s}]
- if s^next(f[u][e]for u,e in r if j[u]&q[e]):o,s=s,o
- return[[(b,a,o,s)[2*any(abs(u-k)==abs(e-o)for k,o in r)+(j[u]&q[e])]for e in z(n)]for u in z(m)]
+def p(c):
+ z=range;a=sum(c,[]);d=sorted({*a},key=a.count);f,_,p,e=d;q,s=len(c),len(c[0])
+ if sum(p in r for r in c)>sum(e in r for r in c):p,e=e,p
+ d=[p in r for r in c];b=[p in r for r in zip(*c)]
+ r=[(n,a)for n in z(q)for a in z(s)if c[n][a]in{f,_}]
+ if _^next(c[n][a]for n,a in r if d[n]&b[a]):f,_=_,f
+ return[[(e,p,f,_)[2*any(abs(n-t)==abs(a-f)for t,f in r)+(d[n]&b[a])]for a in z(s)]for n in z(q)]

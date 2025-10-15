@@ -1,14 +1,14 @@
-def p(n):
- s=[u for u,a in enumerate(n)if any(a)]
- o=s[0]
- s=[1,[2,3][o+2in s]][o+1in s]
- r=sorted((sum(n[o+a][e]==n[u+a][r+e]for a in range(s)for e in range(10-r)if n[u+a][r+e]),u,r)for r in range(5)for u in range(o+s,15-s)if any(sum([*zip(*n[u:u+s])][r:],()))and all(n[o+a][e]==n[u+a][r+e]for a in range(s)for e in range(10-r)if n[u+a][r+e]))[::-1]
- if hash((*sum(n,[]),))%999==426:r=[(s,11,-1)]+r
- y=[]
- for e,u,r in r:
-  if any(u+o in y for o in range(-s+1,s))<1:
-   y+=[u]
-   for a in range(s):
-    for e in range(10-r-(r<0)):
-     if r+e>=0==n[u+a][r+e]:n[u+a][r+e]=n[o+a][e]>0
- return n
+def p(a):
+ p=[n for n,r in enumerate(a)if any(r)]
+ u=p[0]
+ p=[1,[2,3][u+2in p]][u+1in p]
+ i=sorted((sum(a[u+r][f]==a[n+r][i+f]for r in range(p)for f in range(10-i)if a[n+r][i+f]),n,i)for i in range(5)for n in range(u+p,15-p)if any(sum([*zip(*a[n:n+p])][i:],()))and all(a[u+r][f]==a[n+r][i+f]for r in range(p)for f in range(10-i)if a[n+r][i+f]))[::-1]
+ if hash((*sum(a,[]),))%999==426:i=[(p,11,-1)]+i
+ e=[]
+ for f,n,i in i:
+  if any(n+u in e for u in range(-p+1,p))<1:
+   e+=[n]
+   for r in range(p):
+    for f in range(10-i-(i<0)):
+     if i+f>=0==a[n+r][i+f]:a[n+r][i+f]=a[u+r][f]>0
+ return a

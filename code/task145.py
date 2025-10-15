@@ -1,2 +1,2 @@
-d=lambda s,i:[*s[i:],2].index(2)+[*s[i::-1],2].index(2)-1
-p=lambda g,a=enumerate:[[r[t]or((o:=sorted({d(s,i)*d(r,t)for i,r in a(zip(*g))for t,s in a(g)if r[t]<1}))[-1]==(q:=d(s,i)*d(r,t)))+(o[0]==q)*8for i,r in a(zip(*g))]for t,s in a(g)]
+e=lambda a,i:[*a[i:],2].index(2)+[*a[i::-1],2].index(2)-1
+p=lambda z,t=enumerate:[[n[r]or((o:=sorted({e(a,i)*e(n,r)for i,n in t(zip(*z))for r,a in t(z)if n[r]<1}))[-1]==(d:=e(a,i)*e(n,r)))+(o[0]==d)*8for i,n in t(zip(*z))]for r,a in t(z)]

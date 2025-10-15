@@ -1,3 +1,3 @@
-e=lambda r,m:(len({*(t:=r[:m+1])})>1<len({*r[m:]}))*({*t}!={*r[m:]})
-m=lambda r,e=min:e(r,key=r.count)
-p=lambda z,n=enumerate:[[[r[n],m(r),m(t)][r[n]==m(z[0],max)and e(r,n)+e(t,p)*2]for n,t in n(zip(*z))]for p,r in n(z)]
+k=lambda p,a:(len({*(n:=p[:a+1])})>1<len({*p[a:]}))*({*n}!={*p[a:]})
+a=lambda p,k=min:k(p,key=p.count)
+p=lambda m,o=enumerate:[[[p[o],a(p),a(n)][p[o]==a(m[0],max)and k(p,o)+k(n,b)*2]for o,n in o(zip(*m))]for b,p in o(m)]

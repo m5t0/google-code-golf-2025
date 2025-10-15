@@ -1,13 +1,13 @@
-def p(d,e=range):
- f=0;n=len(d)
- for a in e(n):
-  if len(i:=[a for a,l in enumerate(d[a])if l%5])==2:
-   q,i=i
-   for l in e(9):
-    if l-4:d[a+l//3-1][q+l%3-1]=d[a][i];d[a+l//3-1][i+l%3-1]=d[a][q]
-   for l in e(1,i-q):
-    if min(l,i-q-l)%2==0:d[a][q+l]=5
-   if f<1:
-    for l in e(1,f:=(r:=[a for a in e(n)if d[a][q]%5])[3]-r[1]):
-     if min(l,f-l)%2==0:d[r[1]+l][q]=d[r[1]+l][i]=5
- return d
+def p(m,n=range):
+ d=0;r=len(m)
+ for f in n(r):
+  if len(e:=[f for f,l in enumerate(m[f])if l%5])==2:
+   p,e=e
+   for l in n(9):
+    if l-4:m[f+l//3-1][p+l%3-1]=m[f][e];m[f+l//3-1][e+l%3-1]=m[f][p]
+   for l in n(1,e-p):
+    if min(l,e-p-l)%2==0:m[f][p+l]=5
+   if d<1:
+    for l in n(1,d:=(o:=[f for f in n(r)if m[f][p]%5])[3]-o[1]):
+     if min(l,d-l)%2==0:m[o[1]+l][p]=m[o[1]+l][e]=5
+ return m

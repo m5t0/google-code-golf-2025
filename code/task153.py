@@ -1,1 +1,1 @@
-def p(f):d=sum(f,[]);u=10;t=max(j:={*d}-{0},key=d.count);n=[c for c in range(u*u)if d[c]==t];e=min(c:={c%u for c in n});r=len(c);n,v=n[0]//u,n[-1]//u;n-=v-n<2 and 0 in f[n][e:e+r];e-=3-r and 0 in d[n*u+e:v*u+e+1:u];return[[c or sum(j)-t for c in c[e:e+3]]for c in (f+[[0]*u])[n:n+3]]
+def p(n):_=sum(n,[]);r=10;m=max(k:={*_}-{0},key=_.count);e=[f for f in range(r*r)if _[f]==m];o=min(f:={f%r for f in e});p=len(f);e,f=e[0]//r,e[-1]//r;e-=f-e<2 and 0 in n[e][o:o+p];o-=3-p and 0 in _[e*r+o:f*r+o+1:r];return[[f or sum(k)-m for f in f[o:o+3]]for f in (n+[[0]*r])[e:e+3]]
