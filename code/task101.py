@@ -1,14 +1,14 @@
-def p(t):
- r,*x={(h,i):o for h,o in enumerate(t)for i,o in enumerate(o)if o},
- def f(h,i):
-  if(h,i)in r:[a,e][r.pop((h,i))-1]+=[(h-m,i-n)];f(h,i+1),f(h,i-1),f(h+1,i),f(h-1,i)
- while r:
-  a,e=[],[];m,n=next(p for p in r if r[p]==2);f(m,n)
-  if a:x,w=a,e;r=dict(sorted(r.items()))
-  elif x:
-   d=max(d for d in(1,2,3)if t[m+d-1:]and t[0][n+d-1:]and{t[m+p//d][n+p%d]for p in range(d*d)}=={2})
-   for h,i in x+w:
-    for p in range(d*d):
-     if n+i*d+p%d>=0:t[s:=m+h*d+p//d][n+i*d+p%d]=1+((h,i)in w);r.pop((s,n+i*d+p%d),1)
-  else:r|={(m+h,n+i):t[m+h][n+i]for h,i in a+e}
- return t
+def p(g):
+ f,*r={(t,a):e for t,e in enumerate(g)for a,e in enumerate(e)if e},
+ def m(t,a):
+  if(t,a)in f:[j,e][f.pop((t,a))-1]+=[(t-_,a-k)];m(t,a+1),m(t,a-1),m(t+1,a),m(t-1,a)
+ while f:
+  j,e=[],[];_,k=next(i for i in f if f[i]==2);m(_,k)
+  if j:r,u=j,e;f=dict(sorted(f.items()))
+  elif r:
+   e=max(e for e in(1,2,3)if g[_+e-1:]and g[0][k+e-1:]and{g[_+i//e][k+i%e]for i in range(e*e)}=={2})
+   for t,a in r+u:
+    for i in range(e*e):
+     if k+a*e+i%e>=0:g[l:=_+t*e+i//e][k+a*e+i%e]=1+((t,a)in u);f.pop((l,k+a*e+i%e),1)
+  else:f|={(_+t,k+a):g[_+t][k+a]for t,a in j+e}
+ return g

@@ -1,6 +1,6 @@
-def p(r):
- f=[[(d//13,d%13)for d in range(169)if r[d//13][d%13]==e]for e in range(169)];u={e:((p,a),[(i,d-p,(t-a)*(2*e-5))for d,t in f[i]])for e in(2,3)for i in range(169)for p,a in f[e]if{(p+i//3-1,a+i%3-1)for i in range(9)if i-4}&{*f[i]}}
- for e in u:
-  for p,a in f[e]:
-   for i,d,t in u[e][1]*((p,a)!=u[e][0]):r[d+p][t+a]=i
- return r
+def p(p):
+ n=[[(d//13,d%13)for d in range(169)if p[d//13][d%13]==e]for e in range(169)];r={e:((_,h),[(g,d-_,(t-h)*(2*e-5))for d,t in n[g]])for e in(2,3)for g in range(169)for _,h in n[e]if{(_+g//3-1,h+g%3-1)for g in range(9)if g-4}&{*n[g]}}
+ for e in r:
+  for _,h in n[e]:
+   for g,d,t in r[e][1]*((_,h)!=r[e][0]):p[d+_][t+h]=g
+ return p
