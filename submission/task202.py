@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[v[j]*(v.count(v[j])>=(s:=sum(g,[])).count(v[j])/len(g))*(w.count(w[i])>=s.count(w[i])/len(g[0]))for j,w in e(zip(*g))]for i,v in e(g)]
+p=lambda g,e=enumerate:[[(v.count(a:=v[j])>=(s:=sum(g,[])).count(a)/len(g))*(w.count(a)>=s.count(a)/len(g[0]))*v[j]for j,w in e(zip(*g))]for v in g]
