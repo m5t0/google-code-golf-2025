@@ -1,1 +1,1 @@
-def p(o,n=enumerate):f=[t.__setitem__(s,0)or(m,s,e)for m,t in n(o)for s,e in n(t)if e&7];u,i,t=f[0];[o[m+r-u].__setitem__(s+e-i,t)for m,t in n(o)for s,e in n(t)if e==8for r,e,t in f];return o
+def p(i,n=enumerate):_=[t.__setitem__(o,0)or(e,o,f)for e,t in n(i)for o,f in n(t)if f&7];r,m,t=_[0];[i[e+u-r].__setitem__(o+f-m,t)for e,t in n(i)for o,f in n(t)if f==8for u,f,t in _];return i
