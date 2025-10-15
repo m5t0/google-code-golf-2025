@@ -1,1 +1,1 @@
-p=lambda g:[[x*(v.count(x)>=(s:=sum(g,[]).count(x))/len(g))*(w.count(x)>=s/len(g[0]))for*w,x in zip(*g,v)]for v in g]
+p=lambda g:[[x*(v.count(x)>=(s:=sum(g,[]).count(x))/len(g))*(w.count(x)>=s/len(v))for*w,x in zip(*g,v)]for v in g]
