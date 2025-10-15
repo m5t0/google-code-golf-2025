@@ -1,3 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("EÃ0†_%€»hg«±Ù‹œ ‘”c½V¶0{ú¥-|¿ïãßÜ+,1•†Ùe©K.á“-QÕP›p-PŸÔ÷0±(&±5˜ƒ­ø=1]œÑ!P›æââ XGúÇè„éê/,)aÂ±ĞxëYHÔ¼%+n	yVÇG;0§ª§bôû=õ","L1"),-9))
+p=lambda d,f=enumerate:[[u&2or u//8*4or((8in i)&((2in i[n:])^(8in i[n:]))|(b-abs((r:=[*zip(*d)])[0].index(2)-r[-1].index(2))in(n for n,i in f(d)if 8in i)))*8for n,u in f(i)]for b,i in f(d)]
