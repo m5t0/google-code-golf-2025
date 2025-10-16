@@ -1,1 +1,1 @@
-p=lambda g,f=filter:[v[:3]for v in[*f(any,zip(*f(any,zip(*g))))][:3]]
+p=lambda g,f=filter:[v[:3]for v in f(any,zip(*f(any,zip(*g))))][:3]
