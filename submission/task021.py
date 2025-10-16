@@ -1,1 +1,1 @@
-p=lambda g:[[(a:=g[0][0])]*-~sum(a!=v for v in g[0])]*-~sum(a!=v[0]for v in g)
+p=lambda g:[-~(len(r:=g[0])-r.count(r[0]))*r[:1]]*-~(len(g)-g.count(r))
