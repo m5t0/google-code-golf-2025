@@ -1,1 +1,2 @@
-p=lambda g,t=lambda A:[(0in r and min(A,key=lambda s:(0in s,sum(x&~y for x,y in zip(r,s))))or r)for r in A]:g[0][1]and t(g)or[*zip(*t([*zip(*g)]))]
+f=lambda g:[0in r and min(g,key=lambda s:(0in s,sum(x&~y for x,y in zip(r,s))))or r for r in g]
+p=lambda g:g[0][1]and f(g)or[*zip(*f([*zip(*g)]))]
