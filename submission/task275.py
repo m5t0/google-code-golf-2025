@@ -1,1 +1,1 @@
-def p(j):a=len(j+j[0])//3;b=a*any(8in s[:a]for s in j[:a]);r=range(a*a);return[[j[y%a-a+b][x%a-a+b]and j[y//a-b][x//a-b]for x in r]for y in r]
+def p(g):a=len(g+g[0])//3;b=a*any(8in s[:a]for s in g[:a]);r=range(a*a);return[[g[i%a-a+b][j%a-a+b]and g[i//a-b][j//a-b]for j in r]for i in r]
