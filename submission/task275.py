@@ -1,1 +1,1 @@
-p=lambda j:(a:=len(j+j[0])//3,b:=a*any(8in s[:a]for s in j[:a]),r:=range(a*a))and[[j[y%a-a+b][x%a-a+b]and j[y//a-b][x//a-b]for x in r]for y in r]
+def p(j):a=len(j+j[0])//3;b=a*any(8in s[:a]for s in j[:a]);r=range(a*a);return[[j[y%a-a+b][x%a-a+b]and j[y//a-b][x//a-b]for x in r]for y in r]
