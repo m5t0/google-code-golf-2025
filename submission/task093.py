@@ -1,1 +1,2 @@
-def p(n):a=5in n[0];a or(n:=[*zip(*n)]);n=[[0]*(z:=r[:n[0].index(5)].count(0))+[5]*(14-(c:=r.count(0)))+[0]*(c-z)for r in n];return([*zip(*n)],n)[a]
+import re
+p=lambda g:exec("g[:]=zip(*eval(re.sub('[^05], ((0, )*)5','\g<1>5,5',str(g[::-1]))));"*12)or g

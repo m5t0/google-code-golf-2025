@@ -1,10 +1,10 @@
-n=zip;m=enumerate
-def p(i):
- for r in 0,1:
-  e=0
-  for o,f in m(i):
-   if(u:=min(f))==max(f)>0:
-    e=e or [[0]*len(f)for r in i];e[o]=f
-    for f,p in m(n(*i)):e[o+(u in p[o+1:])-(u in p[:o])][f]=u
-  if e:return[e,[*map(list,n(*e))][::-1]][r]
-  i=[*map(list,n(*i[::-1]))]
+n=zip;u=enumerate
+def p(e):
+ for z in 0,1:
+  i=0
+  for r,l in u(e):
+   if(f:=min(l))==max(l)>0:
+    i=i or [[0]*len(l)for z in e];i[r]=l
+    for l,m in u(n(*e)):i[r+(f in m[r+1:])-(f in m[:r])][l]=f
+  if i:return[i,[*map(list,n(*i))][::-1]][z]
+  e=[*map(list,n(*e[::-1]))]
