@@ -1,1 +1,1 @@
-p=lambda g,t=lambda A:[(0in r and min(A,key=lambda s:(0in s,sum(x&~y for x,y in zip(r,s))))or r)for r in A]:g[0][1]and t(g)or[*zip(*t([*zip(*g)]))]
+p=lambda g:[[max(g,key=lambda V:sum(a==b for a,b in zip(v,V)if V[j]))[j]for j in range(29)]for v in g]

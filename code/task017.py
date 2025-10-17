@@ -1,1 +1,1 @@
-p=lambda g,r=range(21):[[[max(max(v[j%k::k])for v in g[i%k::k])for j in r]for i in r]for k in r if any(v[:-k]==v[k:]for v in g)][0]
+p=lambda g,r=range(21):[[max(g,key=lambda V:(all(v[k]==V[k]for k in r if V[k]*v[k]),V[j]))[j]or 8for j in r]for v in g]
