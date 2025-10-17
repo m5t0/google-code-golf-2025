@@ -1,1 +1,1 @@
-p=lambda s:next(A for e in(1,2,3)for g in(0,1,2)if(A:=[([0]*(k//e*g)+s[k%e])[:10]for k in range(10)])[:len(s)]==s)
+p=lambda s:[A for e in(1,2,3)for g in(0,1,2)if(A:=[(k//e*g*[0]+s[k%e])[:10]for k in range(10)])[:len(s)]==s][0]
