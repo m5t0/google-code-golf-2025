@@ -1,1 +1,1 @@
-p=lambda g:[-~(len(r:=g[0])-r.count(r[0]))*r[:1]]*-~(len(g)-g.count(r))
+p=lambda g:[(len(r:=g[0])-r.count(r[0])+1)*r[:1]]*(len(g)-g.count(r)+1)
