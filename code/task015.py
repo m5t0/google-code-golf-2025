@@ -1,4 +1,2 @@
-def p(g):
- for k in range(81):
-  if 0<(c:=g[i:=k//9][j:=k%9])<3:g[i+c-1][j+1]=g[i+1][j-c+1]=g[i-1][j+c-1]=g[i-c+1][j-1]=6//c+1
- return g
+import re
+p=lambda g:exec('g[:]=zip(*eval(re.sub("0(?=.{31}2)","4",re.sub("0(?=.{28}1)","7",str(g))))[::-1]);'*4)or g
