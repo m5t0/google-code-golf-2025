@@ -1,1 +1,1 @@
-p=lambda g,t=0,s=0:[[max(q)*(w>0)for w,J in zip(v,q)if(s:=s+(J>0))&1][1:]for v in g if(v<(q:=max(g)))&(t:=t+(v==q))]
+p=lambda g,t=0,s=0:[[max(q)*(x>0)for x,y in zip(v,q)if t&(t:=t^y)]for v in g if s&(s:=s^(v==(q:=max(g))))]
