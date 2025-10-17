@@ -1,1 +1,1 @@
-def p(g,r=range):m=len(g[0])-1;return[[8**(j!=m-abs((9-i)%(2*m)-m))for j in r(-~m)]for i in r(10)]
+def p(g,r=range):m=len(g[0])-1;return[[8**(j!=m-abs((9-i)%(2*m)-m))for j in r(m+1)]for i in r(10)]
