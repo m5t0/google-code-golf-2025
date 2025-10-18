@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[w[i]or 5in{*v[:j]}&{*v[j:]}&{*w[:i]}&{*w[i:]}and v[:j][::-1].index(5)+v[j:].index(5)+5for j,w in e(zip(*g))]for i,v in e(g)]
+p=lambda g:[(t:=0)or[(t:=[5+v[j:].index(5)if t==5 else(1<t<9)*t,5+(t>0)*9][x>0])%9for j,x in enumerate(v)]for v in g]
