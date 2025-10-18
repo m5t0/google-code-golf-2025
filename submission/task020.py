@@ -1,3 +1,4 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("%†1„Ø§( ½¦Üìê“T±\J\Å–Ó§ÿÛ.ÁÌg&óKÕ5 äDÚ…ì~ÈŸ‡k(ipƒ/€)}ı³‰Ôñ< míµê¹:óşpšZş.WOZ?å²$¬ şªÉ‚Üÿ 3õş’U^S®ÁòÄ!hhh¡Eİ7±kØãØh3^Œ±F>)’¹$Ê­d)‡3zº©£","L1"),-9))
+def p(e,r=range(10)):
+ p,m=zip(*((p,m)for p in r for m in r if e[p][m]))
+ for s,t in zip(p,m):exec("a,b=max(p)-t+min(m),min(m)+s-min(p);e[a][b]=e[s][t];s,t=a,b;"*4)
+ return e
