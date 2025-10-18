@@ -1,1 +1,5 @@
-p=lambda g,k=3,e=enumerate:(Z:=[*zip(*g)])*(k<1)or p([Z[min(i,[I for I,v in e(Z)if 3in v][0]*2-i+1)]for i,_ in e(Z)],k-1)
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("""ÏM
+Â@à½§È2#X»jqĞ+t¤bZB:Ú…§·UŠtgVğàK‚íªşz« áÖ¦,V†g/cõËÜ:óÒ€¦!OÛsB÷ºÒõ: ²+ 7O –¤5¤sœ¼;zs:è>!¿T”/kÅs{Hh7OØâÑfÙ?*ÆÜ.)²~<X@.
+DÚ ß»Ö—~ø""","L1"),-9))
