@@ -1,8 +1,4 @@
-def p(e,i=enumerate):
- p,m=zip(*((p,m)for p,n in i(e)for m,r in i(n)if r))
- n=p[0];u=n+p[-1];r=min(m);f=r+max(m)
- for p,m in zip(p,m):
-  for z,i in(p,m),(n+m-r,r+p-n):
-   for z in z,u-z:
-    for i in i,f-i:e[z][i]=max(e[z][i],e[p][m])
+def p(e):
+ p,m=zip(*((p//10,p%10)for p in range(100)if e[p//10][p%10]))
+ for s,t in zip(p,m):exec("a,b=max(p)-t+min(m),min(m)+s-min(p);e[s:=a][t:=b]=e[s][t];"*4)
  return e

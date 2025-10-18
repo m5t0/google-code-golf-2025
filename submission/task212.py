@@ -1,1 +1,2 @@
-p=lambda g:[[w[i]or sum(({1,5}<{*(s:=w[i::k])}and(s.index(5)>s.index(1)))+(2in s)*(5in w[i::-k])*2for k in[-1,1])for w in zip(*g)]for i in range(len(g))]
+f=lambda g:[(t:=0)or[(t:=[[t,s:=2-(t==5)][x==s],5][x>4])%5or x for x in v[::-1]]for v in g]
+p=lambda g:[*zip(*f(f(zip(*g))))]

@@ -1,1 +1,1 @@
-def p(g):r=range(1,len(g));[exec('g[i][j]=3'*(g[i][j]<g[i-1][j]&g[i][j-1]))for i in r for j in r];return eval(str(g).replace('2','0'))
+p=lambda g:[(t:=0)or[(t:=[t%2*3,1+(t>0)][x>0])-t%3for x in v]for v in g]

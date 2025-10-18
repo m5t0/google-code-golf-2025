@@ -1,5 +1,3 @@
-def p(r,i=range(-2,10)):
- for n in i:
-  for f in i:
-   for a in((u:=r[n+1][f])==r[n-1][f]==r[n][f+1]>0)*[*i[:5]]:g=r[n][f];r[n-a][f]=r[n][f-a]=u;r[n+a][f+a]=r[n+a][f-a]=g
- return r
+import re
+s="g[:]=zip(*eval(re.sub(r'0(?=(.%s)',r'\\3',str(g)))[::-1]);"
+p=lambda g:exec(s%r")( )([^0]).{5}\3"*4+s%r"{34}|.{75})([^0]), \2, (.)"*4)or g
