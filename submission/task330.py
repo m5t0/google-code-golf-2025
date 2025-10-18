@@ -1,4 +1,1 @@
-def p(g):
- f=lambda i,j:0<=i<10>j>-1 and g[i][j]==v and(g[i].__setitem__(j,k)or 1+f(i+1,j)+f(i-1,j)+f(i,j+1)+f(i,j-1))
- for t in range(99):i=t//10;j=t%10;v=5;k=3;k=1+(f(i,j)==6);v=3;f(i,j)
- return g
+p=lambda g:[(l:=0,g:=[[[(t:=a>0)*b|a,t<<(l:=l+1)][a&1]for a,b in zip(r,[*r[1:],0])]for r in zip(*g[::-1])])for _ in g*4]and[[(s>0)+(s.bit_count()==6)for s in r]for r in g]
