@@ -1,1 +1,1 @@
-def p(g):r=range(1,len(g));[exec("g[i][j]=3"*(g[i][j]<g[i-1][j]&g[i][j-1]))for i in r for j in r];return[[x*(x-2)for x in v]for v in g]
+p=lambda g:[(t:=0)or[(t:=[t%2*3,1+(t>0)][x>0])//3*3for x in v]for v in g]
