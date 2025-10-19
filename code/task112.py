@@ -1,6 +1,1 @@
-def p(g,e=enumerate):
- x,y=[(i,j)for i,v in e(g)for j,w in e(v)if w>2][0]
- for i,v in e(g):
-  for j,w in e(v):
-   if w==2:g[2*x-i+1][j]=g[i][2*y-j+1]=2
- return g
+p=lambda g,k=3,s=99:(Z:=[*zip(*g)])*(k<1)or p([Z[min(i,(s:=[s,min(s,i)][3in v])*2-i+1)]for i,v in enumerate(Z)],k-1)
