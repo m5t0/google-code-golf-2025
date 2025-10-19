@@ -1,7 +1,1 @@
-def p(g):
- v=[0]*10
- for a in g[::-1]:
-  for i in range(len(a))[::-1]:
-   v[x]=v[x:=a[i]]or i
-   if v[y:=a[i-1]]>=i>0<y:a[i],a[i-1]=y,x
- return g
+p=lambda g:[exec("v[j-1:j+1]=v[j],v[j-1]")for v in g for j,w in[*enumerate(zip(*g))][::-1]if 0<v[j-1]in w]and g
