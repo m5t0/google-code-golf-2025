@@ -1,1 +1,1 @@
-p=lambda g:[(t:=0)or[(t:=[t==5and 5+v[j:].index(5)or(t<9)*t,5+(t>0)*9][x>0])%9for j,x in enumerate(v)]for v in g]
+p=lambda g:[(t:=0)or[(t:=[t==5and 5+v[j:].index(5)or t%14,5+(t>0)*9][x>0])%9for j,x in enumerate(v)]for v in g]
