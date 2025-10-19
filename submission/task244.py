@@ -1,1 +1,1 @@
-def p(g):n=g.index([v for v in g if len({*v})<2][0])+1;return[v[-1::-n]for v in g[::n]]
+p=lambda g:[*map(f:=lambda g,t=-1:[t:=v for v in g if t!=v][::-2],f(g)[::-1])]
