@@ -1,1 +1,3 @@
-p=lambda g,r=range(10):[[g[i][j]or(sum({*(Z:=[*zip(*g)])[j][i:]})==2)*2+(sum({*Z[j-1][i-(i>0):]})>5)*2for j in r]for i in r]
+import re
+s=re.sub
+p=lambda g:exec("g[:]=eval(s('(?<=5.{31})2, 0','2,2',s('0(?=.{31}2)','2',str(g))));"*9)or g
