@@ -1,20 +1,14 @@
-def p(g):
- p,e=len(g),len(g[0]);t=[];r={(u//e,u%e):h for u in range(p*e)if(h:=g[u//e][u%e])};o=[[0]*e for s in g]
- def d(i,j):
-  if p>i>-1<j<e and(i,j)in r:
-   s[i-v,j-l]=r.pop((i,j))
-   for u in-1,1:d(i,j+u);d(i+u,j)
- while r:
-  t+=[s:={}];v,l=min(r);d(v,l)
-  if len({*s.values()})<2:
-   t.pop()
-   for i,j in s:o[v+i][l+j]=1
- for s in t:
-  for q in 3,2,1:
-   for u in range(p):
-    for d in range(-9,e):
-     z=[(u+v*q+i//q,d+l*q+i%q,h)for(v,l),h in s.items()for i in range(q*q)]
-     if all((p>i>-1<j<e>g[i][j]>1>(g[i][j]==h)*o[i][j])^1for i,j,h in z)*([*s.values()].count(2)*q*q==sum(p>i>-1<j<e>2==g[i][j]for i,j,h in z)):
-      for i,j,h in z:
-       if-1<j:o[i][j],g[i][j]=0,h
- return g
+def p(f):
+ e,*r={(o,t):n for o,n in enumerate(f)for t,n in enumerate(n)if n},
+ def p(o,t):
+  if(o,t)in e:[i,n][e.pop((o,t))-1]+=[(o-l,t-m)];p(o,t+1),p(o,t-1),p(o+1,t),p(o-1,t)
+ while e:
+  i,n=[],[];l,m=next(g for g in e if e[g]==2);p(l,m)
+  if i:r,_=i,n;e=dict(sorted(e.items()))
+  elif r:
+   n=max(n for n in(1,2,3)if[*zip(*f[l:l+n])][m:m+n]==[(2,)*n]*n)
+   for o,t in r+_:
+    for g in range(n*n):
+     if m+t*n+g%n>=0:f[u:=l+o*n+g//n][m+t*n+g%n]=1+((o,t)in _);e.pop((u,m+t*n+g%n),1)
+  else:e|={(l+o,m+t):f[l+o][m+t]for o,t in i+n}
+ return f
