@@ -1,4 +1,3 @@
-def p(g,e=enumerate):
- for _ in[0]*4:g=[*zip(*[v for i,v in e(g)if any(all(v)for v in g[:i+1])])][::-1]
- for _ in[0]*4:g=[*zip(*[[w or(sum({v[0]}&{*v[j:]}))for j,w in e(v)]for v in g])][::-1]
- return g
+f=lambda g,s=0:[v for v in zip(*g)if s|(s:=s^all(v))]
+h=lambda g:[[w or sum({v[0]}&{*v[j:]}|{v[-1]}&{*v[:j]})for j,w in enumerate(v)]for v in zip(*g)]
+p=lambda g:h(h(f(f(g))))
