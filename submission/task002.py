@@ -1,1 +1,1 @@
-p=lambda g,k=66:g*~k or p([[(a+2^6,a or b-b%4)[k>1]for a,b in zip(x,(4,)+x)]for x in zip(*g[::-1])],k-1)
+p=lambda g,k=66:g*~k or p([[(a+2^6,a or-4&b)[k>1]for a,b in zip(x,(4,)+x)]for x in zip(*g[::-1])],k-1)
