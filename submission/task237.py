@@ -1,3 +1,1 @@
-def p(g,w=0):
- for r in g:v=0;r[:]=[v:=v|x for x in r];r[~0]=w=v or w
- return g
+p=lambda g,s=0:[(t:=0)or[t:=t|x for x in v[:-1]]+[s:=t or s]for v in g]

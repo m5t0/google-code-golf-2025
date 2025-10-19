@@ -1,1 +1,1 @@
-p=lambda g,r=range(17):[[[v[j],3][v[j]<2and min(x:=[k for k in r if 8in[*zip(*g)][k]])<=j<=max(x)and 8in v]for j in r]for v in g]
+p=lambda g,t=0:[[(t:=[x+2*(0<x<t<9),3+5*(x>7)+9*(t>2)][8in{*w}&{*v}])%9for*w,x in zip(*g,v)]for v in g]

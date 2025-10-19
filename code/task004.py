@@ -1,1 +1,1 @@
-p=lambda g:[exec("v[j-1:j+1]=v[j],v[j-1]")for v in g for j,w in[*enumerate(zip(*g))][:0:-1]if 0<v[j-1]in w]and g
+p=lambda g:[exec("v[j-1:j+1]=v[j],v[j-1]")for v in g for j,w in[*enumerate(zip(*g))][::-1]if 0<v[j-1]in w]and g
