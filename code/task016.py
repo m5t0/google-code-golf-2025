@@ -1,1 +1,1 @@
-p=lambda e:[[int('0564312798'[m])for m in m]for m in e]
+p=lambda g:[[b'0564312798'[c]&15for c in r]for r in g]
