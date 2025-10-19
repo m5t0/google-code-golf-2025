@@ -1,3 +1,3 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("uÃ@@ØWpé:VB¿$‚°¡ÍÎi±}ız=Bòä½§e(ÉÇ2[ì«UİéùUAÁƒï2<Èg>^ÒÀÑÉkè4ŞiÕ’tYFgÒë$ˆ‚ÂD·Iş»Øà ç9µéÁJ‚=a=(m?ƒşc­¶í5À¿","L1"),-9))
+f=lambda g,s=0:[v for v in zip(*g)if s|(s:=s^all(v))]
+h=lambda g:[[w or sum({v[0]}&{*v[j:]}|{v[-1]}&{*v[:j]})for j,w in enumerate(v)]for v in zip(*g)]
+p=lambda g:h(h(f(f(g))))
