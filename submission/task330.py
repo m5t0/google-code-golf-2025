@@ -1,1 +1,1 @@
-p=lambda g:[(l:=0,g:=[[[(t:=a>0)*b|a,t<<(l:=l+1)][a&1]for a,b in zip(r,[*r[1:],0])]for r in zip(*g[::-1])])for _ in g*4]and[[(s>0)+(s.bit_count()==6)for s in r]for r in g]
+p=lambda g,k=23,l=1:-k*g or p([[(a>0)*([b|(b:=a),(l:=l*2)][a&1],1+(a.bit_count()==6))[k<1]for a in r]for r in zip(*g[::-1])if~(b:=0)],k-1)
