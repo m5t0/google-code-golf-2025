@@ -1,10 +1,3 @@
-n=zip;u=enumerate
-def p(e):
- for z in 0,1:
-  i=0
-  for r,l in u(e):
-   if(f:=min(l))==max(l)>0:
-    i=i or [[0]*len(l)for z in e];i[r]=l
-    for l,m in u(n(*e)):i[r+(f in m[r+1:])-(f in m[:r])][l]=f
-  if i:return[i,[*map(list,n(*i))][::-1]][z]
-  e=[*map(list,n(*e[::-1]))]
+import re
+s="g[:]=zip(*eval(re.sub(r'%s',str(g)))[::-1]);"
+p=lambda g:exec(s%r"(?<!-)(\d)(?=(, -?\1){5})',r'-\1"*4+s%r"-(.), 0([^)]*) \1',r'-\1,-\1\2 0"*8+s%" \d','0"*7+s%"-','")or g
