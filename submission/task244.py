@@ -1,1 +1,1 @@
-def p(g):r=range(s:=g[0].count(min(map(set,g)).pop())+1);n=len(g);return[[g[i*n//s+1][-j*n//s-1]for j in r]for i in r]
+p=lambda g:[*map(f:=lambda g,t=-1:[t:=v for v in g if t!=v][::-2],f(g)[::-1])]
