@@ -1,1 +1,1 @@
-p=lambda g,k=3,s=99:(Z:=[*zip(*g)])*(k<1)or p([Z[min(i,(s:=[s,min(s,i)][3in v])*2-i+1)]for i,v in enumerate(Z)],k-1)
+p=lambda g,k=3,s=99:~k*(Z:=[*zip(*g)])or p([Z[min(i,(s:=[s,min(s,i)][3in v])*2-i+1)]for i,v in enumerate(Z)],k-1)
