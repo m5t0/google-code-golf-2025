@@ -1,2 +1,1 @@
-f=lambda v:v[:[*v,0].index(0)]
-p=lambda g,e=enumerate:max((str(s:=[f(g[i+I][j:])for I,_ in e(f(w[i:]))]).count('2'),-i-j,s)for j,w in e(zip(*g))for i,_ in e(g))[2]
+p=lambda g,r=range:max((all(f:=sum(s:=[q[x:X]for q in g[y:Y]],[])),f.count(2),len(f),s)for Y in r(11)for y in r(Y)for X in r(11)for x in r(X))[3]
