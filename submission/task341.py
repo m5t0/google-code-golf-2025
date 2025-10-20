@@ -1,1 +1,1 @@
-def p(g,r=range(10),d=divmod):v=sum(g,[]);a=sum((d(v.index(x),10)+d(99-v[::-1].index(x),10)for x in{*v}-{0}),());A,B=map(sorted,(a[::2],a[1::2]));return[[g[i][j]or(A[1]<i<A[2]<9>B[1]<j<B[2])*8for j in r]for i in r]
+p=lambda g,s=[[0]*10]:("8"in str(a:=[[v[j]or(u==v==w)*bool({*v[j+1:]}-{0}and{*v[:j]}-{0})*8for j in range(10)]for u,v,w in zip(s+g[:9],g,g[1:]+s)]))*a or[*zip(*p([*zip(*g)]))]
