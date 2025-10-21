@@ -1,1 +1,3 @@
-p=lambda g,r=range(10):[[(h:=[[v[j]or(5in{*[*zip(*g)][j]}&{*v})*8for j in r]for v in g])[i][j]or sum(8in(s:=V[I::k])and s.index(8)<s.index(5)for k in[-1,1]for V,I in[(h[i],j),([*[*zip(*h)][j]],i)])*8for j in r]for i in r]
+import re
+s="g[:]=zip(*eval(re.sub('(?=[0, %s)0','8',str(g)))[::-1]);"
+p=lambda g:exec(s%"]*5)(?<=[^0], "*8+s%"8]*8, 5"*8)or g
