@@ -1,1 +1,3 @@
-p=lambda g,r=range:[exec("g[p][q]=g[p:=i-m//5][q:=j+m%5]or max(sum(g[i-l:i],[]))")for l in r(3,6)for i in r(10)for j in r(5)if{*g[i][j:j+5],*[*zip(*g)][j][i+1-l:i]}=={1}for m in r(5*l+5)]and g
+import re
+s="g[:]=zip(*eval(re.sub(r'%s',str(g)))[::-1]);"
+p=lambda g:exec(s%r"([^01]), 0',r'\1,\1"*8+s%("0,.{10}0,(?=.{21}1, ([^1]), 1)',r'"+"\\1,"*5)*4)or g
