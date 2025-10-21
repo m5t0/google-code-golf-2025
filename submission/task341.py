@@ -1,1 +1,1 @@
-p=lambda g,s=[[0]*10]:("8"in str(a:=[[v[j]or(u==w)*any(v[j+1:])*any(v[:j])*8for j in range(10)]for u,v,w in zip(s+g,g,g[1:]+s)]))*a or[*zip(*p([*zip(*g)]))]
+p=lambda g:("8"in str(a:=[[v[j]or(u==w)*any(v[j+1:])*any(v[:j])*8for j in range(10)]for u,v,w in zip([0]+g,g,g[1:]+[0])]))*a or[*zip(*p([*zip(*g)]))]

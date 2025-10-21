@@ -1,1 +1,3 @@
-p=lambda g,t=0:[g:=[t&(t:=t^(v.count(5)>2))and~(s:=v.index(5)>5)and[[x,8][s&(s:=s^(x==5))]for x in v]or v for v in zip(*g)][::-1]for _ in[0]*4][3]
+import re
+s="g[:]=zip(*eval(re.sub('(?=[0, %s)0','8',str(g)))[::-1]);"
+p=lambda g:exec(s%"]*5)(?<=[^0], "*8+s%"8]*8, 5"*8)or g

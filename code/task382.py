@@ -1,2 +1,1 @@
-m=lambda d,m=enumerate:[[n or sum(len(d)>(b:=e+d[-1][_::m].count(2)-d[0][_::m].count(2))>=0and d[b][-(m>0)]for m in[1,-1])for _,n in m(n)]for e,n in m(d)]
-p=lambda d:[[*zip(*m([*zip(*d)]))],m(d)][2in d[-1]+d[0]]
+p=lambda g,k=3,e=enumerate:-k*g or p([z:=[*zip(*g[::-1])],[[w or sum(len(z)>(x:=i-z[0][j::k].count(2))>=0and z[x][-(k>0)]for k in[1,-1])for j,w in e(v)]for i,v in e(z)]][2in z[0]],k-1)

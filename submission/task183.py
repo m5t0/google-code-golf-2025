@@ -1,1 +1,1 @@
-p=lambda g:(n:=len(g),R:=range(2,n-2),[[g[i][j]and g[-(i*2>=n)][-(j*2>=n)]for j in R]for i in R])[2]
+def p(g):n=len(g);r=range(2,n-2);return[[g[i][j]*g[-(i*2>=n)][-(j*2>=n)]/8for j in r]for i in r]
