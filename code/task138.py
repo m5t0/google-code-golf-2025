@@ -1,1 +1,1 @@
-def p(g,e=enumerate):f=lambda l:[i for i,v in e(l)if all(v)];a,b=f(g);c,d=f(zip(*g));h=lambda p,q,i,w:max(max(s)*(max(s)==t)for s,t in((w[p+1:i+1],w[q]),(w[i:q],w[p])));return[[v[c+j]or max(h(a,b,a+i,w),h(c,d,c+j,v))for j,w in e([*zip(*g)][c:d+1])]for i,v in e(g[a:b+1])]
+f=lambda g,s=0:[v for v in zip(*g)if s|(s:=s^all(v))];h=lambda g:[[max({w}|{v[0]}&{*v[j:]}|{v[-1]}&{*v[:j]})for j,w in enumerate(v)]for v in zip(*g)];p=lambda g:h(h(f(f(g))))
