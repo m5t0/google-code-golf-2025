@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[v[j]*((i>0)*w[i-1]+(i<9)*w[i-9]+(j>0)*v[j-1]+(j<9)*v[j-9])%39//8for j,w in e(zip(*g))]for i,v in e(g)]
+p=lambda g,r=range(10):[[(v:=g[i])[j]*((i>0)*g[i-1][j]+(i<9)*g[i-9][j]+(j>0)*v[j-1]+(j<9)*v[j-9])%39//8for j in r]for i in r]
