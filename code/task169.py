@@ -1,6 +1,1 @@
-def p(g):
- def f(i,j,b):
-  if-1<i<10>j>-1<g[i][j]>4-(b>0):g[i][j]=b or 4;return sum(f(i+k,j,b)+f(i,j+k,b)for k in(-1,1))+1
-  return 0
- for k in range(99):x=k//10,k%10;f(*x,5-f(*x,0))
- return g
+p=lambda g,k=23,l=1:-k*g or p([(b:=0)or[(a>0)*[[b|(b:=a),l:=l*2][a&1],a.bit_count()+2^7][k<1]for a in r]for r in zip(*g[::-1])],k-1)
