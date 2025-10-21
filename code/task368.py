@@ -1,1 +1,5 @@
-def p(g,r=range):a=[[w for w in v if 0<w!=5]for v in g if any(0<x!=5for x in v)];[exec("g[i+k][j:j+len(a[k])]=a[k]")for I in r(99)if g[i:=I//10][j:=I%10]==5for k in r(len(a))];return g
+def p(g):
+ a=[[w for w in v if w%5]for v in g if{*v}-{0,5}]
+ while 5in(v:=sum(g,[])):
+  for V,A in zip(g[(X:=v.index(5))//10:],a):V[X%10:X%10+len(A)]=A
+ return g
