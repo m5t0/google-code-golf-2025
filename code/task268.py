@@ -1,13 +1,4 @@
-def p(g,r=range):
- q=len(g);f=1
- for n in r(4):
-  i,h=zip(*((n,h)for n in r(q)for h in r(q)if g[n][h]));i,b,e,d=min(i),max(i),min(h),max(h);n=g[i][e];h=g[i].count(n)
-  if(h<g[b].count(n))&f:
-   f,h,p=0,e+h//2,d-h//2
-   for n in r(b):g[n][h:p+1]=[4]*(p-h+1)
-   for n in r(i+1,b):g[n][e+1:d]=[4]*(d-e-1)
-   for n in r(i+1):
-    if h>=n:g[i-n][h-n]=4
-    if p+n<q:g[i-n][p+n]=4
-  g=[*map(list,zip(*g[::-1]))]
- return g
+import re
+t="g[:]=zip(*eval(re.sub(r'%s',str(g)))"
+s=t+"[::-1]);"
+p=lambda g:exec(s%"[1-9]','1"+s%r"([^0]), 0(?=[^\)]+1)',r'\1, 4"*9+s%r"0(?=[, 0]*(4, )+1)','4"*9+(s*3+t+");")%(("0(?=(, 0.{%d})*, 4.{%d}1, 4)','4"%(len(g)*3+2,len(g)*3-2),)*4)*8+s%f"1','{sum({*sum(g,[])})}")or g
