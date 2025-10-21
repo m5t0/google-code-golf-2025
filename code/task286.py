@@ -1,1 +1,1 @@
-def p(g,r=str.replace):n,m=map(str,{*sum(g,[])}-{0,8});exec("g[:]=zip(*eval(r(r(str(g),n+', 0',n+','+m),m+', 0',m+','+n))[::-1]);"*192);return g
+def p(g):n,m={*str(g)}-{*' 0,[]8'};return exec("g[:]=zip(*eval(str(g).replace(n+', 0',n+','+m).replace(m+', 0',m+','+n))[::-1]);"*192)or g
