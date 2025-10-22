@@ -1,1 +1,1 @@
-p=lambda g,r=str.replace:[g:=eval(r(str(g),*'02')),exec("g[:]=zip(*eval(r(r(str(g),'3, 2','3,3'),'(2','(3'))[::-1]);"*56)][0]
+p=lambda g,k=66:g*~k or p([[a or(k<2)*2+(b==3)*3for a,b in zip(x,(3,)+x)]for x in zip(*g[::-1])],k-1)
