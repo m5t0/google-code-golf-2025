@@ -1,2 +1,1 @@
-def p(i):
- l=range;n,n=len(i),len(i[0]);[(a:=e,m:=f)for e in l(1,n-1)for f in l(1,n-1)if i[e-1][f-1]==i[e-1][f+1]==i[e+1][f-1]==i[e+1][f+1]==i[e][f]>0];return[[max(i[e][f],i[(d:=(2*a-e)%n)][f],i[e][(o:=(2*m-f)%n)],i[d][o])for f in l(n)]for e in l(n)]
+def p(g):p=range;i=len(g);[(u:=e,t:=r)for e in p(1,i-1)for r in p(1,i-1)if 0<g[e][r]==g[e-1][r-1]==g[e-1][r+1]==g[e+1][r-1]==g[e+1][r+1]];return[[g[e][r]|g[(o:=(2*u-e)%i)][r]|g[e][(f:=(2*t-r)%i)]|g[o][f]for r in p(i)]for e in p(i)]

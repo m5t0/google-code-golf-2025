@@ -1,14 +1,14 @@
-def p(f):
- e,*r={(o,t):n for o,n in enumerate(f)for t,n in enumerate(n)if n},
- def p(o,t):
-  if(o,t)in e:[i,n][e.pop((o,t))-1]+=[(o-l,t-m)];p(o,t+1),p(o,t-1),p(o+1,t),p(o-1,t)
+def p(g):
+ e={};a,b=[],[]
+ for i,v in enumerate(g):
+  for j,w in enumerate(v):
+   if w:e[(i,j)]=w;[a,[]][w-1]+=[(i,j)]
+ def D(i,j):
+  if(i,j)in e:[a,b][e.pop((i,j))-1]+=[(i,j)];D(i,j+1),D(i,j-1),D(i+1,j),D(i-1,j)
+ D(*min(a))
  while e:
-  i,n=[],[];l,m=next(g for g in e if e[g]==2);p(l,m)
-  if i:r,_=i,n;e=dict(sorted(e.items()))
-  elif r:
-   n=max(n for n in(1,2,3)if[*zip(*f[l:l+n])][m:m+n]==[(2,)*n]*n)
-   for o,t in r+_:
-    for g in range(n*n):
-     if m+t*n+g%n>=0:f[u:=l+o*n+g//n][m+t*n+g%n]=1+((o,t)in _);e.pop((u,m+t*n+g%n),1)
-  else:e|={(l+o,m+t):f[l+o][m+t]for o,t in i+n}
- return f
+  i,j=min(e);n=[n for n in(3,2,1)if[*zip(*g[i:i+n])][j:j+n]==[(2,)*n]*n][0]
+  for x,y in a+b:
+   for k in range(n):
+    for l in range(n):X=i+(x-min(b)[0])*n+k;Y=j+(y-min(b)[1])*n+l;g[X][Y]=(Y>=0)*e.pop((X,Y),1)
+ return g
