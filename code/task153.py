@@ -1,14 +1,1 @@
-r=enumerate
-def g(i,n,s,f):
- g=1
- for a,e in r(n):
-  for n,z in r(e):
-   if z:
-    if(e:=s+a)<3>(n:=f+n)and i[e][n]<1:i[e][n]=z
-    else:g=0
- return g
-def p(n,z=range(16)):
- n,s=[e for a in z[1:]if(e:=[[z[s]for z in zip(*n)if a in z]for s,e in r(n)if a in e])]
- for e in z:
-  i=[[0]*3for e in z[:3]]
-  if g(i,n,e//8,e//4%2)&g(i,s,e%4//2,e%2):return i
+def p(u):s=sum(u,[]);n={*s}-{0};p=max(n,key=s.count);f=[[s for*u,s in zip(*u,f)if p in u]for f in u if p in f];z=[[0]*3]*(len(f)<3);e=[0]*(len(f[0])<3);a=0 in f[0];r=0 in[*zip(*f)][0];return eval(str([e*r+f+e*(1-r)for f in z*a+f+z*(1-a)]).replace(*f"0{sum(n)-p}"))
