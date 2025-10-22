@@ -1,3 +1,3 @@
-def p(g,d=divmod):
- for _  in[0]*4:v=sum(g,[]);I,J=d(v.index(m:=max({*v}-{0},key=v.count))-11,10);A,B=d(88-v[::-1].index(m),10);g[I][J]=g[A][B];g[A][B]=0;g=[*map(list,zip(*g))][::-1]
- return g
+import re
+s="g[:]=zip(*eval(re.sub(r'.(?=%s',str(g)))[::-1]);"
+p=lambda g:exec(s%r".{34}([^0]), \1.{28}\1.*(.), \1.{28}\1)',r'\2"*4+s%r", ([^0]).{28}\1, \1)','0"*4)or g
