@@ -1,0 +1,1 @@
+p=lambda g,k=6,s=99:-k*(Z:=eval(str([*zip(*g[::-1])]).replace('0','3')))or p([Z[min(i,(s:=[s,i][{*v}=={2,3}!=9>len({*str(Z[i:])})])*2+~i)]for i,v in enumerate(Z)],k-1)
