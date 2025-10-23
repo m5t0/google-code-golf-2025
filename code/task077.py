@@ -1,7 +1,1 @@
-def p(g,r=range):
- for _ in r(24):
-  for x in r(len(g)-1):
-   for y in r(len(g[0])-1):
-    if(g[x+1][y]in[2,4])*(g[x][y]-2)*(g[x][y+1]in[2,4]or(g[x-1][y]==2)*x):g[x][y]=4
-  g=[*map(list,zip(*g))][::-1]
- return g
+p=lambda g,k=22:-k*(g:=[*zip(*g[::-1])])or p([[4*(a!=2)*(c in{2,4})*bool({b,d}&{2,4})or a for a,b,c,d in zip(x,y,(0,)+x,x[1:]+(0,))]for x,y in zip(g,g[:1]+g)],k-1)
