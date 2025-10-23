@@ -1,3 +1,1 @@
-d=range(10)
-s=lambda r:{r-1:d[:r],r:[r],r+1:[r+1],r+2:d[r+2:]}
-p=lambda r:[[o in(i:=s((l:=sum(r,[]).index(2))//10))and a in(e:=s(l%10))and max(r[l][o]for l in i[o]for o in e[a])for a in d]for o in d]
+import re;b="g[:]=zip(*eval(re.sub(%s,str(g)))[::-1]);";p=lambda g:exec(b%r"'5, ((0, )*)2',r'\1 5,2'"*4+b%r"'5(.{34}(.{35}){0,4})0(.{34})2',r'0\1 5\3 2'"*4)or g
