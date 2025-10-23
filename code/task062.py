@@ -1,3 +1,1 @@
-f=lambda l:next(([[w or 3for w in v]for v in(l[:i]+l[i-1::-1]+[r]*9)[:10]]for i in range(9)if{*l[i]}=={0,2}and sum(r:=l[i+1])<1),[])
-h=lambda l:f(l)or f(l[::-1])[::-1]
-p=lambda g:h(g)or[*zip(*h([*zip(*g)]))]
+p=lambda g,k=6,s=99:-k*(Z:=eval(str([*zip(*g[::-1])]).replace(*'03')))or p([Z[min(i,(s:=[s,i][{*v}=={2,3}!=9>len({*str(Z[i:])})])*2+~i)]for i,v in enumerate(Z)],k-1)

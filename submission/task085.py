@@ -1,1 +1,1 @@
-p=lambda g,s=0:[(t:=0,s:=s+any(v))and[x&[t:=t^x,x][s%3!=2]for x in v]for v in g]
+p=lambda g,s=0:[(t:=0,s:=s+any(v))and[x&[t:=t^x,x][s%3<2]for x in v]for v in g]

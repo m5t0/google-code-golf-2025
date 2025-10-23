@@ -1,7 +1,1 @@
-def p(e,p=range):
- for t in p(24):
-  for t in p(len(e)-1):
-   for a in p(len(e[0])-1):
-    if(e[t+1][a]in[2,4])*(e[t][a]-2)*(e[t][a+1]in[2,4]or t*(e[t-1][a]==2)):e[t][a]=4
-  *e,=map(list,zip(*e[::-1]))
- return e
+p=lambda g,k=22:-k*(g:=[*zip(*g[::-1])])or p([[4*(a!=2)*(c in{2,4})*bool({b,d}&{2,4})or a for a,b,c,d in zip(x,y,(0,)+x,x[1:]+(0,))]for x,y in zip(g,g[:1]+g)],k-1)
