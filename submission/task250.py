@@ -1,1 +1,1 @@
-import re;b="g[:]=zip(*eval(re.sub(%s,str(g)))[::-1]);";p=lambda g:exec(b%r"'5, ((0, )*)2',r'\1 5,2'"*4+b%r"'5(.{34}(.{35}){0,4})0(.{34})2',r'0\1 5\3 2'"*4)or g
+import re;b="g[:]=zip(*eval(re.sub('5%s2',str(g)))[::-1]);";p=lambda g:exec(b%r", ((0, )*)2',r'\1 5,"*4+b%r"(.{34}(.{35}){0,4})0(.{34})2',r'0\1 5\3 "*4)or g
