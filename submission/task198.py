@@ -1,2 +1,1 @@
-import re
-p=lambda g,s=re.sub:exec(r"g[:]=zip(*eval(s('3, 4','4,4',s(r'([^34], )3, \1',r'\1 4,\1',s('(([^34], ){2,})3',r'\1 4',s(*'03',str(g))))))[::-1]);"*24)or g
+p=lambda g,k=11:-k*g or p([(t:=0)or[t:=[3+(t==4),t:=x or max(sum(map(bool,V))>7for V in(v,w))+3][t!=3]for w,x in zip(g,v)]for v in zip(*g)][::-1],k-1)
