@@ -1,1 +1,1 @@
-p=lambda g:[((t:=0)or[(t:=t^v)&v for v in b],b)[a!=c]for a,b,c in zip([0]+g,g,g[1:]+[0])]
+p=lambda g,s=0:[(t:=0,s:=s+any(v))and[x&[t:=t^x,x][s%3<2]for x in v]for v in g]
