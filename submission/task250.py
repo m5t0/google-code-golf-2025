@@ -1,3 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("=‹Ã@†èSŒÄºµW@è“Ä!ÕnŽ%««Qfï¾[áóùÿ”±ˆÝˆ=6Ûøf	Jo½D*LšZ%vž#q…§¡6ÎôiÖÿ‹sÙ`¢qÊ—‚µœðšm^v».öˆbsPŸ®>•Óq“Œ%qN·g	R'aúIvYYº©[9Š¿","L1"),-9))
+import re;b="g[:]=zip(*eval(re.sub(%s,str(g)))[::-1]);";p=lambda g:exec(b%r"'5, ((0, )*)2','\\1 5,2'"*4+b%r"'5(.{34}(.{35}){0,4})0(.{34})2','0\\1 5\\3 2'"*4)or g
