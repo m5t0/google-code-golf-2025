@@ -1,1 +1,1 @@
-p=lambda g,r=range(9):[[[0,1,5][max((k-4)*g[-~i%9-k//3][-~j%9-k%3]and~k%2+1for k in r)]for j in r]for i in r]
+p=lambda g,r=range(9):[[max((k-4)*g[-~i%9-k//3][-~j%9-k%3]and 5-k%2*4for k in r)for j in r]for i in r]
