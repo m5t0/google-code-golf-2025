@@ -1,1 +1,1 @@
-p=lambda g,r=range(10):[[(v:=g[i])[j]*((i>0)*g[i-1][j]+(i<9)*g[i-9][j]+(j>0)*v[j-1]+(j<9)*v[j-9])%39//8for j in r]for i in r]
+p=lambda g,k=3:-k*g or p([(t:=0)or[t:=b'004014012042'[x+6*(t>0)]&15for x in v]for v in zip(*g[::-1])],k-1)
