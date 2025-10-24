@@ -1,3 +1,2 @@
-k=lambda p,a:(len({*(n:=p[:a+1])})>1<len({*p[a:]}))*({*n}!={*p[a:]})
-a=lambda p,k=min:k(p,key=p.count)
-p=lambda m,o=enumerate:[[[p[o],a(p),a(n)][p[o]==a(m[0],max)and k(p,o)+k(n,b)*2]for o,n in o(zip(*m))]for b,p in o(m)]
+import re
+p=lambda g:[g,exec("g[:]=zip(*eval(re.sub('{1}, {0}(?=[^])]* [^{0}{1}])','{1},{1}',str(g)))[::-1]);".format(*re.findall(r'(.), ((?!\1).), \1',str(g+[*zip(*g)]))[0])*56)][0]
