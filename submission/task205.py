@@ -1,2 +1,1 @@
-f=lambda g:len(sum(g,[]))
-def p(g,r=range):m=len(g);g=max((v for I in r(f(g))for J in r(f(g))if len({*str(v:=[g[k][I//m:J//m+1]for k in r(I%m,J%m)])})<7),key=f);return[[[M:=g[0][0],sum(s:={*v,*w})-M][s>{M}]for w in zip(*g)]for v in g]
+p=lambda g,k=100:k and p([*zip(*[g[1:],g][any(f"{i}, "*5in str(g[0])for i in range(10))][::-1])],k-1)or[[[M:=g[0][0],sum(s:={*v,*w})-M][s>{M}]for w in zip(*g)]for v in g]

@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[w[i]or b"020463010"[sum(v[:j])+3*(sum(w[:i]))>>3]&15for j,w in e(zip(*g))]for i,v in e(g)]
+p=lambda g,s=0:[(t:=0,s:=s+3*all(v))and[[b"02046301"[s+(t:=t+(x>0))&7]&7,x][x>0]for x in v]for v in g]
