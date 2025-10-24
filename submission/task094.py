@@ -1,2 +1,1 @@
-f=lambda l,i:(1in l[i])*l[i-2].count(1)>4<l[i+2].count(1)
-p=lambda g,e=enumerate:[[x-x//4*(f(g,i)|f([*zip(*g)],j))for j,x in e(v)]for i,v in e(g)]
+p=lambda g,k=1:-k*g or p([[min(x,8-2*((g[j-2]+g[j-13]).count(1)>9>1in w))for j,(x,w)in enumerate(zip(v,g))]for v in zip(*g)],k-1)
