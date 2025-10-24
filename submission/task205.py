@@ -1,1 +1,1 @@
-p=lambda g,k=100:k and p([*zip(*[g[1:],g][any(f"{i}, "*5 in str(g[0])for i in range(10))][::-1])],k-1)or[[[M:=g[0][0],sum(s:={*v,*w})-M][s>{M}]for w in zip(*g)]for v in g]
+p=lambda g,k=100:k and p([*zip(*[g[1:],g][any(f"{i}, "*5in str(g[0])for i in range(10))][::-1])],k-1)or[[[M:=g[0][0],sum(s:={*v,*w})-M][s>{M}]for w in zip(*g)]for v in g]
