@@ -1,4 +1,1 @@
-def p(r,o=enumerate):
- for a in[0]*4:r=[*zip(*[n for a,n in o(r)if any(map(all,r[:a+1]))])][::-1]
- for a in[0]*4:r=[*zip(*[[e or n[0]*(n[0]in n[a:])for a,e in o(n)]for n in r])][::-1]
- return r
+p=lambda g,k=34:-k*(g:=[*zip(*g[::-1])])or p([[[x or(v[0]in v[i:])*v[0]for i,x in enumerate(v)]for v in g],[g,g[1:]][0in g[0]]][k>4],k-1)
