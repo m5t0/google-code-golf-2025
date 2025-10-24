@@ -1,1 +1,1 @@
-p=lambda g,k=6:-k*(g:=[*zip(*g[::-1])])or p([[[a|min(b:=((0,)+x)[i],0)*(-b in x[i:]),-a*(a<0),a-2*a*(len({*x})<2)][k//5*2+(k<1)]for i,a in enumerate(x)]for x in g],k-1)
+p=lambda g,k=6:-k*(g:=[*zip(*g[::-1])])or p([[[a|min(b:=(0,*x)[i],0)*(-b in x[i:]),-a*(a<0),a-2*a*(len({*x})<2)][k//5*2+(k<1)]for i,a in enumerate(x)]for x in g],k-1)
