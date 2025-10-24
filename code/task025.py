@@ -1,3 +1,1 @@
-import re
-s="g[:]=zip(*eval(re.sub(r'%s',str(g)))[::-1]);"
-p=lambda g:exec(s%r"(?<!-)(\d)(?=(, -?\1){5})',r'-\1"*4+s%r"-(.), 0([^)]*) \1',r'-\1,-\1\2 0"*8+s%" \d','0"*7+s%"-','")or g
+p=lambda g,k=6:-k*(g:=[*zip(*g[::-1])])or p([[[a|min(b:=((0,)+x)[i],0)*(-b in x[i:]),-a*(a<0),a-2*a*(len({*x})<2)][k//5*2+(k<1)]for i,a in enumerate(x)]for x in g],k-1)
