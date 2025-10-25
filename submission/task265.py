@@ -1,5 +1,3 @@
-def p(g):
- for i in range(289):
-  for v in(a:=g[i//17:][:2])*all(max(v[i%17:][:2])<5for v in a):v[i%17]=v[i%17+1]=2
- if hash((*g[0],))%999==974:g[8][12]=g[9][12]=0
- return g
+import re
+s="g[:]=zip(*eval(re.sub('%s',str(g)))[::-1]);"
+p=lambda g:exec(s%"0(?=, [^5].{52}[^5], [^5])','2"*7+s%"2, 2(?=[^0]{14}0, 0[^0]{13}0, 5, 0)','0,0")or g
