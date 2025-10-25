@@ -1,2 +1,1 @@
-a="g[:]=zip(*eval(str(g).replace('%s))[::-1]);"
-p=lambda g:exec(a%"2','1',2"+a%"2, 1','1,1'"+a%"8, 1','1,1'"*20+a%"1, 2','9'"*4)or[[('9'in'%s'%g)*8]]
+p=lambda g,k=34,f=1:-k*[[('2'in'%s'%g)*8^8]]or p([[f*a&2and(f:=0)+1or(a>0)*b&1|a for a,b in zip(x,(0,)+x)]for x in zip(*g[::-1])],k-1,0)

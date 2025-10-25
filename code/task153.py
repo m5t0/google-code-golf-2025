@@ -1,1 +1,1 @@
-def p(u):s=sum(u,[]);n={*s}-{0};p=max(n,key=s.count);f=[[s for*u,s in zip(*u,f)if p in u]for f in u if p in f];z=[[0]*3]*(len(f)<3);e=[0]*(len(f[0])<3);a=0 in f[0];r=0 in[*zip(*f)][0];return eval(str([e*r+f+e*(1-r)for f in z*a+f+z*(1-a)]).replace(*f"0{sum(n)-p}"))
+p=lambda g:[a for k in range(8100)if{*sum(g,[])}-{0}=={*sum(a:=[[x^y for x,y in zip(*v)]for v in zip(*[[v[i:i+3]for v in[[0]*12,*[[0,*v,0]for v in g],[0]*12][j:j+3]]for i,j in[(k//90%10,k//900),(k//10%9,k%10)]])],[])}][0]

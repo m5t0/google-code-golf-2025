@@ -1,1 +1,1 @@
-p=lambda g,k=7:-k*g or p([*zip(*[(t:=0)or(s:=0)or[[s:=c or(t>1or s==4)*4,t:=2*(t==1<i)*(a<b==c)+(b<1)][0]for a,b,c in zip(g[i-2],g[i-1],v)]for i,v in enumerate(g)][::-1])],k-1)
+p=lambda g,k=7,t=0:-k*g or p([*zip(*[(s:=0)or[[s:=c|(t>1or s==4)*4,t:=2*(t==1<i!=a<b==c)+(b<1)][0]for a,b,c in zip(g[i-2],g[i-1],v)]for i,v in enumerate(g)][::-1])],k-1)

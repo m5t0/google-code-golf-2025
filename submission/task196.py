@@ -1,2 +1,1 @@
-a="g[:]=zip(*eval(str(g).replace('%s'))[::-1]);"
-p=lambda g:exec(a%"(0','(2"*5+a%"2, 0','2,2"*62+a%"0, 1','0,3"*4+a%"1, 3','3,3"*4+a%"2','0")or g
+p=lambda g,k=51:-k*g or p([[[([a,a<3>b>0 or 3][a%2],a or 2&b)[k>7],(a!=2)*a][k<1]for a,b in zip(x,(2,)+x)]for x in zip(*g[::-1])],k-1)

@@ -1,1 +1,1 @@
-p=lambda g,k=34:-k*(g:=[*zip(*g[::-1])])or p([[[x or(v[0]in v[i:])*v[0]for i,x in enumerate(v)]for v in g],[g,g[1:]][0in g[0]]][k>4],k-1)
+p=lambda g,k=34:-k*(g:=[*zip(*g[::-1])])or p([[[x|(v[0]in v[i:])*v[0]for i,x in enumerate(v)]for v in g],[g,g[1:]][0in g[0]]][k>4],k-1)

@@ -1,1 +1,1 @@
-p=lambda g,t=7:-t*g or exec("g[6+k:4+k:-1]=g[k:k+2];g[k:k+2]=[min(g)]*2"*(g[3+(k:=t<4)].count(2)>4))or p([*zip(*g[::-1])],t-1)
+p=lambda g,t=7:-t*g or exec("g[k+6:k+4:-1]=g[k:k+2];g[k]=g[k+1]=min(g)"*(g[3+(k:=t<4)].count(2)>4))or p([*zip(*g[::-1])],t-1)
