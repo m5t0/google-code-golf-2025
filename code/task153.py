@@ -1,1 +1,1 @@
-p=lambda g:[a for k in range(8100)if{*sum(g,[])}-{0}=={*sum((a:=[[x^y for x,y in zip(v,w)]for v,w in zip(*[[v[i:i+3]for v in[[0]*12,*[[0,*v,0]for v in g],[0]*12][j:j+3]]for i,j in[(k//90%10,k//900),(k%90//10,k%10)]])]),[])}][0]
+p=lambda g:[a for k in range(8100)if{*sum(g,[])}-{0}=={*sum(a:=[[x^y for x,y in zip(*v)]for v in zip(*[[v[i:i+3]for v in[[0]*12,*[[0,*v,0]for v in g],[0]*12][j:j+3]]for i,j in[(k//90%10,k//900),(k//10%9,k%10)]])],[])}][0]
