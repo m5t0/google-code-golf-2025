@@ -1,0 +1,1 @@
+p=lambda g,r=range(20):[[w[i]or(c:=max(r,key=lambda x:(sum(x in v for v in g)==4)*x))in w!=i>=(h:=20-w[::-1].index(c))and max(w[h:])for w in zip(*g)]for i in r]
