@@ -1,1 +1,1 @@
-p=lambda g:[g,w:=len(g[0])-2,[exec("g[i+1][j+l]=4")for I in range(~-len(g)*w)for l in[-1,1]if g[i:=I//w][j:=I%w+1]==g[i][j+l]>g[i][j-l]==i*g[i-1][j]],exec("g[:]=zip(*eval(str(g).replace('4, 0','4,4'))[::-1]);"*20)][0]
+p=lambda g,k=7,t=0:-k*g or p([*zip(*[(s:=0)or[[s:=c|(t>1or s==4)*4,t:=2*(t==1<i!=a<b==c)+(b<1)][0]for a,b,c in zip(g[i-2],g[i-1],v)]for i,v in enumerate(g)][::-1])],k-1)

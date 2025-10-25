@@ -1,3 +1,1 @@
-f=lambda g,s=0:[v for v in zip(*g)if s|(s:=s^all(v))]
-h=lambda g:[[max({w}|{v[0]}&{*v[j:]}|{v[-1]}&{*v[:j]})for j,w in enumerate(v)]for v in zip(*g)]
-p=lambda g:h(h(f(f(g))))
+p=lambda g,k=34:-k*(g:=[*zip(*g[::-1])])or p([[[x|(v[0]in v[i:])*v[0]for i,x in enumerate(v)]for v in g],[g,g[1:]][0in g[0]]][k>4],k-1)
