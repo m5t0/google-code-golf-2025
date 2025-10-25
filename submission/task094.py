@@ -1,1 +1,1 @@
-p=lambda g,k=1:-k*g or p([[min(x,8-2*((g[j-2]+g[j-13]).count(1)>9>1in w))for j,(x,w)in enumerate(zip(v,g))]for v in zip(*g)],k-1)
+p=lambda g,k=1:-k*g or p([[min(v[j],8-2*((g[j-2]+g[j-13]).count(1)>9>1in g[j]))for j in range(15)]for v in zip(*g)],k-1)
