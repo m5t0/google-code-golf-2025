@@ -1,1 +1,1 @@
-def p(h):k=sum(h,[]);u=10;d=max(j:={*k}-{0},key=k.count);n=[q for q in range(u*u)if k[q]==d];m=min(q:={q%u for q in n});r=len(q);n,v=n[0]//u,n[-1]//u;n-=v-n<2 and 0 in h[n][m:m+r];m-=3-r and 0 in k[n*u+m:v*u+m+1:u];return[[q or sum(j)-d for q in q[m:m+3]]for q in (h+[[0]*u])[n:n+3]]
+p=lambda g,s=[0]*12:[a for k in range(8100)if{*sum(g,[])}-{0}=={*sum((a:=[[x^y for x,y in zip(v,w)]for v,w in zip(*[[v[i:i+3]for v in[s,*[[0,*v,0]for v in g],s][j:j+3]]for i,j in[(k//90%10,k//900),(k%90//10,k%90%10)]])]),[])}][0]
