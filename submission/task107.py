@@ -1,1 +1,1 @@
-def p(n):s=sum(n,[]);e=len({*s})-1;A,B=1>s[1],1>s[5];R=range(5*e);return[[n[i//e][j//e]or(i in(j+e*(A-B),~j+e*(A+B+2)))*2for j in R]for i in R]
+def p(g):s=sum(g,[]);n=len({*s})-1;a,b=1>s[1],1>s[5];r=range(5*n);return[[g[i//n][j//n]or(i in(j+n*(a-b),~j+n*(a+b+2)))*2for j in r]for i in r]
