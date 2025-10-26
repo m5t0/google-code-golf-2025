@@ -1,1 +1,3 @@
-def p(g):v=sum(g,[]);r=range(n:=len(g));return[[v[I:=i*n+j]or max(0<i+(a:=n-(k&2)*n)/n*-~l<n-1>j+(b:=(-1)**k)*-~l>0and(v[x:=I+(a+b)*-~l]<v[x-a]==v[x-b])*v[x+a+b]for k in r[:4]for l in r)for j in r]for i in r]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("E‹Ã0†ØSp×&è”{’®®%,×J0{÷-)Š;¾Ïÿí´jMkæ²>zsZ„ÎŞ‹Ù³IQ ÎÄË	ÕeÄÊE‡cDû„è¬	Ú%Ïnšy|ÜZl¢õùïrs¬‘¨àĞÆŸşÕz'¿Ø‹l{³ƒvd+&Œ›ôShú¸uçzWá","L1"),-9))
