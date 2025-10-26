@@ -1,5 +1,1 @@
-def p(t,f=range(10)):
- def p(c,g,r):
-  if{c,g}-{*f}or r!=t[c][g]^1:return 0
-  t[c][g]=r;return-~sum(p(c-1+a//3,g-1+a%3,r)for a in f[:9])
- e={p(c,g,9)for g in f for c in f}-{0};return[[((i:=t[c][g])>2)+(p(c,g,i^1)==min(e))for g in f]for c in f]
+p=lambda g,k=26,l=1:-k*(g:=[*zip(*g[::-1])])or p([(b:=0)or[(a>0)*[[[b|(b:=a|c),l:=l*2][(a|((a>0)&k//26))&1],a.bit_count()][k<2],a==max(sum(g,()))or(a>0)*2][k<1]for a,c in zip(x,y)]for x,y in zip(g,[(0,)*10]+g)],k-1)
