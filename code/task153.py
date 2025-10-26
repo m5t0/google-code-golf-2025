@@ -1,1 +1,1 @@
-def p(g):R=range(10);e=[[0]*12];g=e+[[0,*r,0]for r in g]+e;return max([(sum(sum(m:=[[*map(max,g[i+y][j:j+3],g[I+y][J:])]for y in[0,1,2]],[]))*(max(i-I,j-J)>2),m)for i in R for j in R for I in R for J in R])[1]
+def p(m):f=range(10);e=[0]*12;m=[e,*[p+[0,0]for p in m],e];return max((sum(sum(e:=[[*map(max,m[p+e][r:r+3],m[t+e][a:])]for e in(0,1,2)],[]))*(max(p-t,r-a)>2),e)for p in f for r in f for t in f for a in f)[1]
