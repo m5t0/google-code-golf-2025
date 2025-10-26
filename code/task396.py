@@ -1,1 +1,1 @@
-def p(r,f=enumerate):e=min(l:=sum(r,[]),key=l.count);r=max(([n[t:i+1]for n in r[n:m+1]]for n,k in f(r)for t,k in f(r[0])for m,k in f(r)for i,k in f(r[0])if{sum({*l})-e}=={*r[n][t:i+1],*[*zip(*r)][t][n:m+1]}),key=lambda r:len(sum(r,[])));return[[n and e for n in n]for n in r]
+def p(n,m=enumerate):r=min(l:=sum(n,[]),key=l.count);return max(([[i and r for i in i[d:t+1]]for i in n[i:o+1]]for i,e in m(n)for d,e in m(n[0])for o,e in m(n)for t,e in m(n[0])if{sum({*l})-r}=={*n[i][d:t+1],*[*zip(*n)][d][i:o+1]}),key=lambda n:len(sum(n,[])))
