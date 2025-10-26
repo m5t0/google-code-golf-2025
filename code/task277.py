@@ -1,5 +1,1 @@
-def p(f,a=range(10)):
- def p(e,i,s):
-  if{e,i}-{*a}or s!=f[e][i]^1:return 0
-  f[e][i]=s;return-~sum(p(e-1+n//3,i-1+n%3,s)for n in a[:9])
- d={p(e,i,9)for i in a for e in a}-{0};return[[((r:=f[e][i])>2)+(p(e,i,r^1)==min(d))for i in a]for e in a]
+p=lambda g,k=26,l=1:-k*(g:=[*zip(*g[::-1])])or p([(b:=0)or[(a>0)*[[[b|(b:=a|c),l:=l*2][(a|((a>0)&k//26))&1],a.bit_count()][k<2],a==max(sum(g,()))or(a>0)*2][k<1]for a,c in zip(x,y)]for x,y in zip(g,[[0]*10]+g)],k-1)

@@ -1,3 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes('M½Â …wŸâ:˜€…´Ø©|B’‚a(°Ág—–İÎ|çNÆÂY¢EĞşnë0æ¨±!ÄÕ‚³©˜LÓYçG€xV%æµ]y¶‡"^kHßq™QQÖø¶í‰[Å©/T[0œ-ù p™©.[ç¶Vi6™iêòÎ•¡À¿7àÛ7¨~#ÃBÌÎ£	ÿqÔ£>',"L1"),-9))
+p=lambda g,k=26,l=1:-k*(g:=[*zip(*g[::-1])])or p([(b:=0)or[(a>0)*[[[b|(b:=a|c),l:=l*2][(a|((a>0)&k//26))&1],a.bit_count()][k<2],a==max(sum(g,()))or(a>0)*2][k<1]for a,c in zip(x,y)]for x,y in zip(g,[[0]*10]+g)],k-1)
