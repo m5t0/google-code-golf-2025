@@ -1,1 +1,1 @@
-def p(g):r=range(len(g));return[[any(any(a[j%2::2])for a in g[i:])*4or g[i-1][j]for j in r]for i in r]
+def p(g):r=range(len(g));return[[any(any(a[j%2::2])for a in g[i:])*4|g[i-1][j]for j in r]for i in r]
