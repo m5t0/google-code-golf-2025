@@ -1,1 +1,1 @@
-p=lambda g,k=63:-k*g or exec("for l in 0,1,2:g[t+l][s:s+3]=l%2*2,2,l%2*2"*min(*g[t:=k//8][(s:=k%8):s+3],g[t+1][s]))or p(g,k-1)
+p=lambda g,k=63:-k*g or exec("for l in 0,1,2:g[t+l][s:s+3]=l%2*2,2,l%2*2"*min(g[t:=k//8][(s:=k%8):s+3])*g[t+1][s])or p(g,k-1)
