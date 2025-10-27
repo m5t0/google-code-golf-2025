@@ -1,1 +1,1 @@
-p=lambda g,k=27,l=1:-k*(s:=len({*sum(g,[])})-1)//4*[[0]*e+[8]+[0]*(s+~e)for e in range(s)]or p([(b:=0)or[[(y:=a>0)*[b|(b:=a),l:=l*2][a&1|y&k//27],a][k<1]for a in r]for r in zip(*g[::-1])],k-1)
+p=lambda g,k=27,l=1:-k*(s:=len({*sum(g,[])})-1)//4*[[0]*e+[8]+[0]*(s+~e)for e in range(s)]or p([(b:=0)or[[(a>0)*[b|(b:=a),l:=l*2][a&1|k>26],a][k<1]for a in r]for r in zip(*g[::-1])],k-1)
