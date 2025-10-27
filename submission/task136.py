@@ -1,5 +1,5 @@
 def p(g):
- def f(c,s):
-  a,b=divmod(sum(g,[]).index(c),10)
+ for c in 1,2:
+  a,b=divmod(sum(g,[]).index(c),10);s=2*c-3
   while-1<a<10>b>-1:g[a][b]=c;a+=s;b+=s
- f(1,-1);f(2,1);return g
+ return g
