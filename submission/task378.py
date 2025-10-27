@@ -1,1 +1,5 @@
-def p(g):v=sum(g,[]);r=range(n:=len(g));return[[v[I:=i*n+j]or max(0<i+(a:=n-(k&2)*n)/n*-~l<n-1>j+(b:=(-1)**k)*-~l>0and(v[x:=I+(a+b)*-~l]<v[x-a]==v[x-b])*v[x+a+b]for k in r[:4]for l in r)for j in r]for i in r]
+def p(g,t=7):
+ for q in(v:=sum(g,[])):
+  I,J=divmod(v.index(q),s:=len(g));k=0
+  while J>k<I<s-2>J>0<(o:=g[I+2][J+2])!=q:k+=1;g[I-k][J-k]=o
+ return-t*g or p([*map(list,zip(*g))][::-1],t-1)
