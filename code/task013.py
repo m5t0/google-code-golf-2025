@@ -1,1 +1,3 @@
-def p(n):l,p=len(n),len(n[0]);n=[n,[*zip(*n)]][l<p];r,a=[f for f in range(len(n))if sum(n[f])];u=a-r<<1;return[[((e:=[f,i][l<p])>=r)*((e%u==r%u)*sum(n[r])+(e%u==a%u)*sum(n[a]))for i in range(p)]for f in range(l)]
+import re
+s="g[:]=zip(*eval(re.sub(r'%s',str(g))));"
+p=lambda g:exec((s%r"\([0, ]*(.)\)',r'(\1,)*len(g[0])"+"g[:]=g[::-1];")*8+s%r"([^0])([, 0]+,) ([^0])\2 0',r'\1\2\3\2\1"*22)or g
