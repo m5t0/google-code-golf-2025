@@ -1,1 +1,1 @@
-p=lambda g:[a for k in range(8100)if{*sum(g,[])}-{0}=={*sum(a:=[[x^y for x,y in zip(*v)]for v in zip(*[[v[i:i+3]for v in[[0]*12,*[[0,*v,0]for v in g],[0]*12][j:j+3]]for i,j in[(k//90%10,k//900),(k//10%9,k%10)]])],[])}][0]
+def p(m):f=range(10);z=[0]*12;m=z,*m,z;return max((sum(sum(e:=[[*map(max,(m[p+e]+z)[r:3+r],(m[t+e]+z)[a:])]for e in(0,1,2)],[]))*(p-t>2or r-a>2),e)for p in f for r in f for t in f for a in f)[1]
