@@ -261,6 +261,7 @@ def create_template_from_function(code_string: str) -> tuple[str, list]:
             "zip",
             "all",
             "sorted",
+            "divmod",
         ]
     }
     template = code_string
