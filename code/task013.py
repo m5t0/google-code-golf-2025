@@ -1,1 +1,3 @@
-def p(o):n,m,u=range,len(o),len(o[0]);o=[o,[*zip(*o)]][m<u];s,r=[i for i in n(len(o))if sum(o[i])];f=2*(s-r);return[[((e:=[i,n][m<u])>=min(s,r))*((e%f==s%f)*sum(o[s])+(e%f==r%f)*sum(o[r]))for n in n(u)]for i in n(m)]
+import re
+s="g[:]=zip(*eval(re.sub(r'%s',str(g))));"
+p=lambda g:exec((s%r"\([0, ]*(.)\)',r'(\1,)*len(g[0])"+"g[:]=g[::-1];")*8+s%r"([^0])([, 0]+), ([^0])\2, 0',r'\1\2,\3\2,\1"*22)or g
