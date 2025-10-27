@@ -1,1 +1,1 @@
-def p(n):s=sum(n,[]);h=max({*s}-{0},key=s.count);s=f"[s for s in zip(*%s)if s.count({h})>2]";c=len(s:=eval(s%s%"n"))//len(i:=[[*filter(int,i)][-4:]for i,s in zip(n,n[1:])if{*i,*s}-{h,0}][1:]);return[[i/h*s for i,s in zip(i,s[::c])]for i,s in zip(i,s[::c])]
+def p(x):f=sum(x,[]);u=max({*f}-{0},key=f.count);f=[f for f in zip(*[f for f in zip(*x)if f.count(u)>2])if f.count(u)>2];n=len(f)//len(x:=[[*filter(int,x)][-4:]for x,f in zip(x,x[1:])if{*x,*f}-{u,0}][1:]);return[[x/u*f for x,f in zip(x,f[::n])]for x,f in zip(x,f[::n])]

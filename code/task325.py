@@ -1,6 +1,1 @@
-def p(s):
- p=enumerate;r={e+1j*r for e,s in p(s)for r,s in p(s)if s};s=0
- def p(s):
-  if s in r:r.remove(s);p(s+1);p(s-1);p(s+1j);p(s-1j)
- while r:s+=1;p(next(iter(r)))
- return[[0]*e+[8]+[0]*(s-e-1)for e in range(s)]
+p=lambda g,k=27,l=1:-k*(s:=len({*sum(g,[])})-1)//4*[[0]*e+[8]+[0]*(s+~e)for e in range(s)]or p([(b:=0)or[[(a>0)*[b|(b:=a),l:=l*2][a&1|k>26],a][k<1]for a in r]for r in zip(*g[::-1])],k-1)

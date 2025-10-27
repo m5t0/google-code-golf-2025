@@ -1,4 +1,4 @@
-def p(f,r=range):
- t,i=len(f),len(f[0]);e,o,a,n=max(((o-e)*(n-a),e,o,a,n)for e in r(t)for o in r(e+2,t+1)for a in r(i)for n in r(a+2,i+1)if max(max(r[a:n])for r in f[e:o])<1)[1:]
- for r in r(e,o):f[r][a:n]=[6]*(n-a)
- return f
+def p(a,p=range):
+ f,e=len(a),len(a[0]);t,m,o,r,x=max(((o-m)*(x-r),m,o,r,x)for m in p(f)for o in p(m+2,f+1)for r in p(e)for x in p(r+2,e+1)if 1>max(max(m[r:x])for m in a[m:o]))
+ for o in p(m,o):a[o][r:x]=[6]*(x-r)
+ return a

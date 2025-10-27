@@ -1,1 +1,1 @@
-def p(g,e=enumerate):V=sum(g,[]);a,b=zip(*(divmod(i,len(g[0]))for i,x in e(V)if x==5));m,M=min(b),max(b);return[[w|(a[0]<i<a[3])*((m<j<M)-(m+1<j<M-1>a[0]+1<i<a[3]-1))*(sum({*V})-5)for j,w in e(v)]for i,v in e(g)]
+def p(g,e=enumerate):V=sum(g,[]);a,b=zip(*(divmod(i,len(g[0]))for i,x in e(V)if x==5));m,*_,M=sorted(b);A,*_,B=a;return[[w|((m<j<M>A<i<B)^(m+1<j<M-1>A+1<i<B-1))*sum({*V},-5)for j,w in e(v)]for i,v in e(g)]

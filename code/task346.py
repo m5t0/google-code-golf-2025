@@ -1,1 +1,2 @@
-p=lambda g:min([[b]]for t,r in zip(g,g[1:])for a,b,c,u in zip(r,r[1:],r[2:],t[1:])if a==c==u>0<b!=a)
+import re
+p=lambda g:[[int(re.findall(r'(([^0],) \2 \2).*((?!\2)[^0]), \2.*\1',str(g))[0][2])]]

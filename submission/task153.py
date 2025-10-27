@@ -1,3 +1,1 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes("E1@¥€¦—£½=İDP–ÎĞ[e=öùëvï…¼<¤˜f+Ä’4oO±ÁÃ*‰<»°¬5‘ £6‘GÏå­¦™×f*£ğªÒw’¿Ö~özÄDäjnv¬±KaÒ¨Ó‡õÃrd8S2RÖcÀ‰œ=Zmî¨s†û(ğÿYÌza¿0Ÿø","L1"),-9))
+def p(m):f=range(10);z=[0]*12;m=z,*m,z;return max((sum(sum(e:=[[*map(max,(m[p+e]+z)[r:3+r],(m[t+e]+z)[a:])]for e in(0,1,2)],[]))*(p-t>2or r-a>2),e)for p in f for r in f for t in f for a in f)[1]
