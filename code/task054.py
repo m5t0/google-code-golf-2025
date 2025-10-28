@@ -1,12 +1,3 @@
-def p(g,r=range):
- a=g[0][0];l=sorted((sum(g,[]).count(i),i)for i in r(10)if i!=a);b=l[-1][1];c=[i for _,i in l if f'{i}, {b}'in str(g) and i!=b][0]
- for i in r(900):
-  if g[i//30][i%30]==c:
-   f=[v[i%30-1:i%30+2]for v in g[i//30-1:i//30+2]]
-   if(b in sum(f,[])or a==f[0][1])^1:
-    p=[v[i%30-1:i%30+2]for v in g[i//30-1:i//30+2]]
-    for k in r(25):g[i//30-2+k//5][i%30-2+k%5]=a
- p=eval(str(p).replace(str(a),str(b)));f=eval(str(g))
- for i in r(900):
-  for k in r((g[i//30][i%30]==c)*9):f[i//30-1+k//3][i%30-1+k%3]=p[k//3][k%3]
- a=[p[0][1],p[1][0]][p[0][1]==p[0][0]];exec(f"f[:]=zip(*eval(str(f).replace('{c}, {a}, {b}','{c},{a},{a}').replace('{a}, {a}, {b}','{a},{a},{a}'))[::-1]);"*60);return f
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("•Qe²Ü0þŸS¨l…½[LF'ñ¸oI.;Û[îÝ¹Ì}‹ù@|bAœ*ðÌh×Ïœ(-1óI©t~¡Bk,öÇåì³rØ:tKO<Ä½ÄJøÄ»BçLÉtÚmç…Œ±¦¶˜ˆëÖ;÷¡…wùÃ-¡rTaïOž¥v?e0ŽÒœã†a;Zãn¬¿D‹ðÀdRa:=É_³±¥ª¤(E‘‘l’Ke‘e:–éV¿'b_[|¨KbH—ÏbˆßºßÜÁé‹uÓÄa¸Sº/àÆK¾‚Dürÿ\É.ö‘Ãóý‘ôØÊ_FÄ™¿¹âŸ¶ôsyõËÊ°~€i^:Ú±€[KÉ|âTàee+m2Zd¿Dò ÌÌ¯ù¨ÜU6“¥·O‚ª¿öÊß&ºõn‘ËûÏço¸~o}oó?Ùüw64ÓÔi‹óÕúîˆsä|Žø#","L1"),-9))
