@@ -1,2 +1,1 @@
-import re
-p=lambda g:exec("g[:]=zip(*eval(re.sub(r'3, ([0,\s]*)0, ([1-9])',r'3,\\1\\2,\\2',str(g)))[::-1]);"*28)or g
+p=lambda g,k=3:-k*g or p([[v[j]or(3in v[:j])*max(v[j:])for j in range(10)]for v in zip(*g[::-1])],k-1)
