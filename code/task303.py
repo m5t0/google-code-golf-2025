@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[v[j]+2-2*any(v)*any(w)for j,w in e(zip(*g))]for i,v in e(g)]
+p=lambda g:[[x+2*(max(v)*max(w)<1)for*w,x in zip(*g,v)]for v in g]
