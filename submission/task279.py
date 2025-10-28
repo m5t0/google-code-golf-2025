@@ -1,1 +1,1 @@
-p=lambda g,k=87:-k*g or p([[((a,9)[a==2],(a<2<b)*8or a,(b==2)*(a>8)*2or a)[(k>1)+k//44]for a,b in zip(x,(2,)+x)]for x in zip(*g[::-1])],k-1)
+p=lambda g,k=87:-k*g or p([[((a,9)[a==2],(a<2<b)*8or a,(b==2<a)*2or a)[(k>1)+k//44]for a,b in zip(x,(2,)+x)]for x in zip(*g[::-1])],k-1)
