@@ -1,1 +1,1 @@
-p=lambda j:(j[:len(j)//2],H:=[r[:len(r)//2]for r in j])[j==[h+h for h in H]]
+p=lambda g:[g[:len(g)//2],a:=[v[:len(v)//2]for v in g]][g==[v*2for v in a]]

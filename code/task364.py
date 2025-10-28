@@ -1,2 +1,2 @@
-s=0,1,0,-1
-def p(q,n=range):f=lambda b,a,d:sum(e>(c:=a+s[n-1])>-1<(_:=b+s[n])<r>q[_][c]>2and(d-(n^2)and f(_,c,n))+(e>(c:=a+s[n-2])>-1<(_:=b+s[n-1])<r>q[_][c]>2)for n in n(4));r=len(q);e=len(q[0]);return[[q[b][a]and[0,1,6,2][f(b,a,5)]for a in n(e)]for b in n(r)]
+n=0,1,0,-1
+def p(e):a=lambda f,b,s:sum(r>(_:=b+n[d-1])>-1<(q:=f+n[d])<c>e[q][_]>2and(s-(d^2)and a(q,_,d))+(r>(_:=b+n[d-2])>-1<(q:=f+n[d-1])<c>e[q][_]>2)for d in range(4));c=len(e);r=len(e[0]);return[[e[f][b]and[0,1,6,2][a(f,b,5)]for b in range(r)]for f in range(c)]

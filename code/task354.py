@@ -1,1 +1,1 @@
-p=lambda g:exec("for r in g:\n j=0\n while j-10:\n  k=j\n  while k-10 and r[k]==5:k+=1\n  r[j:k]=[max(g[0][j:k]or[0])]*(k-j);j+=k==j")or g
+p=lambda g,k=18:g*~k or p([[x==5and(k%4<1)*v[0]|y*(x!=y)or x for x,y in zip(v,(0,)+v)]for v in zip(*g[::-1])],k-1)
