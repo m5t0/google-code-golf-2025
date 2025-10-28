@@ -1,1 +1,1 @@
-p=lambda g:min((-all(z:=sum(h:=[g[i//7+k][i%7:i%7+3]for k in[0,1,2]],[])),sum(z),h)for i in range(49))[2]
+p=lambda g:max(((str(h:=[r[i%7:][:3]for r in g[i//7:][:3]])).count('1'),h)for i in range(49))[1]
