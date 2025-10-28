@@ -1,1 +1,2 @@
-p=lambda g:[g:=[*zip(*(len(g)-len(u:=[v for i,v in enumerate(g)if any(v)or m(m(g[i:]))<8]))*[min(g)]+u)][::-1]for m in[max]*4][3]
+import re
+p=lambda g:exec(r"g[:]=zip(*eval(re.sub('.(.*2[^)]*\),)([^28]*\),)(.*8[^2]*)',r'[\2\1\3',str(g)))[::-1]);"*8)or g
