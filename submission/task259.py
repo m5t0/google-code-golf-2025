@@ -1,1 +1,1 @@
-p=lambda g:[g:=[*zip(*[[x*(x>1)for x in v]for i,v in enumerate(g)if max(max(g[i:]))>1])][::-1]for _ in[0]*4][3]
+p=lambda g,k=3,s=0:-k*g or p([[x*(x>1)for x in v]for v in zip(*g[::-1])if(s:=s|max(v))>1],k-1)
