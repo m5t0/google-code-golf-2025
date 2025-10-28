@@ -1,1 +1,1 @@
-p=lambda g,Z=zip:[*Z(*[[(x>0)*((w==min(s:=[*filter(any,Z(*g))]))*2+(w==max(s)))for x in w]for w in Z(*g)])]
+p=lambda g,Z=zip:[*Z(*[[x and(w==min(s:=[*filter(any,Z(*g))]))*2+(w==max(s))for x in w]for w in Z(*g)])]
