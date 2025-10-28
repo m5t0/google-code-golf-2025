@@ -1,1 +1,1 @@
-def p(g,r=str.replace):n,m={*sum(g,[])}-{0,8};return[g:=[*zip(*eval(r(r(str(g),f'{n}, 0',f'{n},{m}'),f'{m}, 0',f'{m},{n}'))[::-1])]for _ in[0]*200][-1]
+p=lambda g,k=335:-k*g or p([(s:=0)or[[x or(sum({*sum(g,[])})-8-s)*(s>0),s:=x%8and x][0]for x in v]for v in zip(*g[::-1])],k-1)
