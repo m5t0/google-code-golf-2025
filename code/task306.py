@@ -1,1 +1,2 @@
-p=lambda g,r=range,n=10:[[max(g[i%n][j%n::n]+(i-9and g[i%n+n][j%n::n]or[0]))for j in r(len(g[0]))]for i in r(19)]
+f=lambda g:[max([*zip(*g)][i%10::10])for i in range(len(g[0]))]
+p=lambda g:f(f(g))

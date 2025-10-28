@@ -1,1 +1,2 @@
-p=lambda g,r=range:(s:=[[max(max(v[j%10::10])for v in g[i::10])for j in r(len(g[0]))]for i in r(9)])+[g[9]]+s
+f=lambda g:[max([*zip(*g)][i%10::10])for i in range(len(g[0]))]
+p=lambda g:f(f(g))
