@@ -1,10 +1,1 @@
-def p(g):
- h=g[0]
- for r in g:
-  j=0
-  while j-10:
-   if r[j]-5:j+=1;continue
-   k=j
-   while k-10 and r[k]==5:k+=1
-   r[j:k]=[max(h[j:k])]*(k-j);j=k
- return g
+p=lambda g,k=18:g*~k or p([[(k%4<1)*(x==5)*max(v[0],0)or(5==x!=y)*y or x for x,y in zip(v,(0,)+v)]for v in zip(*g[::-1])],k-1)
