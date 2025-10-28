@@ -1,6 +1,3 @@
-def p(g,r=range,e=enumerate):
- a,*l,n=sum(g,[]),10
- for i,v in e(g):
-  if(5in v)>i/9<(0in v[(x:=v.index(5)+1):(y:=9-v[::-1].index(5))]):l+=[k for j in r(x,y)if a[k:=i*n+j]<1]
-  else:[a==exec("a[m-b[0]+l[0]],a[m]=a[m],0")for b in[[i for i,v in e(a)if v==c]for c in r(n)]if[m-b[0]for m in b]==[m-l[0]for m in l]for m in b];l=[]
- return[a[i*n:][:n]for i in r(n)]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes('mNUR1~çÿ©]_œ°á"™à):)v|Vpþz“Ï.%ºäOl¸XZ%ÌÏþ¤"UßÅGs¹2w£NôùAììI¸»‰~g,[8ÊíÁà»éMþÐš½”7¿Ê>€7ÀƒÚ îù«8€–H:;È¤ogz%£µ…›è")`.R)<ô<ºÉ} ˆ(oráW‘R-Ôq©ãÁÕøeœŽª[…OE¢¼>œ1ñÔNßæ)ðÍ§òWKq¬éÏšþl*ÒÑäéÙ”"±	õüKý',"L1"),-9))
