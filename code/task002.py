@@ -1,5 +1,1 @@
-def p(g):
- def f(i,j):
-  for k in[-1,1]*(-n<i<n>j>-n<1>g[i][j]):g[i][j]=4;f(i+k,j);f(i,j+k)
- for i in range(n:=len(g)):f(i,0);f(0,i);f(-1,i)
- return[[x+2^6for x in v]for v in g]
+p=lambda g,k=15:-k*g or p([(b:=4)and[b:=(a+2^6,a or-4&b)[k>0]for a in v]for v in zip(*g[::-1])],k-1)

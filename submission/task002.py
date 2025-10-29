@@ -1,4 +1,1 @@
-def p(a,r=str.replace):
- a=r(str(a),'0','4')
- for _ in a*4:a=[*zip(*eval(r(r(str(a),'0, 4','0,0'),'(4','(0'))[::-1])]
- return a
+p=lambda g,k=15:-k*g or p([(b:=4)and[b:=(a+2^6,a or-4&b)[k>0]for a in v]for v in zip(*g[::-1])],k-1)
