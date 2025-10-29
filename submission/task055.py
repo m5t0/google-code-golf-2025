@@ -1,1 +1,1 @@
-p=lambda g,s=0:[(t:=0,s:=s+3*all(v))and[[b"02046301"[s+(t:=t+(x>0))&7]&7,x][x>0]for x in v]for v in g]
+p=lambda g,s=0:[(t:=0,s:=s+3*all(v))and[[s+(t:=t+(x>0))-6&6*(s+t&5)%9,x][x>0]for x in v]for v in g]
