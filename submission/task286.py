@@ -1,1 +1,1 @@
-def p(g):n,m={*str(g)}-{*' 0,[]8'};exec("g[:]=zip(*eval(str(g).replace(n+', 0',n+','+m).replace(m+', 0',m+','+n))[::-1]);"*192);return g
+p=lambda g,k=271:-k*g or p([(s:=0)or[(x or s and sum({*sum(g,[])})-8-s)|(s:=x%8and x)for x in v]for v in zip(*g[::-1])],k-1)
