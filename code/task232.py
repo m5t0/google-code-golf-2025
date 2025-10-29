@@ -1,1 +1,1 @@
-p=lambda g:[[(m:=max(s:=v[:j+1]))and[m,5][s.index(m)+j&1]for j in range(len(v))]for v in g]
+p=lambda g:[(s:=[0,0])and[(s:=[s[1]or(x>0)*5,s[0]or x])[1]for x in v]for v in g]
