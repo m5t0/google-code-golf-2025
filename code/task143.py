@@ -1,1 +1,3 @@
-def p(g,r=range):[exec("g[x][y]=(g[x:=i+l//3][y:=j+l%3]>0)*5")for k in r(1,64)if((s:=g[i:=k//8][j:=k%8])<1or(g[i-1][j]-s)*(g[i][j-1]-s))*all((g[i+m//3][j+m%3]>0)-(g[m//3][m%3]<1)for m in r(9))for l in r(9)];return g
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("eM²ƒ1<ÊCü¶/’©û¥6ß îp½#à¿´ÃƒÑÿŽ-ÛŒ·K$@V.)Ø¶/„¬œShøíÊÁ$üÇ|½û…ßéêw×_¹Fà)GHäTO´’6›ÐHÚ¸p×;¹gºBk›É‚`˜ô$¤ûÛãÊ¢–¤P¸Ÿ¿)þVÚùÇ®","L1"),-9))
