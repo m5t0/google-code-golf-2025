@@ -1,1 +1,3 @@
-def p(n):[((r:=[n[y+f//3][t+f%3]for f in range(9)])==r[::-1])*r[4]*any(r[:4])*(r[4]==n[l+1][d+1]or sum(n[l+f//3][d+f%3]==r[f]for f in range(9))==8)and exec('for f in range(9):n[l+f//3][d+f%3]=r[f]')for l in range(len(n)-2) for y in range(len(n)-2) for d in range(len(n[0])-2) for t in range(len(n[0])-2)];return n
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes("uŒfÀ@†_å`š´ªëZl7÷$T/cËM¶²½ı.°±nò}¿/Ë^Á0@‰‰ŒöA§iaÊƒŞ,|TŠÛôIàS*ã83ö…Vî7ı„FÖöƒƒ”Œd˜™j;ÕÂÛùN<ëĞ³ŞĞk¼µïqÓäCvè.>^:éĞ‡ò3|Ãñƒ‹ı?Q	ºåo—ÿvühò~ZS_","L1"),-9))
