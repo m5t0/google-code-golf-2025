@@ -1,1 +1,1 @@
-p=lambda g,k=335:-k*g or p([(s:=0)or[[x or(sum({*sum(g,[])})-8-s)*(s>0),s:=x%8and x][0]for x in v]for v in zip(*g[::-1])],k-1)
+p=lambda g,k=271:-k*g or p([(s:=0)or[(x or s and sum({*sum(g,[])})-8-s)|(s:=x%8and x)for x in v]for v in zip(*g[::-1])],k-1)

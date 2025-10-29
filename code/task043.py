@@ -1,1 +1,1 @@
-p=lambda g:[[a|(v[9]==b==5)*2for a,b in zip(v,g[0])]for v in g]
+p=lambda g:[[a|(v[9]==b>4)*2for a,b in zip(v,g[0])]for v in g]

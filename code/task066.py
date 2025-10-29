@@ -1,9 +1,9 @@
-def p(m,o=enumerate):
- def p(i,a,d,o,e):
-  i+=d;a+=o;n=0
-  if e>2or not m[i:i+1]or not m[i][a:a+1]or(n:=m[i][a]):return n>5or n==2and 2
-  m[i][a]=3;n=p(i,a,d,o,e)
-  if n>1or n and p(i,a,-o,-d,e+1)>1or n and p(i,a,o,d,e+1)>1:return 2
-  m[i][a]=0;return 0
- for(i,a),(n,e)in(e:=[(i,a)for i,n in o(m)for a,n in o(n)if n==3]),e[::-1]:
-  if p(i,a,i-n,a-e,0)>1:return m
+def p(a):
+ def p(i,r,e,u,o):
+  i+=e;r+=u;n=0
+  if o>2or not a[i:i+1]or not a[i][r:r+1]or(n:=a[i][r]):return n>5or n==2and 2
+  a[i][r]=3;n=p(i,r,e,u,o)
+  if n>1or n and p(i,r,-u,-e,o+1)>1or n and p(i,r,u,e,o+1)>1:return 2
+  a[i][r]=0;return 0
+ for(i,r),(n,o)in(o:=[(i,r)for i,n in enumerate(a)for r,n in enumerate(n)if n==3]),o[::-1]:
+  if p(i,r,i-n,r-o,0)>1:return a

@@ -1,1 +1,1 @@
-p=lambda g:[[b'_564312_98'[c]&15for c in g[0]]]*3
+p=lambda g:[[c^6-7%-~c//2^2for c in g[0]]]*3

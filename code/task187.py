@@ -1,1 +1,1 @@
-p=lambda g,k=66:g*~k or p([[a or(k<2)*2+(b==3)*3for a,b in zip(x,(3,)+x)]for x in zip(*g[::-1])],k-1)
+p=lambda g,k=7:-k*g or p([(c:=3)and[c:=a or(k<1)*2+(c==3)*3for a in v]for v in zip(*g[::-1])],k-1)

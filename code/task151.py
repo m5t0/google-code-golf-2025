@@ -1,1 +1,2 @@
-def p(g):i,j=g.index(max(g)),g[0].index(max(g[0]));a=g[i-1];g[i+1]=a;a[j-1:j+2]=4,4,4;g[i][j-1:j+2:2]=4,4;return g
+f=lambda g:g.index(max(g))-1
+def p(g):j=f(g[0]);a=g[i:=f(g)];g[i+2]=a;a[j:j+3]=4,4,4;g[i+1][j:j+3:2]=4,4;return g

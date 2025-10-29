@@ -1,1 +1,1 @@
-def p(m,p=range):x,u=max((x,u)for r in p(196)if m[x:=r//14][u:=r%14]==m[x+6][u+6]>4);[exec("m[f+l//5][n+l%5]=m[x+1+l//5][u+1+l%5]"*all((m[(f:=r//16)+l//5][(n:=r%16)+l%5]>0)==(m[x+1+l//5][u+1+l%5]>0)for l in p(25)))for r in p(256)for l in p(25)];return m
+def p(r):e,l=max((e,l)for m in range(196)if r[e:=m//14][l:=m%14]==r[e+6][l+6]>4);[exec("r[a+x//5][f+x%5]=r[e+1+x//5][l+1+x%5]"*all((r[(a:=m//16)+x//5][(f:=m%16)+x%5]>0)==(r[e+1+x//5][l+1+x%5]>0)for x in range(25)))for m in range(256)for x in range(25)];return r

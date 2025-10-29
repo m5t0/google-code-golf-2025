@@ -1,2 +1,2 @@
-import re;s="g[:]=zip(*eval(re.sub('%s',str(g)))[::-1]);"
-def p(g):a,*_=filter(int,sum(g,[]));b=sum({*sum(g,[])}-{a});exec(s%f"{a}','-{b}"+s%f" {b}','{a}"+s%("0(?=(, 0)?, -.{9,11}-)','%d"%a)*4+s%("0(?=, -.{6,11}-)','%d"%a)*4+s%r"-','"*2);return g
+import re;s="i[:]=zip(*eval(re.sub('%s',str(i)))[::-1]);"
+def p(i):e,*o=filter(int,sum(i,[]));t=sum({*sum(i,[])}-{e});exec(s%f"{e}','-{t}"+s%f" {t}','{e}"+s%("0(?=(, 0)?, -.{9,11}-)','%d"%e)*4+s%("0(?=, -.{6,11}-)','%d"%e)*4+s%r"-','"*2);return i
