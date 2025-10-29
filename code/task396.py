@@ -1,1 +1,3 @@
-def p(g,e=enumerate):M=min(V:=sum(g,[]),key=V.count);a=max(([v[j:J+1]for v in g[i:I+1]]for i,_ in e(g)for j,_ in e(g[0])for I,_ in e(g)for J,_ in e(g[0])if{sum({*V})-M}=={*g[i][j:J+1],*[*zip(*g)][j][i:I+1]}),key=lambda g:len(sum(g,[])));return[[x and M for x in v]for v in a]
+#coding:L1
+import zlib
+exec(zlib.decompress(bytes('mÏÁJÀ0ÆñWÉ1©UôZé“„ªÍ Øf£[Q{wİ»¸ë/ş_’&rÉ×¬XœŸ{E±È~È·/Oïc×…^›,½)Ôø…È¬5A‚al ”››^B¸DX]¼Ä~¦½J‹‹ ĞÎíós8.ñşa¾}ÈÃºW¯¦lô˜6ïW#¬áL²†ÍOĞıQ8³¶s_¬o)‚¸"Š×t¢_',"L1"),-9))
