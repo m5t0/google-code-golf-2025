@@ -1,1 +1,1 @@
-p=lambda g:[g:=[[w or(max(max(g[:j+1]))>0<max(max(g[j:])))*(3-k in v)*8for j,w in enumerate(v)]for v in zip(*g)]for k in[0,1]][1]
+p=lambda g,c=0:[g:=[[[x,x or(k in v)*8][c|(c:=c^any(w))]for w,x in zip(g,v)]for v in zip(*g)]for k in[3,2]][1]
