@@ -1,1 +1,1 @@
-def p(g):a={*sum(g,[])}-{0};return[[v for v in r for _ in a]for r in g for _ in a]
+p=lambda g:[*map(f:=lambda G:[v for v in G for _ in{*sum(g,[])}-{0}],f(g))]
