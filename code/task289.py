@@ -1,1 +1,1 @@
-def p(g):S=len({*str(g)})-5;A=range(3*S);return[[g[B//S][C//S]for C in A]for B in A]
+p=lambda g:[*map(f:=lambda G:[v for v in G for _ in[*{*str(g)}][5:]],f(g))]
