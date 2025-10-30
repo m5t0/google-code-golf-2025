@@ -415,7 +415,7 @@ def change_vars(
     candidate_names: list[str],
     new_vars: list[str],
     num_changes: int,
-) -> tuple[str, list[str]]:
+) -> list[str]:
     """change several characters"""
 
     assert 1 <= num_changes <= len(new_vars)
@@ -429,7 +429,7 @@ def change_vars(
     return new_vars
 
 
-def swap_vars(new_vars: list[str], num_changes: int) -> tuple[str, list[str]]:
+def swap_vars(new_vars: list[str], num_changes: int) -> list[str]:
     """swap variables"""
 
     assert 2 <= num_changes <= len(new_vars)
@@ -769,21 +769,19 @@ def main(pool: TimeoutProcessPool):
         # ------------------ neighborhood ------------------------------
         random_value = random.random()
         new_vars2 = copy.deepcopy(new_vars)
-        if len(new_vars2) >= 2:
-            new_vars2 = swap_vars(new_vars2, num_changes=min(len(new_vars), 4))
-        if len(new_vars2) >= 2 and random_value < 0.3:
+        if len(new_vars2) >= 2 and random_value < 0.15:
             new_vars2 = swap_vars(
                 new_vars2,
                 num_changes=2,
             )
-        elif len(new_vars2) >= 2 and random_value < 0.6:
+        elif len(new_vars2) >= 2 and random_value < 0.3:
             new_vars2 = swap_vars(
                 new_vars2,
                 num_changes=min(3, len(new_vars2)),
             )
-        elif random_value < 0.8:
+        elif random_value < 0.6:
             new_vars2 = change_vars(candidate_names, new_vars2, num_changes=1)
-        elif random_value < 0.9:
+        elif random_value < 0.8:
             new_vars2 = change_vars(
                 candidate_names, new_vars2, num_changes=min(2, len(new_vars2))
             )
