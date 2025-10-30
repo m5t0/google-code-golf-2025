@@ -1,1 +1,1 @@
-p=lambda g,e=enumerate:[[[s:=w[i],sum({*v[j-(j>0):j+2]}&{*w[i-(i>0):i+2]})-s][sum(g,[]).count(s)<30]for j,w in e(zip(*g))]for i,v in e(g)]
+p=lambda g,k=3:-k*g or p([[[b*(b in a or k>2),max(a)][sum(g,[]).count(b)<30]for*a,b in zip((0,)+v,v[1:]+(0,),v)]for v in zip(*g)],k-1)
