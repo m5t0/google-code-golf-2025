@@ -1,1 +1,1 @@
-p=lambda g,c=0:[g:=[[[x,x or(k in v)*4][c|(c:=c^any(w))]for w,x in zip(g,v)]for v in zip(*g)]for k in[8,2]][1]
+p=lambda g,c=0:[g:=[[(x or(k in v)*4)*(c|(c:=c^any(w)))for w,x in zip(g,v)]for v in zip(*g)]for k in[8,2]][1]
