@@ -1,1 +1,1 @@
-p=lambda z,u=enumerate:[[[p,[z[(t:=[_ for _,q in u(z)if sum(q)])[2]][(r:=[_ for _,p in u(zip(*z))if sum(p)])[2]],r:=z[t[0]][r[0]]][p>0]][0<sum(p==r for p in q)<4or 0<sum(p==r for p in [p[_]for p in z])<4]for _,p in u(q)]for _,q in u(z)]
+p=lambda z:[[[d,[z[(h:=[b for b,_ in enumerate(z)if sum(_)])[2]][(a:=[b for b,d in enumerate(zip(*z))if sum(d)])[2]],a:=z[h[0]][a[0]]][d>0]][0<sum(d==a for d in _)<4or 0<sum(d==a for d in [d[b]for d in z])<4]for b,d in enumerate(_)]for b,_ in enumerate(z)]
