@@ -1,3 +1,2 @@
-#coding:L1
-import zlib
-exec(zlib.decompress(bytes(']MÍjÃ0¾÷)¼ÃÀuÚ<´1:"Àˆ–õ²g¯lÚKOÒ÷?s6ÕN&#ßÒıİD±S\Ä$³¬FÒúÍöâ}s½Ò%Z	˜ÎçÉ{¸:°ü@ï“úé+RZç}(‘)ÚªZç+A‰[@†ÿQ(ÖNˆû°›+o¸ûCãF®ãÇ .äÈ`ç¾!£ÀÅQ¼¬`SëG˜£¾I+`&\>5¢¦&lÛ´çíûm¦†&:áíOV“ï',"L1"),-9))
+import re;s="i[:]=zip(*eval(re.sub('%s',str(i)))[::-1]);"
+def p(i):e,*o=filter(int,sum(i,[]));t=sum({*sum(i,[])}-{e});exec(s%f"{e}','-{t}"+s%f" {t}','{e}"+s%"-','"*2+s%"0(?=([^0]{8,11}|, 0[^0]{11})%d)'%t,f'{e}"*4);return i

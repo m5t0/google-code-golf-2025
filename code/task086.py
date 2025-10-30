@@ -1,5 +1,2 @@
-def p(o):
- f=eval(str(o))
- for a in range(200):
-  for a in range(o[(r:=a//100+3)+(e:=a//10%10):]>[]and{*o[e][(p:=a%10):p+r]+o[t:=e+~-r][p:p+r]}=={i:=o[e][p]}!={0}and r*r*3-4*r):f[e+(d:=a//r-r+2)][v:=p+(a:=a%r)]=f[a:=e+a][p+d]=i;f[e][v]=f[t][v]=f[a][p]=f[a][p+~-r]=o[e+1][p+1]
- return f
+import re;s="i[:]=zip(*eval(re.sub('%s',str(i)))[::-1]);"
+def p(i):e,*o=filter(int,sum(i,[]));t=sum({*sum(i,[])}-{e});exec(s%f"{e}','-{t}"+s%f" {t}','{e}"+s%"-','"*2+s%"0(?=([^0]{8,11}|, 0[^0]{11})%d)'%t,f'{e}"*4);return i
