@@ -1,7 +1,7 @@
-def p(c):
- z=range;a=sum(c,[]);d=sorted({*a},key=a.count);f,_,p,e=d;q,s=len(c),len(c[0])
- if sum(p in r for r in c)>sum(e in r for r in c):p,e=e,p
- d=[p in r for r in c];b=[p in r for r in zip(*c)]
- r=[(n,a)for n in z(q)for a in z(s)if c[n][a]in{f,_}]
- if _^next(c[n][a]for n,a in r if d[n]&b[a]):f,_=_,f
- return[[(e,p,f,_)[2*any(abs(n-t)==abs(a-f)for t,f in r)+(d[n]&b[a])]for a in z(s)]for n in z(q)]
+def p(g):
+ n=sum(g,[]);s=sorted({*n},key=n.count);_,a,q,d=s;p,u=len(g),len(g[0])
+ if sum(q in r for r in g)>sum(d in r for r in g):q,d=d,q
+ s=[q in r for r in g];c=[q in r for r in zip(*g)]
+ r=[(e,n)for e in range(p)for n in range(u)if g[e][n]in{_,a}]
+ if a^next(g[e][n]for e,n in r if s[e]&c[n]):_,a=a,_
+ return[[(d,q,_,a)[2*any(abs(e-q)==abs(n-_)for q,_ in r)+(s[e]&c[n])]for n in range(u)]for e in range(p)]
