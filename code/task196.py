@@ -1,1 +1,1 @@
-p=lambda g,k=51:-k*g or p([[[([a,(a<2)*(0<b<3)or 3][a%2],a or 2&b)[k>7],(a!=2)*a][k<1]for a,b in zip(x,(2,)+x)]for x in zip(*g[::-1])],k-1)
+p=lambda g,k=51:-k*g or p([(b:=2)and[b:=[([a,a<3>b>0 or 3][a%2],a or 2&b)[k>7],(a!=2)*a][k<1]for a in x]for x in zip(*g[::-1])],k-1)
