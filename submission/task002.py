@@ -1,1 +1,1 @@
-p=lambda g,k=15:-k*g or p([(b:=4)and[b:=(a+2^6,a or-4&b)[k>0]for a in v]for v in zip(*g[::-1])],k-1)
+p=lambda g,k=15:-k*g or p([(b:=4)and[b:=(a+2^6,a or b&4)[k>0]for a in v]for v in zip(*g[::-1])],k-1)
