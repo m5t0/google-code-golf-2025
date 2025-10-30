@@ -1,6 +1,6 @@
-def p(h,u=enumerate):
- l,u=[(r,t,s)for r,e in u(h)for t,s in u(e)if s]
- for e,a,s in l,u:
-  while abs((r:=l[0]+u[0]-2*e)+(t:=l[1]+u[1]-2*a))>2:h[e][a]=s;e+=(r>0)-(r<0);a+=(t>0)-(t<0)
-  for f in-2,-1,1,2:h[e-r+f*t][a-t+f*r]=h[e+2*t][a+2*r]=h[e-2*t][a-2*r]=s
- return h
+def p(t,i=enumerate):
+ m,i=[(e,r,d)for e,n in i(t)for r,d in i(n)if d]
+ for n,f,d in m,i:
+  while 2<abs((e:=m[0]+i[0]-2*n)+(r:=m[1]+i[1]-2*f)):t[n][f]=d;n+=(0<e)-(e<0);f+=(0<r)-(r<0)
+  for a in-2,-1,1,2:t[n-e+a*r][f-r+a*e]=t[n+2*r][f+2*e]=t[n-2*r][f-2*e]=d
+ return t
