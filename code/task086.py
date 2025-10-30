@@ -1,2 +1,2 @@
 import re;s="i[:]=zip(*eval(re.sub('%s',str(i)))[::-1]);"
-def p(i):e,*o=filter(int,sum(i,[]));t=sum({*sum(i,[])}-{e});exec(s%f"{e}','-{t}"+s%f" {t}','{e}"+s%("0(?=(, 0)?, -.{9,11}-)','%d"%e)*4+s%("0(?=, -.{6,11}-)','%d"%e)*4+s%r"-','"*2);return i
+def p(i):e,*o=filter(int,sum(i,[]));t=sum({*sum(i,[])}-{e});exec(s%f"{e}','-{t}"+s%f" {t}','{e}"+s%"-','"*2+s%"0(?=([^0]{8,11}|, 0[^0]{11})%d)'%t,f'{e}"*4);return i
