@@ -1,1 +1,1 @@
-p=lambda g,k=3:-k*g or p([(t:=0)or[t:=b'004014012042'[x+6*(t>0)]&15for x in v]for v in zip(*g[::-1])],k-1)
+p=lambda g,k=3:-k*g or p([(t:=0)or[t:=b'004014012042'[x+6*(t>0)]&7for x in v]for v in zip(*g[::-1])],k-1)
