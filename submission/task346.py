@@ -1,1 +1,1 @@
-p=lambda g,r=range:[[g[h+1][a+1]for h in r(len(g)-2)for a in r(len(g[0])-2)if all((g[s:=h+I//3][t:=a+I%3]*(g[s][t]-g[h][a]))for I in r(9)if I-4)]]
+p=lambda g:[[x]for x in{*sum(g,[])}if(str(g).count(f"{x}, "*3)<2)*x]
