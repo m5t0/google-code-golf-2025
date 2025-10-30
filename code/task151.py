@@ -1,1 +1,1 @@
-def p(g):j=g[0].index(max(g[0]))-1;k=g.index(max(g));g[k+1]=a=g[k-1];a[j:j+3]=4,4,4;g[k][j:j+3:2]=4,4;return g
+def p(g):j=g[0].index(max(g[0]))-1;g[i:=g.index(max(g))][j:j+3:2]=4,4;g[i+1]=a=g[i-1];a[j:j+3]=4,4,4;return g
