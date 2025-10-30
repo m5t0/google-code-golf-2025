@@ -1,1 +1,2 @@
-p=lambda g:[(len(r:=g[0])-r.count(r[0])+1)*r[:1]]*(len(g)-g.count(r)+1)
+f=lambda g,s=0:[s:=v for v in zip(*g)if s!=v][::2]
+p=lambda g:f(f(g))
