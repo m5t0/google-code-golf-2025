@@ -1,0 +1,1 @@
+p=lambda a:a[:1]+[[*map(max,*a[:i])]for i in(2,3)]

@@ -1,0 +1,1 @@
+p=lambda g:(f:=lambda g:[*filter(any,zip(*g))])(f(g)*2)

@@ -1,0 +1,1 @@
+def p(g):n=str(g).count('2')//4+1;s=[2]*n;n//=3;return[s,*[sum((n*[x]for*w,x in zip(*g,v)if{*w}-{0,2}),[2])+[2]for v in g if{*v}-{0,2}for _ in[0]*n],s]

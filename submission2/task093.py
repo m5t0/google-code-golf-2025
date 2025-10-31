@@ -1,0 +1,1 @@
+def p(n):a=5in n[0];a or(n:=[*zip(*n)]);n=[[0]*(z:=r[:n[0].index(5)].count(0))+[5]*(14-(c:=r.count(0)))+[0]*(c-z)for r in n];return([*zip(*n)],n)[a]

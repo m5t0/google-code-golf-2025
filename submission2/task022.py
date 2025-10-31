@@ -1,0 +1,1 @@
+def p(s):s=sum(s,[]);t=~0,0,1;return[[max(s[i+o*11+a]for i in range(121)if s[i]==5)for a in t]for o in t]

@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[[w[i],8][sum(v[j-1:j+2]+[*w][i-1:i+2])==w[i]*6>0]for j,w in e(zip(*g))]for i,v in e(g)]

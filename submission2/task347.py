@@ -1,0 +1,1 @@
+p=lambda j:[[6*any(x)for x in zip(r,r[3:])]for r in j]

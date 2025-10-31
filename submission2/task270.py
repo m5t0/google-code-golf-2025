@@ -1,0 +1,1 @@
+p=lambda g,e=enumerate:[[max((l in V[I+k:][:1])*(X:=l*7%11)*(X in V[I::-k])for V,I in((v,j),(w,i))for l in[1,2]for k in[-1,1])+(w[i]<3)*w[i]for j,w in e(zip(*g))]for i,v in e(g)]

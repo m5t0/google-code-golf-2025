@@ -1,0 +1,1 @@
+p=lambda g,r=str.replace:[g:=eval(r(str(g),*'02')),exec("g[:]=zip(*eval(r(r(str(g),'3, 2','3,3'),'(2','(3'))[::-1]);"*56)][0]

@@ -1,0 +1,1 @@
+p=lambda g:[[x-2*(x>4)*(j+len(r)&1)for j,x in enumerate(r)]for r in g]

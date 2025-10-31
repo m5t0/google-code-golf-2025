@@ -1,0 +1,1 @@
+p=lambda g,r=range(21):[[g[i][j]or g[j][i]or[*filter(int,sum(g,[])[21*i+j::-22])][0]for j in r]for i in r]

@@ -1,0 +1,1 @@
+def p(g):v=sum(g,[]);I=v.index;i,l=I(5),len(g[0]);return[r[i%l:I(5,i+1)%l+1]for r in g[i//l-1:][:v.count(5)+4>>1]]
