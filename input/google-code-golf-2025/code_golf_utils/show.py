@@ -9,6 +9,10 @@ num = 5
 
 if len(sys.argv) > 1:
     task_num = int(sys.argv[1])
+if len(sys.argv) > 2:
+    s = int(sys.argv[2])
+if len(sys.argv) > 3:
+    num = int(sys.argv[3])
 
 examples = code_golf_utils.load_examples(task_num=task_num)[task_name][s:s+num]
 code_golf_utils.show_examples(examples=examples)

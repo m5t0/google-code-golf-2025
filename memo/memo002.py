@@ -15,6 +15,10 @@ def p(g):
   if(0<=i<n)*(0<=j<n)*(v[i][j]<1)*(g[i][j]==0):v[i][j]=1;[f(i+d,j+e)for d,e in[(1,0),(-1,0),(0,1),(0,-1)]]
  [f(i,0)or f(i,n-1)or f(0,i)or f(n-1,i)for i in r(n)];return[[4 if g[i][j]==0 and v[i][j]<1 else g[i][j]for j in r(n)]for i in r(n)]
 
+e=enumerate
+f=lambda g,w,i,j:3in{*w[i:]}&{*w[:i]}and 0not in(s:={(3in{*z[j:]}&{*z[:j]})and(z[j:].index(3)+z[j::-1].index(3))for z in g[i-w[i::-1].index(3)+1:i+w[i:].index(3)]})and len(s)==1
+p=lambda g:[[w[i]or 4*f(g,[*w],i,j)*f([*zip(*g)],v,j,i)for j,w in e(zip(*g))]for i,v in e(g)]
+
 from pprint import *
 
 pprint(
