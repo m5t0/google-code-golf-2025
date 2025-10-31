@@ -1,22 +1,16 @@
 import ast, keyword, re, random, json, copy, sys, os, zipfile, glob, warnings, zlib, time
-import threading, ctypes
-from queue import Queue
+import ctypes, concurrent.futures, multiprocessing
+import compcheck
 import numpy as np
 import pickle
 import argparse
 import time
 import math
+import psutil
 
 sys.path.append("./input/google-code-golf-2025/code_golf_utils")
 from code_golf_utils import *
 from typing import Callable, Any
-
-TASK_ID = 1
-UNSAFE_MODE = False
-SCORE_TIMEOUT_TIME = 1  # seconds
-VALIDATE_TIMEOUT_TIME = 60  # seconds
-FINAL_VALIDATE_TIMEOUT_TIME = 300  # seconds
-COMPRESSOR = "zopfli"
 
 
 # ---------------- Timer Utility ----------------------------
@@ -59,57 +53,176 @@ def load_compressor_from_cache(task_id: int, default: str) -> str:
 # ------------------ multithread utility ------------------------------
 
 
-# referenced:https://qiita.com/76r6qo698/items/5fdad284ebc547baf324
-class CustomThread(threading.Thread):
-    def __init__(self, group=None, target=None, name=None, args=(), kwargs={}):
-        threading.Thread.__init__(self, group=group, target=target, name=name)
-        self.args = args
-        self.kwargs = kwargs
-        return
+# Define as top-level function (to make it pickleable)
+def _wrapped_func(func, *args, **kwargs):
+    """Wrapper function to record process ID"""
+    current_process = multiprocessing.current_process()
+    pid = current_process.pid
 
-    def run(self):
-        self._target(*self.args, **self.kwargs)
+    try:
+        return func(*args, **kwargs)
+    except Exception as e:
+        print(f"Process {pid} encountered an error: {e}")
+        raise
 
-    def get_id(self):
-        if hasattr(self, "_thread_id"):
-            return self._thread_id
-        for id, thread in threading._active.items():
-            if thread is self:
-                return id
 
-    def raise_exception(self):
-        thread_id = self.get_id()
-        resu = ctypes.pythonapi.PyThreadState_SetAsyncExc(
-            ctypes.c_long(thread_id), ctypes.py_object(SystemExit)
+class TimeoutProcessPool:
+    def __init__(self, max_workers=None):
+        self.max_workers = max_workers
+        self.executor = concurrent.futures.ProcessPoolExecutor(max_workers=max_workers)
+        self._shutdown = False
+        self._timeout_occurred = False
+
+    def execute_with_timeout(self, func, timeout, *args, **kwargs):
+        if self._shutdown:
+            raise RuntimeError("Pool is shutdown")
+
+        # Reinitialize executor if it became unstable from previous timeout
+        if self._timeout_occurred:
+            self._restart_executor()
+
+        # Use top-level function
+        future = self.executor.submit(_wrapped_func, func, *args, **kwargs)
+        try:
+            result = future.result(timeout=timeout)
+            return result
+        except concurrent.futures.TimeoutError:
+            # Force terminate process on timeout
+            # print(
+            #     f"Timeout detected for function {func.__name__}, terminating process..."
+            # )
+            self._terminate_process_tree(future)
+
+            # Set timeout flag and reinitialize executor
+            self._timeout_occurred = True
+            self._restart_executor()
+
+            raise TimeoutError(
+                f"Function {func.__name__} timed out after {timeout} seconds"
+            )
+        except Exception as e:
+            # Check executor status for other exceptions too
+            if "broken" in str(e).lower() or "terminated" in str(e).lower():
+                self._timeout_occurred = True
+                self._restart_executor()
+            raise
+
+    def _terminate_process_tree(self, future):
+        """Terminate the process tree"""
+        try:
+            # Identify the running process
+            if hasattr(future, "_process") and future._process is not None:
+                pid = future._process.pid
+
+                try:
+                    # Get the main process
+                    parent = psutil.Process(pid)
+
+                    # Terminate the process tree including all child processes
+                    children = parent.children(recursive=True)
+
+                    # First terminate child processes
+                    for child in children:
+                        try:
+                            child.terminate()
+                        except psutil.NoSuchProcess:
+                            pass
+
+                    # Wait for child processes to terminate
+                    gone, alive = psutil.wait_procs(children, timeout=5)
+
+                    # Force kill any remaining processes
+                    for child in alive:
+                        try:
+                            child.kill()
+                        except psutil.NoSuchProcess:
+                            pass
+
+                    # Terminate the parent process
+                    try:
+                        parent.terminate()
+                        parent.wait(timeout=5)
+                    except (psutil.NoSuchProcess, psutil.TimeoutExpired):
+                        try:
+                            parent.kill()
+                        except psutil.NoSuchProcess:
+                            pass
+
+
+                except psutil.NoSuchProcess:
+                    print(f"Process {pid} no longer exists")
+                except Exception as e:
+                    print(f"Error terminating process {pid}: {e}")
+
+            # Cancel the Future as well
+            future.cancel()
+
+        except Exception as e:
+            print(f"Error in process termination: {e}")
+
+    def _restart_executor(self):
+        """Reinitialize the executor"""
+
+        # Shutdown the old executor
+        try:
+            self.executor.shutdown(wait=False)
+        except Exception as e:
+            print(f"Error during executor shutdown: {e}")
+
+        # Clean up orphaned processes
+        self._cleanup_orphaned_processes()
+
+        # Create a new executor
+        self.executor = concurrent.futures.ProcessPoolExecutor(
+            max_workers=self.max_workers
         )
-        if resu > 1:
-            ctypes.pythonapi.PyThreadState_SetAsyncExc(ctypes.c_long(thread_id), 0)
+        self._timeout_occurred = False
+
+    def _cleanup_orphaned_processes(self):
+        """Clean up orphaned processes"""
+        try:
+            current_pid = os.getpid()
+            for proc in psutil.process_iter(["pid", "name", "status"]):
+                try:
+                    # Target Python processes that are not in zombie state
+                    if (
+                        "python" in proc.info["name"].lower()
+                        and proc.info["status"] != psutil.STATUS_ZOMBIE
+                        and proc.info["pid"] != current_pid
+                    ):
+                        # If parent process doesn't exist or parent process is not current process
+                        parent = proc.parent()
+                        if (
+                            parent is None
+                            or parent.pid == 1
+                            or parent.pid == current_pid
+                        ):
+                            proc.terminate()
+                except (psutil.NoSuchProcess, psutil.AccessDenied):
+                    continue
+        except Exception as e:
+            print(f"Error during orphaned process cleanup: {e}")
+
+    def shutdown(self, wait=True):
+        self._shutdown = True
+        self.executor.shutdown(wait=wait)
+
+        # Also clean up residual processes during shutdown
+        if not wait:
+            self._cleanup_orphaned_processes()
 
 
 def run_with_thread_timeout(
-    func: Callable[..., Any], timeout: int | float, *args: Any, **kwargs: Any
+    func: Callable[..., Any],
+    timeout: int | float,
+    pool: TimeoutProcessPool,
+    *args: Any,
+    **kwargs: Any,
 ) -> Any:
     """
     Execute a function in a separate thread with a timeout.
     """
-    result_queue = Queue()
-    x = CustomThread(
-        name="Thread", target=func, args=(*args, result_queue), kwargs=kwargs
-    )
-    x.start()
-    x.join(timeout)
-    alive = x.is_alive()
-    if alive:
-        x.raise_exception()
-    x.join()
-    assert not x.is_alive()
-
-    if alive:
-        raise TimeoutError()
-    try:
-        return result_queue.get()
-    except Exception:
-        raise
+    return pool.execute_with_timeout(func, timeout, *args, **kwargs)
 
 
 # ----------------- optimization code -----------------------
@@ -160,6 +273,16 @@ def create_template_from_function(code_string: str) -> tuple[str, list]:
 
 
 def verify(output: list, label: list) -> bool:
+    if (
+        (type(output) is not list and type(output) is not tuple)
+        or any(type(v) is not list and type(v) is not tuple for v in output)
+        or any(
+            type(w) is not int and type(w) is not float and type(w) is not bool
+            for v in output
+            for w in v
+        )
+    ):
+        return False
     result = json.dumps(output)
     result = result.replace("true", "1").replace("false", "0")
     result = json.loads(result)
@@ -179,9 +302,7 @@ def verify(output: list, label: list) -> bool:
     )
 
 
-def validate_code_runner(
-    code: str, examples_to_check: list, unsafe_mode: bool, result_queue: Queue
-) -> None:
+def validate_code_runner(code: str, examples_to_check: list, unsafe_mode: bool) -> None:
     """Checks code against all examples. Returns the first failing example or None."""
     if unsafe_mode:
         examples_to_check = examples_to_check[:1]
@@ -196,28 +317,31 @@ def validate_code_runner(
                 if not verify(
                     p_func(copy.deepcopy(example["input"])), example["output"]
                 ):
-                    result_queue.put((i, example))
-                    return  # FAILED
-            result_queue.put(None)
+                    return i, example  # FAILED
             return  # PASSED
     except Exception:
         # Code fails to execute, so it's invalid. Return the first example as the failure point.
-        result_queue.put(examples_to_check[0])
-        return
+        return examples_to_check[0]
 
 
 def validate_code(
     code: str,
     examples_to_check: list,
-    timeout: int | float = VALIDATE_TIMEOUT_TIME,
-    unsafe_mode=UNSAFE_MODE,
-    phase="validating",
-    task_id=TASK_ID,
+    timeout: int | float,
+    unsafe_mode: bool,
+    phase: str,
+    task_id: int,
+    pool: TimeoutProcessPool,
 ) -> tuple[int, list] | None:
     """Checks code against all examples. Returns the first failing example or None."""
     try:
         return run_with_thread_timeout(
-            validate_code_runner, timeout, code, examples_to_check, unsafe_mode
+            validate_code_runner,
+            timeout,
+            pool,
+            code,
+            examples_to_check,
+            unsafe_mode,
         )
     except TimeoutError:
         if phase != "scoring":
@@ -255,8 +379,10 @@ def compress_custom(compressor: str, data: str):
 def get_score(
     code: str,
     examples_to_check: list,
-    compressor: str = COMPRESSOR,
-    timeout: int | float = SCORE_TIMEOUT_TIME,
+    compressor: str,
+    timeout: int | float,
+    task_id: int,
+    pool: TimeoutProcessPool,
 ) -> tuple[int, int]:
     try:
         with warnings.catch_warnings():
@@ -267,6 +393,8 @@ def get_score(
                 timeout=timeout,
                 unsafe_mode=False,
                 phase="scoring",
+                task_id=task_id,
+                pool=pool,
             )
             if failing_example is not None:
                 return 999, 999
@@ -283,14 +411,13 @@ def get_score(
         return 998, 998
 
 
-def main():
-    global \
-        TASK_ID, \
-        UNSAFE_MODE, \
-        SCORE_TIMEOUT_TIME, \
-        VALIDATE_TIMEOUT_TIME, \
-        FINAL_VALIDATE_TIMEOUT_TIME, \
-        COMPRESSOR
+def main(pool: TimeoutProcessPool):
+    TASK_ID = 1
+    UNSAFE_MODE = False
+    SCORE_TIMEOUT_TIME = 1  # seconds
+    VALIDATE_TIMEOUT_TIME = 60  # seconds
+    FINAL_VALIDATE_TIMEOUT_TIME = 300  # seconds
+    COMPRESSOR = "zopfli"
 
     parser = argparse.ArgumentParser()
     parser.add_argument("task_id", type=int, help="task id")
@@ -405,7 +532,7 @@ def main():
         RAW_FUNCTION_STRING
     )
     print(f"Initial variables: {original_vars}\n")
-    candidate_names = list("qertyuiopasdfghjklzxcbnm")
+    candidate_names = list("abcdefghijklmnopqrstuvwxyz")
 
     initial_code = FUNCTION_TEMPLATE.replace("##", "")
     PAYLOAD_OVERHEAD = 63
@@ -414,7 +541,15 @@ def main():
     print("Running initial validation against all examples...")
     timer = Timer()
     if (
-        validate_code(initial_code, all_examples, timeout=None, unsafe_mode=False)
+        validate_code(
+            initial_code,
+            all_examples,
+            timeout=None,
+            unsafe_mode=False,
+            phase="validating",
+            task_id=TASK_ID,
+            pool=pool,
+        )
         is not None
     ):
         print(
@@ -437,7 +572,14 @@ def main():
             f"Setting timeout automatically. score_timeout:{SCORE_TIMEOUT_TIME:.2f}s, validate_timeout:{VALIDATE_TIMEOUT_TIME:.2f}s, final_vaildate_timeout:{FINAL_VALIDATE_TIMEOUT_TIME:.2f}s"
         )
 
-    current_base, current_penalty = get_score(initial_code, checked_examples)
+    current_base, current_penalty = get_score(
+        initial_code,
+        checked_examples,
+        compressor=COMPRESSOR,
+        timeout=SCORE_TIMEOUT_TIME,
+        task_id=TASK_ID,
+        pool=pool,
+    )
     current_total_size = PAYLOAD_OVERHEAD + current_base + current_penalty
 
     # Global best tracking
@@ -468,7 +610,17 @@ def main():
                 TASK_ID,
                 min(
                     len(initial_code),
-                    PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
+                    PAYLOAD_OVERHEAD
+                    + sum(
+                        get_score(
+                            initial_code,
+                            checked_examples,
+                            compressor=COMPRESSOR,
+                            timeout=SCORE_TIMEOUT_TIME,
+                            task_id=TASK_ID,
+                            pool=pool,
+                        )
+                    ),
                 ),
             ),
             file=sys.stderr,
@@ -483,7 +635,15 @@ def main():
                 f"\n--- Rebase at iter {i}: Validating global best (Size: {global_best_total_size}) ---"
             )
 
-            failing_example = validate_code(global_best_code, all_examples)
+            failing_example = validate_code(
+                global_best_code,
+                all_examples,
+                timeout=VALIDATE_TIMEOUT_TIME,
+                unsafe_mode=UNSAFE_MODE,
+                phase="validating",
+                task_id=TASK_ID,
+                pool=pool,
+            )
 
             if failing_example:
                 fail_id, fail_ex = failing_example
@@ -521,7 +681,12 @@ def main():
                 global_best_code
             )
             current_base, current_penalty = get_score(
-                global_best_code, checked_examples
+                global_best_code,
+                checked_examples,
+                compressor=COMPRESSOR,
+                timeout=SCORE_TIMEOUT_TIME,
+                task_id=TASK_ID,
+                pool=pool,
             )  # Rescore with potentially new examples
             print(f"New rebase variables: {original_vars}\n" + "-" * 30)
 
@@ -533,7 +698,7 @@ def main():
         num_changes = random.randint(1, min(6, len(original_vars)))
         vars_to_change = random.sample(original_vars, k=num_changes)
         for var, new_name in zip(
-            vars_to_change, random.sample(candidate_names, k=num_changes)
+            vars_to_change, random.sample(list(set(candidate_names)-set(original_vars)), k=num_changes)
         ):
             trial_mapping[var] = new_name
 
@@ -541,7 +706,14 @@ def main():
         for var in original_vars:
             trial_code = trial_code.replace(f"##{var}##", trial_mapping[var])
 
-        trial_base, trial_penalty = get_score(trial_code, checked_examples)
+        trial_base, trial_penalty = get_score(
+            trial_code,
+            checked_examples,
+            compressor=COMPRESSOR,
+            timeout=SCORE_TIMEOUT_TIME,
+            task_id=TASK_ID,
+            pool=pool,
+        )
         trial_total_size = PAYLOAD_OVERHEAD + trial_base + trial_penalty
 
         if trial_total_size <= global_best_total_size:
@@ -563,6 +735,8 @@ def main():
             timeout=FINAL_VALIDATE_TIMEOUT_TIME,
             unsafe_mode=False,
             phase="final validating",
+            task_id=TASK_ID,
+            pool=pool,
         )
         is not None
     ):
@@ -572,6 +746,9 @@ def main():
                 all_examples,
                 timeout=FINAL_VALIDATE_TIMEOUT_TIME,
                 unsafe_mode=False,
+                phase="validating",
+                task_id=TASK_ID,
+                pool=pool,
             )
             is not None
         ):
@@ -594,21 +771,46 @@ def main():
         f"\nBest score achieved: {global_best_total_size} bytes (Base: {global_best_base}, Penalty: {global_best_penalty})"
     )
     print("\nFinal optimized code:")
-    print(global_best_code)
+    print(global_best_code, end="\n\n")
 
-    if PAYLOAD_OVERHEAD + sum(get_score(global_best_code, checked_examples)) < min(
-        len(initial_code),
-        PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
-    ):
+    # overwrite initial code if submission file exists is shorter than the initial code
+    def get_better_submission_code(initial_code):
+        submission_file = f"./submission/task{TASK_ID:03d}.py"
+        if os.path.exists(submission_file) and os.path.isfile(submission_file):
+            try:
+                with open(submission_file, "rb") as f:
+                    data = f.read()
+                    if len(data) < len(initial_code):
+                        return data
+            except Exception:
+                pass
+
+    better_submission_code = get_better_submission_code(initial_code)
+    initial_code = (
+        better_submission_code if better_submission_code is not None else initial_code
+    )
+
+    # calculate accurate code length
+    global_best_compressed_size = len(
+        compcheck.zip_src(
+            TASK_ID,
+            global_best_code,
+            len(global_best_code),
+            ["deflate", "zopfli", "zlib"].index(COMPRESSOR),
+        )
+    )
+
+    print(
+        f"before best:{len(initial_code)} bytes, varopt compress best:{global_best_compressed_size} bytes"
+    )
+
+    if global_best_compressed_size < len(initial_code):
         print("Write the best code to the file!")
         print(
             "task{0:03d}: {1} bytes -> {2} bytes".format(
                 TASK_ID,
-                min(
-                    len(initial_code),
-                    PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
-                ),
-                PAYLOAD_OVERHEAD + sum(get_score(global_best_code, checked_examples)),
+                len(initial_code),
+                global_best_compressed_size,
             ),
             file=sys.stderr,
         )
@@ -621,14 +823,15 @@ def main():
         print(
             "task{0:03d}: {1} bytes".format(
                 TASK_ID,
-                min(
-                    len(initial_code),
-                    PAYLOAD_OVERHEAD + sum(get_score(initial_code, checked_examples)),
-                ),
+                len(initial_code),
             ),
             file=sys.stderr,
         )
 
 
 if __name__ == "__main__":
-    main()
+    pool = TimeoutProcessPool(1)
+    try:
+        main(pool=pool)
+    finally:
+        pool.shutdown()

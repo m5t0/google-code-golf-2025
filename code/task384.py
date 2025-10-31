@@ -1,1 +1,2 @@
-p=lambda g:sum([[sum(([w[0]]*2for w in zip(v,*g)if 4in w),[])]*2*(4in v)for v in g],[])
+f=lambda g:sum(([v]*2*any(v)for v in zip(*g)),[])
+p=lambda g:f(f(g))
