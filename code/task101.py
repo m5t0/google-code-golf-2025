@@ -1,14 +1,14 @@
-def p(e):
- Y={};p,c=[],[]
- for f,_ in enumerate(e):
-  for n,o in enumerate(_):
-   if o:Y[(f,n)]=o;[p,[]][o-1]+=[(f,n)]
- def w(f,n):
-  if(f,n)in Y:[p,c][Y.pop((f,n))-1]+=[(f,n)];w(f,n+1),w(f,n-1),w(f+1,n),w(f-1,n)
- w(*min(p))
- while Y:
-  f,n=min(Y);i=[i for i in(3,2,1)if[*zip(*e[f:f+i])][n:n+i]==[(2,)*i]*i][0]
-  for a,o in p+c:
-   for x in range(i):
-    for s in range(i):h=f+(a-min(c)[0])*i+x;g=n+(o-min(c)[1])*i+s;e[h][g]=(g>=0)*Y.pop((h,g),1)
- return e
+def p(m):
+ f={};d,i=[],[]
+ for a,e in enumerate(m):
+  for o,e in enumerate(e):
+   if e:f[(a,o)]=e;[d,[]][e-1]+=[(a,o)]
+ def p(a,o):
+  if(a,o)in f:[d,i][f.pop((a,o))-1]+=[(a,o)];p(a,o+1),p(a,o-1),p(a+1,o),p(a-1,o)
+ p(*min(d))
+ while f:
+  a,o=min(f);n=[n for n in(3,2,1)if[*zip(*m[a:a+n])][o:o+n]==[(2,)*n]*n][0]
+  for p,e in d+i:
+   for r in range(n):
+    for u in range(n):b=a+(p-min(i)[0])*n+r;h=o+(e-min(i)[1])*n+u;m[b][h]=(h>=0)*f.pop((b,h),1)
+ return m

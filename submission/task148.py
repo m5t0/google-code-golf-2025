@@ -1,1 +1,1 @@
-p=lambda d,f=enumerate:[[u&2or u/2or((8in i)&(2in i[n:])^(8in i[n:])|(8in d[b-abs((r:=[*zip(*d)])[0].index(2)-r[-1].index(2))]))*8for n,u in f(i)]for b,i in f(d)]
+p=lambda g,e=enumerate:[[x&2or x/2or((8in v)&(2in v[j:])^(8in v[j:])|(8in g[i-abs((r:=[*zip(*g)])[0].index(2)-r[-1].index(2))]))*8for j,x in e(v)]for i,v in e(g)]

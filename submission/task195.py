@@ -1,1 +1,2 @@
-f=lambda g:[*filter(any,zip(*g[::3]))];p=lambda g:[[c&d for c in a for d in b]for a in f(f(g))for b in f(f(g))]
+f=lambda g:[*filter(any,zip(*g[::3]))]
+p=lambda g:[[c&d for c in a for d in b]for a in f(f(g))for b in f(f(g))]

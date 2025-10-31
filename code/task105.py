@@ -1,1 +1,1 @@
-p=lambda g,k=7,s=0:-k*g or p([(c:=0)|(d:=s<(s:=s|any(v)))+2and[[[0<(c:=c+(x>0))<sum(map(bool,v))>3,any(w)][d]*2,x][x>0]for*w,x in zip(*zip(*g[::-1]),v)]for v in zip(*g[::-1])],k-1)
+p=lambda g,k=7,s=0:-k*g or p([(c:=0)|(d:=s<(s:=s|any(v)))+2and[[[0<(c:=c+(x>0))<sum(map(bool,v))>3,any(w)][d]*2,x][x>0]for*w,x in zip(*zip(*g),v)]for v in zip(*g)][::-1],k-1)

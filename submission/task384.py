@@ -1,1 +1,2 @@
-f=lambda g:sum(([v]*2*any(v)for v in zip(*g)),[]);p=lambda g:f(f(g))
+f=lambda g:sum(([v]*2*any(v)for v in zip(*g)),[])
+p=lambda g:f(f(g))
