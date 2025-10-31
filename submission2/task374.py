@@ -1,1 +1,0 @@
-def p(g,r=range(10)):D=lambda i,j,P:g[i][j]and 1+sum(0<=(I:=i+k//3)<10>(J:=j-1+k%3)>=0and D(I,J,k)for k in[-2,0,2,4]if k+P-2);return[[[0,2,4,1][sorted({D(i,j,1)for i in r for j in r}).index(D(i,j,1))]for j in r]for i in r]

@@ -1,1 +1,0 @@
-p=lambda g:min((0in(z:=sum(h:=[r[i%7:][:3]for r in g[i//7:][:3]],[])),sum(z),h)for i in range(49))[2]

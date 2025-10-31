@@ -1,1 +1,0 @@
-p=lambda g,r=range:[[1-(0<i<3>j>0)and sorted((v:=sum(g,[]))and([k-v.index(x)for k in r(169)if v[k]==x]+[x]for x in{*v}-{0}))[(n:=(i&2|j>>1))^n//2][3]for j in r(4)]for i in r(4)]

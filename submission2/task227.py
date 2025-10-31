@@ -1,1 +1,0 @@
-p=lambda g:[[2-2*any(w)for w in v]for v in map(zip,g,g[4:])]

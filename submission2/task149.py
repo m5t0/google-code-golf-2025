@@ -1,1 +1,0 @@
-p=lambda j:[[sum(r[k:k+3].count(6)for r in j[e:e+3])>1for k in(0,4,8)]for e in(0,4,8)]

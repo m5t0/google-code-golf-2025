@@ -1,1 +1,0 @@
-def p(g,e=enumerate):a=[r.__setitem__(j,0)or(i,j,v)for i,r in e(g)for j,v in e(r)if v&7];A,B,_=a[0];[g[i+x-A].__setitem__(j+y-B,w)for i,r in e(g)for j,v in e(r)if v==8 for x,y,w in a];return g

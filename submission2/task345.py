@@ -1,1 +1,0 @@
-p=lambda g,r=range(10):[[g[i][j]or(sum({*(Z:=[*zip(*g)])[j][i:]})==2)*2+(sum({*Z[j-1][i-(i>0):]})>5)*2for j in r]for i in r]

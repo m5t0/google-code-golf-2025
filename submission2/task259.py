@@ -1,1 +1,0 @@
-p=lambda g,e=enumerate:[[w-(w<2)for w in v[b[0]:b[-1]+1]]for i,v in e(g)if(b:=[j for j,w in e(zip(*g))if{*w}>{1}])and({*v}>{1}or{*g[i-len(g)+1]}>{1}<{*g[i-1]})]

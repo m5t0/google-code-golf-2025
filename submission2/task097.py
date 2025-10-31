@@ -1,1 +1,0 @@
-p=lambda g,e=enumerate:[[w*(sum(sum(x[j and j-1:j+2])for x in g[i and i-1:i+2])>w)for j,w in e(v)]for i,v in e(g)]

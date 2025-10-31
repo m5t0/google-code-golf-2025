@@ -1,1 +1,0 @@
-def p(g):f=lambda a:[r[0]or r[-1]for r in a if r[0]|r[-1]];b=f(g);c=f(zip(*g));return([*zip(*[b]*len(b))],[c]*len(c))[{*b}<{*c}]

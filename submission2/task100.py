@@ -1,1 +1,0 @@
-p=lambda g:[[max((C.count(B)*sum(R[C.index(B)]==B for R in g),B)for C in g for B in C if B)[1]]*2]*2

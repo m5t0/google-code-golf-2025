@@ -1,1 +1,0 @@
-p=lambda g:[[sum({*sum(g,[])})-x for x in v if x]for v in g if any(v)]

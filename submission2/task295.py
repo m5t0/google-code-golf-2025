@@ -1,1 +1,0 @@
-def p(g):n=len(v:=g[0]);return[([v[0]]*i+v)[:n]for i in range(n//2)]

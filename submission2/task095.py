@@ -1,1 +1,0 @@
-p=lambda g,r=range(9):[[any(max(a[j-(j>0):j+2])for a in g[i-(i>0):i+2])|g[i][j]for j in r]for i in r]

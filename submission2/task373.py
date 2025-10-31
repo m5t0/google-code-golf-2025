@@ -1,1 +1,0 @@
-p=lambda g:(x:=next(zip(*g))*3,x[::-1])

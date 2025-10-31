@@ -1,1 +1,0 @@
-p=lambda g:[[*map(max,r,r[::-1])][:4]for r in g]

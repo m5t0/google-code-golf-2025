@@ -1,1 +1,0 @@
-p=lambda j:[[3+(r[1]-r[0])//5]*3for r in j]

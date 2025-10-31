@@ -1,1 +1,0 @@
-p=lambda g:g[:-1]+[[(sum(w)<max(w)*2)*4for w in zip(*g)]]

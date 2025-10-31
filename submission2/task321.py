@@ -1,1 +1,0 @@
-p=lambda g:[[r[i]or r[i+5]or r[i-4]for i in range(4)]for r in g]

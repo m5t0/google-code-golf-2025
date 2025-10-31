@@ -1,1 +1,0 @@
-p=lambda j:(j[:len(j)//2],H:=[r[:len(r)//2]for r in j])[j==[h+h for h in H]]

@@ -1,1 +1,0 @@
-p=lambda g:(a:=sum(g,[]),b:=min(a,key=a.count),c:=len(g[0]),d:=a.index(b),e:=~a[::-1].index(b)+len(a),[[x and b for x in r[d%c+1:e%c]]for r in g[d//c+1:e//c]])[-1]

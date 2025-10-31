@@ -1,1 +1,0 @@
-p=lambda g,r=range:[exec("g[p][q]=g[p:=i-m//5][q:=j+m%5]or max({*sum(g[i-l:i],[])}-{1})")for l in[3,4,5]for k in r(50-5*l)if{*g[i:=k//5+l][(j:=k%5):j+5]+[*[*zip(*g)][j]][i+1-l:i]}=={1}for m in r(5*-~l)]and g

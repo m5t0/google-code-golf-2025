@@ -1,1 +1,0 @@
-def p(g):r=g.index(x:=max(g));k=sum(x)>>1;return[([2-(i>r)+(i<r)]*(k+r-i)+[0]*13)[:len(x)]for i in range(len(g))]

@@ -1,1 +1,0 @@
-p=lambda g:next([[b]]for t,r in zip(g,g[1:])for a,b,c,u in zip(r,r[1:],r[2:],t[1:])if a==c==u>0<b!=a)

@@ -1,1 +1,0 @@
-p=lambda g:[[[[0,8],[2,4]][2in v][8in w]for w in zip(*g)]for v in g]

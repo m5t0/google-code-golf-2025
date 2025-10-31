@@ -1,1 +1,0 @@
-p=lambda g,r=range:max((f.count(2),len(f),s)for Y in r(21)for y in r(Y)for X in r(21)for x in r(X)if min(f:=sum(s:=[q[x:X]for q in g[y:Y]],[])))[2]

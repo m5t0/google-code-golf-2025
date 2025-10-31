@@ -1,1 +1,0 @@
-p=lambda g:(*zip(*[sorted(c,key=[1,2,0].index)for c in zip(*g)]),)

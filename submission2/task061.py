@@ -1,1 +1,0 @@
-p=lambda g,r=range(18):[[1+i*j%max(g[-1])for j in r]for i in r]

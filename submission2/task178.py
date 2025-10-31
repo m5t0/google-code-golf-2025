@@ -1,1 +1,0 @@
-p=lambda g:[*map(f:=lambda g:[b for a,b in zip([0]+g,g)if a!=b],f(g))]

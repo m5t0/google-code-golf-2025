@@ -1,3 +1,0 @@
-f=lambda v,k:(len({*(w:=v[:k+1])})>1<len({*v[k:]}))*({*w}!={*v[k:]})
-h=lambda l,m=min:m(l,key=l.count)
-p=lambda g,e=enumerate:[[[v[j],h(v),h(w)][v[j]==h(g[0],max)and f(v,j)+f(w,i)*2]for j,w in e(zip(*g))]for i,v in e(g)]

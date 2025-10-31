@@ -1,1 +1,0 @@
-p=lambda g:[[x and(x,4)[j&1]for j,x in enumerate(r)]for r in g]

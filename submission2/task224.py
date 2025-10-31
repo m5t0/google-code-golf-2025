@@ -1,1 +1,0 @@
-def p(g,e=enumerate):V=sum(g,[]);a,b=zip(*[divmod(i,len(g[0]))for i,x in e(V)if x==5]);return[[w or(a[0]<i<a[3])*((m:=min(b))<j<(M:=max(b)))*(1-(m+1<j<M-1>a[0]+1<i<a[3]-1))*(sum({*V})-5)for j,w in e(v)]for i,v in e(g)]

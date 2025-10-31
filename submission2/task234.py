@@ -1,1 +1,0 @@
-p=lambda g:[g:=[*zip(*(len(g)-len(u:=[v for v in g if~-v.count(m(m(g,key=any)))]))*g[:1]+u)][::-1]for m in[max]*4][3]

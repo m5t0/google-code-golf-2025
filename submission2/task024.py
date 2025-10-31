@@ -1,1 +1,0 @@
-p=lambda g:[[[(2in w)*2,s:=max(v)][s&1]for w in zip(*g)]for v in g]

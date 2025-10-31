@@ -1,1 +1,0 @@
-def p(g,r=range):n=len(g);s=0,1,n-1;return[[g[i][j]or max((x:=g[i-s[k//3]][j-s[k%3]])*(1+x%2*3)/2for k in r(9))for j in r(n)]for i in r(n)]

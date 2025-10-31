@@ -1,1 +1,0 @@
-p=lambda g,R=range(10):[[sum(g[2+i//5*5])*(i%7&-3<1or j%9<1)for j in R]for i in R]

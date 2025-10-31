@@ -1,1 +1,0 @@
-p=lambda g,e=enumerate:[[w[i]or b"020463010"[sum(v[:j])+3*(sum(w[:i]))>>3]&15for j,w in e(zip(*g))]for i,v in e(g)]

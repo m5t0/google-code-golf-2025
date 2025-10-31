@@ -1,1 +1,0 @@
-p=lambda g,f=lambda A:(B:=[*filter(int,A)])[2:]and(B*8)[-A.index(B[0])%len(B):]or A:[*zip(*map(f,zip(*map(f,g))))]

@@ -1,1 +1,0 @@
-p=lambda g:[[w[0]for w in zip(v,*g)if m in w]for v in g if(m:=min({*(V:=sum(g,[]))}-{0},key=V.count))in v]

@@ -1,1 +1,0 @@
-p=lambda g,f=lambda d:[*zip(*[b for a,b in zip([0]+d,d)if(a!=b)*any(b)])]:f(f(g))

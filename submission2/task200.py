@@ -1,1 +1,0 @@
-p=lambda g,r=range(10):[[[x:=max(v:=g[9]),5*(i+(a:=j-v.index(x))%4*9%27==9)][a&1]*(a>=0)for j in r]for i in r]

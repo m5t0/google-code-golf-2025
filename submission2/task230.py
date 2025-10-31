@@ -1,1 +1,0 @@
-p=lambda c:[exec("c[o][n:n+4:3]=1,2;c[o+3][n:n+4:3]=3,4")for o in range(len(c)-2)for n in range(len(c[0])-2)if min(c[o+1][n+1:n+3]+c[o+2][n+1:n+3])]and c

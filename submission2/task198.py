@@ -1,2 +1,0 @@
-f=lambda v,j,c:[*v[j:],c].index(c)+[*v[j::-1],c].index(c)
-p=lambda g,e=enumerate:(g:=[[w[i]or 4-(f(v,j,m:=max(g[1]))==f(w,i,m)>2)for j,w in e(zip(*g))]for i,v in e(g)],exec('g[:]=zip(*eval(str(g).replace("4, 3","4,4"))[::-1]);'*16))[0]

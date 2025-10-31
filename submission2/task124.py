@@ -1,1 +1,0 @@
-p=lambda s,r=range:(t:=len(s),d:=len(s[0]))and next((A for e in r(1,t+1)for g in r(-d,d+1)if(A:=[(([0]*d+s[k%e])*2)[d-(k//e*g):][:d]for k in r(10)])[:t]==s),s*10)[:10]

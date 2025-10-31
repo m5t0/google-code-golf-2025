@@ -1,1 +1,0 @@
-p=lambda g:(a:=len(g[0])-1)and[[x==abs((i+a-9)%(2*a)-a)for x in range(-~a)]for i in range(10)]
